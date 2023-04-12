@@ -1,6 +1,7 @@
 import { Box } from '@fower/react'
 import { hideThumbnail, useThumbnail } from '../thumbnail.store'
 import TranslateSolid from './TranslateSolid'
+import { showTranslator } from '../translator.store'
 
 export default function Thumbnail() {
   const { x, y } = useThumbnail()
@@ -17,14 +18,16 @@ export default function Thumbnail() {
       square7
       shadowXL
       rounded
-      left={x}
+      left={x + 60}
       top={y}
       cursorPointer
       border
       borderGray200
       bgWhite
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation()
         hideThumbnail()
+        showTranslator(x, y)
       }}
     >
       <TranslateSolid size={20} gray600 />
