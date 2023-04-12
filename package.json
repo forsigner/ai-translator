@@ -17,8 +17,10 @@
   },
   "type": "module",
   "dependencies": {
+    "@fower/react": "^1.76.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "stook": "^1.17.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
@@ -34,6 +36,7 @@
     "@vitejs/plugin-react": "2.2.0",
     "chokidar": "^3.5.3",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.17.16",
     "eslint": "8.36.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "4.2.1",
