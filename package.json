@@ -17,6 +17,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@bone-ui/iconify": "^0.33.2",
     "@fower/react": "^1.76.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

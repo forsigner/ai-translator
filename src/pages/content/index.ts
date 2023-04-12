@@ -1,20 +1,18 @@
-import { renderIcon } from './components/renderIcon'
+import { renderApp } from './components/renderApp'
+import { showThumbnail } from './thumbnail.store'
 
 console.log('content loaded')
 
-document.addEventListener('mouseup', function () {
+window.onload = () => {
+  console.log('page loaded')
+  renderApp()
+}
+
+document.addEventListener('mouseup', function (event) {
   const selectedText = window.getSelection().toString()
-  console.log('选中的文本::', selectedText)
+  console.log('选中的文本:', selectedText)
   if (selectedText !== '') {
-    const span = document.createElement('span')
-    span.id = 'foooooooo0000'
-    span.style.display = 'inline-block'
-    span.style.position = 'relative'
-    span.style.backgroundColor = '#FFFF00'
-
-    const range = window.getSelection().getRangeAt(0)
-    range.surroundContents(span)
-
-    renderIcon(span)
+    const { pageX: x, pageY: y } = event
+    showThumbnail(x, y)
   }
 })
