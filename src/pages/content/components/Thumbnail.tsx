@@ -1,13 +1,18 @@
 import { Box } from '@fower/react'
-import { hideThumbnail, useThumbnail } from '../thumbnail.store'
+import { hideThumbnail, useThumbnail } from '../stores/thumbnail.store'
 import TranslateSolid from './TranslateSolid'
-import { showTranslator } from '../translator.store'
+import { showTranslator } from '../stores/translator.store'
+import { useSendMessage } from '../useSendMessage'
+import { useSelection } from '../stores/selection.store'
 
 export default function Thumbnail() {
-  const { x, y } = useThumbnail()
-  console.log('x:', x, 'y:', y)
+  const { x, y, visible } = useThumbnail()
+  const sendMessage = useSendMessage()
+  const { text } = useSelection()
 
-  if (!x || !y) return null
+  console.log('--- x, y, visible :', x, y, visible)
+
+  if (!visible) return null
   return (
     <Box
       toCenter
@@ -28,6 +33,10 @@ export default function Thumbnail() {
         e.stopPropagation()
         hideThumbnail()
         showTranslator(x, y)
+        console.log('text:', text)
+        setTimeout(() => {
+          sendMessage(text)
+        }, 0)
       }}
     >
       <TranslateSolid size={20} gray600 />

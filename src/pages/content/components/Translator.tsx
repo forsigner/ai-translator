@@ -1,10 +1,14 @@
 import { Box } from '@fower/react'
-import { useTranslator } from '../translator.store'
+import { useTranslator } from '../stores/translator.store'
+import { IconChatLoading } from './IconChatLoading'
 
 export default function Translator() {
-  const { x, y } = useTranslator()
+  const { x, y, visible, result, streaming } = useTranslator()
 
-  if (!x || !y) return null
+  console.log('visible:', visible, 'streaming:', streaming)
+
+  if (!visible) return null
+
   return (
     <Box
       toCenter
@@ -16,14 +20,24 @@ export default function Translator() {
       h-100
       shadowXL
       rounded
-      left={x + 60}
+      // left={x - 100}
+      left={x}
       top={y}
       cursorPointer
       border
       borderGray200
       bgWhite
     >
-      <Box>gogo</Box>
+      <Box>Header</Box>
+      <Box>
+        {streaming && (
+          <Box toCenter>
+            <IconChatLoading />
+          </Box>
+        )}
+
+        {result && <Box>{result}</Box>}
+      </Box>
     </Box>
   )
 }

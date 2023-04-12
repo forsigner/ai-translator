@@ -1,4 +1,4 @@
-import { mutate, useStore } from 'stook'
+import { getState, mutate, useStore } from 'stook'
 
 const key = 'Thumbnail'
 
@@ -11,6 +11,7 @@ type State = {
 export function useThumbnail() {
   const [state, setThumbnail] = useStore<State>(key, { visible: false } as State)
   return {
+    visible: state.visible,
     x: state.x,
     y: state.y,
     setState: setThumbnail,
@@ -29,4 +30,8 @@ export function hideThumbnail() {
   mutate(key, (state: State) => {
     state.visible = false
   })
+}
+
+export function getThumbnailState(): State {
+  return getState(key)
 }
