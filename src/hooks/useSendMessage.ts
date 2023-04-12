@@ -1,6 +1,6 @@
-import { ChatGPTAPI } from '../../chatgpt-api'
-import { buildMessages } from './buildMessages'
-import { updateMessage, updateStreaming } from './stores/message.store'
+import { ChatGPTAPI } from '../chatgpt-api'
+import { buildMessages } from '../utils/buildMessages'
+import { updateMessage, updateStreaming } from '../stores/message.store'
 
 export function useSendMessage() {
   return async (value: string) => {

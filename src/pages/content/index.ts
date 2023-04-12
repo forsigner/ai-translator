@@ -1,8 +1,8 @@
 import { renderApp } from './renderApp'
-import { getMessageState, updateMessage } from './stores/message.store'
-import { getSelectionState, setSelectedText } from './stores/selection.store'
-import { hideThumbnail, showThumbnail } from './stores/thumbnail.store'
-import { hideTranslator } from './stores/translator.store'
+import { getMessageState, updateMessage } from '../../stores/message.store'
+import { getSelectionState, setSelectedText } from '../../stores/selection.store'
+import { hideThumbnail, showThumbnail } from '../../stores/thumbnail.store'
+import { hideTranslator } from '../../stores/translator.store'
 
 console.log('content loaded')
 

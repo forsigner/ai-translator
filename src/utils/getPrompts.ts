@@ -1,4 +1,4 @@
-import * as lang from './constants'
+import { langMap } from '../constants'
 
 export interface GetPromptsOptions {
   text: string
@@ -27,13 +27,11 @@ export function getPrompts(opt: GetPromptsOptions) {
   const toChinese = chineseLangs.indexOf(to) >= 0
   let systemPrompt =
     'You are a translation engine that can only translate text and cannot interpret it.'
-  let userPrompt = `translate from ${lang.langMap.get(from) || from} to ${
-    lang.langMap.get(to) || to
-  }`
+  let userPrompt = `translate from ${langMap.get(from) || from} to ${langMap.get(to) || to}`
   let isWordMode = false
 
   if (to === 'wyw' || to === 'yue') {
-    userPrompt = `翻译成${lang.langMap.get(to) || to}`
+    userPrompt = `翻译成${langMap.get(to) || to}`
   }
   if (fromChinese) {
     if (to === 'zh-Hant') {
@@ -43,7 +41,7 @@ export function getPrompts(opt: GetPromptsOptions) {
     } else if (text.length < 5 && toChinese) {
       // 当用户的默认语言为中文时，查询中文词组（不超过5个字），展示多种翻译结果，并阐述适用语境。
       systemPrompt = `你是一个翻译引擎，请将给到的文本翻译成${
-        lang.langMap.get(to) || to
+        langMap.get(to) || to
       }。请列出3种（如果有）最常用翻译结果：单词或短语，并列出对应的适用语境（用中文阐述）、音标、词性、双语示例。按照下面格式用中文阐述：
                         <序号><单词或短语> · /<音标>
                         [<词性缩写>] <适用语境（用中文阐述）>
@@ -64,13 +62,13 @@ export function getPrompts(opt: GetPromptsOptions) {
 
   if (selectedWord) {
     // 在选择的句子中，选择特定的单词。触发语境学习功能。
-    systemPrompt = `你是一位${lang.langMap.get(from) || from}词义语法专家，你在教我${
-      lang.langMap.get(from) || from
-    }，我给你一句${lang.langMap.get(from) || from}句子，和这个句子中的一个单词，请用${
-      lang.langMap.get(to) || to
+    systemPrompt = `你是一位${langMap.get(from) || from}词义语法专家，你在教我${
+      langMap.get(from) || from
+    }，我给你一句${langMap.get(from) || from}句子，和这个句子中的一个单词，请用${
+      langMap.get(to) || to
     }帮我解释一下，这个单词在句子中的意思和句子本身的意思,如果单词在这个句子中是习话的一部分，请解释这句句子中的习话，并举几个相同意思的${
-      lang.langMap.get(from) || from
-    }例句,并用${lang.langMap.get(to) || to}解释例句。如果你明白了请说同意，然后我们开始。`
+      langMap.get(from) || from
+    }例句,并用${langMap.get(to) || to}解释例句。如果你明白了请说同意，然后我们开始。`
     userPrompt = '好的，我明白了，请给我这个句子和单词。'
 
     // text = `句子是：${text}\n单词是：${selectedWord}`

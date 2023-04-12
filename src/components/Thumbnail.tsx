@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
-import { hideThumbnail, useThumbnail } from '../pages/content/stores/thumbnail.store'
-import { showTranslator } from '../pages/content/stores/translator.store'
-import { useSendMessage } from '../pages/content/useSendMessage'
-import { useSelection } from '../pages/content/stores/selection.store'
+import { hideThumbnail, useThumbnail } from '../stores/thumbnail.store'
+import { showTranslator } from '../stores/translator.store'
+import { useSendMessage } from '../hooks/useSendMessage'
+import { useSelection } from '../stores/selection.store'
 import Logo from './Logo'
 
 export default function Thumbnail() {

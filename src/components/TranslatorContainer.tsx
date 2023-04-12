@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { useTranslator } from '../pages/content/stores/translator.store'
+import { useTranslator } from '../stores/translator.store'
 import Translator from './Translator'
 
 export default function TranslatorContainer() {

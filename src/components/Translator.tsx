@@ -1,9 +1,9 @@
 import { Box } from '@fower/react'
 import { IconChatLoading } from './IconChatLoading'
 import { Header } from './Header'
-import { useMessage } from '@src/pages/content/stores/message.store'
+import { useMessage } from '@src/stores/message.store'
 import { SendMessageBox } from './SendMessageBox'
-import { useSendMessage } from '@src/pages/content/useSendMessage'
+import { useSendMessage } from '@src/hooks/useSendMessage'
 
 export default function Translator() {
   const sendMessage = useSendMessage()
