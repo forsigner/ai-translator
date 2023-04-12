@@ -12,6 +12,9 @@ export default function TranslatorContainer() {
       column
       absolute
       // left={x - 100}
+      shadowXL
+      border
+      rounded
       left={x}
       top={y}
     >

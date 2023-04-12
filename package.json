@@ -17,6 +17,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@bone-ui/button": "^0.33.2",
     "@bone-ui/iconify": "^0.33.2",
     "@bone-ui/input": "^0.33.2",
     "@bone-ui/portal": "^0.33.2",
@@ -27,6 +28,7 @@
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-textarea-autosize": "^8.4.1",
     "stook": "^1.17.0"
   },
   "devDependencies": {

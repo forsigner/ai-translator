@@ -30,7 +30,7 @@ export default function Thumbnail() {
         hideThumbnail()
         showTranslator(x, y)
         console.log('text:', text)
-        setTimeout(() => {
+        setTimeout(async () => {
           sendMessage(text)
         }, 0)
       }}

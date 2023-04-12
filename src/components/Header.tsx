@@ -4,7 +4,7 @@ import { FromTo } from './FromTo'
 
 export function Header() {
   return (
-    <Box toCenterY toBetween borderBottom borderBottomGray100 px4>
+    <Box toCenterY toBetween borderBottom borderBottomGray100 px4 py2>
       <Box toCenterY toBetween columnGap-8>
         <Logo />
         <Box textBase>AI Translator!!</Box>

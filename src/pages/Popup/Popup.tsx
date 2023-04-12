@@ -3,7 +3,7 @@ import Translator from '@src/components/Translator'
 
 const Popup = () => {
   return (
-    <Box bgYellow500 inlineFlex>
+    <Box inlineFlex>
       <Translator></Translator>
     </Box>
   )
