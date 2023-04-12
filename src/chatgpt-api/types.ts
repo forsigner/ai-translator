@@ -180,6 +180,7 @@ export type MessageContent = {
 
 export type MessageMetadata = any
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace openai {
   export interface CreateChatCompletionDeltaResponse {
     id: string
@@ -229,7 +230,7 @@ export namespace openai {
     readonly Assistant: 'assistant'
   }
   export declare type ChatCompletionRequestMessageRoleEnum =
-    (typeof ChatCompletionRequestMessageRoleEnum)[keyof typeof ChatCompletionRequestMessageRoleEnum]
+    typeof ChatCompletionRequestMessageRoleEnum[keyof typeof ChatCompletionRequestMessageRoleEnum]
   /**
    *
    * @export
@@ -255,7 +256,7 @@ export namespace openai {
     readonly Assistant: 'assistant'
   }
   export declare type ChatCompletionResponseMessageRoleEnum =
-    (typeof ChatCompletionResponseMessageRoleEnum)[keyof typeof ChatCompletionResponseMessageRoleEnum]
+    typeof ChatCompletionResponseMessageRoleEnum[keyof typeof ChatCompletionResponseMessageRoleEnum]
   /**
    *
    * @export

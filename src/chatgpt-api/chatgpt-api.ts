@@ -8,7 +8,6 @@ export class ChatGPTAPI {
   protected _apiBaseUrl: string
   protected _debug: boolean
 
-  protected _systemMessage: string
   protected _completionParams: Omit<types.openai.CreateChatCompletionRequest, 'messages' | 'n'>
   protected _maxModelTokens: number
   protected _maxResponseTokens: number
@@ -47,13 +46,6 @@ export class ChatGPTAPI {
       top_p: 1.0,
       presence_penalty: 1.0,
       ...completionParams,
-    }
-
-    this._systemMessage = systemMessage! // TODO:
-
-    if (this._systemMessage === undefined) {
-      const currentDate = new Date().toISOString().split('T')[0]
-      this._systemMessage = `You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible.\nKnowledge cutoff: 2021-09-01\nCurrent date: ${currentDate}`
     }
 
     this._maxModelTokens = maxModelTokens
@@ -99,8 +91,7 @@ export class ChatGPTAPI {
       const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
 
       let urlParams = ''
-      // const authorizationCode = '4xpji7txnp5v63owencu7gwsatkgms0k'
-      const authorizationCode = '123456'
+      const authorizationCode = '4xpji7txnp5v63owencu7gwsatkgms0k'
 
       // for provider
       if (authorizationCode) urlParams = `?authorizationCode=${authorizationCode}`

@@ -3,7 +3,7 @@ import { useTranslator } from '../stores/translator.store'
 import { IconChatLoading } from './IconChatLoading'
 import { Header } from './Header'
 
-export default function Translator() {
+export default function TranslatorContainer() {
   const { x, y, visible, result, streaming } = useTranslator()
 
   console.log('visible:', visible, 'streaming:', streaming)

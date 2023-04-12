@@ -1,35 +1,31 @@
 import { Box } from '@fower/react'
 import { hideThumbnail, useThumbnail } from '../stores/thumbnail.store'
-import TranslateSolid from './TranslateSolid'
 import { showTranslator } from '../stores/translator.store'
 import { useSendMessage } from '../useSendMessage'
 import { useSelection } from '../stores/selection.store'
+import Logo from './Logo'
 
 export default function Thumbnail() {
   const { x, y, visible } = useThumbnail()
   const sendMessage = useSendMessage()
   const { text } = useSelection()
 
-  console.log('--- x, y, visible :', x, y, visible)
+  console.log('visible:', visible)
 
   if (!visible) return null
   return (
     <Box
-      toCenter
+      cursorPointer
       inlineFlex
-      absolute
-      right0
-      top0
-      square7
+      borderGray200
       shadowXL
+      border
       rounded
+      absolute
       left={x + 60}
       top={y}
-      cursorPointer
-      border
-      borderGray200
-      bgWhite
       onClick={(e) => {
+        e.preventDefault()
         e.stopPropagation()
         hideThumbnail()
         showTranslator(x, y)
@@ -39,7 +35,7 @@ export default function Thumbnail() {
         }, 0)
       }}
     >
-      <TranslateSolid size={20} gray600 />
+      <Logo />
     </Box>
   )
 }

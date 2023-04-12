@@ -18,6 +18,10 @@
   "type": "module",
   "dependencies": {
     "@bone-ui/iconify": "^0.33.2",
+    "@bone-ui/input": "^0.33.2",
+    "@bone-ui/portal": "^0.33.2",
+    "@bone-ui/select": "^0.33.2",
+    "@bone-ui/spinner": "^0.33.2",
     "@fower/react": "^1.76.0",
     "chatgpt": "^5.2.2",
     "openai": "^3.2.1",
