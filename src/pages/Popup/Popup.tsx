@@ -1,7 +1,12 @@
-import '@pages/popup/Popup.css'
+import { Box } from '@fower/react'
+import Translator from '@src/components/Translator'
 
 const Popup = () => {
-  return <div className="App"></div>
+  return (
+    <Box bgYellow500 inlineFlex>
+      <Translator></Translator>
+    </Box>
+  )
 }
 
 export default Popup

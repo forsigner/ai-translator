@@ -1,4 +1,4 @@
-import { mutate, useStore } from 'stook'
+import { getState, mutate, useStore } from 'stook'
 
 const key = 'Message'
 
@@ -37,4 +37,8 @@ export function updateStreaming(streaming: boolean) {
   mutate(key, (state: State) => {
     state.streaming = streaming
   })
+}
+
+export function getMessageState(): State {
+  return getState(key)
 }

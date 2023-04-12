@@ -1,5 +1,5 @@
 import { renderApp } from './renderApp'
-import { updateMessage } from './stores/message.store'
+import { getMessageState, updateMessage } from './stores/message.store'
 import { getSelectionState, setSelectedText } from './stores/selection.store'
 import { hideThumbnail, showThumbnail } from './stores/thumbnail.store'
 import { hideTranslator } from './stores/translator.store'
@@ -27,13 +27,14 @@ document.addEventListener('mouseup', async (event) => {
 
 document.addEventListener('click', () => {
   const selection = getSelectionState()
+  const message = getMessageState()
 
   setTimeout(() => {
     if (selection?.text) {
       hideThumbnail()
       hideTranslator()
       setSelectedText('')
-      updateMessage('')
+      if (message) updateMessage('')
     }
   }, 0)
 })

@@ -8,12 +8,10 @@ interface Props {
 
 export function FromTo({ from, to }: Props) {
   return (
-    <Box>
-      <Box>
-        <Select options={[]} />
-        <Box>-</Box>
-        <Select options={[]} />
-      </Box>
+    <Box toCenterY>
+      <Select options={[]} />
+      <Box>-</Box>
+      <Select options={[]} />
     </Box>
   )
 }
