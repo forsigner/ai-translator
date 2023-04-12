@@ -1,11 +1,14 @@
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 import { getPrompts } from './getPrompts'
+import { getFromToState } from '@src/hooks/useFromTo'
 
 export function buildMessages(text: string): ChatCompletionRequestMessage[] {
+  const formTo = getFromToState()
+
   const { userPrompt, systemPrompt } = getPrompts({
     text,
-    from: 'en',
-    to: 'zh-Hans',
+    from: formTo.from,
+    to: formTo.to,
     selectedWord: '',
   })
   return [

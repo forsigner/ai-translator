@@ -4,13 +4,14 @@ import { Header } from './Header'
 import { useMessage } from '@src/stores/message.store'
 import { SendMessageBox } from './SendMessageBox'
 import { useSendMessage } from '@src/hooks/useSendMessage'
+import { CARD_HEIGHT, CARD_WIDTH } from '@src/constants'
 
 export default function Translator() {
   const sendMessage = useSendMessage()
   const { content, streaming } = useMessage()
 
   return (
-    <Box w-400 minH-100 column bgWhite>
+    <Box w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite>
       <Header />
       <Box p3>
         <SendMessageBox
@@ -18,7 +19,7 @@ export default function Translator() {
             await sendMessage(value)
           }}
         />
-        <Box p5 pt5>
+        <Box py4 pb2 px2 textBase leadingNormal>
           {streaming && (
             <Box toCenter>
               <IconChatLoading />

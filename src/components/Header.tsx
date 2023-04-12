@@ -10,7 +10,7 @@ export function Header() {
         <Box textBase>AI Translator!!</Box>
       </Box>
       <Box>
-        <FromTo from={'en'} to={'en'} />
+        <FromTo />
       </Box>
     </Box>
   )

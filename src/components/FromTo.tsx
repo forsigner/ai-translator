@@ -1,17 +1,23 @@
-import { Select } from '@bone-ui/select'
+import { SwitchHorizontalOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
+import { useFromTo } from '@src/hooks/useFromTo'
+import { LangSelect } from './LangSelect'
 
-interface Props {
-  from: string
-  to: string
-}
-
-export function FromTo({ from, to }: Props) {
+export function FromTo() {
+  const { from, to, setFrom, setTo, reverse } = useFromTo()
   return (
-    <Box toCenterY>
-      <Select options={[]} />
-      <Box>-</Box>
-      <Select options={[]} />
+    <Box toCenterY columnGap-4>
+      <LangSelect value={from} onChange={setFrom} />
+      <SwitchHorizontalOutline
+        cursorPointer
+        gray500
+        gray600--hover
+        size={16}
+        onClick={() => {
+          reverse()
+        }}
+      />
+      <LangSelect value={to} onChange={setTo} />
     </Box>
   )
 }

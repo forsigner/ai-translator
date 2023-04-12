@@ -1,3 +1,6 @@
+export const CARD_WIDTH = 500
+export const CARD_HEIGHT = 200
+
 export const supportLanguages: [string, string][] = [
   ['en', 'English'],
   ['zh-Hans', '简体中文'],

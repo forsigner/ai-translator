@@ -19,6 +19,7 @@
   "dependencies": {
     "@bone-ui/button": "^0.33.2",
     "@bone-ui/iconify": "^0.33.2",
+    "@bone-ui/icons": "^0.33.2",
     "@bone-ui/input": "^0.33.2",
     "@bone-ui/portal": "^0.33.2",
     "@bone-ui/select": "^0.33.2",

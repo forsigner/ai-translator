@@ -20,29 +20,27 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
   const disabled = streaming
 
   return (
-    <Box flex-1 minH={[56, 80]} toCenterY>
-      <TextareaAutosize
-        placeholder="Enter to translate / Shift+Enter to new a line.
-"
-        className={css(
-          'm0 borderNone w-100p outlineNone px3 py2 flex placeholderGray400 bgWhite textBase gray300--dark bgSlate100 bgTransparent--dark rounded',
-        )}
-        disabled={disabled}
-        style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && e.shiftKey) {
-            return
-          }
+    <TextareaAutosize
+      minRows={2}
+      placeholder={`Please input you text to translate \nEnter to translate, Shift+Enter to new a line`}
+      className={css(
+        'm0  borderNone w-100p outlineNone px3 py3 placeholderGray400 bgWhite textBase gray300--dark bgSlate100 bgTransparent--dark rounded',
+      )}
+      disabled={disabled}
+      style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' && e.shiftKey) {
+          return
+        }
 
-          if (e.key === 'Enter') {
-            send()
-            e.preventDefault()
-            return
-          }
-        }}
-      />
-    </Box>
+        if (e.key === 'Enter') {
+          send()
+          e.preventDefault()
+          return
+        }
+      }}
+    />
   )
 }
