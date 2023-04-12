@@ -1,7 +1,8 @@
 import { renderApp } from './renderApp'
+import { updateMessage } from './stores/message.store'
 import { getSelectionState, setSelectedText } from './stores/selection.store'
 import { hideThumbnail, showThumbnail } from './stores/thumbnail.store'
-import { hideTranslator, updateTranslateResult } from './stores/translator.store'
+import { hideTranslator } from './stores/translator.store'
 
 console.log('content loaded')
 
@@ -32,7 +33,7 @@ document.addEventListener('click', () => {
       hideThumbnail()
       hideTranslator()
       setSelectedText('')
-      updateTranslateResult('')
+      updateMessage('')
     }
   }, 0)
 })

@@ -1,10 +1,10 @@
 import { ChatGPTAPI } from '../../chatgpt-api'
-import { setStreaming, updateTranslateResult } from './stores/translator.store'
 import { buildMessages } from './buildMessages'
+import { updateMessage, updateStreaming } from './stores/message.store'
 
 export function useSendMessage() {
   return async (value: string) => {
-    setStreaming(true)
+    updateStreaming(true)
     if (!value) return
     const api = new ChatGPTAPI({})
     const code = '4xpji7txnp5v63owencu7gwsatkgms0k'
@@ -30,13 +30,13 @@ export function useSendMessage() {
         },
         onMessage(text) {
           console.log('text:', text)
-          updateTranslateResult(text)
+          updateMessage(text)
         },
       })
 
-      setStreaming(false)
+      updateStreaming(false)
     } catch (error) {
-      setStreaming(false)
+      updateStreaming(false)
       console.log('send message error:', error)
     }
   }

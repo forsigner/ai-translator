@@ -6,34 +6,17 @@ type State = {
   x: number
   y: number
   visible: boolean
-  result: string
-  streaming: boolean
 }
 
 export function useTranslator() {
   const [state, setTranslator] = useStore<State>(key, {
     visible: false,
-    result: '',
-    streaming: false,
   } as State)
 
-  function setStreaming(streaming: boolean) {
-    setTranslator((state) => {
-      state.streaming = streaming
-    })
-  }
   return {
     ...state,
     setTranslator,
-    setStreaming,
   }
-}
-
-export function updateTranslateResult(value: string) {
-  mutate(key, (state: State) => {
-    state.result = value
-    state.streaming = false
-  })
 }
 
 export function showTranslator(x: number, y: number) {
@@ -52,10 +35,4 @@ export function hideTranslator() {
 
 export function getTranslatorState(): State {
   return getState(key)
-}
-
-export function setStreaming(streaming: boolean) {
-  mutate(key, (state: State) => {
-    state.streaming = streaming
-  })
 }

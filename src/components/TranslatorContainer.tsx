@@ -1,12 +1,8 @@
 import { Box } from '@fower/react'
 import { useTranslator } from '../pages/content/stores/translator.store'
-import { IconChatLoading } from './IconChatLoading'
-import { Header } from './Header'
 
 export default function TranslatorContainer() {
-  const { x, y, visible, result, streaming } = useTranslator()
-
-  console.log('visible:', visible, 'streaming:', streaming)
+  const { x, y, visible } = useTranslator()
 
   if (!visible) return null
 
@@ -27,16 +23,7 @@ export default function TranslatorContainer() {
       borderGray200
       bgWhite
     >
-      <Header />
-      <Box pt5>
-        {streaming && (
-          <Box toCenter>
-            <IconChatLoading />
-          </Box>
-        )}
-
-        {result && <Box>{result}</Box>}
-      </Box>
+      ...
     </Box>
   )
 }

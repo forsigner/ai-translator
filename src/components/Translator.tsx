@@ -2,9 +2,11 @@ import { Box } from '@fower/react'
 import { useTranslator } from '../pages/content/stores/translator.store'
 import { IconChatLoading } from './IconChatLoading'
 import { Header } from './Header'
+import { useMessage } from '@src/pages/content/stores/message.store'
 
 export default function Translator() {
-  const { x, y, visible, result, streaming } = useTranslator()
+  const { x, y, visible } = useTranslator()
+  const { content, streaming } = useMessage()
 
   console.log('visible:', visible, 'streaming:', streaming)
 
@@ -35,7 +37,7 @@ export default function Translator() {
           </Box>
         )}
 
-        {result && <Box>{result}</Box>}
+        {content && <Box>{content}</Box>}
       </Box>
     </Box>
   )
