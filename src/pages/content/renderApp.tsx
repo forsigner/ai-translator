@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { App } from './components/App'
+import { App } from '../../components/App'
 
 export function renderApp() {
   const $container = document.createElement('div')

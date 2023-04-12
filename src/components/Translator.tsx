@@ -1,9 +1,9 @@
 import { Box } from '@fower/react'
-import { useTranslator } from '../stores/translator.store'
+import { useTranslator } from '../pages/content/stores/translator.store'
 import { IconChatLoading } from './IconChatLoading'
 import { Header } from './Header'
 
-export default function TranslatorContainer() {
+export default function Translator() {
   const { x, y, visible, result, streaming } = useTranslator()
 
   console.log('visible:', visible, 'streaming:', streaming)

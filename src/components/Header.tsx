@@ -7,7 +7,7 @@ export function Header() {
     <Box toCenterY toBetween>
       <Box toCenterY toBetween columnGap-8>
         <Logo />
-        <Box>AI Translator</Box>
+        <Box>AI Translator!!</Box>
       </Box>
       <Box>
         <Box>Switch</Box>
