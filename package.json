@@ -8,12 +8,13 @@
   },
   "scripts": {
     "build": "node utils/build.js",
-    "start": "node utils/webserver.js",
+    "dev": "node utils/webserver.js",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -24,6 +25,7 @@
     "@types/chrome": "^0.0.229",
     "@types/react": "^18.0.34",
     "@types/react-dom": "^18.0.11",
+    "@types/ws": "^8.5.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^9.1.2",
     "babel-preset-react-app": "^10.0.1",
