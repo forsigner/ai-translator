@@ -4,8 +4,10 @@ import { IconSponsor } from './IconSponsor'
 import { Button } from '@bone-ui/button'
 import { Avatar } from '@bone-ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@bone-ui/tooltip'
+import { useSettingsVisible } from '@src/stores/settings.store'
 
 export function Footer() {
+  const { setVisible } = useSettingsVisible()
   return (
     <Box toCenterY toBetween>
       <Avatar name={'U'} bgGray300 size={24} cursorPointer />
@@ -20,6 +22,8 @@ export function Footer() {
               colorScheme="white"
               icon={<CogOutline gray400 size={16} />}
               onClick={async () => {
+                setVisible(true)
+
                 await chrome.storage.sync.set({
                   settings: {
                     foo: 'bar',
@@ -41,6 +45,10 @@ export function Footer() {
               colorScheme="white"
               size={28}
               icon={<IconSponsor fill="#bf3989" size={20} />}
+              onClick={() => {
+                console.log('========xxxxxxxxx..')
+                setVisible(true)
+              }}
             />
           </TooltipTrigger>
           <TooltipContent>Go to sponsor the maker</TooltipContent>

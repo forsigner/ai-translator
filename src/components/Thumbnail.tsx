@@ -3,7 +3,7 @@ import { hideThumbnail, useThumbnail } from '../stores/thumbnail.store'
 import { showTranslator } from '../stores/translator.store'
 import { useSendMessage } from '../hooks/useSendMessage'
 import { useSelection } from '../stores/selection.store'
-import Logo from './Logo'
+import { IconLogo } from './IconLogo'
 
 export default function Thumbnail() {
   const { x, y, visible } = useThumbnail()
@@ -35,7 +35,7 @@ export default function Thumbnail() {
         }, 0)
       }}
     >
-      <Logo />
+      <IconLogo></IconLogo>
     </Box>
   )
 }

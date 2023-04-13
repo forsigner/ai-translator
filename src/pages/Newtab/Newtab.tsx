@@ -1,7 +1,6 @@
-import React from "react";
-import logo from "@assets/img/logo.svg";
-import "@pages/newtab/Newtab.css";
-import "@pages/newtab/Newtab.scss";
+import logo from '@assets/img/logo.svg'
+import '@pages/newtab/Newtab.css'
+import '@pages/newtab/Newtab.scss'
 
 const Newtab = () => {
   return (
@@ -22,7 +21,7 @@ const Newtab = () => {
         <h6>The color of this paragraph is defined using SASS.</h6>
       </header>
     </div>
-  );
-};
+  )
+}
 
-export default Newtab;
+export default Newtab

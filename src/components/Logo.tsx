@@ -1,10 +1,10 @@
 import { Box } from '@fower/react'
-import TranslateSolid from './TranslateSolid'
+import { IconLogo } from './IconLogo'
 
-export default function Logo() {
+export const Logo = () => {
   return (
-    <Box toCenter inlineFlex square7 bgWhite>
-      <TranslateSolid size={20} gray600 />
+    <Box>
+      <IconLogo />
     </Box>
   )
 }

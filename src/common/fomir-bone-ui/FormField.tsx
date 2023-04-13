@@ -44,7 +44,14 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
           w-100={layout === 'horizontal'}
         >
           {label && (
-            <Box as="label" className="bone-form-field-label" leading-1em toCenterY>
+            <Box
+              as="label"
+              className="bone-form-field-label"
+              leading-1em
+              toCenterY
+              textSM
+              fontSemibold
+            >
               {label}
             </Box>
           )}
@@ -71,4 +78,4 @@ export const FormField: FC<FormFieldProps> = forwardRef(function FormFieldComp(
       </Box>
     </Box>
   )
-}) as any
+})
