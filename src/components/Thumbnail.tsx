@@ -2,13 +2,13 @@ import { Box } from '@fower/react'
 import { hideThumbnail, useThumbnail } from '../stores/thumbnail.store'
 import { showTranslator } from '../stores/translator.store'
 import { useSendMessage } from '../hooks/useSendMessage'
-import { useSelection } from '../stores/selection.store'
+import { useText } from '../stores/text.store'
 import { IconLogo } from './IconLogo'
 
 export default function Thumbnail() {
   const { x, y, visible } = useThumbnail()
   const sendMessage = useSendMessage()
-  const { text } = useSelection()
+  const { text } = useText()
 
   console.log('visible:', visible)
 
@@ -17,10 +17,13 @@ export default function Thumbnail() {
     <Box
       cursorPointer
       inlineFlex
-      borderGray200
       shadowXL
       border
-      rounded
+      borderGray200
+      roundedXL
+      p-2
+      bgWhite
+      bgWhite--dark
       absolute
       left={x + 60}
       top={y}
@@ -35,7 +38,7 @@ export default function Thumbnail() {
         }, 0)
       }}
     >
-      <IconLogo></IconLogo>
+      <IconLogo size={20} />
     </Box>
   )
 }

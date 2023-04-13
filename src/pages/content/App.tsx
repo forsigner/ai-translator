@@ -8,7 +8,7 @@ export function App() {
   return (
     <>
       <ToastContainer></ToastContainer>
-      <Box id="ai-translator-content" bgAmber300>
+      <Box id="ai-translator-content">
         <Portal>
           <Thumbnail />
           <TranslatorContainer />

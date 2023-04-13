@@ -1,19 +1,19 @@
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useMessage } from '@src/stores/message.store'
-import { useState } from 'react'
+import { useText } from '@src/stores/text.store'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
 }
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
-  const [value, setValue] = useState('')
+  const { text, setText } = useText()
   const { streaming } = useMessage()
 
   async function send() {
-    if (!value) return
-    await onSendMessage?.(value)
+    if (!text) return
+    await onSendMessage?.(text)
   }
 
   const disabled = streaming
@@ -27,8 +27,8 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       )}
       disabled={disabled}
       style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={text}
+      onChange={(e) => setText(e.target.value)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' && e.shiftKey) {
           return

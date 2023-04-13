@@ -1,4 +1,5 @@
 import { Box } from '@fower/react'
+import { FowerHTMLProps } from '@fower/core'
 import { IconChatLoading } from './IconChatLoading'
 import { Header } from './Header'
 import { useMessage } from '@src/stores/message.store'
@@ -8,12 +9,17 @@ import { CARD_HEIGHT, CARD_WIDTH } from '@src/constants'
 import { Footer } from './Footer'
 import { Markdown } from './Markdown'
 
-export default function Translator() {
+interface Props extends FowerHTMLProps<'div'> {
+  x: number
+  y: number
+}
+
+export default function Translator({ x, y, ...rest }: Props) {
   const sendMessage = useSendMessage()
   const { content, streaming } = useMessage()
 
   return (
-    <Box w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite>
+    <Box w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite left={x} top={y} {...rest}>
       <Header />
       <Box p3>
         <SendMessageBox

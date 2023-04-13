@@ -1,13 +1,17 @@
 import { renderApp } from './renderApp'
 import { getMessageState, updateMessage } from '../../stores/message.store'
-import { getSelectionState, setSelectedText } from '../../stores/selection.store'
+import { getTextState, updateText } from '../../stores/text.store'
 import { getThumbnailState, hideThumbnail, showThumbnail } from '../../stores/thumbnail.store'
 import { hideTranslator } from '../../stores/translator.store'
+import { getSettingsStorage } from '@src/stores/settings.store'
 
 console.log('content loaded')
 
-window.onload = () => {
+window.onload = async () => {
   console.log('page loaded')
+  const settings = await getSettingsStorage()
+  document.documentElement.classList.add(settings?.theme || 'light')
+
   renderApp()
 }
 
@@ -19,14 +23,14 @@ document.addEventListener('mouseup', async (event) => {
     console.log('selectedText:', selectedText)
 
     setTimeout(() => {
-      setSelectedText(selectedText)
+      updateText(selectedText)
       showThumbnail(x, y)
     }, 10)
   }
 })
 
 document.addEventListener('click', () => {
-  const selection = getSelectionState()
+  const selection = getTextState()
   const message = getMessageState()
   const thumbnail = getThumbnailState()
 
@@ -34,7 +38,7 @@ document.addEventListener('click', () => {
     if (selection?.text) {
       thumbnail && hideThumbnail()
       hideTranslator()
-      setSelectedText('')
+      updateText('')
       message && updateMessage('')
     }
   }, 0)

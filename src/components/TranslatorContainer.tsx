@@ -8,17 +8,14 @@ export default function TranslatorContainer() {
   if (!visible) return null
 
   return (
-    <Box
-      column
+    <Translator
       absolute
       // left={x - 100}
       shadowXL
-      border
-      rounded
-      left={x}
-      top={y}
-    >
-      <Translator />
-    </Box>
+      roundedLG
+      overflowHidden
+      x={x}
+      y={y}
+    />
   )
 }
