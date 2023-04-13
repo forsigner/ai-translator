@@ -1,6 +1,4 @@
-
 export function IconChatLoading() {
-  // return <Chatgpt style={{ width: 32 }} />
   return (
     <svg width="30" height="14" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#fff">
       <circle cx="15" cy="15" r="15" fill="#10b981">
