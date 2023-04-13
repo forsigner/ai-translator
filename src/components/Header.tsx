@@ -4,7 +4,11 @@ import { HEADER_HEIGHT } from '@src/constants'
 import { IconLogo } from './IconLogo'
 import { SettingsButton } from './SettingsButton'
 
-export function Header() {
+interface Props {
+  showSettings: boolean
+}
+
+export function Header({ showSettings }: Props) {
   return (
     <Box
       toCenterY
@@ -21,7 +25,7 @@ export function Header() {
       </Box>
       <Box toCenterY columnGap-8>
         <FromTo />
-        <SettingsButton></SettingsButton>
+        {showSettings && <SettingsButton></SettingsButton>}
       </Box>
     </Box>
   )

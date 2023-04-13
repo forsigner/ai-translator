@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { ToastContainer } from 'bone-ui'
 import { Settings } from '@src/components/Settings'
-import Translator from '@src/components/Translator'
+import { Translator } from '@src/components/Translator'
 import { useSettingsVisible } from '@src/stores/settings.store'
 
 const Popup = () => {
@@ -11,7 +11,7 @@ const Popup = () => {
     <>
       <ToastContainer></ToastContainer>
       <Box inlineFlex black bgWhite>
-        {!visible && <Translator />}
+        {!visible && <Translator showSettings />}
         {visible && <Settings />}
       </Box>
     </>

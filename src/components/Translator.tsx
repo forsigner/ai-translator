@@ -8,19 +8,22 @@ import { useSendMessage } from '@src/hooks/useSendMessage'
 import { CARD_HEIGHT, CARD_WIDTH } from '@src/constants'
 import { Footer } from './Footer'
 import { Markdown } from './Markdown'
+import { forwardRef } from 'react'
 
 interface Props extends FowerHTMLProps<'div'> {
-  x: number
-  y: number
+  showSettings?: boolean
 }
 
-export default function Translator({ x, y, ...rest }: Props) {
+export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
+  { showSettings = false, ...rest },
+  ref,
+) {
   const sendMessage = useSendMessage()
   const { content, streaming } = useMessage()
 
   return (
-    <Box w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite left={x} top={y} {...rest}>
-      <Header />
+    <Box ref={ref} w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite {...rest}>
+      <Header showSettings={showSettings} />
       <Box p3>
         <SendMessageBox
           onSendMessage={async (value) => {
@@ -40,4 +43,4 @@ export default function Translator({ x, y, ...rest }: Props) {
       </Box>
     </Box>
   )
-}
+})

@@ -1,19 +1,36 @@
-import { Box } from '@fower/react'
 import { ToastContainer } from 'bone-ui'
-import { Portal } from '@bone-ui/portal'
-import Thumbnail from '../../components/Thumbnail'
-import TranslatorContainer from '@src/components/TranslatorContainer'
+import { Popover } from './Popover'
+import { Thumbnail } from './Thumbnail'
+import { hideThumbnail, useThumbnail } from '@src/stores/thumbnail.store'
+import { TranslatorContainer } from './TranslatorContainer'
+import { useText } from '@src/stores/text.store'
+import { useSendMessage } from '@src/hooks/useSendMessage'
 
 export function App() {
+  const { x, y, visible } = useThumbnail()
+  const { text } = useText()
+  const sendMessage = useSendMessage()
+
+  if (!visible) return null
+
   return (
     <>
       <ToastContainer></ToastContainer>
-      <Box id="ai-translator-content">
-        <Portal>
-          <Thumbnail />
-          <TranslatorContainer />
-        </Portal>
-      </Box>
+      <Popover
+        placement="bottom"
+        afterOpenChange={(isOpen) => {
+          if (!isOpen) {
+            hideThumbnail()
+          } else {
+            setTimeout(() => {
+              sendMessage(text)
+            }, 0)
+          }
+        }}
+      >
+        <Thumbnail x={x} y={y} />
+        <TranslatorContainer />
+      </Popover>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { Select, RenderSearch } from '@bone-ui/select'
-import { HEADER_HEIGHT, LANG_SELECT_WIDTH, supportLanguages } from '@src/constants'
+import { CARD_HEIGHT, HEADER_HEIGHT, LANG_SELECT_WIDTH, supportLanguages } from '@src/constants'
 
 import { Box } from '@fower/react'
 import { ChevronDownOutline, SearchOutline, XCircleSolid } from '@bone-ui/icons'
@@ -62,7 +62,9 @@ interface Props {
 
 export function LangSelect({ value, onChange }: Props) {
   const options: Option[] = supportLanguages.map(([value, label]) => ({ label, value }))
-  const containerWidth = `calc(100vh - ${HEADER_HEIGHT + 10}px)`
+  // const containerHeight = `calc(100vh - ${HEADER_HEIGHT + 10}px)`
+  const containerHeight = CARD_HEIGHT - HEADER_HEIGHT + 10
+
   return (
     <Select
       icon={<ChevronDownOutline size={12} />}
@@ -76,7 +78,7 @@ export function LangSelect({ value, onChange }: Props) {
       width={LANG_SELECT_WIDTH}
       useTriggerWidth={false}
       containerWidth={140}
-      containerMaxHeight={containerWidth}
+      containerMaxHeight={containerHeight}
       onChange={(v: string) => onChange(v)}
     />
   )
