@@ -21,6 +21,7 @@ export function useSettingsForm() {
             as="a"
             px2
             size={28}
+            textDecoration="none"
             variant="light"
             href="https://platform.openai.com/account/api-keys"
             target="_blank"
