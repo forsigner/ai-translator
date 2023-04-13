@@ -1,5 +1,4 @@
 import { Box } from '@fower/react'
-import { CogOutline } from '@bone-ui/icons'
 import { IconSponsor } from './IconSponsor'
 import { Button } from '@bone-ui/button'
 import { Avatar } from '@bone-ui/avatar'
@@ -12,30 +11,6 @@ export function Footer() {
     <Box toCenterY toBetween>
       <Avatar name={'U'} bgGray300 size={24} cursorPointer />
       <Box toCenterY columnGap-4>
-        <Tooltip>
-          <TooltipTrigger>
-            <Button
-              p1
-              p-3--hover
-              transitionAll
-              size={28}
-              colorScheme="white"
-              icon={<CogOutline gray400 size={16} />}
-              onClick={async () => {
-                setVisible(true)
-
-                await chrome.storage.sync.set({
-                  settings: {
-                    foo: 'bar',
-                    now: Date.now(),
-                  },
-                })
-              }}
-            />
-          </TooltipTrigger>
-          <TooltipContent>Go to settings</TooltipContent>
-        </Tooltip>
-
         <Tooltip>
           <TooltipTrigger>
             <Button

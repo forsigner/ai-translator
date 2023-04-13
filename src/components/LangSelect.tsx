@@ -28,7 +28,7 @@ export const defaultRenderItem: DefaultRender = ({ checked, disabled, item }: Ra
 }
 
 export const defaultRenderSearch: RenderSearch = ({ setValue, ...searchProps }) => (
-  <Box borderBottom-1 borderBottomGray100>
+  <Box borderBottom-1 borderBottomGray100 borderBottomGray800--dark>
     <InputGroup>
       <InputElement>
         <SearchOutline size={20} gray500 />
@@ -75,7 +75,7 @@ export function LangSelect({ value, onChange }: Props) {
       value={value}
       width={LANG_SELECT_WIDTH}
       useTriggerWidth={false}
-      containerWidth={200}
+      containerWidth={140}
       containerMaxHeight={containerWidth}
       onChange={(v: string) => onChange(v)}
     />

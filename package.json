@@ -43,7 +43,8 @@
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "stook": "^1.17.0",
-    "stook-devtools": "^1.17.0"
+    "stook-devtools": "^1.17.0",
+    "use-debounce": "^9.0.4"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",

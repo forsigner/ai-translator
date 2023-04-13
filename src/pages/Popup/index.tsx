@@ -3,8 +3,14 @@ import '@pages/popup/index.scss'
 import Popup from '@pages/popup/Popup'
 import refreshOnUpdate from 'virtual:reload-on-update-in-view'
 import { init } from '@src/common/init'
+import { getSettingsStorage } from '@src/stores/settings.store'
 
 refreshOnUpdate('pages/popup')
+
+window.onload = async () => {
+  const settings = await getSettingsStorage()
+  document.documentElement.classList.add(settings?.theme || 'light')
+}
 
 function main() {
   const appContainer = document.querySelector('#app-container')

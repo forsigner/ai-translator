@@ -23,7 +23,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       minRows={2}
       placeholder={`Please input you text to translate \nEnter to translate, Shift+Enter to new a line`}
       className={css(
-        'm0  borderNone w-100p outlineNone px3 py3 placeholderGray400 bgWhite textSM gray300--dark bgGray100 bgTransparent--dark rounded leadingNormal',
+        'm0  borderNone w-100p outlineNone px3 py3 placeholderGray400 bgWhite textSM gray300--dark bgGray100 bgGray800--dark rounded leadingNormal',
       )}
       disabled={disabled}
       style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}

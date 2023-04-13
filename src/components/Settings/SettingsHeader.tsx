@@ -7,7 +7,15 @@ import { useSettingsVisible } from '@src/stores/settings.store'
 export function SettingsHeader() {
   const { setVisible } = useSettingsVisible()
   return (
-    <Box toCenterY toBetween px4 h={HEADER_HEIGHT} borderBottom borderBottomGray100>
+    <Box
+      toCenterY
+      toBetween
+      px4
+      h={HEADER_HEIGHT}
+      borderBottom
+      borderBottomGray100
+      borderBottomGray800--dark
+    >
       <Box toCenterY columnGap-8>
         <IconLogo size={28} />
         <Box toCenterY fontSemibold textBase spaceX2>
