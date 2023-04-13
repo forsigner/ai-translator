@@ -1,4 +1,3 @@
-import { Box } from '@fower/react'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useMessage } from '@src/stores/message.store'
@@ -24,7 +23,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       minRows={2}
       placeholder={`Please input you text to translate \nEnter to translate, Shift+Enter to new a line`}
       className={css(
-        'm0  borderNone w-100p outlineNone px3 py3 placeholderGray400 bgWhite textBase gray300--dark bgSlate100 bgTransparent--dark rounded',
+        'm0  borderNone w-100p outlineNone px3 py3 placeholderGray400 bgWhite textSM gray300--dark bgGray100 bgTransparent--dark rounded leadingNormal',
       )}
       disabled={disabled}
       style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}

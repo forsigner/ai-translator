@@ -5,6 +5,7 @@ import { useMessage } from '@src/stores/message.store'
 import { SendMessageBox } from './SendMessageBox'
 import { useSendMessage } from '@src/hooks/useSendMessage'
 import { CARD_HEIGHT, CARD_WIDTH } from '@src/constants'
+import { Footer } from './Footer'
 
 export default function Translator() {
   const sendMessage = useSendMessage()
@@ -29,6 +30,7 @@ export default function Translator() {
           {content && <Box>{content}</Box>}
         </Box>
       </Box>
+      <Footer />
     </Box>
   )
 }

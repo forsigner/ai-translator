@@ -1,5 +1,7 @@
-export const CARD_WIDTH = 500
+export const CARD_WIDTH = 460
 export const CARD_HEIGHT = 200
+export const HEADER_HEIGHT = 48
+export const LANG_SELECT_WIDTH = 90
 
 export const supportLanguages: [string, string][] = [
   ['en', 'English'],
