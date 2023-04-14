@@ -11,6 +11,7 @@ declare module '@fower/atomic-props' {
 
 export function initFower() {
   setConfig({
+    prefix: 'ai-c',
     inline: false,
     mode: {
       currentMode: 'dark',

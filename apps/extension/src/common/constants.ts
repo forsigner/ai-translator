@@ -75,10 +75,9 @@ export const langMapReverse = new Map(
 )
 
 export const isProd = process.env.NODE_ENV === 'production'
-export const host = 'localhost:5001'
-export const baseURL = 'http://localhost:5001'
 
-// console.log('process.env.NODE_ENV:', process.env.NODE_ENV)
+export const host = 'localhost:8001'
+export const baseURL = 'http://localhost:8001'
 
 // export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
 export const subscriptionsEndpoint = `ws://${host}/graphql`
