@@ -1,20 +1,43 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
-/node_modules
+node_modules
+.pnp
+.pnp.js
+
+# vscode
+.vscode
 
 # testing
-/coverage
+coverage
 
-# build
-/dist
+# next.js
+.next/
+out/
+build
 
-# etc
+# other
+dist/
+
+# misc
 .DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
 .env.local
-.idea
+.env.development.local
+.env.test.local
+.env.production.local
 
-# compiled
-utils/reload/*.js
-utils/reload/injections/*.js
-public/manifest.json
+# turbo
+.turbo
 
-yarn-error.log
+docker-compose.web.yml
+
+coverage

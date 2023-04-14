@@ -1,0 +1,2586 @@
+"""添加成员"""
+input AddMemberInput {
+  """角色类型"""
+  roleType: RoleType!
+
+  """Team ID"""
+  teamId: Int!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""添加 Message"""
+input AddMessageInput {
+  """"""
+  content: String!
+
+  """"""
+  role: String!
+
+  """sessionId"""
+  sessionId: Int!
+
+  """用户ID"""
+  userId: Int
+
+  """"""
+  userMessageId: Int
+}
+
+"""添加 Session"""
+input AddSessionInput {
+  """该 Session Name"""
+  name: String!
+
+  """teamId"""
+  teamId: Int!
+
+  """用户ID"""
+  userId: Int
+}
+
+"""添加 Team"""
+input AddTeamInput {
+  """该 Team Name"""
+  name: String!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""添加 access token"""
+input AddTokenInput {
+  """description"""
+  description: String!
+
+  """type"""
+  type: String
+}
+
+""""""
+type ChatSettings {
+  """"""
+  followUpMessageLength: Float
+
+  """"""
+  id: Int!
+
+  """"""
+  maxToken: Int
+
+  """"""
+  model: String
+
+  """"""
+  showTokenCount: Boolean
+}
+
+"""创建"""
+input CreateInvoiceInput {
+  dueDate: DateTime
+  invoiceDate: DateTime
+
+  """"""
+  invoiceNumber: String!
+
+  """"""
+  orderId: Int!
+
+  """"""
+  status: String!
+
+  """"""
+  totalAmount: Float!
+}
+
+"""创建"""
+input CreateMemberInput {
+  """Team ID"""
+  teamId: Int!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""创建"""
+input CreateMessageInput {
+  """"""
+  content: String!
+
+  """"""
+  role: String!
+
+  """sessionId"""
+  sessionId: Int!
+
+  """用户ID"""
+  userId: Int
+
+  """"""
+  userMessageId: Int
+}
+
+"""创建"""
+input CreateOrderInput {
+  """"""
+  billingMethod: String!
+
+  """"""
+  billingScheme: String!
+
+  """"""
+  billingStatus: String!
+  endDate: DateTime
+  nextBillingDate: DateTime
+
+  """"""
+  planId: Int!
+  startDate: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""创建"""
+input CreatePaymentInput {
+  """"""
+  amount: Float!
+
+  """"""
+  currency: String!
+
+  """"""
+  invoiceId: Int!
+  paymentDate: DateTime
+
+  """"""
+  paymentMethod: String!
+
+  """"""
+  paymentStatus: String!
+}
+
+"""创建"""
+input CreatePlanInput {
+  """"""
+  interval: PlanInterval
+
+  """"""
+  price: Float
+
+  """"""
+  status: PlanStatus!
+
+  """"""
+  teamId: Int!
+
+  """"""
+  type: PlanType!
+}
+
+"""创建"""
+input CreateProviderInput {
+  """"""
+  accessToken: String
+
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+
+  """teamId"""
+  teamId: Int!
+
+  """"""
+  type: ProviderType!
+}
+
+"""创建"""
+input CreateProxyInput {
+  """"""
+  host: String
+
+  """"""
+  valid: Boolean
+}
+
+"""创建"""
+input CreateRefundInput {
+  """"""
+  amount: Int!
+
+  """"""
+  currency: String!
+
+  """"""
+  paymentId: Int!
+  refundDate: DateTime
+
+  """"""
+  refundStatus: String!
+}
+
+"""创建"""
+input CreateSessionInput {
+  """访问权限类型"""
+  accessType: String
+
+  """该 Session Name"""
+  name: String!
+
+  """设置"""
+  settings: JSON
+
+  """"""
+  slug: String
+
+  """Team Id"""
+  teamId: Int
+
+  """用户ID"""
+  userId: Int
+}
+
+"""创建"""
+input CreateSettingInput {
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""创建"""
+input CreateTeamInput {
+  """该 Team Name"""
+  name: String!
+
+  """"""
+  slug: String
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""创建"""
+input CreateTokenInput {
+  """description"""
+  description: String
+
+  """type"""
+  type: String
+
+  """用户ID"""
+  userId: Int
+
+  """description"""
+  value: String
+}
+
+"""创建"""
+input CreateUserInput {
+  nickname: String!
+  username: String!
+}
+
+"""创建"""
+input CreateWalletInput {
+  """"""
+  balance: Float!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+"""删除成员"""
+input DeleteInvoiceInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeleteMemberInput {
+  """member ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteMessageInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeleteOrderInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeletePaymentInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeletePlanInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteProviderInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteProxyInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除成员"""
+input DeleteRefundInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteSessionInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteSettingInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteTeamInput {
+  """ID"""
+  id: Int!
+}
+
+"""删除"""
+input DeleteTokenInput {
+  """ID"""
+  id: Int
+}
+
+"""删除"""
+input DeleteUserInput {
+  """id"""
+  id: Int
+  nickname: String!
+  username: String!
+}
+
+"""删除成员"""
+input DeleteWalletInput {
+  """ID"""
+  id: Int!
+}
+
+"""退出团队"""
+input ExitMemberInput {
+  """member ID"""
+  id: Int!
+}
+
+"""忘记密码"""
+input ForgotPasswordInput {
+  """邮箱"""
+  email: String!
+}
+
+""""""
+type Invoice {
+  createdAt: DateTime
+  dueDate: DateTime
+
+  """"""
+  id: Int!
+  invoiceDate: DateTime
+
+  """"""
+  invoiceNumber: String!
+
+  """"""
+  orderId: Int!
+
+  """"""
+  status: String!
+
+  """"""
+  totalAmount: Float!
+  updatedAt: DateTime
+}
+
+"""筛选条件"""
+input InvoiceWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type InvoicesConnection {
+  hasNextPage: Boolean!
+  items: [Invoice!]!
+  totalCount: Int!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""邮箱登录"""
+input LoginByEmailInput {
+  """邮箱"""
+  email: String!
+
+  """密码"""
+  password: String!
+}
+
+"""登录成功返回给客户端的数据"""
+type LoginSuccessPayload {
+  siteName: String
+  token: String!
+  user: User!
+  userId: Int!
+  username: String
+}
+
+"""协作者"""
+type Member {
+  """"""
+  id: Int!
+
+  """角色类型"""
+  roleType: RoleType!
+
+  """Team ID"""
+  teamId: Int!
+
+  """User"""
+  user: User!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input MemberWhereInput {
+  """Team ID"""
+  teamId: Int!
+}
+
+"""connection"""
+type MembersConnection {
+  hasNextPage: Boolean!
+  items: [Member!]!
+  totalCount: Int!
+}
+
+""""""
+type Message {
+  """"""
+  content: String!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """"""
+  private: Boolean!
+
+  """"""
+  role: String!
+
+  """sessionId"""
+  sessionId: Int!
+
+  """streaming status"""
+  streaming: Boolean
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int!
+
+  """"""
+  userMessageId: Int
+
+  """阅读次数"""
+  views: Int!
+}
+
+"""筛选条件"""
+input MessageWhereInput {
+  """sessionId"""
+  sessionId: Int
+}
+
+"""connection"""
+type MessagesConnection {
+  hasNextPage: Boolean!
+  items: [Message!]!
+  totalCount: Int!
+}
+
+"""修改成员角色类型"""
+input ModifyMemberRoleTypeInput {
+  """member ID"""
+  id: Int!
+
+  """角色类型"""
+  roleType: RoleType!
+}
+
+"""修改秘密"""
+input ModifyPasswordInput {
+  """新密码"""
+  newPassword: String!
+
+  """旧密码"""
+  oldPassword: String!
+}
+
+type Mutation {
+  """添加成员"""
+  addMember(input: AddMemberInput!): Member!
+
+  """添加Message"""
+  addMessage(input: AddMessageInput!): Message!
+
+  """添加Session"""
+  addSession(input: AddSessionInput!): Session!
+
+  """添加Team"""
+  addTeam(input: AddTeamInput!): Team!
+
+  """新增Token"""
+  addToken(input: AddTokenInput!): Token!
+
+  """创建"""
+  createInvoice(input: CreateInvoiceInput!): Invoice!
+
+  """创建"""
+  createMember(input: CreateMemberInput!): Member!
+
+  """创建"""
+  createMessage(input: CreateMessageInput!): Message!
+
+  """创建"""
+  createOrder(input: CreateOrderInput!): Order!
+
+  """创建"""
+  createPayment(input: CreatePaymentInput!): Payment!
+
+  """创建"""
+  createPlan(input: CreatePlanInput!): Plan!
+
+  """创建"""
+  createProvider(input: CreateProviderInput!): Provider!
+
+  """创建"""
+  createProxy(input: CreateProxyInput!): Proxy!
+
+  """创建"""
+  createRefund(input: CreateRefundInput!): Refund!
+
+  """创建"""
+  createSession(input: CreateSessionInput!): Session!
+
+  """创建"""
+  createSetting(input: CreateSettingInput!): Setting!
+
+  """创建"""
+  createTeam(input: CreateTeamInput!): Team!
+
+  """创建"""
+  createToken(input: CreateTokenInput!): Token!
+
+  """创建"""
+  createUser(input: CreateUserInput!): User!
+
+  """创建"""
+  createWallet(input: CreateWalletInput!): Wallet!
+
+  """删除单个"""
+  deleteInvoice(input: DeleteInvoiceInput!): Boolean!
+
+  """批量删除"""
+  deleteManyInvoices(input: DeleteInvoiceInput!): Float!
+
+  """批量删除"""
+  deleteManyMembers(input: DeleteMemberInput!): Float!
+
+  """批量删除"""
+  deleteManyMessages(input: DeleteMessageInput!): Float!
+
+  """批量删除"""
+  deleteManyOrders(input: DeleteOrderInput!): Float!
+
+  """批量删除"""
+  deleteManyPayments(input: DeletePaymentInput!): Float!
+
+  """批量删除"""
+  deleteManyPlans(input: DeletePlanInput!): Float!
+
+  """批量删除"""
+  deleteManyProviders(input: DeleteProviderInput!): Float!
+
+  """批量删除"""
+  deleteManyProxys(input: DeleteProxyInput!): Float!
+
+  """批量删除"""
+  deleteManyRefunds(input: DeleteRefundInput!): Float!
+
+  """批量删除"""
+  deleteManySessions(input: DeleteSessionInput!): Float!
+
+  """批量删除"""
+  deleteManySettings(input: DeleteSettingInput!): Float!
+
+  """批量删除"""
+  deleteManyTeams(input: DeleteTeamInput!): Float!
+
+  """批量删除"""
+  deleteManyTokens(input: DeleteTokenInput!): Float!
+
+  """批量删除"""
+  deleteManyUsers(input: DeleteUserInput!): Float!
+
+  """批量删除"""
+  deleteManyWallets(input: DeleteWalletInput!): Float!
+
+  """删除单个"""
+  deleteMember(input: DeleteMemberInput!): Boolean!
+
+  """删除单个"""
+  deleteMessage(input: DeleteMessageInput!): Boolean!
+
+  """删除单个"""
+  deleteOrder(input: DeleteOrderInput!): Boolean!
+
+  """删除单个"""
+  deletePayment(input: DeletePaymentInput!): Boolean!
+
+  """删除单个"""
+  deletePlan(input: DeletePlanInput!): Boolean!
+
+  """删除单个"""
+  deleteProvider(input: DeleteProviderInput!): Boolean!
+
+  """删除单个"""
+  deleteProxy(input: DeleteProxyInput!): Boolean!
+
+  """删除单个"""
+  deleteRefund(input: DeleteRefundInput!): Boolean!
+
+  """删除单个"""
+  deleteSession(input: DeleteSessionInput!): Boolean!
+
+  """删除单个"""
+  deleteSetting(input: DeleteSettingInput!): Boolean!
+
+  """删除单个"""
+  deleteTeam(input: DeleteTeamInput!): Boolean!
+
+  """删除单个"""
+  deleteToken(input: DeleteTokenInput!): Boolean!
+
+  """删除单个"""
+  deleteUser(input: DeleteUserInput!): Boolean!
+
+  """删除单个"""
+  deleteWallet(input: DeleteWalletInput!): Boolean!
+
+  """退出成员"""
+  exitMember(input: ExitMemberInput!): Boolean!
+
+  """重置密码"""
+  forgotPassword(input: ForgotPasswordInput!): Boolean!
+
+  """邮箱登录"""
+  loginByEmail(input: LoginByEmailInput!): LoginSuccessPayload!
+
+  """使用 GitHub 登录"""
+  loginByGithub(code: String!): LoginSuccessPayload!
+
+  """使用 Google 登录"""
+  loginByGoogle(code: String!): LoginSuccessPayload!
+
+  """Login by personal token"""
+  loginByPersonalToken(token: String!): LoginSuccessPayload!
+
+  """修改角色类型"""
+  modifyMemberRoleType(input: ModifyMemberRoleTypeInput!): Boolean!
+
+  """修改密码"""
+  modifyPassword(input: ModifyPasswordInput!): Boolean!
+
+  """邮箱注册"""
+  registerByEmail(input: RegisterByEmailInput!): Boolean!
+
+  """删除成员，只有管理员以上才能操作"""
+  removeMember(input: RemoveMemberInput!): Boolean!
+
+  """删除一组对话"""
+  removeMessagePair(input: RemoveMessagePairInput!): Boolean!
+
+  """删除Session"""
+  removeSession(input: RemoveSessionInput!): Boolean!
+
+  """重置密码"""
+  resetPassword(input: ResetPasswordInput!): Boolean!
+
+  """"""
+  updateChatSettings(input: UpdateChatSettingsInput!): Boolean!
+
+  """修改email"""
+  updateEmail(input: UpdateEmailInput!): Boolean!
+
+  """更新单个"""
+  updateInvoice(input: UpdateInvoiceInput!): Invoice!
+
+  """批量更新"""
+  updateManyInvoices(input: UpdateManyInvoiceInput!): Boolean!
+
+  """批量更新"""
+  updateManyMembers(input: UpdateManyMemberInput!): Boolean!
+
+  """批量更新"""
+  updateManyMessages(input: UpdateManyMessageInput!): Boolean!
+
+  """批量更新"""
+  updateManyOrders(input: UpdateManyOrderInput!): Boolean!
+
+  """批量更新"""
+  updateManyPayments(input: UpdateManyPaymentInput!): Boolean!
+
+  """批量更新"""
+  updateManyPlans(input: UpdateManyPlanInput!): Boolean!
+
+  """批量更新"""
+  updateManyProviders(input: UpdateManyProviderInput!): Boolean!
+
+  """批量更新"""
+  updateManyProxys(input: UpdateManyProxyInput!): Boolean!
+
+  """批量更新"""
+  updateManyRefunds(input: UpdateManyRefundInput!): Boolean!
+
+  """批量更新"""
+  updateManySessions(input: UpdateManySessionInput!): Boolean!
+
+  """批量更新"""
+  updateManySettings(input: UpdateManySettingInput!): Boolean!
+
+  """批量更新"""
+  updateManyTeams(input: UpdateManyTeamInput!): Boolean!
+
+  """批量更新"""
+  updateManyTokens(input: UpdateManyTokenInput!): Boolean!
+
+  """批量更新"""
+  updateManyUsers(input: UpdateManyUserInput!): Boolean!
+
+  """批量更新"""
+  updateManyWallets(input: UpdateManyWalletInput!): Boolean!
+
+  """更新单个"""
+  updateMember(input: UpdateMemberInput!): Member!
+
+  """更新单个"""
+  updateMessage(input: UpdateMessageInput!): Message!
+
+  """更新单个"""
+  updateOrder(input: UpdateOrderInput!): Order!
+
+  """更新单个"""
+  updatePayment(input: UpdatePaymentInput!): Payment!
+
+  """更新单个"""
+  updatePlan(input: UpdatePlanInput!): Plan!
+
+  """更新单个"""
+  updateProvider(input: UpdateProviderInput!): Provider!
+
+  """更新单个"""
+  updateProxy(input: UpdateProxyInput!): Proxy!
+
+  """更新单个"""
+  updateRefund(input: UpdateRefundInput!): Refund!
+
+  """更新单个"""
+  updateSession(input: UpdateSessionInput!): Session!
+
+  """更新单个"""
+  updateSetting(input: UpdateSettingInput!): Setting!
+
+  """更新单个"""
+  updateTeam(input: UpdateTeamInput!): Team!
+
+  """更新单个"""
+  updateToken(input: UpdateTokenInput!): Token!
+
+  """更新单个"""
+  updateUser(input: UpdateUserInput!): User!
+
+  """"""
+  updateVisit(input: UpdateVisitInput!): Boolean!
+
+  """更新单个"""
+  updateWallet(input: UpdateWalletInput!): Wallet!
+}
+
+""""""
+type Order {
+  """"""
+  billingMethod: String!
+
+  """"""
+  billingScheme: String!
+
+  """"""
+  billingStatus: String!
+  createdAt: DateTime
+  endDate: DateTime
+
+  """"""
+  id: Int!
+  nextBillingDate: DateTime
+
+  """"""
+  planId: Int!
+  startDate: DateTime
+  updatedAt: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input OrderWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type OrdersConnection {
+  hasNextPage: Boolean!
+  items: [Order!]!
+  totalCount: Int!
+}
+
+""""""
+type Payment {
+  """"""
+  amount: Float!
+  createdAt: DateTime
+
+  """"""
+  currency: String!
+
+  """"""
+  id: Int!
+
+  """"""
+  invoiceId: Int!
+  paymentDate: DateTime
+
+  """"""
+  paymentMethod: String!
+
+  """"""
+  paymentStatus: String!
+  updatedAt: DateTime
+}
+
+"""筛选条件"""
+input PaymentWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type PaymentsConnection {
+  hasNextPage: Boolean!
+  items: [Payment!]!
+  totalCount: Int!
+}
+
+""""""
+type Plan {
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """"""
+  interval: PlanInterval
+
+  """"""
+  price: Float
+
+  """"""
+  status: PlanStatus!
+
+  """"""
+  teamId: Int!
+
+  """"""
+  type: PlanType!
+  updatedAt: DateTime
+}
+
+"""Plan Interval"""
+enum PlanInterval {
+  Monthly
+  Yearly
+}
+
+"""plan status"""
+enum PlanStatus {
+  Expired
+  Normal
+}
+
+"""付费类型"""
+enum PlanType {
+  Enterprise
+  Free
+  Plus
+}
+
+"""筛选条件"""
+input PlanWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type PlansConnection {
+  hasNextPage: Boolean!
+  items: [Plan!]!
+  totalCount: Int!
+}
+
+""""""
+type Provider {
+  """"""
+  accessToken: String
+
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+
+  """"""
+  id: Int!
+
+  """"""
+  isPlus: Boolean!
+
+  """proxy Host"""
+  proxyHost: String
+
+  """teamId"""
+  teamId: Int!
+
+  """"""
+  type: ProviderType!
+}
+
+"""Provider 类型"""
+enum ProviderType {
+  AccessToken
+  ApiKey
+  Official
+  SelfHosted
+}
+
+"""筛选条件"""
+input ProviderWhereInput {
+  """teamId"""
+  teamId: Int
+}
+
+"""connection"""
+type ProvidersConnection {
+  hasNextPage: Boolean!
+  items: [Provider!]!
+  totalCount: Int!
+}
+
+""""""
+type Proxy {
+  """"""
+  host: String
+
+  """"""
+  id: Int!
+
+  """"""
+  valid: Boolean
+}
+
+"""筛选条件"""
+input ProxyWhereInput {
+  """"""
+  id: Int!
+}
+
+"""connection"""
+type ProxysConnection {
+  hasNextPage: Boolean!
+  items: [Proxy!]!
+  totalCount: Int!
+}
+
+type Query {
+  """"""
+  activeProvider: Provider!
+
+  """"""
+  activeTeam: Team!
+
+  """Chat GPT settings"""
+  chatSettings: ChatSettings!
+
+  """check token"""
+  checkPersonalToken(token: String!): User!
+
+  """检查 reset password URL token 是否过期"""
+  checkResetPasswordToken(token: String!): Boolean!
+
+  """注册时，验证邮箱"""
+  checkVerifyEmailToken(token: String!): LoginSuccessPayload!
+
+  """获取单个"""
+  invoice(
+    """ID"""
+    id: Int!
+  ): Invoice!
+
+  """获取列表"""
+  invoices(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: InvoiceWhereInput
+  ): [Invoice!]!
+
+  """获取分页列表"""
+  invoicesConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: InvoiceWhereInput
+  ): InvoicesConnection!
+
+  """获取单个"""
+  member(
+    """ID"""
+    id: Int!
+  ): Member!
+
+  """获取列表"""
+  members(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: MemberWhereInput
+  ): [Member!]!
+
+  """获取分页列表"""
+  membersConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: MemberWhereInput
+  ): MembersConnection!
+
+  """获取单个"""
+  message(id: Int!): Message!
+
+  """获取列表"""
+  messages(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: MessageWhereInput
+  ): [Message!]!
+
+  """获取分页列表"""
+  messagesConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: MessageWhereInput
+  ): MessagesConnection!
+
+  """自己可以访问的 provider"""
+  myTeams: [Team!]!
+
+  """获取单个"""
+  order(
+    """ID"""
+    id: Int!
+  ): Order!
+
+  """获取列表"""
+  orders(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: OrderWhereInput
+  ): [Order!]!
+
+  """获取分页列表"""
+  ordersConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: OrderWhereInput
+  ): OrdersConnection!
+
+  """获取单个"""
+  payment(
+    """ID"""
+    id: Int!
+  ): Payment!
+
+  """获取列表"""
+  payments(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PaymentWhereInput
+  ): [Payment!]!
+
+  """获取分页列表"""
+  paymentsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PaymentWhereInput
+  ): PaymentsConnection!
+
+  """获取单个"""
+  plan(
+    """ID"""
+    id: Int!
+  ): Plan!
+
+  """获取列表"""
+  plans(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PlanWhereInput
+  ): [Plan!]!
+
+  """获取分页列表"""
+  plansConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: PlanWhereInput
+  ): PlansConnection!
+
+  """获取单个"""
+  provider(id: Int!): Provider!
+
+  """获取列表"""
+  providers(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProviderWhereInput
+  ): [Provider!]!
+
+  """获取分页列表"""
+  providersConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProviderWhereInput
+  ): ProvidersConnection!
+
+  """获取单个"""
+  proxy(id: Int!): Proxy!
+
+  """获取列表"""
+  proxys(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProxyWhereInput
+  ): [Proxy!]!
+
+  """获取分页列表"""
+  proxysConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: ProxyWhereInput
+  ): ProxysConnection!
+
+  """获取单个"""
+  refund(
+    """ID"""
+    id: Int!
+  ): Refund!
+
+  """获取列表"""
+  refunds(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: RefundWhereInput
+  ): [Refund!]!
+
+  """获取分页列表"""
+  refundsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: RefundWhereInput
+  ): RefundsConnection!
+
+  """搜索用户"""
+  searchUsers(q: String!): [User!]!
+
+  """获取单个"""
+  session(id: Int!): Session!
+
+  """获取session"""
+  sessionBySlug(slug: String!): Session!
+
+  """获取列表"""
+  sessions(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: SessionWhereInput
+  ): [Session!]!
+
+  """获取分页列表"""
+  sessionsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: SessionWhereInput
+  ): SessionsConnection!
+
+  """获取单个"""
+  setting(
+    """"""
+    id: Int
+
+    """用户ID"""
+    userId: Int
+  ): Setting!
+
+  """获取列表"""
+  settings(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: SettingWhereInput
+  ): [Setting!]!
+
+  """获取分页列表"""
+  settingsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: SettingWhereInput
+  ): SettingsConnection!
+
+  """获取单个"""
+  team(id: Int!): Team!
+
+  """获取列表"""
+  teams(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: TeamWhereInput
+  ): [Team!]!
+
+  """获取分页列表"""
+  teamsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: TeamWhereInput
+  ): TeamsConnection!
+
+  """获取单个"""
+  token(
+    """ID"""
+    id: Int!
+  ): Token!
+
+  """获取列表"""
+  tokens(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: TokenWhereInput
+  ): [Token!]!
+
+  """获取分页列表"""
+  tokensConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: TokenWhereInput
+  ): TokensConnection!
+
+  """获取单个"""
+  user(
+    """ID"""
+    id: Int
+    nickname: String
+    username: String
+  ): User!
+
+  """获取列表"""
+  users(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: UserWhereInput
+  ): [User!]!
+
+  """获取分页列表"""
+  usersConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: UserWhereInput
+  ): UsersConnection!
+
+  """访问状态持久话数据"""
+  visit: Visit!
+
+  """获取单个"""
+  wallet(
+    """ID"""
+    id: Int!
+  ): Wallet!
+
+  """获取列表"""
+  wallets(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: WalletWhereInput
+  ): [Wallet!]!
+
+  """获取分页列表"""
+  walletsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: WalletWhereInput
+  ): WalletsConnection!
+}
+
+""""""
+type Refund {
+  """"""
+  amount: Int!
+  createdAt: DateTime
+
+  """"""
+  currency: String!
+
+  """"""
+  id: Int!
+
+  """"""
+  paymentId: Int!
+  refundDate: DateTime
+
+  """"""
+  refundStatus: String!
+  updatedAt: DateTime
+}
+
+"""筛选条件"""
+input RefundWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""connection"""
+type RefundsConnection {
+  hasNextPage: Boolean!
+  items: [Refund!]!
+  totalCount: Int!
+}
+
+"""邮箱注册"""
+input RegisterByEmailInput {
+  """邮箱"""
+  email: String!
+
+  """密码"""
+  password: String!
+}
+
+"""删除成员"""
+input RemoveMemberInput {
+  """member ID"""
+  id: Int!
+}
+
+"""删除"""
+input RemoveMessagePairInput {
+  """ID"""
+  messageId: Int!
+}
+
+"""删除"""
+input RemoveSessionInput {
+  """ID"""
+  id: Int!
+
+  """teamId"""
+  teamId: Int!
+}
+
+"""重置密码"""
+input ResetPasswordInput {
+  """新密码"""
+  password: String!
+
+  """重置密码 token"""
+  token: String!
+}
+
+"""角色类型"""
+enum RoleType {
+  Admin
+  Member
+  Owner
+  Reader
+}
+
+""""""
+type Session {
+  """访问权限类型"""
+  accessType: SessionAccessType!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """Message"""
+  messages: [Message!]!
+
+  """"""
+  name: String!
+
+  """设置"""
+  settings: JSON
+
+  """"""
+  slug: String!
+
+  """teamId"""
+  teamId: Int!
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""会话对话类型"""
+enum SessionAccessType {
+  Member
+  Private
+  Public
+}
+
+"""筛选条件"""
+input SessionWhereInput {
+  """teamId"""
+  teamId: Int
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type SessionsConnection {
+  hasNextPage: Boolean!
+  items: [Session!]!
+  totalCount: Int!
+}
+
+""""""
+type Setting {
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
+
+  """"""
+  followUpMessageLength: Float
+
+  """"""
+  id: Int!
+
+  """"""
+  maxToken: Int
+
+  """"""
+  model: String
+
+  """"""
+  showTokenCount: Boolean
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input SettingWhereInput {
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type SettingsConnection {
+  hasNextPage: Boolean!
+  items: [Setting!]!
+  totalCount: Int!
+}
+
+""""""
+type Team {
+  """"""
+  activeProviderId: Int!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """Member"""
+  members: [Member!]!
+
+  """"""
+  name: String!
+
+  """Plan"""
+  plan: Plan!
+
+  """Provider"""
+  providers: [Provider!]!
+
+  """"""
+  slug: String!
+  updatedAt: DateTime
+
+  """User"""
+  user: User!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input TeamWhereInput {
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type TeamsConnection {
+  hasNextPage: Boolean!
+  items: [Team!]!
+  totalCount: Int!
+}
+
+"""personal token"""
+type Token {
+  createdAt: DateTime
+
+  """description"""
+  description: String
+
+  """"""
+  id: Int!
+
+  """type"""
+  type: String
+  updatedAt: DateTime
+
+  """User"""
+  user: User!
+
+  """用户ID"""
+  userId: Int!
+
+  """token value"""
+  value: String
+}
+
+"""筛选条件"""
+input TokenWhereInput {
+  """ID"""
+  id: Int
+
+  """用户ID"""
+  userId: Int
+}
+
+"""connection"""
+type TokensConnection {
+  hasNextPage: Boolean!
+  items: [Token!]!
+  totalCount: Int!
+}
+
+""""""
+input UpdateChatSettingsInput {
+  """"""
+  followUpMessageLength: Float
+
+  """"""
+  maxToken: Int
+
+  """"""
+  model: String
+
+  """"""
+  showTokenCount: Boolean
+}
+
+"""修改email"""
+input UpdateEmailInput {
+  """邮箱"""
+  email: String!
+
+  """密码"""
+  password: String!
+}
+
+"""更新data"""
+input UpdateInvoiceDataInput {
+  dueDate: DateTime
+  invoiceDate: DateTime
+
+  """"""
+  invoiceNumber: String!
+
+  """"""
+  orderId: Int!
+
+  """"""
+  status: String!
+
+  """"""
+  totalAmount: Float!
+}
+
+"""更新单个"""
+input UpdateInvoiceInput {
+  """更新的数据"""
+  data: UpdateInvoiceDataInput
+
+  """更新条件"""
+  where: UpdateInvoiceWhereInput
+}
+
+"""更新条件"""
+input UpdateInvoiceWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""批量更新"""
+input UpdateManyInvoiceInput {
+  """更新的数据"""
+  data: UpdateInvoiceDataInput
+
+  """更新条件"""
+  where: UpdateInvoiceWhereInput
+}
+
+"""批量更新"""
+input UpdateManyMemberInput {
+  """更新的数据"""
+  data: UpdateMemberDataInput
+
+  """更新条件"""
+  where: UpdateMemberWhereInput
+}
+
+"""批量更新"""
+input UpdateManyMessageInput {
+  """更新的数据"""
+  data: UpdateMessageDataInput
+
+  """更新条件"""
+  where: UpdateMessageWhereInput
+}
+
+"""批量更新"""
+input UpdateManyOrderInput {
+  """更新的数据"""
+  data: UpdateOrderDataInput
+
+  """更新条件"""
+  where: UpdateOrderWhereInput
+}
+
+"""批量更新"""
+input UpdateManyPaymentInput {
+  """更新的数据"""
+  data: UpdatePaymentDataInput
+
+  """更新条件"""
+  where: UpdatePaymentWhereInput
+}
+
+"""批量更新"""
+input UpdateManyPlanInput {
+  """更新的数据"""
+  data: UpdatePlanDataInput
+
+  """更新条件"""
+  where: UpdatePlanWhereInput
+}
+
+"""批量更新"""
+input UpdateManyProviderInput {
+  """更新的数据"""
+  data: UpdateProviderDataInput
+
+  """更新条件"""
+  where: UpdateProviderWhereInput
+}
+
+"""批量更新"""
+input UpdateManyProxyInput {
+  """更新的数据"""
+  data: UpdateProxyDataInput
+
+  """更新条件"""
+  where: UpdateProxyWhereInput
+}
+
+"""批量更新"""
+input UpdateManyRefundInput {
+  """更新的数据"""
+  data: UpdateRefundDataInput
+
+  """更新条件"""
+  where: UpdateRefundWhereInput
+}
+
+"""批量更新"""
+input UpdateManySessionInput {
+  """更新的数据"""
+  data: UpdateSessionDataInput
+
+  """更新条件"""
+  where: UpdateSessionWhereInput
+}
+
+"""批量更新"""
+input UpdateManySettingInput {
+  """更新的数据"""
+  data: UpdateSettingDataInput
+
+  """更新条件"""
+  where: UpdateSettingWhereInput
+}
+
+"""批量更新"""
+input UpdateManyTeamInput {
+  """更新的数据"""
+  data: UpdateTeamDataInput
+
+  """更新条件"""
+  where: UpdateTeamWhereInput
+}
+
+"""批量更新"""
+input UpdateManyTokenInput {
+  """更新的数据"""
+  data: UpdateTokenDataInput
+
+  """更新条件"""
+  where: UpdateTokenWhereInput
+}
+
+"""批量更新"""
+input UpdateManyUserInput {
+  """更新的数据"""
+  data: UpdateUserDataInput
+
+  """更新条件"""
+  where: UpdateUserWhereInput
+}
+
+"""批量更新"""
+input UpdateManyWalletInput {
+  """更新的数据"""
+  data: UpdateWalletDataInput
+
+  """更新条件"""
+  where: UpdateWalletWhereInput
+}
+
+"""更新data"""
+input UpdateMemberDataInput {
+  """Team ID"""
+  teamId: Int!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""更新单个"""
+input UpdateMemberInput {
+  """更新的数据"""
+  data: UpdateMemberDataInput
+
+  """更新条件"""
+  where: UpdateMemberWhereInput
+}
+
+"""更新条件"""
+input UpdateMemberWhereInput {
+  """member ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdateMessageDataInput {
+  """该 Message 内容"""
+  content: String!
+}
+
+"""更新单个"""
+input UpdateMessageInput {
+  """更新的数据"""
+  data: UpdateMessageDataInput
+
+  """更新条件"""
+  where: UpdateMessageWhereInput
+}
+
+"""更新条件"""
+input UpdateMessageWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateOrderDataInput {
+  """"""
+  billingMethod: String!
+
+  """"""
+  billingScheme: String!
+
+  """"""
+  billingStatus: String!
+  endDate: DateTime
+  nextBillingDate: DateTime
+
+  """"""
+  planId: Int!
+  startDate: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""更新单个"""
+input UpdateOrderInput {
+  """更新的数据"""
+  data: UpdateOrderDataInput
+
+  """更新条件"""
+  where: UpdateOrderWhereInput
+}
+
+"""更新条件"""
+input UpdateOrderWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdatePaymentDataInput {
+  """"""
+  amount: Float!
+
+  """"""
+  currency: String!
+
+  """"""
+  invoiceId: Int!
+  paymentDate: DateTime
+
+  """"""
+  paymentMethod: String!
+
+  """"""
+  paymentStatus: String!
+}
+
+"""更新单个"""
+input UpdatePaymentInput {
+  """更新的数据"""
+  data: UpdatePaymentDataInput
+
+  """更新条件"""
+  where: UpdatePaymentWhereInput
+}
+
+"""更新条件"""
+input UpdatePaymentWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdatePlanDataInput {
+  """"""
+  interval: PlanInterval
+
+  """"""
+  price: Float
+
+  """"""
+  status: PlanStatus!
+
+  """"""
+  teamId: Int!
+
+  """"""
+  type: PlanType!
+}
+
+"""更新单个"""
+input UpdatePlanInput {
+  """更新的数据"""
+  data: UpdatePlanDataInput
+
+  """更新条件"""
+  where: UpdatePlanWhereInput
+}
+
+"""更新条件"""
+input UpdatePlanWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdateProviderDataInput {
+  """"""
+  accessToken: String
+
+  """"""
+  active: Boolean
+
+  """"""
+  apiKey: String
+
+  """self host auth code"""
+  authorizationCode: String
+
+  """self host server endpoint"""
+  endpoint: String
+}
+
+"""更新单个"""
+input UpdateProviderInput {
+  """更新的数据"""
+  data: UpdateProviderDataInput
+
+  """更新条件"""
+  where: UpdateProviderWhereInput
+}
+
+"""更新条件"""
+input UpdateProviderWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateProxyDataInput {
+  """"""
+  host: String
+
+  """"""
+  id: Int!
+
+  """"""
+  valid: Boolean
+}
+
+"""更新单个"""
+input UpdateProxyInput {
+  """更新的数据"""
+  data: UpdateProxyDataInput
+
+  """更新条件"""
+  where: UpdateProxyWhereInput
+}
+
+"""更新条件"""
+input UpdateProxyWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateRefundDataInput {
+  """"""
+  amount: Int!
+
+  """"""
+  currency: String!
+
+  """"""
+  paymentId: Int!
+  refundDate: DateTime
+
+  """"""
+  refundStatus: String!
+}
+
+"""更新单个"""
+input UpdateRefundInput {
+  """更新的数据"""
+  data: UpdateRefundDataInput
+
+  """更新条件"""
+  where: UpdateRefundWhereInput
+}
+
+"""更新条件"""
+input UpdateRefundWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""更新data"""
+input UpdateSessionDataInput {
+  """访问权限类型"""
+  accessType: SessionAccessType
+
+  """该 Session Name"""
+  name: String
+
+  """设置"""
+  settings: JSON
+}
+
+"""更新单个"""
+input UpdateSessionInput {
+  """更新的数据"""
+  data: UpdateSessionDataInput
+
+  """更新条件"""
+  where: UpdateSessionWhereInput
+}
+
+"""更新条件"""
+input UpdateSessionWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateSettingDataInput {
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
+}
+
+"""更新单个"""
+input UpdateSettingInput {
+  """更新的数据"""
+  data: UpdateSettingDataInput
+
+  """更新条件"""
+  where: UpdateSettingWhereInput
+}
+
+"""更新条件"""
+input UpdateSettingWhereInput {
+  """ID"""
+  id: Int
+
+  """用户ID"""
+  userId: Int
+}
+
+"""更新data"""
+input UpdateTeamDataInput {
+  """"""
+  activeProviderId: Int
+
+  """该 Team Name"""
+  name: String
+
+  """"""
+  slug: String
+}
+
+"""更新单个"""
+input UpdateTeamInput {
+  """更新的数据"""
+  data: UpdateTeamDataInput
+
+  """更新条件"""
+  where: UpdateTeamWhereInput
+}
+
+"""更新条件"""
+input UpdateTeamWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateTokenDataInput {
+  """description"""
+  description: String
+
+  """type"""
+  type: String
+
+  """用户ID"""
+  userId: Int
+
+  """description"""
+  value: String
+}
+
+"""更新单个"""
+input UpdateTokenInput {
+  """更新的数据"""
+  data: UpdateTokenDataInput
+
+  """更新条件"""
+  where: UpdateTokenWhereInput
+}
+
+"""更新条件"""
+input UpdateTokenWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateUserDataInput {
+  """个人简介"""
+  bio: String
+
+  """邮箱"""
+  email: String
+
+  """职业"""
+  jobTitle: String
+
+  """唯一标识"""
+  login: String
+
+  """昵称"""
+  nickname: String
+
+  """用户名"""
+  username: String
+}
+
+"""更新单个"""
+input UpdateUserInput {
+  """更新的数据"""
+  data: UpdateUserDataInput
+
+  """更新条件"""
+  where: UpdateUserWhereInput
+}
+
+"""更新条件"""
+input UpdateUserWhereInput {
+  """ID"""
+  id: Int
+}
+
+""""""
+input UpdateVisitInput {
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
+}
+
+"""更新data"""
+input UpdateWalletDataInput {
+  """"""
+  balance: Float!
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""更新单个"""
+input UpdateWalletInput {
+  """更新的数据"""
+  data: UpdateWalletDataInput
+
+  """更新条件"""
+  where: UpdateWalletWhereInput
+}
+
+"""更新条件"""
+input UpdateWalletWhereInput {
+  """ID"""
+  id: Int!
+}
+
+"""user"""
+type User {
+  """头像"""
+  avatar: String!
+
+  """个人简介"""
+  bio: String
+
+  """邮箱"""
+  email: String
+
+  """邮箱校验时间"""
+  emailValidatedAt: DateTime
+
+  """Github ID"""
+  githubId: Float
+
+  """Google ID"""
+  googleId: String
+
+  """"""
+  id: Int!
+
+  """职业"""
+  jobTitle: String
+
+  """唯一标识"""
+  login: String
+
+  """全名/昵称"""
+  nickname: String!
+
+  """手机"""
+  phone: String
+
+  """用户名"""
+  username: String!
+}
+
+"""筛选条件"""
+input UserWhereInput {
+  """昵称"""
+  nickname: String
+
+  """搜索用户"""
+  q: String
+}
+
+"""connection"""
+type UsersConnection {
+  hasNextPage: Boolean!
+  items: [User!]!
+  totalCount: Int!
+}
+
+""""""
+type Visit {
+  """"""
+  activeSessionId: Int
+
+  """"""
+  activeTeamId: Int
+}
+
+""""""
+type Wallet {
+  """"""
+  balance: Float!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+  updatedAt: DateTime
+
+  """"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input WalletWhereInput {
+  """ID"""
+  id: Int!
+
+  """策略ID"""
+  teamId: Int!
+}
+
+"""connection"""
+type WalletsConnection {
+  hasNextPage: Boolean!
+  items: [Wallet!]!
+  totalCount: Int!
+}

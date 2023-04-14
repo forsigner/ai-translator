@@ -1,0 +1,10 @@
+{
+  "login-with-github": "Login with GitHub",
+  "login-with-google": "Login with Google",
+  "slogan": {
+    "prefix": "Own a ChatGPT",
+    "postfix": "with collaboration"
+  },
+  "intro": "Own Chat is tool to help you create your own chatGPT, Our mission is to make everyone to own a ai assistant easily",
+  "desktop-login-tips": "Login to https://ownchat.me，get a token from user settings，then use token to login to App"
+}
