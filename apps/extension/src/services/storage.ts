@@ -12,7 +12,7 @@ export interface Settings {
   theme: string
 }
 
-class StorageService {
+class Storage {
   async setDeviceId() {
     await chrome.storage.sync.set({
       [Keys.DeviceId]: nanoid(),
@@ -36,4 +36,4 @@ class StorageService {
   }
 }
 
-export const storageService = new StorageService()
+export const storage = new Storage()

@@ -2,7 +2,7 @@ import { useDebouncedCallback } from 'use-debounce'
 import { getState, useStore } from 'stook'
 import { useEffect } from 'react'
 import { toast } from 'bone-ui'
-import { Settings, storageService } from '@src/services/storage.service'
+import { Settings, storage } from '@src/services/storage'
 
 const key = 'Settings_visible'
 
@@ -22,13 +22,13 @@ export function useSettings() {
   const setSettings = useDebouncedCallback(async (settings: Settings) => {
     setState(settings)
 
-    await storageService.setSettings(settings)
+    await storage.setSettings(settings)
 
     toast.success('Saved')
   }, 400)
 
   async function loadSettings() {
-    const settings = await storageService.getSettings()
+    const settings = await storage.getSettings()
     setLoading(false)
     if (settings) setState(settings)
   }

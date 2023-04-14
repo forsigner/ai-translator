@@ -3,12 +3,12 @@ import '@pages/popup/index.scss'
 import Popup from '@pages/popup/Popup'
 import refreshOnUpdate from 'virtual:reload-on-update-in-view'
 import { init } from '@src/common/init'
-import { storageService } from '@src/services/storage.service'
+import { storage } from '@src/services/storage'
 
 refreshOnUpdate('pages/popup')
 
 window.onload = async () => {
-  const settings = await storageService.getSettings()
+  const settings = await storage.getSettings()
   document.documentElement.classList.add(settings?.theme || 'light')
 }
 

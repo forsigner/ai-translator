@@ -1,13 +1,13 @@
-import { storageService } from '@src/services/storage.service'
+import { storage } from '@src/services/storage'
 
 export function initSettingsStorage() {
   async function run() {
-    const settings = await storageService.getSettings()
+    const settings = await storage.getSettings()
 
     console.log('settings:', settings)
 
     if (!settings) {
-      await storageService.setSettings({
+      await storage.setSettings({
         apiKey: 'foo',
         useFreeToken: true,
         lang: 'en',

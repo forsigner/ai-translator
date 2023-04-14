@@ -1,5 +1,5 @@
 import { store } from '@fower/core'
-import { storageService } from '@src/services/storage.service'
+import { storage } from '@src/services/storage'
 import { useState, useEffect } from 'react'
 interface Result {
   mode: string
@@ -10,7 +10,7 @@ export function useMode(): Result {
   const [state, setState] = useState<string>('')
 
   async function initMode() {
-    const settings = await storageService.getSettings()
+    const settings = await storage.getSettings()
     setMode(settings.theme || 'light')
   }
 

@@ -1,10 +1,10 @@
 import { renderApp } from './renderApp'
 import { updateText } from '../../stores/text.store'
 import { hideThumbnail, showThumbnail } from '../../stores/thumbnail.store'
-import { storageService } from '@src/services/storage.service'
+import { storage } from '@src/services/storage'
 
 window.onload = async () => {
-  const settings = await storageService.getSettings()
+  const settings = await storage.getSettings()
   document.documentElement.classList.add(settings?.theme || 'light')
 
   renderApp()

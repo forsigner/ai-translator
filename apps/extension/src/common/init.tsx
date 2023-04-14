@@ -5,6 +5,7 @@ import { initI18n } from './initI18n'
 import { initStookGraphql } from './initStookGraphql'
 import { initDeviceId } from './initDeviceId'
 import { initSettingsStorage } from './initSettingsStorage'
+import { RegionChecker } from '@src/services/RegionChecker'
 
 export function init() {
   initSettingsStorage()
@@ -26,4 +27,14 @@ export function init() {
     //   )
     // }
   })
+
+  async function run() {
+    const regionChecker = await RegionChecker.fromStorage()
+
+    if (regionChecker.shouldCheck) {
+      await regionChecker.fetchLocation()
+    }
+  }
+
+  run()
 }

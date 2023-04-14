@@ -4,7 +4,7 @@ import { Node, useForm } from 'fomir'
 import { useMode } from './useMode'
 import { useSettings } from '@src/stores/settings.store'
 import { useEffect } from 'react'
-import { Settings } from '@src/services/storage.service'
+import { Settings } from '@src/services/storage'
 
 export function useSettingsForm() {
   const { setMode } = useMode()

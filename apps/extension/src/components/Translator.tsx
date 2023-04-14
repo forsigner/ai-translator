@@ -10,7 +10,7 @@ import { Footer } from './Footer'
 import { Markdown } from './Markdown'
 import { forwardRef, useEffect, useState } from 'react'
 import { TranslateResultSubscription } from './TranslateResultSubscription'
-import { storageService } from '@src/services/storage.service'
+import { storage } from '@src/services/storage'
 
 interface Props extends FowerHTMLProps<'div'> {
   showSettings?: boolean
@@ -25,7 +25,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   const { content, streaming } = useMessage()
 
   useEffect(() => {
-    storageService.getDeviceId().then((id) => {
+    storage.getDeviceId().then((id) => {
       setDeviceId(id)
     })
   }, [])
