@@ -31,7 +31,6 @@ export class ChatGPTAPI {
       apiBaseUrl = 'https://api.openai.com/v1',
       debug = false,
       completionParams,
-      systemMessage,
       maxModelTokens = 4000,
       maxResponseTokens = 1000,
     } = opts
@@ -71,7 +70,7 @@ export class ChatGPTAPI {
   async sendMessage(
     opts = {} as types.SendMessageOptions & {
       baseURL?: string
-      token?: string
+      apiKey?: string
       abortController?: AbortController
     },
   ): Promise<any> {
@@ -80,7 +79,7 @@ export class ChatGPTAPI {
       stream = onMessage ? true : false,
       completionParams,
       baseURL = '',
-      token = '',
+      apiKey = '',
     } = opts
 
     const controller = opts.abortController || new AbortController()
@@ -91,10 +90,9 @@ export class ChatGPTAPI {
       const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
 
       let urlParams = ''
-      const authorizationCode = '4xpji7txnp5v63owencu7gwsatkgms0k'
 
       // for provider
-      if (authorizationCode) urlParams = `?authorizationCode=${authorizationCode}`
+      if (apiKey) urlParams = `?apiKey=${apiKey}`
 
       let responseText = ''
 
@@ -103,7 +101,6 @@ export class ChatGPTAPI {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            authorization: `bearer ${token}`,
           },
           body: JSON.stringify({
             ...completionParams,
