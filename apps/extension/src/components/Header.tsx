@@ -20,7 +20,12 @@ export function Header({ showSettings }: Props) {
       h={HEADER_HEIGHT}
     >
       <Box toCenterY toBetween columnGap-8>
-        <IconLogo size={28} />
+        <IconLogo
+          size={28}
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        />
         <Box textBase>AI Translator</Box>
       </Box>
       <Box toCenterY columnGap-8>

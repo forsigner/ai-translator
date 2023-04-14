@@ -1,9 +1,13 @@
+import { createParser } from 'eventsource-parser'
 import * as types from './types'
 
 const CHATGPT_MODEL = 'gpt-3.5-turbo'
 export const TIME_OUT_MS = 60 * 1000
 
-export class ChatGPTAPI {
+export const API_HOST = 'https://api.openai.com'
+export const API_PATH = '/v1/chat/completions'
+
+export class OfficialChatGPTAPI {
   protected _apiKey: string
   protected _apiBaseUrl: string
   protected _debug: boolean
@@ -74,13 +78,7 @@ export class ChatGPTAPI {
       abortController?: AbortController
     },
   ): Promise<any> {
-    const {
-      onMessage,
-      stream = onMessage ? true : false,
-      completionParams,
-      baseURL = '',
-      apiKey = '',
-    } = opts
+    const { onMessage, stream = onMessage ? true : false, completionParams, apiKey = '' } = opts
 
     const controller = opts.abortController || new AbortController()
     const messages = opts.messages
@@ -89,17 +87,13 @@ export class ChatGPTAPI {
     return new Promise<string>(async (resolve, reject) => {
       const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS)
 
-      let urlParams = ''
-
-      // for provider
-      if (apiKey) urlParams = `?apiKey=${apiKey}`
-
       let responseText = ''
 
       try {
-        const result = await fetch(`${baseURL}/api/chat-stream${urlParams}`, {
+        const res = await fetch(`${API_HOST}${API_PATH}`, {
           method: 'POST',
           headers: {
+            Authorization: `Bearer ${apiKey}`,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
@@ -112,34 +106,40 @@ export class ChatGPTAPI {
 
         clearTimeout(reqTimeoutId)
 
-        if (result.ok && result.body) {
-          const reader = result.body.getReader()
-          const decoder = new TextDecoder()
-          // onController && onController(controller)
+        if (!res.ok || !res.body) {
+          reject(await res.json())
+          return
+        }
+
+        const parser = createParser((event) => {
+          if (event.type !== 'event') return
+          try {
+            const json = JSON.parse(event.data)
+            const text = json.choices[0].delta.content
+            if (text) {
+              responseText += text
+              onMessage(responseText)
+            }
+          } catch {
+            //
+          }
+        })
+
+        const reader = res.body.getReader()
+
+        try {
           // eslint-disable-next-line no-constant-condition
           while (true) {
-            // handle time out, will stop if no response in 10 secs
-            const resTimeoutId = setTimeout(() => {
-              controller.abort()
-            }, TIME_OUT_MS)
-
             const { done, value } = await reader.read()
-            clearTimeout(resTimeoutId)
-            const text = decoder.decode(value)
-            responseText += text
-
-            onMessage?.(responseText)
             if (done) {
+              resolve(responseText)
               break
             }
+            const str = new TextDecoder().decode(value)
+            parser.feed(str)
           }
-          resolve(responseText)
-        } else if (result.status === 401) {
-          responseText = 'Unauthorized access, please enter access code in settings page.'
-          reject(responseText)
-        } else {
-          reject('Error!')
-          console.error('Stream Error')
+        } finally {
+          reader.releaseLock()
         }
       } catch (error) {
         // handle abort()

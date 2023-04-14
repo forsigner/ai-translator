@@ -86,12 +86,12 @@ export class RegionChecker {
       [storageKey]: {
         modifiedAt: Date.now(),
         location: this.location,
-        isSupported: supportedRegions.has(this.location.loc),
+        isSupported: this.location && supportedRegions.has(this.location.loc),
       },
     })
   }
 
-  async fetchLocation(): Promise<Location> {
+  async fetchLocation() {
     const controller = new AbortController()
     const reqTimeoutId = setTimeout(() => controller.abort(), this.TIME_OUT_MS)
 
@@ -107,12 +107,10 @@ export class RegionChecker {
 
       const location = this.toJSON(text)
       this.location = location
-
-      await this.saveToStorage()
-
-      return location
     } catch (error) {
-      return null
+      this.location = null
     }
+
+    await this.saveToStorage()
   }
 }
