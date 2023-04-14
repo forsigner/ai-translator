@@ -2,15 +2,13 @@ import { Box } from '@fower/react'
 import { Button } from 'bone-ui'
 import { Node, useForm } from 'fomir'
 import { useMode } from './useMode'
-import { Settings, useSettings } from '@src/stores/settings.store'
+import { useSettings } from '@src/stores/settings.store'
 import { useEffect } from 'react'
-
-type Values = Settings
+import { Settings } from '@src/services/storage.service'
 
 export function useSettingsForm() {
   const { setMode } = useMode()
   const { settings, setSettings } = useSettings()
-  console.log('settings-----:', settings)
 
   const nodes: Node[] = [
     {
@@ -38,12 +36,12 @@ export function useSettingsForm() {
         placeholder: 'sk-*******',
       },
     },
-    // {
-    //   label: '开启了吗',
-    //   component: 'Switch',
-    //   name: 'lang',
-    //   value: true,
-    // },
+    {
+      label: '是否使用免费 token？',
+      component: 'Switch',
+      name: 'useFreeToken',
+      value: settings.useFreeToken || true,
+    },
     {
       label: '主题',
       name: 'theme',
@@ -69,10 +67,10 @@ export function useSettingsForm() {
     },
   ]
 
-  const form = useForm<Values>({
+  const form = useForm<Settings>({
     watch: {
       '*.value': (val) => {
-        const values = val as any as Values
+        const values = val as any as Settings
         console.log('values:', val)
         setSettings(values)
       },
@@ -95,7 +93,7 @@ export function useSettingsForm() {
     if (settings) {
       form.setValues(settings)
     }
-  }, [settings])
+  }, [settings, form])
 
   return form
 }

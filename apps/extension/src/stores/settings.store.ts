@@ -1,7 +1,8 @@
 import { useDebouncedCallback } from 'use-debounce'
-import { getState, mutate, useStore } from 'stook'
+import { getState, useStore } from 'stook'
 import { useEffect } from 'react'
 import { toast } from 'bone-ui'
+import { Settings, storageService } from '@src/services/storage.service'
 
 const key = 'Settings_visible'
 
@@ -14,12 +15,6 @@ export function useSettingsVisible() {
   }
 }
 
-export interface Settings {
-  apiKey: string
-  lang: string
-  theme: string
-}
-
 export function useSettings() {
   const [loading, setLoading] = useStore('setting_loading', true)
   const [settings, setState] = useStore('Settings', {} as Settings)
@@ -27,14 +22,13 @@ export function useSettings() {
   const setSettings = useDebouncedCallback(async (settings: Settings) => {
     setState(settings)
 
-    await chrome.storage.sync.set({
-      settings,
-    })
+    await storageService.setSettings(settings)
+
     toast.success('Saved')
   }, 400)
 
   async function loadSettings() {
-    const settings = await getSettingsStorage()
+    const settings = await storageService.getSettings()
     setLoading(false)
     if (settings) setState(settings)
   }
@@ -50,7 +44,6 @@ export function useSettings() {
   }
 }
 
-export async function getSettingsStorage(): Promise<Settings> {
-  const storage = await chrome.storage.sync.get('settings')
-  return storage?.settings
+export function getSettingsState(): Settings {
+  return getState('Settings')
 }

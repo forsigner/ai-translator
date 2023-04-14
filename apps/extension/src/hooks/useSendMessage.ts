@@ -5,6 +5,7 @@ import { getFromToState } from './useFromTo'
 import { getPrompts } from '@src/utils/getPrompts'
 import { sendTranslationMessage } from '@src/common/sendTranslationMessage'
 import { storageService } from '@src/services/storage.service'
+import { getSettingsState } from '@src/stores/settings.store'
 
 const type = 'free'
 
@@ -14,6 +15,12 @@ export function useSendMessage() {
   return async (value: string) => {
     updateStreaming(true)
     value = value.replace(/[\r\n]+$/, '') // 去掉结尾的换行符
+
+    const settings = getSettingsState()
+
+    console.log('settings:', settings)
+
+    return
 
     const deviceId = await storageService.getDeviceId()
 

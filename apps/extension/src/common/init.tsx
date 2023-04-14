@@ -4,8 +4,10 @@ import { initFower } from './initFower'
 import { initI18n } from './initI18n'
 import { initStookGraphql } from './initStookGraphql'
 import { initDeviceId } from './initDeviceId'
+import { initSettingsStorage } from './initSettingsStorage'
 
 export function init() {
+  initSettingsStorage()
   initDeviceId()
   initFower()
   initI18n()
