@@ -1,9 +1,10 @@
+import { ReactNode } from 'react'
 import { getState, mutate, useStore } from 'stook'
 
 const key = 'Message'
 
 type State = {
-  content: string
+  content: ReactNode
   streaming: boolean
 }
 
@@ -26,7 +27,7 @@ export function useMessage() {
   }
 }
 
-export function updateMessage(value: string) {
+export function updateMessage(value: ReactNode) {
   mutate(key, (state: State) => {
     state.content = value
     state.streaming = false

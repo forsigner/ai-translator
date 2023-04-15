@@ -10,6 +10,8 @@ export function useSettingsForm() {
   const { setMode } = useMode()
   const { settings, setSettings } = useSettings()
 
+  console.log('settings-----:', settings)
+
   const nodes: Node[] = [
     {
       label: (
@@ -40,7 +42,7 @@ export function useSettingsForm() {
       label: '是否使用免费 token？',
       component: 'Switch',
       name: 'useFreeToken',
-      value: settings.useFreeToken || true,
+      value: settings.useFreeToken,
     },
     {
       label: '主题',
@@ -82,8 +84,6 @@ export function useSettingsForm() {
       },
     },
     async onSubmit(values) {
-      //
-
       console.log('values:', values)
     },
     children: nodes,

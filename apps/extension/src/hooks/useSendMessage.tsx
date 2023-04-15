@@ -7,6 +7,7 @@ import { getPrompts } from '@src/utils/getPrompts'
 import { sendTranslationMessage } from '@src/common/sendTranslationMessage'
 import { storage } from '@src/services/storage'
 import { RegionChecker } from '@src/services/RegionChecker'
+import { UseFreeTokenErrorTips } from '@src/components/UseFreeTokenErrorTips'
 
 // translate from English to 简体中文: Share your wildest ChatGPT conversations with one click.
 
@@ -22,10 +23,16 @@ async function sendMessageUseFreeToken(value: string) {
     selectedWord: '',
   })
 
-  await sendTranslationMessage({
-    content: `${userPrompt}: ${value}`,
-    deviceId,
-  })
+  console.log('systemPrompt:', systemPrompt, userPrompt)
+
+  try {
+    await sendTranslationMessage({
+      content: `${userPrompt}: ${value}`,
+      deviceId,
+    })
+  } catch (error) {
+    updateMessage(<UseFreeTokenErrorTips />)
+  }
 }
 
 async function sendMessageWithProxyServer(value: string, apiKey: string) {

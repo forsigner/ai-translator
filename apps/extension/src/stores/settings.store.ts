@@ -19,16 +19,19 @@ export function useSettings() {
   const [loading, setLoading] = useStore('setting_loading', true)
   const [settings, setState] = useStore('Settings', {} as Settings)
 
-  const setSettings = useDebouncedCallback(async (settings: Settings) => {
+  const setSettings = useDebouncedCallback(async (settings: Settings, tips = 'Saved') => {
     setState(settings)
 
     await storage.setSettings(settings)
 
-    toast.success('Saved')
+    toast.success(tips)
   }, 400)
 
   async function loadSettings() {
     const settings = await storage.getSettings()
+
+    console.log('---------xx:', settings)
+
     setLoading(false)
     if (settings) setState(settings)
   }

@@ -78,6 +78,10 @@ export const isProd = process.env.NODE_ENV === 'production'
 
 export const host = 'localhost:8001'
 export const baseURL = 'http://localhost:8001'
+export const subscriptionsEndpoint = `ws://${host}/graphql`
+
+// export const host = 'ai-translator.ownchat.me/'
+// export const baseURL = 'https://ai-translator.ownchat.me/'
+// export const subscriptionsEndpoint = `wss://${host}/graphql`
 
 // export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
-export const subscriptionsEndpoint = `ws://${host}/graphql`
