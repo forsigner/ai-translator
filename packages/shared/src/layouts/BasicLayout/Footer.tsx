@@ -8,17 +8,17 @@ export const Footer = () => {
   const navData = [
     // { text: t('docs'), to: 'https://boter.app/docs/intro', isExternal: true },
     // { text: 'Blog', to: 'blog' },
-    { text: t('download'), to: 'download' },
+    // { text: t('download'), to: 'download' },
     // { text: t('pricing'), to: 'pricing' },
-    { text: t('about'), to: 'about' },
+    // { text: t('about'), to: 'about' },
     {
       text: t('feedback'),
-      to: 'https://github.com/forsigner/own-chat/issues/new',
+      to: 'https://github.com/forsigner/ai-translator/issues/new',
       isExternal: true,
     },
     {
       text: t('github'),
-      to: 'https://github.com/forsigner/own-chat',
+      to: 'https://github.com/forsigner/ai-translator',
       isExternal: true,
     },
     // { text: 'Contact', to: 'contact' },
@@ -28,7 +28,7 @@ export const Footer = () => {
   return (
     <Box toCenter py6>
       <Box mr5 gray500>
-        © 2023 OwnChat
+        © 2023 AI Translator
       </Box>
       <Box toCenterY spaceX2 textSM display={['none', 'flex']}>
         {navData.map((item) => (

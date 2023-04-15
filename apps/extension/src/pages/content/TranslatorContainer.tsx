@@ -36,6 +36,9 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
             bgWhite
             overflowHidden
             bgGray800--dark
+            border
+            borderGray200
+            borderTransparent--dark
             style={{
               position: state.strategy,
               top: state.y ?? 0,

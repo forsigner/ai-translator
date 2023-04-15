@@ -3,7 +3,7 @@ import { sessionOptions } from '@common/session'
 import { WebHome, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
 
 export default function PageHome() {
-  return <div>home</div>
+  return <WebHome></WebHome>
 }
 
 PageHome.Layout = BasicLayout

@@ -15,21 +15,22 @@ export function WebHome() {
           transparent
           bgGradientX={['blue500', 'purple500']}
         >
-          {t('slogan.prefix')}
+          Translate
         </Box>
 
         <Box gray800 text5XL text4XL--sm text8XL--md>
-          {t('slogan.postfix')}
+          by AI
         </Box>
       </Box>
 
       <Box column toCenterX rowGap-8 mb4>
         <Box gray600 textXL w-60p textCenter>
-          {t('intro')}
+          AI Translator is a translator power by AI (ChatGPT), You can use it free, OpenAI API Key
+          is optional.
         </Box>
       </Box>
 
-      <ThirdPartyLogin />
+      {/* <ThirdPartyLogin /> */}
     </Box>
   )
 }

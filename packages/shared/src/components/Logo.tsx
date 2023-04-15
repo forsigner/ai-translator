@@ -11,14 +11,13 @@ interface Props {
 export const Logo = ({ showText = true, to, size = 32 }: Props) => {
   const content = (
     <>
-      <IconLogo size={size} white />
+      <Box bgBrand500 square8 roundedFull>
+        <IconLogo size={size} white />
+      </Box>
       {showText && (
         <Box>
           <Box textXL black fontBold>
-            Own Chat
-          </Box>
-          <Box textXS gray600>
-            Own a Chat AI with collaboration
+            AI Translator
           </Box>
         </Box>
       )}
