@@ -1,6 +1,6 @@
 import { renderApp } from './renderApp'
 import { updateText } from '../../stores/text.store'
-import { hideThumbnail, showThumbnail } from '../../stores/thumbnail.store'
+import { showThumbnail } from '../../stores/thumbnail.store'
 import { storage } from '@src/services/storage'
 
 window.onload = async () => {
@@ -19,6 +19,7 @@ document.addEventListener('mouseup', async (event) => {
   }
 
   const selectedText = window.getSelection().toString()
+
   if (selectedText !== '') {
     const { pageX: x, pageY: y } = event
 
@@ -29,13 +30,4 @@ document.addEventListener('mouseup', async (event) => {
   }
 })
 
-document.addEventListener('click', (event) => {
-  const currentElement = event.target
-  const targetElement = document.querySelector('.ai-translator-content')
-
-  if (!targetElement) return
-
-  if (!targetElement.contains(currentElement as any)) {
-    hideThumbnail()
-  }
-})
+document.addEventListener('click', (event) => {})

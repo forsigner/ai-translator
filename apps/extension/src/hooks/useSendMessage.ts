@@ -81,7 +81,7 @@ async function sendMessageWithOfficialAPI(value: string, apiKey: string) {
     updateStreaming(false)
   } catch (error) {
     updateStreaming(false)
-    console.log('send message error:', error)
+    updateMessage(error)
   }
 }
 
@@ -91,8 +91,6 @@ export function useSendMessage() {
     updateStreaming(true)
     value = value.replace(/[\r\n]+$/, '') // 去掉结尾的换行符
     const settings = await storage.getSettings()
-
-    console.log('send settings:', settings)
 
     if (settings?.useFreeToken) {
       sendMessageUseFreeToken(value)

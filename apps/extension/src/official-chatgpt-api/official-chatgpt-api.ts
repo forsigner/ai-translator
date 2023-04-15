@@ -107,7 +107,9 @@ export class OfficialChatGPTAPI {
         clearTimeout(reqTimeoutId)
 
         if (!res.ok || !res.body) {
-          reject(await res.json())
+          // TODO: need to improve
+          const errorRes = await res.json()
+          reject(errorRes.error.message)
           return
         }
 

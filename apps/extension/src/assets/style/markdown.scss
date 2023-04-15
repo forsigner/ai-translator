@@ -32,6 +32,12 @@
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji';
 
+  a {
+    color: #6366f1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   p {
     margin: 0;
     margin-bottom: 4px;
