@@ -112,7 +112,7 @@ export function useSendMessage() {
     const regionChecker = await RegionChecker.fromStorage()
 
     if (regionChecker.isSupported) {
-      console.log('regionChecker.isSupported:', regionChecker.isSupported)
+      // console.log('regionChecker.isSupported:', regionChecker.isSupported)
       await sendMessageWithOfficialAPI(value, settings.apiKey)
       return
     }

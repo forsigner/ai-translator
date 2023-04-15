@@ -4,7 +4,7 @@ export function initSettingsStorage() {
   async function run() {
     const settings = await storage.getSettings()
 
-    console.log('settings:', settings)
+    // console.log('settings:', settings)
 
     if (!settings) {
       await storage.setSettings({

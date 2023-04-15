@@ -31,7 +31,7 @@ export function init() {
   async function run() {
     const regionChecker = await RegionChecker.fromStorage()
 
-    console.log('init regionChecker.isSupported:', regionChecker.isSupported)
+    // console.log('init regionChecker.isSupported:', regionChecker.isSupported)
 
     if (regionChecker.shouldCheck) {
       await regionChecker.fetchLocation()

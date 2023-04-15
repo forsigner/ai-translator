@@ -43,7 +43,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
         <Box minH-46 pt4 mb2 px2 textBase leadingNormal>
           <TranslatorContent streaming={streaming} content={content} isWordMode={isWordMode} />
         </Box>
-        <Footer />
+        {/* <Footer /> */}
       </Box>
     </Box>
   )
