@@ -16,7 +16,7 @@ async function sendMessageUseFreeToken(value: string) {
 
   const formTo = getFromToState()
 
-  const { userPrompt, systemPrompt } = getPrompts({
+  const { userPrompt, systemPrompt, isWordMode } = getPrompts({
     text: value,
     from: formTo.from,
     to: formTo.to,
@@ -31,13 +31,13 @@ async function sendMessageUseFreeToken(value: string) {
       deviceId,
     })
   } catch (error) {
-    updateMessage(<UseFreeTokenErrorTips />)
+    updateMessage(<UseFreeTokenErrorTips />, isWordMode)
   }
 }
 
 async function sendMessageWithProxyServer(value: string, apiKey: string) {
   const api = new ChatGPTAPI({})
-  const messages = buildMessages(value)
+  const { messages, isWordMode } = buildMessages(value)
 
   try {
     await api.sendMessage({
@@ -53,7 +53,7 @@ async function sendMessageWithProxyServer(value: string, apiKey: string) {
         max_tokens: 2000,
       },
       onMessage(text) {
-        updateMessage(text)
+        updateMessage(text, isWordMode)
       },
     })
 
@@ -61,12 +61,13 @@ async function sendMessageWithProxyServer(value: string, apiKey: string) {
   } catch (error) {
     updateStreaming(false)
     console.log('send message error:', error)
+    updateMessage(error, isWordMode)
   }
 }
 
 async function sendMessageWithOfficialAPI(value: string, apiKey: string) {
   const api = new OfficialChatGPTAPI({ apiKey })
-  const messages = buildMessages(value)
+  const { messages, isWordMode } = buildMessages(value)
 
   try {
     await api.sendMessage({
@@ -81,14 +82,14 @@ async function sendMessageWithOfficialAPI(value: string, apiKey: string) {
         max_tokens: 2000,
       },
       onMessage(text) {
-        updateMessage(text)
+        updateMessage(text, isWordMode)
       },
     })
 
     updateStreaming(false)
   } catch (error) {
     updateStreaming(false)
-    updateMessage(error)
+    updateMessage(error, isWordMode)
   }
 }
 

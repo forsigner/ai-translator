@@ -6,9 +6,14 @@ import { ReactNode } from 'react'
 interface Props {
   streaming: boolean
   content: ReactNode
+  isWordMode: boolean
 }
 
-export const TranslatorContent = ({ streaming, content }: Props) => {
+function parseWordContent(content: string) {
+  return content.split('\n')
+}
+
+export const TranslatorContent = ({ streaming, content, isWordMode }: Props) => {
   if (streaming) {
     return (
       <Box>
@@ -18,6 +23,18 @@ export const TranslatorContent = ({ streaming, content }: Props) => {
   }
 
   if (typeof content === 'string') {
+    if (isWordMode) {
+      const arr = parseWordContent(content)
+      return (
+        <Box leadingLoose>
+          {arr.map((item, index) => (
+            <Box key={index} fontBold={index == 0}>
+              {item}
+            </Box>
+          ))}
+        </Box>
+      )
+    }
     return <Markdown content={content} />
   }
   return <>{content}</>

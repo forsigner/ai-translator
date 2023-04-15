@@ -6,12 +6,14 @@ const key = 'Message'
 type State = {
   content: ReactNode
   streaming: boolean
+  isWordMode: boolean
 }
 
 export function useMessage() {
   const [state, setMessage] = useStore<State>(key, {
     content: '',
     streaming: false,
+    isWordMode: false,
   } as State)
 
   function setStreaming(streaming: boolean) {
@@ -27,10 +29,11 @@ export function useMessage() {
   }
 }
 
-export function updateMessage(value: ReactNode) {
+export function updateMessage(value: ReactNode, isWordMode = false) {
   mutate(key, (state: State) => {
     state.content = value
     state.streaming = false
+    state.isWordMode = isWordMode
   })
 }
 

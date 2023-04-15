@@ -21,7 +21,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
 ) {
   const [deviceId, setDeviceId] = useState('')
   const sendMessage = useSendMessage()
-  const { content, streaming } = useMessage()
+  const { content, streaming, isWordMode } = useMessage()
 
   useEffect(() => {
     storage.getDeviceId().then((id) => {
@@ -41,7 +41,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
           }}
         />
         <Box minH-46 pt4 mb2 px2 textBase leadingNormal>
-          <TranslatorContent streaming={streaming} content={content} />
+          <TranslatorContent streaming={streaming} content={content} isWordMode={isWordMode} />
         </Box>
         <Footer />
       </Box>
