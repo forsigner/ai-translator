@@ -23,13 +23,17 @@ async function sendMessageUseFreeToken(value: string) {
     selectedWord: '',
   })
 
-  console.log('systemPrompt:', systemPrompt, userPrompt)
+  const content = isWordMode
+    ? `${systemPrompt}。 \n Now ${userPrompt}: ${value}`
+    : `${userPrompt}: ${value}`
 
   try {
     await sendTranslationMessage({
-      content: `${userPrompt}: ${value}`,
+      content,
       deviceId,
     })
+
+    updateMessage('', isWordMode)
   } catch (error) {
     updateMessage(<UseFreeTokenErrorTips />, isWordMode)
   }

@@ -1,4 +1,4 @@
-import { updateMessage } from '@src/stores/message.store'
+import { getMessageState, updateMessage } from '@src/stores/message.store'
 import gql from 'gql-tag'
 import { useSubscription } from 'stook-graphql'
 
@@ -15,8 +15,9 @@ export function useChatMessageSubscription(deviceId: string) {
     variables: { deviceId },
     onUpdate({ data }) {
       if (data?.content) {
-        updateMessage(data.content)
-        console.log('data.....:', data)
+        const message = getMessageState()
+        updateMessage(data.content, message.isWordMode)
+        // console.log('data.....:', data)
       }
     },
   })
