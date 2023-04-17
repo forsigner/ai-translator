@@ -42,12 +42,18 @@ export const Thumbnail: FC<ThumbnailProps> = forwardRef(function PopoverTrigger(
       border
       borderGray200
       roundedXL
-      p-2
+      toCenter
       bgWhite
       bgWhite--dark
       absolute
       left={x + 20}
       top={y}
+      style={{
+        padding: 2,
+        width: 24,
+        height: 24,
+        background: 'white',
+      }}
       data-state={state.isOpen ? 'opened' : 'closed'}
       {...referenceProps}
       {...rest}

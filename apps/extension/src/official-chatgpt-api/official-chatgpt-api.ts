@@ -81,7 +81,7 @@ export class OfficialChatGPTAPI {
     const { onMessage, stream = onMessage ? true : false, completionParams, apiKey = '' } = opts
 
     const controller = opts.abortController || new AbortController()
-    const messages = opts.messages
+    const messages = opts.messages      
 
     // eslint-disable-next-line no-async-promise-executor
     return new Promise<string>(async (resolve, reject) => {

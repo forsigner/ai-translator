@@ -32,7 +32,6 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   return (
     <Box ref={ref} w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite {...rest}>
       <Header showSettings={showSettings} />
-      {deviceId && <TranslateResultSubscription deviceId={deviceId} />}
 
       <Box p3>
         <SendMessageBox

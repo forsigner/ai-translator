@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { forwardRef } from '@bone-ui/utils'
 import { FloatingPortal, FloatingFocusManager } from '@floating-ui/react'
 import { mergeRefs } from '@bone-ui/utils'
@@ -39,6 +39,7 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
             border
             borderGray200
             borderTransparent--dark
+            zIndex-10000
             style={{
               position: state.strategy,
               top: state.y ?? 0,

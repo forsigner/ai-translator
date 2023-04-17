@@ -12,7 +12,7 @@ window.onload = async () => {
   document.documentElement.classList.add(settings?.theme || 'light')
 }
 
-function main() {
+async function main() {
   const appContainer = document.querySelector('#app-container')
   if (!appContainer) {
     throw new Error('Can not find #app-container')
@@ -20,6 +20,10 @@ function main() {
   const root = createRoot(appContainer)
   root.render(<Popup />)
   init()
+
+  const res = await fetch('http://localhost:4000/api/auth/session')
+  const json = await res.json()
+  console.log('json....:', json)
 }
 
 main()
