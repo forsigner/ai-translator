@@ -149,7 +149,7 @@ export function useSendMessage() {
     value = value.replace(/[\r\n]+$/, '') // 去掉结尾的换行符
     const settings = await storage.getSettings()
 
-    if (settings?.useFreeToken) {
+    if (settings?.tokenProvider === 'Free') {
       sendMessageUseFreeToken(value)
       return
     }

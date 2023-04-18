@@ -33,7 +33,7 @@ const manifest: chrome.runtime.ManifestV3 = {
     },
   ],
   devtools_page: 'src/pages/devtools/index.html',
-  permissions: ['storage', 'contextMenus'],
+  permissions: ['storage'],
   web_accessible_resources: [
     {
       resources: ['assets/js/*.js', 'assets/css/*.css', 'icon-128.png', 'icon-34.png'],

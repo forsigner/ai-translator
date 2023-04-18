@@ -7,7 +7,7 @@ enum Keys {
 
 export interface Settings {
   apiKey: string
-  useFreeToken: boolean
+  tokenProvider: 'Free' | 'ApiKey'
   lang: string
   theme: string
 }

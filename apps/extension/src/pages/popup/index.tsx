@@ -21,9 +21,9 @@ async function main() {
   root.render(<Popup />)
   init()
 
-  const res = await fetch('http://localhost:4000/api/auth/session')
-  const json = await res.json()
-  console.log('json....:', json)
+  // const res = await fetch('http://localhost:4000/api/auth/session')
+  // const json = await res.json()
+  // console.log('json....:', json)
 }
 
 main()

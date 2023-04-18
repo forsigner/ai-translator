@@ -39,10 +39,14 @@ export function useSettingsForm() {
       },
     },
     {
-      label: '是否使用免费 token？',
-      component: 'Switch',
-      name: 'useFreeToken',
-      value: settings.useFreeToken,
+      label: 'Token 消耗方式',
+      component: 'Select',
+      name: 'tokenProvider',
+      options: [
+        { label: '免费 Token', value: 'Free' },
+        { label: 'API Key Token', value: 'ApiKey' },
+      ],
+      value: settings.tokenProvider,
     },
     {
       label: '主题',
@@ -90,9 +94,8 @@ export function useSettingsForm() {
   })
 
   useEffect(() => {
-    if (settings) {
-      form.setValues(settings)
-    }
+    form.setValues(settings)
+    console.log('-====settings:', settings)
   }, [settings, form])
 
   return form

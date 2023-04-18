@@ -17,7 +17,7 @@ export const UseFreeTokenErrorTips = () => {
           const settings = await storage.getSettings()
           await storage.setSettings({
             ...settings,
-            useFreeToken: false,
+            tokenProvider: 'ApiKey',
           })
           toast.success('已设置为 API Key 模式')
           sendMessage(text)

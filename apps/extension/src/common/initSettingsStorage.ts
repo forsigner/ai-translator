@@ -8,8 +8,8 @@ export function initSettingsStorage() {
 
     if (!settings) {
       await storage.setSettings({
-        apiKey: 'foo',
-        useFreeToken: true,
+        apiKey: '',
+        tokenProvider: 'Free',
         lang: 'en',
         theme: 'light',
       })
