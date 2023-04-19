@@ -1,4 +1,4 @@
-export const CARD_WIDTH = 460
+export const CARD_WIDTH = 480
 export const CARD_HEIGHT = 200
 export const HEADER_HEIGHT = 48
 export const LANG_SELECT_WIDTH = 90
@@ -85,3 +85,36 @@ export const baseURL = 'https://ai-translator.ownchat.me'
 export const subscriptionsEndpoint = `wss://${host}/graphql`
 
 // export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
+
+export interface Bot {
+  name: string
+  slug: string
+}
+
+export const bots: Bot[] = [
+  {
+    name: 'Language translator',
+    slug: 'language-translator',
+  },
+  {
+    name: 'Code translator',
+    slug: 'code-translator',
+  },
+  {
+    name: 'Text polisher',
+    slug: 'text-polisher',
+  },
+
+  {
+    name: 'Text summarizer',
+    slug: 'text-summarize',
+  },
+  {
+    name: 'Grammar analyzer',
+    slug: 'grammar-analyzer',
+  },
+  {
+    name: 'Code interpreter',
+    slug: 'code-interpreter',
+  },
+]

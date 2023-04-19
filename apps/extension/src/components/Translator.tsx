@@ -7,7 +7,6 @@ import { useSendMessage } from '@src/hooks/useSendMessage'
 import { CARD_HEIGHT, CARD_WIDTH } from '@src/common/constants'
 import { Footer } from './Footer'
 import { forwardRef, useEffect, useState } from 'react'
-import { TranslateResultSubscription } from './TranslateResultSubscription'
 import { storage } from '@src/services/storage'
 import { TranslatorContent } from './TranslatorContent'
 
@@ -19,15 +18,8 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   { showSettings = false, ...rest },
   ref,
 ) {
-  const [deviceId, setDeviceId] = useState('')
   const sendMessage = useSendMessage()
   const { content, streaming, isWordMode } = useMessage()
-
-  useEffect(() => {
-    storage.getDeviceId().then((id) => {
-      setDeviceId(id)
-    })
-  }, [])
 
   return (
     <Box ref={ref} w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite {...rest}>

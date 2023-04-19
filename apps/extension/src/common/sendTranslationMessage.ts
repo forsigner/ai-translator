@@ -10,8 +10,6 @@ export const SEND_TRANSLATION_MESSAGE = gql`
 /** 创建 */
 export type SendTranslationMessageInput = {
   content: string
-  /** 设备唯一ID */
-  deviceId: string
 }
 
 export async function sendTranslationMessage(
