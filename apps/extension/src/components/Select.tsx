@@ -1,34 +1,44 @@
 import { Box } from '@fower/react'
 import { ChevronDownOutline } from '@bone-ui/icons'
 import { Popover, PopoverTrigger, PopoverContent, Menu, MenuItem } from 'bone-ui'
-import { CARD_HEIGHT, HEADER_HEIGHT, bots } from '@src/common/constants'
-import { useBot } from '@src/hooks/useBot'
+import { CARD_HEIGHT, HEADER_HEIGHT } from '@src/common/constants'
 
-export function BotSelect() {
+export interface Option {
+  label: string
+  value: string
+}
+
+interface SelectProps {
+  options: Option[]
+  value: string
+  onChange(value: string): any
+}
+
+export function Select({ value, onChange, options }: SelectProps) {
   const containerHeight = CARD_HEIGHT - HEADER_HEIGHT - 10
-  const { bot, setBot } = useBot()
+  const selected = options.find((item) => item.value == value)
   return (
     <Popover portal={false}>
       <PopoverTrigger>
         <Box text-14 px3 py2 rounded gray600 cursorPointer toCenterY columnGap-4>
-          <Box>{bot.name}</Box>
+          <Box>{selected?.label}</Box>
           <ChevronDownOutline size={12} />
         </Box>
       </PopoverTrigger>
       <PopoverContent h={containerHeight} overflowAuto>
         {({ close }) => (
           <Menu>
-            {bots.map((item) => (
+            {options.map((item) => (
               <MenuItem
                 text-14
-                key={item.slug}
+                key={item.value}
                 onClick={(e) => {
                   e.stopPropagation()
-                  setBot(item)
+                  onChange(item.value)
                   close()
                 }}
               >
-                {item.name}
+                {item.label}
               </MenuItem>
             ))}
           </Menu>

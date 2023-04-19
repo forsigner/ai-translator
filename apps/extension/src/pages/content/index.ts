@@ -1,6 +1,6 @@
 import { renderApp } from './renderApp'
 import { updateText } from '../../stores/text.store'
-import { showThumbnail } from '../../stores/thumbnail.store'
+import { hideThumbnail, showThumbnail } from '../../stores/thumbnail.store'
 import { storage } from '@src/services/storage'
 
 window.onload = async () => {
@@ -37,4 +37,5 @@ document.addEventListener('click', (event) => {
   if (targetElement && targetElement.contains(currentElement as any)) {
     return
   }
+  hideThumbnail()
 })

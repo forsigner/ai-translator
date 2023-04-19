@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { FromTo } from './FromTo/FromTo'
+import { LangFromTo } from './LangFromTo/LangFromTo'
 import { HEADER_HEIGHT } from '@src/common/constants'
 import { IconLogo } from './IconLogo'
 import { SettingsButton } from './SettingsButton'
@@ -34,7 +34,7 @@ export function Header({ showSettings }: Props) {
         <BotSelect />
       </Box>
       <Box toCenterY columnGap-8>
-        <FromTo />
+        <LangFromTo />
         {showSettings && <SettingsButton></SettingsButton>}
       </Box>
     </Box>

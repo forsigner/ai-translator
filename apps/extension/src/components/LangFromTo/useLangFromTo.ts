@@ -5,9 +5,9 @@ interface State {
   from: string
 }
 
-const key = 'FROM_TO'
+const key = 'LANG_FROM_TO'
 
-export function useFromTo() {
+export function useLangFromTo() {
   const [state, setFromTo] = useStore(key, {
     from: 'en',
     to: 'zh-Hans',
@@ -41,6 +41,6 @@ export function useFromTo() {
   }
 }
 
-export function getFromToState(): State {
+export function getLangFromToState(): State {
   return getState(key)
 }

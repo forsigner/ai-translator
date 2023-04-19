@@ -91,10 +91,19 @@ export interface Bot {
   slug: string
 }
 
+export enum BotSlugs {
+  'text-translator',
+  'code-translator',
+  'Text polisher',
+  'Text summarizer',
+  'grammar-analyzer',
+  'Code interpreter',
+}
+
 export const bots: Bot[] = [
   {
-    name: 'Language translator',
-    slug: 'language-translator',
+    name: 'Text translator',
+    slug: 'text-translator',
   },
   {
     name: 'Code translator',
