@@ -30,4 +30,11 @@ document.addEventListener('mouseup', async (event) => {
   }
 })
 
-document.addEventListener('click', (event) => {})
+document.addEventListener('click', (event) => {
+  const currentElement = event.target
+  const targetElement = document.querySelector('.ai-translator-content')
+
+  if (targetElement && targetElement.contains(currentElement as any)) {
+    return
+  }
+})

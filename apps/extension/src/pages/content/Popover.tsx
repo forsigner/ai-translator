@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { PopoverOptions, usePopover } from './usePopover'
 import { PopoverProvider } from './context'
+import { useStore } from 'stook'
 
 export function Popover({
   children,
@@ -10,6 +11,10 @@ export function Popover({
   children: ReactNode
 } & PopoverOptions) {
   const popover = usePopover({ modal, ...restOptions })
+
+  console.log('popover:', popover)
+
+  useStore('translator_popover', popover)
 
   return <PopoverProvider value={popover}>{children}</PopoverProvider>
 }

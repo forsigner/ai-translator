@@ -1,5 +1,10 @@
 import { Select, RenderSearch } from '@bone-ui/select'
-import { CARD_HEIGHT, HEADER_HEIGHT, LANG_SELECT_WIDTH, supportLanguages } from '@src/common/constants'
+import {
+  CARD_HEIGHT,
+  HEADER_HEIGHT,
+  LANG_SELECT_WIDTH,
+  supportLanguages,
+} from '@src/common/constants'
 
 import { Box } from '@fower/react'
 import { ChevronDownOutline, SearchOutline, XCircleSolid } from '@bone-ui/icons'
@@ -67,6 +72,7 @@ export function LangSelect({ value, onChange }: Props) {
 
   return (
     <Select
+      portal={false}
       icon={<ChevronDownOutline size={12} />}
       searchPlaceholder="Search"
       renderSearch={defaultRenderSearch}

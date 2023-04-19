@@ -18,7 +18,7 @@
   "type": "module",
   "dependencies": {
     "@fower/react": "^1.76.0",
-    "bone-ui": "^0.34.0",
+    "bone-ui": "^0.34.1",
     "chatgpt": "^5.2.2",
     "fomir": "^0.22.0",
     "framer-motion": "^10.11.6",
