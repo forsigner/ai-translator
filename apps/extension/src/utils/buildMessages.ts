@@ -1,6 +1,6 @@
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 import { getPrompts } from './getPrompts'
-import { getFromToState } from '@src/hooks/useFromTo'
+import { getFromToState } from '@src/components/FromTo/useFromTo'
 
 interface Return {
   messages: ChatCompletionRequestMessage[]

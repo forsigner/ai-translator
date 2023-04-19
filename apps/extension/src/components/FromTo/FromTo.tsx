@@ -1,6 +1,6 @@
 import { SwitchHorizontalOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
-import { useFromTo } from '@src/hooks/useFromTo'
+import { useFromTo } from '@src/components/FromTo/useFromTo'
 import { LangSelect } from './LangSelect'
 
 export function FromTo() {

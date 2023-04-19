@@ -4,7 +4,7 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "bone-ui/*",
+    "fower/*",
     "packages/*"
   ],
   "scripts": {
@@ -15,7 +15,7 @@
     "clean": "turbo run clean",
     "test": "turbo run test",
     "dev": "turbo run dev",
-    "deploy:web": "docker-compose -p web -f docker-compose.web.yml up --build -d",
+    "deploy:web": "docker-compose -p ai-translator-web -f docker-compose.web.yml up --build -d",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "prettier": "^2.8.7",
+    "tsdx": "^0.14.1",
     "turbo": "^1.8.8"
   },
   "engines": {

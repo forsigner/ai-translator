@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { FromTo } from './FromTo'
+import { FromTo } from './FromTo/FromTo'
 import { HEADER_HEIGHT } from '@src/common/constants'
 import { IconLogo } from './IconLogo'
 import { SettingsButton } from './SettingsButton'
