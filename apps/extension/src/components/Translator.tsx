@@ -7,7 +7,6 @@ import { useSendMessage } from '@src/hooks/useSendMessage'
 import { CARD_HEIGHT, CARD_WIDTH } from '@src/common/constants'
 import { Footer } from './Footer'
 import { forwardRef, useEffect, useState } from 'react'
-import { storage } from '@src/services/storage'
 import { TranslatorContent } from './TranslatorContent'
 
 interface Props extends FowerHTMLProps<'div'> {

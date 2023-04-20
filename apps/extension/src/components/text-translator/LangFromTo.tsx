@@ -1,8 +1,8 @@
 import { SwitchHorizontalOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
-import { useLangFromTo } from '@src/components/text-translator/useLangFromTo'
 import { Option, Select } from '../Select'
 import { supportLanguages } from '@src/common/constants'
+import { useLangFromTo } from './useLangFromTo'
 
 export function LangFromTo() {
   const options: Option[] = supportLanguages.map(([value, label]) => ({ label, value }))

@@ -6,6 +6,11 @@ export class Bot {
   private _bot: BotType
   private _params: Record<string, any> = {}
 
+  /**
+   * current input text
+   */
+  text: string = ''
+
   constructor() {
     this.init(this._bots[0])
   }
@@ -27,6 +32,10 @@ export class Bot {
     this._params = this._bot.defaultParams
   }
 
+  updateText = (value: string) => {
+    this.text = value
+  }
+
   updateParams = (params: any) => {
     this._params = params
   }
@@ -34,5 +43,9 @@ export class Bot {
   selectBot = async (bot: BotType) => {
     emitter.emit('SELECT_BOT', bot)
     this.init(bot)
+  }
+
+  createPrompt(bot: Bot) {
+    //
   }
 }

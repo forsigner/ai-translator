@@ -25,7 +25,11 @@ export function buildMessages(text: string): Return {
       },
       {
         role: ChatCompletionResponseMessageRoleEnum.User,
-        content: `${userPrompt}: ${text}`,
+        content: `${userPrompt}`,
+      },
+      {
+        role: ChatCompletionResponseMessageRoleEnum.User,
+        content: `${text}`,
       },
     ],
   }

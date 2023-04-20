@@ -1,4 +1,4 @@
-import { getState, mutate, useStore } from 'stook'
+import { mutate, useStore } from 'stook'
 
 const key = 'Text_for_translate'
 
@@ -22,8 +22,4 @@ export function useText() {
 
 export function updateText(text: string) {
   mutate(key, { text })
-}
-
-export function getTextState(): State {
-  return getState(key)
 }

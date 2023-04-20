@@ -2,6 +2,7 @@ import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useMessage } from '@src/stores/message.store'
 import { useText } from '@src/stores/text.store'
+import { useBotContext } from '@src/bot'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
@@ -12,9 +13,11 @@ interface Props {
 export const SendMessageBox = ({ onSendMessage }: Props) => {
   const { text, setText } = useText()
   const { streaming } = useMessage()
+  const bot = useBotContext()
 
   async function send() {
     if (!text) return
+    bot.updateText(text)
     await onSendMessage?.(text)
   }
 
