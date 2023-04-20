@@ -3,13 +3,12 @@ import { ChatGPTAPI } from '../chatgpt-api'
 import { OfficialChatGPTAPI } from '../official-chatgpt-api'
 import { buildMessages } from '../utils/buildMessages'
 import { updateMessage, updateStreaming } from '../stores/message.store'
-import { getLangFromToState } from '../components/LangFromTo/useLangFromTo'
 import { getPrompts } from '@src/utils/getPrompts'
-import { sendTranslationMessage } from '@src/common/sendTranslationMessage'
 import { storage } from '@src/services/storage'
 import { RegionChecker } from '@src/services/RegionChecker'
 import { UseFreeTokenErrorTips } from '@src/components/UseFreeTokenErrorTips'
 import { baseURL } from '@src/common/constants'
+import { getLangFromToState } from '@src/components/text-translator'
 
 // translate from English to 简体中文: Share your wildest ChatGPT conversations with one click.
 
@@ -99,7 +98,7 @@ async function sendMessageWithProxyServer(value: string, apiKey: string) {
         top_p: 1.0,
         presence_penalty: 1.0,
         model: 'gpt-3.5-turbo',
-        max_tokens: 2000,
+        // max_tokens: 2000,
       },
       onMessage(text) {
         updateMessage(text, isWordMode)
@@ -157,7 +156,6 @@ export function useSendMessage() {
     const regionChecker = await RegionChecker.fromStorage()
 
     if (regionChecker.isSupported) {
-      // console.log('regionChecker.isSupported:', regionChecker.isSupported)
       await sendMessageWithOfficialAPI(value, settings.apiKey)
       return
     }

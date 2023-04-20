@@ -92,12 +92,12 @@ export interface Bot {
 }
 
 export enum BotSlugs {
-  'text-translator',
-  'code-translator',
-  'Text polisher',
-  'Text summarizer',
-  'grammar-analyzer',
-  'Code interpreter',
+  'TextTranslator' = 'text-translator',
+  'CodeTranslator' = 'code-translator',
+  'TextPolisher' = 'text-polisher',
+  'TextSummarizer' = 'text-summarizer',
+  'GrammarAnalyzer' = 'grammar-analyzer',
+  'CodeInterpreter' = 'code-interpreter',
 }
 
 export const bots: Bot[] = [

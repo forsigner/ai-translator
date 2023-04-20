@@ -1,18 +1,19 @@
 import { ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessage } from 'openai'
 import { getPrompts } from './getPrompts'
-import { getLangFromToState } from '@src/components/text-translator'
+import { getLangFromToState } from '@src/components/text-translator/useLangFromTo'
 
 interface Return {
   messages: ChatCompletionRequestMessage[]
-  isWordMode: boolean
+  isWordMode?: boolean
 }
 
 export function buildMessages(text: string): Return {
-  const formTo = getLangFromToState()
+  const langFormTo = getLangFromToState()
+
   const { userPrompt, systemPrompt, isWordMode } = getPrompts({
     text,
-    from: formTo.from,
-    to: formTo.to,
+    from: langFormTo.from,
+    to: langFormTo.to,
     selectedWord: '',
   })
 
@@ -25,7 +26,11 @@ export function buildMessages(text: string): Return {
       },
       {
         role: ChatCompletionResponseMessageRoleEnum.User,
-        content: `${userPrompt}: ${text}`,
+        content: userPrompt,
+      },
+      {
+        role: ChatCompletionResponseMessageRoleEnum.User,
+        content: text,
       },
     ],
   }

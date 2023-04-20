@@ -1,12 +1,12 @@
 import { SwitchHorizontalOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
-import { useLangFromTo } from '@src/components/LangFromTo/useLangFromTo'
 import { Option, Select } from '../Select'
-import { supportLanguages } from '@src/common/constants'
+import { supportLanguages } from './constants'
+import { useCodeFromTo } from './useCodeFromTo'
 
-export function LangFromTo() {
+export function CodeFromTo() {
   const options: Option[] = supportLanguages.map(([value, label]) => ({ label, value }))
-  const { from, to, setFrom, setTo, reverse } = useLangFromTo()
+  const { from, to, setFrom, setTo, reverse } = useCodeFromTo()
   return (
     <Box toCenterY columnGap-4>
       <Select options={options} value={from} onChange={setFrom} />

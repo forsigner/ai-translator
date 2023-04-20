@@ -2,11 +2,11 @@ import { Box } from '@fower/react'
 import { ChevronDownOutline } from '@bone-ui/icons'
 import { Popover, PopoverTrigger, PopoverContent, Menu, MenuItem } from 'bone-ui'
 import { CARD_HEIGHT, HEADER_HEIGHT, bots } from '@src/common/constants'
-import { useBot } from '@src/hooks/useBot'
+import { useBot } from '@src/bot'
 
 export function BotSelect() {
   const containerHeight = CARD_HEIGHT - HEADER_HEIGHT - 10
-  const { bot, setBot } = useBot()
+  const { bot } = useBot()
   return (
     <Popover portal={false}>
       <PopoverTrigger>
@@ -24,7 +24,7 @@ export function BotSelect() {
                 key={item.slug}
                 onClick={(e) => {
                   e.stopPropagation()
-                  setBot(item)
+                  bot.selectBot(item)
                   close()
                 }}
               >

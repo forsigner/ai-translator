@@ -1,5 +1,4 @@
-import endent from 'endent'
-import { langMap } from '../common/constants'
+import { langMap } from '@src/common/constants'
 
 export interface GetPromptsOptions {
   text: string
@@ -41,7 +40,7 @@ export function getPrompts(opt: GetPromptsOptions) {
       userPrompt = '翻译成简体白话文'
     } else if (text.length < 5 && toChinese) {
       // 当用户的默认语言为中文时，查询中文词组（不超过5个字），展示多种翻译结果，并阐述适用语境。
-      systemPrompt = endent`你是一个翻译引擎，请将给到的文本翻译成${
+      systemPrompt = `你是一个翻译引擎，请将给到的文本翻译成${
         langMap.get(to) || to
       }。请列出3种（如果有）最常用翻译结果：单词或短语，并列出对应的适用语境（用中文阐述）、音标、词性、双语示例。按照下面格式用中文阐述：
                         <序号><单词或短语> · /<音标>
@@ -53,7 +52,7 @@ export function getPrompts(opt: GetPromptsOptions) {
   if (toChinese && isAWord(from, text.trim())) {
     isWordMode = true
     // 翻译为中文时，增加单词模式，可以更详细的翻译结果，包括：音标、词性、含义、双语示例。
-    systemPrompt = endent`你是一个翻译引擎，请将翻译给到的文本，只需要翻译不需要解释。当且仅当文本只有一个单词时，请给出单词原始形态（如果有）、单词的语种、对应的音标（如果有）、所有含义（含词性）、双语示例，至少三条例句，请严格按照下面格式给到翻译结果：
+    systemPrompt = `你是一个翻译引擎，请将翻译给到的文本，只需要翻译不需要解释。当且仅当文本只有一个单词时，请给出单词原始形态（如果有）、单词的语种、对应的音标（如果有）、所有含义（含词性）、双语示例，至少三条例句，请严格按照下面格式给到翻译结果：
                 <原始文本>
                 [<语种>] · / <单词音标>
                 [<词性缩写>] <中文含义>]

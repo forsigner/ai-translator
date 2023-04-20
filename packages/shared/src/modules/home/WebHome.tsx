@@ -1,7 +1,6 @@
 import { Box } from '@fower/react'
 import { ThirdPartyLogin } from './ThirdPartyLogin'
 import { useTranslation } from 'react-i18next'
-import { SendMessageBox } from './SendMessageBox'
 
 export function WebHome() {
   const { t } = useTranslation('home')
@@ -32,7 +31,6 @@ export function WebHome() {
       </Box>
 
       {/* <ThirdPartyLogin /> */}
-      <SendMessageBox />
     </Box>
   )
 }
