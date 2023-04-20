@@ -8,7 +8,7 @@ export function LangFromTo() {
   const options: Option[] = supportLanguages.map(([value, label]) => ({ label, value }))
   const { from, to, setFrom, setTo, reverse } = useLangFromTo()
   return (
-    <Box toCenterY columnGap-4>
+    <Box toCenterY columnGap-2>
       <Select options={options} value={from} onChange={setFrom} />
       <SwitchHorizontalOutline
         cursorPointer

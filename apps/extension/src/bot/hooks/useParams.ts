@@ -1,7 +1,7 @@
 import { useStore } from 'stook'
-import { useBotContext } from './context'
+import { useBotContext } from '../context'
 import { useEffect } from 'react'
-import { emitter } from './emitter'
+import { emitter } from '../emitter'
 
 const key = 'BOT_PARAMS'
 

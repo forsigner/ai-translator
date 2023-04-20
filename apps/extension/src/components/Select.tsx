@@ -20,7 +20,7 @@ export function Select({ value, onChange, options }: SelectProps) {
   return (
     <Popover portal={false}>
       <PopoverTrigger>
-        <Box text-14 px3 py2 rounded gray600 cursorPointer toCenterY columnGap-4>
+        <Box text-14 px1 py2 rounded gray600 gray700--hover cursorPointer toCenterY columnGap-4>
           <Box>{selected?.label}</Box>
           <ChevronDownOutline size={12} />
         </Box>

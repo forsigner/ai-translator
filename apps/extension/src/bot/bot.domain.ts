@@ -1,15 +1,27 @@
-import { BotType, bots } from './constants'
+import { BotSlugs, BotType, bots } from './constants'
 import { emitter } from './emitter'
+import { isWord } from './utils/isWord'
+import { MessageBuilder } from './utils/MessageBuilder'
+
+export interface Params {
+  from?: string
+  to?: string
+  [key: string]: any
+}
 
 export class Bot {
   private _bots: BotType[] = bots
   private _bot: BotType
-  private _params: Record<string, any> = {}
+  private _params: Params = {}
 
   /**
    * current input text
    */
-  text: string = ''
+  text = ''
+
+  isWord = false
+
+  selectedWord = ''
 
   constructor() {
     this.init(this._bots[0])
@@ -34,9 +46,12 @@ export class Bot {
 
   updateText = (value: string) => {
     this.text = value
+    if (this.slug === BotSlugs.TextTranslator) {
+      this.isWord = isWord(this.params.from, value)
+    }
   }
 
-  updateParams = (params: any) => {
+  updateParams = (params: Params) => {
     this._params = params
   }
 
@@ -45,7 +60,7 @@ export class Bot {
     this.init(bot)
   }
 
-  createPrompt(bot: Bot) {
-    //
+  buildMessages() {
+    return new MessageBuilder(this).buildMessages()
   }
 }
