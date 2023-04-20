@@ -5,7 +5,7 @@ import { hideThumbnail, useThumbnail } from '@src/stores/thumbnail.store'
 import { TranslatorContainer } from './TranslatorContainer'
 import { useText } from '@src/stores/text.store'
 import { useSendMessage } from '@src/hooks/useSendMessage'
-import { BotProvider } from '@src/bot'
+import { BotProvider, getBot } from '@src/bot'
 
 export function App() {
   const { x, y, visible } = useThumbnail()
@@ -24,6 +24,8 @@ export function App() {
             hideThumbnail()
           } else {
             setTimeout(() => {
+              const bot = getBot()
+              bot.updateText(text)
               sendMessage(text)
             }, 0)
           }

@@ -10,41 +10,41 @@ export class MessageBuilder {
 
   params: Params
 
-  messages: ChatCompletionRequestMessage[]
+  messages: ChatCompletionRequestMessage[] = []
 
   constructor(private bot: Bot) {
     this.text = bot.text
     this.params = bot.params
   }
 
-  buildMessages() {
+  buildMessages = () => {
     const { bot } = this
     if (bot.slug === BotSlugs.CodeTranslator) {
       this.messages.push({
         role: ChatCompletionResponseMessageRoleEnum.User,
         content: this.createCodeTranslatorPrompt(),
       })
+    } else {
+      this.messages = [
+        {
+          role: ChatCompletionResponseMessageRoleEnum.System,
+          content: this.createLangSystemPrompt(),
+        },
+        {
+          role: ChatCompletionResponseMessageRoleEnum.User,
+          content: this.createLangUserPrompt(),
+        },
+        {
+          role: ChatCompletionResponseMessageRoleEnum.User,
+          content: this.text,
+        },
+      ]
     }
-
-    this.messages = [
-      {
-        role: ChatCompletionResponseMessageRoleEnum.System,
-        content: this.createLangSystemPrompt(),
-      },
-      {
-        role: ChatCompletionResponseMessageRoleEnum.User,
-        content: this.createLangUserPrompt(),
-      },
-      {
-        role: ChatCompletionResponseMessageRoleEnum.User,
-        content: this.text,
-      },
-    ]
 
     return this.messages
   }
 
-  createLangSystemPrompt() {
+  createLangSystemPrompt = () => {
     const { text, selectedWord } = this.bot
     const { from, to } = this.params
     const fromChinese = chineseLangs.includes(from)
@@ -81,7 +81,7 @@ export class MessageBuilder {
     return systemPrompt
   }
 
-  createLangUserPrompt() {
+  createLangUserPrompt = () => {
     const { text, selectedWord } = this.bot
     const { from, to } = this.params
     const fromChinese = chineseLangs.includes(from)
@@ -111,7 +111,7 @@ export class MessageBuilder {
     return userPrompt
   }
 
-  createCodeTranslatorPrompt() {
+  createCodeTranslatorPrompt = () => {
     const { text } = this.bot
     const { from, to } = this.params
 

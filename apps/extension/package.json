@@ -19,6 +19,7 @@
   "dependencies": {
     "@fower/react": "^1.76.0",
     "bone-ui": "^0.34.1",
+    "buffer": "^6.0.3",
     "chatgpt": "^5.2.2",
     "endent": "^2.1.0",
     "fomir": "^0.22.0",

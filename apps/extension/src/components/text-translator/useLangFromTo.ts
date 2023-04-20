@@ -1,4 +1,5 @@
-import { getState, useStore } from 'stook'
+import { useParams } from '@src/bot'
+import { getState } from 'stook'
 
 interface State {
   to: string
@@ -8,36 +9,33 @@ interface State {
 const key = 'LANG_FROM_TO'
 
 export function useLangFromTo() {
-  const [state, setFromTo] = useStore(key, {
-    from: 'en',
-    to: 'zh-Hans',
-  } as State)
+  const { params, updateParams } = useParams()
 
   function setTo(to: string) {
-    setFromTo((s) => {
+    updateParams((s) => {
       s.to = to
     })
   }
 
   function setFrom(from: string) {
-    setFromTo((s) => {
+    updateParams((s) => {
       s.from = from
     })
   }
 
   function reverse() {
-    setFromTo((s) => {
-      s.from = state.to
-      s.to = state.from
+    updateParams((s) => {
+      s.from = params.to
+      s.to = params.from
     })
   }
 
   return {
-    ...state,
+    ...params,
     setTo,
     setFrom,
     reverse,
-    setFromTo,
+    setFromTo: updateParams,
   }
 }
 

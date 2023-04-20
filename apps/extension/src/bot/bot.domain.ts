@@ -60,7 +60,8 @@ export class Bot {
     this.init(bot)
   }
 
-  buildMessages() {
-    return new MessageBuilder(this).buildMessages()
+  buildMessages = () => {
+    const messageBuilder = new MessageBuilder(this)
+    return messageBuilder.buildMessages()
   }
 }
