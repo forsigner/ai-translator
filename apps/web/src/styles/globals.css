@@ -36,10 +36,6 @@ h6 {
   height: 100%;
 }
 
-.react-datepicker-popper {
-  z-index: 1000;
-}
-
 .detail-table-content {
   width: 800px;
   margin: 0 auto;

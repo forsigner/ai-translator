@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react'
 import { Box } from '@fower/react'
-import { Logo } from '../../components/Logo'
+// import { Logo } from '../../components/Logo'
 import { ModeToggle } from '../../components/ModeToggle'
 import { Nav } from './Nav'
 import { LocaleSelect } from '../../components/LocaleSelect'
@@ -17,7 +17,7 @@ export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = 
     <Box black bgWhite bgGray900--dark>
       <Box w={['100%', 820]} mx-auto column>
         <Box className="nav" toBetween py3 px={[18, 0]}>
-          <Logo to="/" />
+          {/* <Logo to="/" /> */}
           <Box toCenterY spaceX2>
             <Box>{showNav && <Nav />}</Box>
             {/* <LocaleSelect></LocaleSelect> */}

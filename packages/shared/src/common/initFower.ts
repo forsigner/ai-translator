@@ -1,4 +1,4 @@
-import { injectGlobalStyle, setConfig, composeAtom, setTheme, store } from '@fower/core'
+import { setConfig, composeAtom, setTheme, store } from '@fower/core'
 
 declare module '@fower/atomic-props' {
   export interface AtomicProps {
@@ -11,6 +11,7 @@ declare module '@fower/atomic-props' {
 
 export function initFower() {
   setConfig({
+    prefix: 'ai-c-',
     inline: false,
     mode: {
       currentMode: 'dark',
@@ -70,14 +71,6 @@ export function initFower() {
     },
     shadows: {
       // medium: '0 0 20px 0 rgba(0,0,0,.15)',
-    },
-  })
-
-  injectGlobalStyle({
-    a: {
-      color: 'brand400',
-      textDecoration: 'none',
-      cursor: 'pointer',
     },
   })
 }

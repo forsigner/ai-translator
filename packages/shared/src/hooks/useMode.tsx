@@ -1,6 +1,6 @@
 import { store } from '@fower/core'
-import { setCookie, getCookie } from 'cookies-next'
 import { useState, useEffect } from 'react'
+import { storage } from '../services/storage'
 interface Result {
   mode: string
   setMode: (mode: string) => void
@@ -9,15 +9,18 @@ interface Result {
 export function useMode(): Result {
   const [state, setState] = useState<string>('')
 
-  useEffect(() => {
-    const mode = getCookie('fower-mode') as string
+  async function initMode() {
+    const settings = await storage.getSettings()
+    setMode(settings.theme || 'light')
+  }
 
-    setMode(mode || 'light')
+  useEffect(() => {
+    initMode()
   }, [])
 
   function setMode(mode: string) {
     setState(mode)
-    setCookie('fower-mode', mode)
+    // setCookie('fower-mode', mode)
     store.setMode(mode)
   }
 

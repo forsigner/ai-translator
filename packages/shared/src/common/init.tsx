@@ -1,18 +1,42 @@
 import { Fomir } from 'fomir'
-import { devtools } from 'stook-devtools'
-import { initStookGraphql } from './common'
-import FomirCustom from './common/fields'
-import FomirBoneUI from './common/fomir-bone-ui'
-import { initFower } from './common/initFower'
-import { initI18n } from './common/initI18n'
+import FomirBoneUI from './fomir-bone-ui'
+import { initFower } from './initFower'
+import { initI18n } from './initI18n'
+import { initStookGraphql } from './initStookGraphql'
+import { initDeviceId } from './initDeviceId'
+import { initSettingsStorage } from './initSettingsStorage'
+import { RegionChecker } from '../services/RegionChecker'
 
 export function init() {
-  initStookGraphql()
+  initSettingsStorage()
+  initDeviceId()
   initFower()
   initI18n()
-
-  devtools.init()
+  initStookGraphql()
 
   Fomir.use(FomirBoneUI)
-  Fomir.use(FomirCustom)
+
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    // for (key in changes) {
+    //   var storageChange = changes[key]
+    //   console.log(
+    //     key,
+    //     namespace,
+    //     storageChange.oldValue,
+    //     storageChange.newValue,
+    //   )
+    // }
+  })
+
+  async function run() {
+    const regionChecker = await RegionChecker.fromStorage()
+
+    // console.log('init regionChecker.isSupported:', regionChecker.isSupported)
+
+    if (regionChecker.shouldCheck) {
+      await regionChecker.fetchLocation()
+    }
+  }
+
+  run()
 }

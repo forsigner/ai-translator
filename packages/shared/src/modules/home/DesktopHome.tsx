@@ -4,7 +4,7 @@ import { Button, Input } from 'bone-ui'
 import { useState } from 'react'
 import { useLoginByToken } from '../../hooks/useLoginByToken'
 import { BasicLayout } from '../../layouts'
-import { Logo } from '../../components'
+// import { Logo } from '../../components'
 import { LocaleSelect } from '../../components/LocaleSelect'
 import { ModeToggle } from '../../components/ModeToggle'
 
@@ -16,7 +16,7 @@ export function DesktopHome() {
   return (
     <Box bgWhite black bgGray900--dark minH-100vh pt4>
       <Box container mx-auto className="nav" toBetween py3 px={[18, 0]}>
-        <Logo to="/" />
+        {/* <Logo to="/" /> */}
         <Box toCenterY spaceX2>
           <LocaleSelect></LocaleSelect>
           <ModeToggle></ModeToggle>

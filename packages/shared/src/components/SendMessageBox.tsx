@@ -1,74 +1,87 @@
-import { Box } from '@fower/react'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
-import { Button, PaperAirplaneSolid } from 'bone-ui'
-import { useState } from 'react'
-import { CHAT_WIDTH } from '../common'
-import { useTranslation } from 'react-i18next'
-import { useChatStatus } from '../modules/chat/hooks/useChatStatus'
+import { getBot, useBotContext } from '../bot'
+import { Box } from '@fower/react'
+import { IconSpeaker } from './IconSpeaker'
+import { IconStop } from './IconStop'
+import { usePlaying } from '../bot/hooks/usePlaying'
+import { useText } from '../stores/text.store'
+import { useMessage } from '../stores/message.store'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
 }
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
-  const [value, setValue] = useState('')
-  const { t } = useTranslation('common')
-  const { isStreaming, isNormal, isFinished, isFetching } = useChatStatus()
+  const { playing } = usePlaying()
+  const { text, setText } = useText()
+  const { streaming } = useMessage()
+  const bot = useBotContext()
 
   async function send() {
-    if (!value) return
-    setValue('')
-    await onSendMessage?.(value)
+    if (!text) return
+    bot.updateText(text)
+    await onSendMessage?.(text)
   }
 
-  const disabled = isStreaming || isFetching
+  const disabled = streaming
 
   return (
-    <Box toCenterY toCenterX py4 px4>
-      <Box
-        toCenterY
-        flex-1
-        maxW={CHAT_WIDTH}
-        shadowXL
-        border
-        borderGray100
-        rounded2XL
-        borderTransparent--dark
-        bgGray800--dark
-      >
-        <Box flex-1 minH={[56, 80]} toCenterY>
-          <TextareaAutosize
-            placeholder=""
-            className={css(
-              'm0 borderNone w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent bgTransparent--dark',
-            )}
-            disabled={disabled}
-            style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && e.shiftKey) {
-                return
-              }
+    <Box relative>
+      <TextareaAutosize
+        minRows={2}
+        placeholder={`Enter to translate, Shift+Enter to new a line`}
+        className={css(
+          'm0  borderNone w-100p outlineNone pl3 pr5 py3 placeholderGray400 text-14 gray300--dark bgGray100--T30 bgGray800--dark rounded leadingNormal',
+        )}
+        disabled={disabled}
+        style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
+        value={text}
+        onChange={(e) => {
+          const text = e.target.value
+          setText(text)
+          bot.updateText(text)
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && e.shiftKey) {
+            return
+          }
 
-              if (e.key === 'Enter') {
-                send()
-                e.preventDefault()
-                return
-              }
-            }}
-          />
+          if (e.key === 'Enter') {
+            send()
+            e.preventDefault()
+            return
+          }
+        }}
+      />
+
+      {text && (
+        <Box absolute top2 right2 cursorPointer>
+          {playing && (
+            <IconStop
+              size={18}
+              gray600
+              fillGray600
+              fillGray700--hover
+              onClick={() => {
+                const bot = getBot()
+                bot.speaker.stop()
+              }}
+            />
+          )}
+          {!playing && (
+            <IconSpeaker
+              fillGray600
+              fillGray700--hover
+              size={18}
+              onClick={() => {
+                const bot = getBot()
+                bot.speaker.play(bot.text, bot.params.from)
+              }}
+            />
+          )}
         </Box>
-        <Button
-          colorScheme="gray400"
-          variant="ghost"
-          disabled={!value}
-          icon={<PaperAirplaneSolid rotate-90 />}
-          mr2
-          onClick={() => send()}
-        />
-      </Box>
+      )}
     </Box>
   )
 }
