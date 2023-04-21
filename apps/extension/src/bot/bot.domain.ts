@@ -1,5 +1,6 @@
 import { BotSlugs, BotType, bots } from './constants'
 import { emitter } from './emitter'
+import { Speaker } from './speaker'
 import { isWord } from './utils/isWord'
 import { MessageBuilder } from './utils/MessageBuilder'
 
@@ -13,6 +14,8 @@ export class Bot {
   private _bots: BotType[] = bots
   private _bot: BotType
   private _params: Params = {}
+
+  speaker = new Speaker()
 
   /**
    * current input text
@@ -44,8 +47,8 @@ export class Bot {
     this._params = this._bot.defaultParams
   }
 
-  updateText = (value: string) => {
-    this.text = value
+  updateText = (value = '') => {
+    this.text = value.trim()
     if (this.slug === BotSlugs.TextTranslator) {
       this.isWord = isWord(this.params.from, value)
     }

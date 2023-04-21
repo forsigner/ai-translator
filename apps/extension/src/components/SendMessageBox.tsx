@@ -5,13 +5,15 @@ import { useText } from '@src/stores/text.store'
 import { getBot, useBotContext } from '@src/bot'
 import { Box } from '@fower/react'
 import { IconSpeaker } from './IconSpeaker'
-import { playAudio } from '@src/services/playAudio'
+import { IconStop } from './IconStop'
+import { usePlaying } from '@src/bot/hooks/usePlaying'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
 }
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
+  const { playing } = usePlaying()
   const { text, setText } = useText()
   const { streaming } = useMessage()
   const bot = useBotContext()
@@ -54,19 +56,31 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       />
 
       {text && (
-        <IconSpeaker
-          absolute
-          top2
-          right2
-          cursorPointer
-          fillGray600
-          fillGray700--hover
-          size={18}
-          onClick={() => {
-            const bot = getBot()
-            playAudio(bot.text, bot.params.from)
-          }}
-        />
+        <Box absolute top2 right2 cursorPointer>
+          {playing && (
+            <IconStop
+              size={18}
+              gray600
+              fillGray600
+              fillGray700--hover
+              onClick={() => {
+                const bot = getBot()
+                bot.speaker.stop()
+              }}
+            />
+          )}
+          {!playing && (
+            <IconSpeaker
+              fillGray600
+              fillGray700--hover
+              size={18}
+              onClick={() => {
+                const bot = getBot()
+                bot.speaker.play(bot.text, bot.params.from)
+              }}
+            />
+          )}
+        </Box>
       )}
     </Box>
   )
