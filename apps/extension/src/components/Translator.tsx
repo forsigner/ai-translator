@@ -21,7 +21,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   const { content, streaming, isWordMode } = useMessage()
 
   return (
-    <Box ref={ref} w={CARD_WIDTH} minH={CARD_HEIGHT} column bgWhite {...rest}>
+    <Box ref={ref} w={CARD_WIDTH} column bgWhite {...rest}>
       <Header showSettings={showSettings} />
 
       <Box p3>
@@ -30,7 +30,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
             await sendMessage(text)
           }}
         />
-        <Box minH-46 pt4 mb2 px2 textBase leadingNormal>
+        <Box pt4 mb2 px2 textBase leadingNormal>
           <TranslatorContent streaming={streaming} content={content} isWordMode={isWordMode} />
         </Box>
         {/* <Footer /> */}
