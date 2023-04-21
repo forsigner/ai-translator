@@ -1,11 +1,14 @@
 import { css } from '@fower/core'
+import { useDebouncedCallback } from 'use-debounce'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useMessage } from '@src/stores/message.store'
 import { useText } from '@src/stores/text.store'
-import { getBot, useBotContext } from '@src/bot'
+import { getBot, useBotContext, useParams } from '@src/bot'
 import { Box } from '@fower/react'
 import { IconSpeaker } from './IconSpeaker'
 import { playAudio } from '@src/services/playAudio'
+import { detectLanguageCode } from '@src/utils/detectLanguage'
+import { useEffect } from 'react'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
@@ -15,6 +18,25 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
   const { text, setText } = useText()
   const { streaming } = useMessage()
   const bot = useBotContext()
+  const { params, updateParams } = useParams()
+
+  useEffect(() => {
+    detectLanguageCode('hello world, I am man').then((c) => {
+      console.log('cccc:', c)
+    })
+  }, [])
+
+  const detectLang = useDebouncedCallback((text: string) => {
+    detectLanguageCode(text).then((code) => {
+      console.log('code:', code)
+      if (code) {
+        updateParams({
+          ...params,
+          from: code,
+        })
+      }
+    })
+  }, 400)
 
   async function send() {
     if (!text) return
@@ -39,6 +61,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
           const text = e.target.value
           setText(text)
           bot.updateText(text)
+          detectLang(text)
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && e.shiftKey) {

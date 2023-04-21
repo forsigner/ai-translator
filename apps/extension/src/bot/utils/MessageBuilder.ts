@@ -84,13 +84,15 @@ export class MessageBuilder {
   createLangUserPrompt = () => {
     const { text, selectedWord } = this.bot
     const { from, to } = this.params
+    const fromName = langMap.get(to) || to
+    const toName = langMap.get(to) || to
     const fromChinese = chineseLangs.includes(from)
     const toChinese = chineseLangs.includes(to)
 
-    let userPrompt = `translate from ${langMap.get(from) || from} to ${langMap.get(to) || to}`
+    let userPrompt = `translate from ${fromName} to ${toName}`
 
     if (to === 'wyw' || to === 'yue') {
-      userPrompt = `翻译成${langMap.get(to) || to}`
+      userPrompt = `翻译成${toName}`
     }
 
     if (fromChinese) {

@@ -55,7 +55,7 @@
     "stook-graphql": "^1.16.0",
     "stook-localstorage": "^1.16.0",
     "stook-rest": "^1.16.0",
-    "use-debounce": "^9.0.3",
+    "use-debounce": "^9.0.4",
     "ws": "^8.13.0"
   },
   "devDependencies": {

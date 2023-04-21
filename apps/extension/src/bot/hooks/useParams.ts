@@ -1,7 +1,5 @@
 import { useStore } from 'stook'
 import { useBotContext } from '../context'
-import { useEffect } from 'react'
-import { emitter } from '../emitter'
 import type { Params } from '../bot.domain'
 
 const key = 'BOT_PARAMS'
@@ -18,6 +16,8 @@ export function useParams() {
 
   async function updateParams(params: any) {
     const result = setParams(params)
+    console.log('result:', result)
+
     bot.updateParams(result as any)
   }
 
