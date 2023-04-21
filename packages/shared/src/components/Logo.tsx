@@ -11,7 +11,7 @@ interface Props {
 export const Logo = ({ showText = true, to, size = 32 }: Props) => {
   const content = (
     <>
-      <Box bgBrand500 square8 roundedFull>
+      <Box bgBlack square8 roundedFull>
         <IconLogo size={size} white />
       </Box>
       {showText && (
