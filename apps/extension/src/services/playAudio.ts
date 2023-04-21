@@ -5,7 +5,7 @@ export function playAudio(text: string, languageCode: string) {
   if (!text) return
   // Send a fetch request to the server
   const url = `${baseURL}/api/tts`
-  // const url = `http://localhost:8001/api/tts`
+  // const url = `http://localhost:8002/api/tts`
   fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

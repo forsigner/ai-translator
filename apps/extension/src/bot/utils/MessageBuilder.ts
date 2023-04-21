@@ -19,6 +19,7 @@ export class MessageBuilder {
 
   buildMessages = () => {
     const { bot } = this
+
     if (bot.slug === BotSlugs.CodeTranslator) {
       this.messages.push({
         role: ChatCompletionResponseMessageRoleEnum.User,
@@ -32,11 +33,7 @@ export class MessageBuilder {
         },
         {
           role: ChatCompletionResponseMessageRoleEnum.User,
-          content: this.createLangUserPrompt(),
-        },
-        {
-          role: ChatCompletionResponseMessageRoleEnum.User,
-          content: this.text,
+          content: this.createLangUserPrompt() + ': ' + this.text,
         },
       ]
     }
@@ -84,12 +81,12 @@ export class MessageBuilder {
   createLangUserPrompt = () => {
     const { text, selectedWord } = this.bot
     const { from, to } = this.params
-    const fromName = langMap.get(to) || to
     const toName = langMap.get(to) || to
     const fromChinese = chineseLangs.includes(from)
     const toChinese = chineseLangs.includes(to)
 
-    let userPrompt = `translate from ${fromName} to ${toName}`
+    const tips = this.bot.isWord ? 'this word' : 'These texts'
+    let userPrompt = `translate ${tips} to ${toName}`
 
     if (to === 'wyw' || to === 'yue') {
       userPrompt = `翻译成${toName}`
