@@ -1,5 +1,6 @@
 import { isExtension } from '../common'
 import { supportedRegions } from '../common/supportedRegions'
+import { AsyncStorage } from './AsyncStorage'
 
 interface Location {
   fl: string
@@ -59,17 +60,7 @@ export class RegionChecker {
     return false
   }
   static async getStorage() {
-    if (isExtension) {
-      const storage = await chrome.storage.sync.get(storageKey)
-      const checkerStorage = storage?.[storageKey] as RegionCheckerStorage
-      return checkerStorage
-    }
-    const str = localStorage.getItem(storageKey)
-    try {
-      return JSON.parse(str || '{}')
-    } catch (error) {
-      return {}
-    }
+    return AsyncStorage.getItem(storageKey)
   }
 
   static fromStorage = async () => {
@@ -100,12 +91,7 @@ export class RegionChecker {
       location: this.location,
       isSupported: this.location && supportedRegions.has(this.location.loc),
     }
-    if (isExtension) {
-      await chrome.storage.sync.set({
-        [storageKey]: data,
-      })
-    }
-    localStorage.setItem(storageKey, JSON.stringify(data))
+    await AsyncStorage.setItem(storageKey, data)
   }
 
   async fetchLocation() {
