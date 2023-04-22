@@ -26,7 +26,7 @@ export function TranslatorEditor({ onSendMessage }: Props) {
   return (
     <Box border-2 borderBlack borderGray300--dark relative toBetween shadow2XL rounded-30 toCenterY>
       <Box pl3>
-        <TranslatorLangSelect />
+        <TranslatorLangSelect containerHeight="50vh" />
       </Box>
       <Box flex-1>
         <TextareaAutosize

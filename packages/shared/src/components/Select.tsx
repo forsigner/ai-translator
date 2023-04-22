@@ -1,7 +1,17 @@
 import { Box } from '@fower/react'
-import { ChevronDownOutline } from '@bone-ui/icons'
-import { Popover, PopoverTrigger, PopoverContent, Menu, MenuItem } from 'bone-ui'
+import { ChevronDownOutline, SearchOutline, XCircleSolid } from '@bone-ui/icons'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Menu,
+  MenuItem,
+  InputGroup,
+  InputElement,
+  Input,
+} from 'bone-ui'
 import { CARD_HEIGHT, HEADER_HEIGHT } from '../common/constants'
+import { useState } from 'react'
 
 export interface Option {
   label: string
@@ -11,12 +21,27 @@ export interface Option {
 interface SelectProps {
   options: Option[]
   value: string
+  containerHeight?: number | string
   onChange(value: string): any
 }
 
-export function Select({ value, onChange, options }: SelectProps) {
-  const containerHeight = CARD_HEIGHT - HEADER_HEIGHT - 10
+export function Select({
+  value,
+  onChange,
+  options,
+  containerHeight = CARD_HEIGHT - HEADER_HEIGHT - 10,
+}: SelectProps) {
   const selected = options.find((item) => item.value == value)
+  const [searchedValue, setSearchedValue] = useState('')
+
+  let filteredOptions = options.filter((i) => {
+    const reg = new RegExp(`${searchedValue}`, 'i')
+    return (
+      reg.test((i.value || '').toString().toLowerCase()) ||
+      (typeof i.label === 'string' && reg.test(i.label.toLowerCase()))
+    )
+  })
+
   return (
     <Popover portal={false}>
       <PopoverTrigger>
@@ -25,23 +50,51 @@ export function Select({ value, onChange, options }: SelectProps) {
           <ChevronDownOutline size={12} />
         </Box>
       </PopoverTrigger>
-      <PopoverContent h={containerHeight} overflowAuto>
+      <PopoverContent maxH={containerHeight} overflowYAuto className="ai-translator-select" w-180>
         {({ close }) => (
-          <Menu>
-            {options.map((item) => (
-              <MenuItem
-                text-14
-                key={item.value}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onChange(item.value)
-                  close()
-                }}
-              >
-                {item.label}
-              </MenuItem>
-            ))}
-          </Menu>
+          <Box>
+            <Box sticky top0 bgWhite>
+              <InputGroup>
+                <InputElement>
+                  <SearchOutline size={20} gray500 />
+                </InputElement>
+                <Input
+                  borderNone
+                  placeholder="Search..."
+                  variant="unstyled"
+                  value={searchedValue}
+                  onChange={(e) => setSearchedValue(e.target.value)}
+                />
+                {searchedValue && (
+                  <InputElement>
+                    <XCircleSolid
+                      onClick={() => setSearchedValue('')}
+                      gray400
+                      gray500--hover
+                      size={16}
+                      cursorPointer
+                    />
+                  </InputElement>
+                )}
+              </InputGroup>
+            </Box>
+
+            <Menu>
+              {filteredOptions.map((item) => (
+                <MenuItem
+                  text-14
+                  key={item.value}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onChange(item.value)
+                    close()
+                  }}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         )}
       </PopoverContent>
     </Popover>

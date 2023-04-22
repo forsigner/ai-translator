@@ -5,7 +5,7 @@ import { EasyModalProvider } from '@ai-translator/easy-modal'
 import { LANGUAGE_KEY, init } from '@ai-translator/shared'
 import { useTranslation, withTranslation } from 'react-i18next'
 import { getCookie } from 'cookies-next'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 interface Props extends AppProps {
   Component: AppProps['Component'] & { Layout: any }

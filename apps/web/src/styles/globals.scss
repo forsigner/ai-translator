@@ -7,7 +7,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji';
-  /* overflow: hidden; */
 }
 
 h1,
@@ -54,6 +53,8 @@ h6 {
   --bar-color: rgba(255, 255, 255, 0.1);
 }
 
+// .ai-translator-select {
+// }
 ::-webkit-scrollbar {
   --bar-width: 5px;
   width: var(--bar-width);
