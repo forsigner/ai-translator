@@ -1,13 +1,23 @@
 import { updateMessage, updateStreaming } from '../stores/message.store'
 import { ChatAPI, RequestMode } from '../chat-api/ChatAPI'
-import { getBot, useBotContext } from '../bot'
+import { emitter, getBot, useBotContext } from '../bot'
 import { RegionChecker } from '../services/RegionChecker'
 import { storage } from '../services/storage'
+import { useEffect } from 'react'
 
 // translate from English to 简体中文: Share your wildest ChatGPT conversations with one click.
 
 export function useSendMessage() {
-  return async (value: string) => {
+  useEffect(() => {
+    emitter.on('CHANGE_LANG_TO', () => {
+      const bot = getBot()
+      if (bot.text) {
+        sendMessage(bot.text)
+      }
+    })
+  }, [])
+
+  async function sendMessage(value: string) {
     const bot = getBot()
     if (!value) return
     updateStreaming(true)
@@ -16,7 +26,6 @@ export function useSendMessage() {
     const settings = await storage.getSettings()
     const regionChecker = await RegionChecker.fromStorage()
     const api = new ChatAPI(settings.apiKey)
-    console.log('bot:', bot)
 
     const messages = bot.buildMessages()
 
@@ -47,4 +56,5 @@ export function useSendMessage() {
     }
     return
   }
+  return sendMessage
 }

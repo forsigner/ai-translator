@@ -12,7 +12,7 @@ interface Props {
   text: string
 }
 
-type Item = Common | OriginWord | WordType | ExampleTitle | ExampleContent
+type Item = Common | OriginWord | WordType | Title | ExampleContent
 
 type Common = {
   type: 'Common'
@@ -29,8 +29,8 @@ type WordType = {
   value: [string, string]
 }
 
-type ExampleTitle = {
-  type: 'ExampleTitle'
+type Title = {
+  type: 'Title'
   value: string
 }
 
@@ -39,8 +39,8 @@ type ExampleContent = {
   value: [string, string, string]
 }
 
-const regExampleContent = /^(\d)\.(.+).\((.+)\)$/
-const regWordType = /^\[(.+)\](.*)/
+const regExampleContent = /^(\d)\.(.+)[(（](.+)[)）]$/
+const regWordType = /^\[([a-zA-Z.]+)\](.*)/
 
 function parseWordContent(content: string) {
   const arr = content.split('\n')
@@ -68,8 +68,8 @@ function parseWordContent(content: string) {
       }
     }
 
-    if (item.startsWith('双语例句')) {
-      return { type: 'ExampleTitle', value: item.replace('：', '') }
+    if (item.endsWith('：') || item.endsWith(':')) {
+      return { type: 'Title', value: item.replace('：', '') }
     }
 
     return { type: 'Common', value: item }
@@ -110,7 +110,7 @@ export const TranslatorContent = ({ streaming, content, isWordMode, text }: Prop
               )
             }
 
-            if (item.type === 'ExampleTitle') {
+            if (item.type === 'Title') {
               return (
                 <Tag variant="light" bgGray200 colorScheme="gray900" key={index} mt3 mb1>
                   {item.value}

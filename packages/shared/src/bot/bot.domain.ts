@@ -44,18 +44,22 @@ export class Bot {
 
   init(bot: BotType) {
     this._bot = bot
-    this._params = this._bot.defaultParams
+    this._params = this._bot.defaultParams || {}
   }
 
   updateText = (value = '') => {
     this.text = value.trim()
     if (this.slug === BotSlugs.TextTranslator) {
-      this.isWord = isWord(this.params.from, value)
+      this.isWord = isWord(this.params.from!, value)
     }
   }
 
   updateParams = (params: Params) => {
     this._params = params
+
+    if (params.to) {
+      emitter.emit('CHANGE_LANG_TO', '')
+    }
   }
 
   selectBot = async (bot: BotType) => {
