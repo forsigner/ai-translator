@@ -1,7 +1,7 @@
 import { toast } from 'bone-ui'
 import { useRouter } from 'next/router'
 import { useToken, useUser } from '../stores'
-import { apiService } from '@ai-translator/api-sdk'
+import { apiService } from '@langpt/api-sdk'
 import { CHAT_URL } from '../common'
 
 export function useLoginByToken() {

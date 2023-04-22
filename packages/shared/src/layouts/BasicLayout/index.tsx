@@ -17,7 +17,7 @@ export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = 
         <Box className="nav" toBetween py3 px={[18, 0]}>
           <Box toCenterY spaceX2>
             <Logo />
-            <Box textXL>AI Translator</Box>
+            <Box textXL>Langpt.ai</Box>
           </Box>
           <Box toCenterY spaceX2>
             <Box>{showNav && <Nav />}</Box>

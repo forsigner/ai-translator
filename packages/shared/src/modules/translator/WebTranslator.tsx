@@ -16,10 +16,10 @@ export function WebTranslator() {
     <BotProvider>
       <Box column mb-80 minH-70vh toCenterY maxW-640 mx-auto>
         <Box toCenter text4XL fontBold mb5 columnGap-8>
-          <Box>AI</Box>
           <Box inlineFlex bgYellow200 px2 black--dark bgYellow200--dark>
-            Translator
+            Langpt
           </Box>
+          <Box>AI</Box>
         </Box>
         <TranslatorEditor
           onSendMessage={async (text) => {

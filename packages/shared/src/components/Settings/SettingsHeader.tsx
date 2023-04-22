@@ -27,7 +27,7 @@ export function SettingsHeader({ title }: Props) {
             title
           ) : (
             <>
-              <Box>AI Translator</Box>
+              <Box>Langpt</Box>
               <Box brand500>for Chrome</Box>
             </>
           )}

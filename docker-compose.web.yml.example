@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  ai-translator-web:
-    container_name: ai-translator-web
+  langpt-web:
+    container_name: langpt-web
     build:
       context: .
       dockerfile: ./apps/web/Dockerfile

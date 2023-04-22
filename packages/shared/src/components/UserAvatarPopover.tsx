@@ -3,7 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger, Avatar, Menu, MenuItem } from 
 import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../stores'
-import { EasyModal } from '@ai-translator/easy-modal'
+import { EasyModal } from '@langpt/easy-modal'
 import { useLogout } from '../hooks/useLogout'
 import { useMounted } from '../hooks/useMounted'
 import { DrawerProfile } from './DrawerProfile'

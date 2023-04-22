@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebTranslator, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
+import { WebTranslator, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@langpt/shared'
 
 export default function PageHome() {
   return <WebTranslator />

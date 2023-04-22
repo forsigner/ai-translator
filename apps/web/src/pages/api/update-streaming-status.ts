@@ -1,7 +1,7 @@
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
 import { cors, redis, runMiddleware } from '@common/utils'
-import { getStreamingKey, isProd } from '@ai-translator/shared'
+import { getStreamingKey, isProd } from '@langpt/shared'
 
 export const config = {
   api: {

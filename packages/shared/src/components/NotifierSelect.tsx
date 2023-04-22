@@ -1,5 +1,5 @@
 import { PlusOutline, XCircleSolid } from '@bone-ui/icons'
-import { Hooks, Notifier } from '@ai-translator/api-sdk'
+import { Hooks, Notifier } from '@langpt/api-sdk'
 import { Popover, PopoverContent, PopoverTrigger, Menu, MenuItem } from 'bone-ui'
 import { Box } from '@fower/react'
 import { notifierIconMap } from '../common'

@@ -4,7 +4,7 @@ import { Box } from '@fower/react'
 import { FowerHTMLProps } from '@fower/core'
 import { mergeRefs } from '@bone-ui/utils'
 import { usePopoverContext } from './context'
-import { IconLogo } from '@ai-translator/shared/src/components/IconLogo'
+import { IconLogo } from '@langpt/shared/src/components/IconLogo'
 
 interface ThumbnailProps extends Omit<FowerHTMLProps<'div'>, 'children'> {
   x: number

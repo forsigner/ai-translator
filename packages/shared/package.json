@@ -1,5 +1,5 @@
 {
-  "name": "@ai-translator/shared",
+  "name": "@langpt/shared",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -19,8 +19,8 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "@ai-translator/api-sdk": "*",
-    "@ai-translator/easy-modal": "*",
+    "@langpt/api-sdk": "*",
+    "@langpt/easy-modal": "*",
     "@bone-ui/iconify": "^0.33.2",
     "@bone-ui/icons": "^0.33.2",
     "@fower/react": "^1.76.0",

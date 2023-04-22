@@ -1,7 +1,7 @@
 import { Button, toast } from 'bone-ui'
 import { Box } from '@fower/react'
 import { Popover, PopoverContent, PopoverTrigger } from 'bone-ui'
-import { apiService, Refetcher, Token } from '@ai-translator/api-sdk'
+import { apiService, Refetcher, Token } from '@langpt/api-sdk'
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../../stores'
 import { isApiError } from '../../common/type-guard'

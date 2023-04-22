@@ -3,7 +3,7 @@ import { IconLogo } from './IconLogo'
 
 export const Logo = () => {
   return (
-    <Box>
+    <Box bgYellow200 bgYellow200--dark square8 roundedFull toCenter>
       <IconLogo />
     </Box>
   )

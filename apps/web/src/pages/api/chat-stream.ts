@@ -2,8 +2,8 @@ import httpProxyMiddleware from 'next-http-proxy-middleware'
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
 import { graphqlClient } from '@common/query'
-import { ProviderType, ACTIVE_PROVIDER, Provider } from '@ai-translator/api-sdk'
-import { getStreamingKey, isProd, sleep } from '@ai-translator/shared'
+import { ProviderType, ACTIVE_PROVIDER, Provider } from '@langpt/api-sdk'
+import { getStreamingKey, isProd, sleep } from '@langpt/shared'
 import { cors, redis, runMiddleware } from '@common/utils'
 
 export const config = {

@@ -11,7 +11,7 @@ import {
 } from 'bone-ui'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { memo, useState } from 'react'
-import { Message } from '@ai-translator/api-sdk'
+import { Message } from '@langpt/api-sdk'
 import { useUser } from '../../stores'
 import { Markdown } from '../Markdown'
 import { IconChatLoading } from '../../icons/IconChatLoading'

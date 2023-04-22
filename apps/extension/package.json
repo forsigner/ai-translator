@@ -18,8 +18,8 @@
     "test:ci": "JEST_JUNIT_OUTPUT_NAME=extension.xml npm run test -- --ci --reporters=default --reporters=jest-junit --runInBand"
   },
   "dependencies": {
-    "@ai-translator/api-sdk": "*",
-    "@ai-translator/shared": "*",
+    "@langpt/api-sdk": "*",
+    "@langpt/shared": "*",
     "@babel/runtime": "^7.17.9",
     "bone-ui": "^0.34.1",
     "classnames": "^2.3.1",

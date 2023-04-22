@@ -1,9 +1,9 @@
-import { LoginSuccessPayload } from '@ai-translator/api-sdk'
+import { LoginSuccessPayload } from '@langpt/api-sdk'
 import type { IronSessionOptions } from 'iron-session'
 
 export const sessionOptions: IronSessionOptions = {
   password: process.env.SECRET_COOKIE_PASSWORD as string,
-  cookieName: 'ai-translator-session',
+  cookieName: 'langpt-session',
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production',
     // secure: false,

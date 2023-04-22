@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import { init } from '@ai-translator/shared'
+import { init } from '@langpt/shared'
 
 declare global {
   interface Window {

@@ -1,7 +1,7 @@
-import { storage } from '@ai-translator/shared/src/services/storage'
+import { storage } from '@langpt/shared/src/services/storage'
 import { renderApp } from './renderApp'
-import { updateText } from '@ai-translator/shared/src/stores/text.store'
-import { hideThumbnail, showThumbnail } from '@ai-translator/shared/src/stores/thumbnail.store'
+import { updateText } from '@langpt/shared/src/stores/text.store'
+import { hideThumbnail, showThumbnail } from '@langpt/shared/src/stores/thumbnail.store'
 
 window.onload = async () => {
   const settings = await storage.getSettings()
@@ -12,7 +12,7 @@ window.onload = async () => {
 
 document.addEventListener('mouseup', async (event) => {
   const currentElement = event.target
-  const targetElement = document.querySelector('.ai-translator-content')
+  const targetElement = document.querySelector('.langpt-content')
 
   if (targetElement && targetElement.contains(currentElement as any)) {
     return
@@ -32,7 +32,7 @@ document.addEventListener('mouseup', async (event) => {
 
 document.addEventListener('click', (event) => {
   const currentElement = event.target
-  const targetElement = document.querySelector('.ai-translator-content')
+  const targetElement = document.querySelector('.langpt-content')
 
   if (targetElement && targetElement.contains(currentElement as any)) {
     return

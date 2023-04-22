@@ -1,5 +1,5 @@
 {
-  "name": "@ai-translator/api-sdk",
+  "name": "@langpt/api-sdk",
   "version": "0.0.0",
   "author": "forsigner",
   "main": "dist/index.js",

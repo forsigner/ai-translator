@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebTranslator, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
+import { WebTranslator, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@langpt/shared'
 import { Box } from '@fower/react'
 import { FC, PropsWithChildren } from 'react'
 
@@ -16,7 +16,7 @@ export default function PageHome() {
   return (
     <Box textLG fontMedium py20 leadingLoose>
       <Title>Privacy Policy</Title>
-      <Box>We proudly know absolutely nothing about what you put into AI Translator.</Box>
+      <Box>We proudly know absolutely nothing about what you put into Langpt.</Box>
       <Box>
         We don’t track you. We don’t gather, transfer, sell, trade, gamble, stir-fry, ferment,
         decorate, or dance salsa with your data. It’s your data — not ours.
@@ -36,9 +36,9 @@ export default function PageHome() {
       <Title>Browser permissions</Title>
 
       <Box>
-        If you use AI Translator on your browser, it may request permission to access all visited
-        web pages and browsing history. The only permission we requested is storage permission, we
-        use it to store you personal settings.
+        If you use Langpt on your browser, it may request permission to access all visited web pages
+        and browsing history. The only permission we requested is storage permission, we use it to
+        store you personal settings.
       </Box>
 
       <Title>Contact us</Title>

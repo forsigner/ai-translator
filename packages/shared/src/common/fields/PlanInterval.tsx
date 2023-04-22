@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { NodeProps } from 'fomir'
 import { RadioGroup } from 'bone-ui'
 import { Box } from '@fower/react'
-import { PlanInterval as PlanIntervalType } from '@ai-translator/api-sdk'
+import { PlanInterval as PlanIntervalType } from '@langpt/api-sdk'
 import { PlanIntervalNode } from '../../custom-types'
 import { FormField } from '../fomir-bone-ui'
 

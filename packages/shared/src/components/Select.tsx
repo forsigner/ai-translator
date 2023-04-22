@@ -50,7 +50,7 @@ export function Select({
           <ChevronDownOutline size={12} />
         </Box>
       </PopoverTrigger>
-      <PopoverContent maxH={containerHeight} overflowYAuto className="ai-translator-select" w-180>
+      <PopoverContent maxH={containerHeight} overflowYAuto className="langpt-select" w-180>
         {({ close }) => (
           <Box>
             <Box sticky top0 bgWhite>

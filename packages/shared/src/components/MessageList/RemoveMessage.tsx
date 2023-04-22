@@ -13,7 +13,7 @@ import {
   TrashOutline,
 } from 'bone-ui'
 import { memo } from 'react'
-import { Message } from '@ai-translator/api-sdk'
+import { Message } from '@langpt/api-sdk'
 import { useRemoveMessagePair } from '../../modules/chat/hooks/useRemoveMessagePair'
 import { useTranslation } from 'react-i18next'
 

@@ -1,1 +1,1 @@
-# AI Translator
+# Langpt
