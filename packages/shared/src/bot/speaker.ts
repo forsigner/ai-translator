@@ -37,10 +37,10 @@ export class Speaker {
     try {
       const id = `<${languageCode}>:${text}`
       if (this.audioMap.get(id)) {
-        this.audio = this.audioMap.get(id)
+        this.audio = this.audioMap.get(id)!
       } else {
         const audioData = await this.loadAudioData(text, languageCode)
-        const blob = new Blob([audioData], { type: 'audio/mpeg' })
+        const blob = new Blob([audioData!], { type: 'audio/mpeg' })
         const url = URL.createObjectURL(blob)
         this.audio = new Audio(url)
 

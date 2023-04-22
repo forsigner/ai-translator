@@ -15,14 +15,12 @@
     "esModuleInterop": true,
     "module": "CommonJS",
     "moduleResolution": "node",
+    "strictPropertyInitialization": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "react": [
-        "../../node_modules/@types/react"
-      ],
       "@typings/*": [
         "./src/typings/*"
       ],

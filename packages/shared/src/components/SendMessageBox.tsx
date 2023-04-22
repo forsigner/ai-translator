@@ -81,7 +81,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
               size={18}
               onClick={() => {
                 const bot = getBot()
-                bot.speaker.play(bot.text, bot.params.from)
+                bot.speaker.play(bot.text, bot.params.from!)
               }}
             />
           )}

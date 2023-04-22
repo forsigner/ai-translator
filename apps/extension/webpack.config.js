@@ -243,7 +243,7 @@ module.exports = {
               preset: ['default', { discardComments: { removeAll: true } }],
             },
           }),
-          new FilemanagerPlugin(),
+          // new FilemanagerPlugin(),
         ],
       }
       : {},

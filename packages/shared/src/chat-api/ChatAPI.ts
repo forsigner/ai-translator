@@ -107,7 +107,7 @@ export class ChatAPI {
           const text = json.choices[0].delta.content
           if (text) {
             responseText += text
-            this.opt?.onMessage(responseText)
+            this.opt?.onMessage?.(responseText)
           }
         } catch {
           //
@@ -243,7 +243,7 @@ export class ChatAPI {
 
         try {
           const str = JSON.parse(event.data)
-          this.opt.onMessage(str)
+          this.opt.onMessage?.(str)
           responseText = str
         } catch (e) {
           console.log('e:', e)
