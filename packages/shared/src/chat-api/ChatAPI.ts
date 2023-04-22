@@ -47,7 +47,8 @@ export class ChatAPI {
     this.completionParams = {
       ...this.completionParams,
       ...completionParams,
-    }
+    } as any
+
     this.messages = messages
 
     this.abortController = opt.abortController || new AbortController()

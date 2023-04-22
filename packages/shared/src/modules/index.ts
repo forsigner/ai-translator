@@ -1,2 +1,2 @@
-export * from './home/WebHome'
+export * from './translator/WebTranslator'
 export * from './home/DesktopHome'

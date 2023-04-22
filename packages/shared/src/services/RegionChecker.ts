@@ -1,3 +1,4 @@
+import { isExtension } from '../common'
 import { supportedRegions } from '../common/supportedRegions'
 
 interface Location {
@@ -57,11 +58,23 @@ export class RegionChecker {
     }
     return false
   }
+  static async getStorage() {
+    if (isExtension) {
+      const storage = await chrome.storage.sync.get(storageKey)
+      const checkerStorage = storage?.[storageKey] as RegionCheckerStorage
+      return checkerStorage
+    }
+    const str = localStorage.getItem(storageKey)
+    try {
+      return JSON.parse(str || '{}')
+    } catch (error) {
+      return {}
+    }
+  }
 
   static fromStorage = async () => {
     const regionChecker = new RegionChecker()
-    const storage = await chrome.storage.sync.get(storageKey)
-    const checkerStorage = storage?.[storageKey] as RegionCheckerStorage
+    const checkerStorage = await RegionChecker.getStorage()
     if (checkerStorage) {
       regionChecker.location = checkerStorage.location
       regionChecker.modifiedAt = checkerStorage.modifiedAt
@@ -82,13 +95,17 @@ export class RegionChecker {
   }
 
   async saveToStorage() {
-    await chrome.storage.sync.set({
-      [storageKey]: {
-        modifiedAt: Date.now(),
-        location: this.location,
-        isSupported: this.location && supportedRegions.has(this.location.loc),
-      },
-    })
+    const data = {
+      modifiedAt: Date.now(),
+      location: this.location,
+      isSupported: this.location && supportedRegions.has(this.location.loc),
+    }
+    if (isExtension) {
+      await chrome.storage.sync.set({
+        [storageKey]: data,
+      })
+    }
+    localStorage.setItem(storageKey, JSON.stringify(data))
   }
 
   async fetchLocation() {
@@ -108,7 +125,7 @@ export class RegionChecker {
       const location = this.toJSON(text)
       this.location = location
     } catch (error) {
-      this.location = null
+      this.location = null as any
     }
 
     await this.saveToStorage()

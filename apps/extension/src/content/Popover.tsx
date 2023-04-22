@@ -12,8 +12,6 @@ export function Popover({
 } & PopoverOptions) {
   const popover = usePopover({ modal, ...restOptions })
 
-  console.log('popover:', popover)
-
   useStore('translator_popover', popover)
 
   return <PopoverProvider value={popover}>{children}</PopoverProvider>

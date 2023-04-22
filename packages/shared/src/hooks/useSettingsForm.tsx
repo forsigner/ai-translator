@@ -10,8 +10,6 @@ export function useSettingsForm() {
   const { setMode } = useMode()
   const { settings, setSettings } = useSettings()
 
-  console.log('settings-----:', settings)
-
   const nodes: Node[] = [
     {
       label: (

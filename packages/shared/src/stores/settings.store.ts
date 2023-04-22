@@ -30,8 +30,6 @@ export function useSettings() {
   async function loadSettings() {
     const settings = await storage.getSettings()
 
-    console.log('---------xx:', settings)
-
     setLoading(false)
     if (settings) setState(settings)
   }

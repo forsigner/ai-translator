@@ -6,6 +6,7 @@ import { initStookGraphql } from './initStookGraphql'
 import { initDeviceId } from './initDeviceId'
 import { initSettingsStorage } from './initSettingsStorage'
 import { RegionChecker } from '../services/RegionChecker'
+import { isExtension } from './utils'
 
 export function init() {
   initSettingsStorage()
@@ -16,17 +17,19 @@ export function init() {
 
   Fomir.use(FomirBoneUI)
 
-  chrome.storage.onChanged.addListener((changes, namespace) => {
-    // for (key in changes) {
-    //   var storageChange = changes[key]
-    //   console.log(
-    //     key,
-    //     namespace,
-    //     storageChange.oldValue,
-    //     storageChange.newValue,
-    //   )
-    // }
-  })
+  if (isExtension) {
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+      // for (key in changes) {
+      //   var storageChange = changes[key]
+      //   console.log(
+      //     key,
+      //     namespace,
+      //     storageChange.oldValue,
+      //     storageChange.newValue,
+      //   )
+      // }
+    })
+  }
 
   async function run() {
     const regionChecker = await RegionChecker.fromStorage()

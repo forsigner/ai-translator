@@ -1,11 +1,13 @@
 import { nanoid } from 'nanoid'
 import reactFastCompare from 'react-fast-compare'
-import { FieldNode, Node } from 'fomir'
+import { FieldNode } from 'fomir'
 import { toast } from 'bone-ui'
 import { ONE_DAY, ONE_HOUR, ONE_MINUTE, ONE_SECOND } from './constants'
 import { Provider, ProviderType, Team } from '@ai-translator/api-sdk'
 
 export const isServer = typeof window === 'undefined'
+
+export const isExtension = typeof window === 'object' && typeof window?.chrome?.storage === 'object'
 
 export const isEqual = reactFastCompare
 

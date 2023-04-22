@@ -4,7 +4,7 @@ import { SettingsButton } from './SettingsButton'
 // import { BotSelect } from './BotSelect'
 import { IconLogoLight } from './IconLogoLight'
 import { CodeFromTo } from './code-translator/CodeFromTo'
-import { LangFromTo } from './text-translator'
+import { TranslatorLangSelect } from './TranslatorLangSelect'
 import { useBot } from '../bot'
 
 interface Props {
@@ -36,7 +36,7 @@ export function Header({ showSettings }: Props) {
         {/* <BotSelect /> */}
       </Box>
       <Box toCenterY columnGap-8>
-        {bot.slug === BotSlugs.TextTranslator && <LangFromTo />}
+        {bot.slug === BotSlugs.TextTranslator && <TranslatorLangSelect />}
         {bot.slug === BotSlugs.CodeTranslator && <CodeFromTo />}
         {showSettings && <SettingsButton />}
       </Box>

@@ -1,44 +1,78 @@
-// import { getBot, useBotContext } from '@src/bot'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from '@fower/react'
-import { Button } from 'bone-ui'
+import { ArrowRightOutline, Button } from 'bone-ui'
+import { useBotContext } from '../../bot'
+import { useText } from '../../stores/text.store'
+import { SettingsPopover } from './SettingsPopover'
+import { TranslatorLangSelect } from '../../components/TranslatorLangSelect'
 
-export function TranslatorEditor() {
-  // const bot = useBotContext()
+interface Props {
+  onSendMessage(value: string): Promise<any>
+}
+
+export function TranslatorEditor({ onSendMessage }: Props) {
+  const bot = useBotContext()
+  const { text, setText } = useText()
   const disabled = false
-  return (
-    <Box relative column>
-      <TextareaAutosize
-        minRows={3}
-        placeholder={`Enter to translate, Shift+Enter to new a line`}
-        className={css(
-          'm0 border-2 borderBlack w-100p outlineNone pl3 pr5 py3 placeholderGray400 text-14 gray300--dark bgGray100--T30 bgGray800--dark rounded2XL leadingNormal w-600',
-        )}
-        disabled={disabled}
-        style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
-        // value={text}
-        onChange={(e) => {
-          const text = e.target.value
-          // setText(text)
-          // bot.updateText(text)
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && e.shiftKey) {
-            return
-          }
 
-          if (e.key === 'Enter') {
-            // send()
-            e.preventDefault()
-            return
-          }
+  async function send() {
+    if (!text) return
+    bot.updateText(text)
+    console.log('text:', text)
+    await onSendMessage?.(text)
+  }
+
+  return (
+    <Box border-2 borderBlack borderGray300--dark relative toBetween shadow2XL rounded-30 toCenterY>
+      <Box pl3>
+        <TranslatorLangSelect />
+      </Box>
+      <Box flex-1>
+        <TextareaAutosize
+          placeholder={`Enter to translate, Shift+Enter to new a line`}
+          className={css(
+            'm0 w-100p outlineNone pl3 pr5 py4 placeholderGray400 text-16 placeholderGray700--dark bgTransparent leadingNormal white--dark leadingNone',
+          )}
+          disabled={disabled}
+          style={{
+            resize: 'none',
+            cursor: disabled ? 'not-allowed' : 'text',
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+          }}
+          value={text}
+          onChange={(e) => {
+            const text = e.target.value
+            setText(text)
+            bot.updateText(text)
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && e.shiftKey) {
+              return
+            }
+
+            if (e.key === 'Enter') {
+              send()
+              e.preventDefault()
+              return
+            }
+          }}
+        />
+      </Box>
+
+      <SettingsPopover />
+
+      <Button
+        colorScheme="black"
+        roundedFull
+        variant="ghost"
+        icon={<ArrowRightOutline size={20} />}
+        mr2
+        onClick={() => {
+          send()
         }}
       />
-      <Box py4 toBetween>
-        <Box>英文</Box>
-        <Button colorScheme="black">Translate</Button>
-      </Box>
     </Box>
   )
 }

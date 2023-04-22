@@ -1,4 +1,4 @@
-import { storage } from '@src/services/storage'
+import { storage } from '../services/storage'
 
 export async function initDeviceId() {
   const deviceId = await storage.getDeviceId()

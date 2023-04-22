@@ -7,6 +7,7 @@ import { LocaleSelect } from '../../components/LocaleSelect'
 import { Footer } from './Footer'
 import { Button } from 'bone-ui'
 import { StyledLink } from '../../components/StyledLink'
+import { Logo } from '../../components'
 
 interface Props {
   showNav?: boolean
@@ -17,7 +18,10 @@ export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = 
     <Box black bgWhite bgGray900--dark>
       <Box w={['100%', 820]} mx-auto column>
         <Box className="nav" toBetween py3 px={[18, 0]}>
-          {/* <Logo to="/" /> */}
+          <Box toCenterY spaceX2>
+            <Logo />
+            <Box textXL>AI Translator</Box>
+          </Box>
           <Box toCenterY spaceX2>
             <Box>{showNav && <Nav />}</Box>
             {/* <LocaleSelect></LocaleSelect> */}

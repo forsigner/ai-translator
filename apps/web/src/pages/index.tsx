@@ -1,9 +1,9 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebHome, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
+import { WebTranslator, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
 
 export default function PageHome() {
-  return <WebHome />
+  return <WebTranslator />
 }
 
 PageHome.Layout = BasicLayout
