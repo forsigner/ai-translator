@@ -35,7 +35,12 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
           'm0  borderNone w-100p outlineNone pl3 pr5 py3 placeholderGray400 text-14 gray300--dark bgGray100--T30 bgGray800--dark rounded leadingNormal',
         )}
         disabled={disabled}
-        style={{ resize: 'none', cursor: disabled ? 'not-allowed' : 'text' }}
+        style={{
+          resize: 'none',
+          cursor: disabled ? 'not-allowed' : 'text',
+          fontFamily:
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+        }}
         value={text}
         onChange={(e) => {
           const text = e.target.value

@@ -19,11 +19,11 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
+    "@ai-translator/api-sdk": "*",
+    "@ai-translator/easy-modal": "*",
     "@bone-ui/iconify": "^0.33.2",
     "@bone-ui/icons": "^0.33.2",
     "@fower/react": "^1.76.0",
-    "@ai-translator/api-sdk": "*",
-    "@ai-translator/easy-modal": "*",
     "bone-ui": "^0.33.2",
     "fomir": "^0.22.0",
     "i18next": "^22.4.13",
@@ -36,6 +36,7 @@
     "rc-slider": "^10.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-highlight-words": "^0.20.0",
     "react-i18next": "^12.2.0",
     "react-markdown": "^8.0.6",
     "react-syntax-highlighter": "^15.5.0",

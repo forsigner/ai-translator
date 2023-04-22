@@ -43,7 +43,7 @@ export class MessageBuilder {
 
   createLangSystemPrompt = () => {
     const { text, selectedWord } = this.bot
-    const { from, to } = this.params
+    const { from = '', to = '' } = this.params
     const fromChinese = chineseLangs.includes(from)
     const toChinese = chineseLangs.includes(to)
     const fromName = langMap.get(from) || from
@@ -66,7 +66,7 @@ export class MessageBuilder {
                 <原始文本>
                 [<语种>] · / <单词音标>
                 [<词性缩写>] <中文含义>]
-                例句：
+                双语例句：
                 <序号><例句>(例句翻译)`
     }
 
@@ -80,7 +80,7 @@ export class MessageBuilder {
 
   createLangUserPrompt = () => {
     const { text, selectedWord } = this.bot
-    const { from, to } = this.params
+    const { from = '', to = '' } = this.params
     const toName = langMap.get(to) || to
     const fromChinese = chineseLangs.includes(from)
     const toChinese = chineseLangs.includes(to)

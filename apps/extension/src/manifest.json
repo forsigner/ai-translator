@@ -27,10 +27,6 @@
       "css": []
     }
   ],
-  "devtools_page": "src/pages/devtools/index.html",
-  "chrome_url_overrides": {
-    "newtab": "newtab.html"
-  },
   "permissions": [
     "storage"
   ],

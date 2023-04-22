@@ -10,6 +10,7 @@ import { forwardRef, useEffect, useState } from 'react'
 import { TranslatorContent } from './TranslatorContent'
 import { useMessage } from '../stores/message.store'
 import { useSendMessage } from '../hooks/useSendMessage'
+import { useBotContext } from '../bot'
 
 interface Props extends FowerHTMLProps<'div'> {
   showSettings?: boolean
@@ -20,6 +21,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   ref,
 ) {
   const sendMessage = useSendMessage()
+  const bot = useBotContext()
   const { content, streaming, isWordMode } = useMessage()
 
   return (
@@ -33,7 +35,12 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
           }}
         />
         <Box pt4 mb2 px2 textBase leadingNormal>
-          <TranslatorContent streaming={streaming} content={content} isWordMode={isWordMode} />
+          <TranslatorContent
+            streaming={streaming}
+            content={content}
+            isWordMode={isWordMode}
+            text={bot.text}
+          />
         </Box>
         {/* <Footer /> */}
       </Box>
