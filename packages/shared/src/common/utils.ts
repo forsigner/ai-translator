@@ -7,7 +7,7 @@ import { Provider, ProviderType, Team } from '@langpt/api-sdk'
 
 export const isServer = typeof window === 'undefined'
 
-export const isExtension = typeof window === 'object' && typeof window?.chrome?.storage === 'object'
+export const isExtension = process.env.NEXT_PUBLIC_PLATFORM === 'EXTENSION'
 
 export const isEqual = reactFastCompare
 

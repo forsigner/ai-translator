@@ -19,12 +19,14 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "@langpt/api-sdk": "*",
-    "@langpt/easy-modal": "*",
     "@bone-ui/iconify": "^0.33.2",
     "@bone-ui/icons": "^0.33.2",
     "@fower/react": "^1.76.0",
+    "@langpt/api-sdk": "*",
+    "@langpt/easy-modal": "*",
+    "@types/chrome": "^0.0.233",
     "bone-ui": "^0.33.2",
+    "endent": "^2.1.0",
     "fomir": "^0.22.0",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",

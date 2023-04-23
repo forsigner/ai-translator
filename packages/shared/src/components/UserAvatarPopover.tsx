@@ -7,20 +7,22 @@ import { EasyModal } from '@langpt/easy-modal'
 import { useLogout } from '../hooks/useLogout'
 import { useMounted } from '../hooks/useMounted'
 import { DrawerProfile } from './DrawerProfile'
+import { useSession } from '../hooks'
 
 interface Props {}
 
 export const UserAvatarPopover: FC<Props> = () => {
   const { t } = useTranslation('common')
   const { mounted } = useMounted()
-  const { user } = useUser()
+  // const { user } = useUser()
   const { logout } = useLogout()
+  const { user } = useSession()
 
   function onLogout() {
     logout()
   }
 
-  if (!mounted) return null
+  // if (!mounted) return null
   if (!user) return null
 
   return (

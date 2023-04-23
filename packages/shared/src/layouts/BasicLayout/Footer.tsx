@@ -1,6 +1,8 @@
 import { Box } from '@fower/react'
 import { StyledLink } from '../../components/StyledLink'
 import { useTranslation } from 'react-i18next'
+import { LocaleSelect } from '../../components/LocaleSelect'
+import { ModeToggle } from '../../components/ModeToggle'
 
 export const Footer = () => {
   const { t } = useTranslation('common')
@@ -36,6 +38,9 @@ export const Footer = () => {
             {item.text}
           </StyledLink>
         ))}
+
+        <LocaleSelect />
+        <ModeToggle />
       </Box>
     </Box>
   )

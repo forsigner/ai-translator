@@ -17,9 +17,7 @@ export default withIronSessionApiRoute(async (req, res) => {
     req.session.payload = payload
     await req.session.save()
 
-    res.redirect(`${LOGIN_SUCCESS_REDIRECT_URL}?from=${THIRD_PARTY_LOGIN_TAG}`)
-
-    // res.json({ foo: code })
+    res.redirect(`${LOGIN_SUCCESS_REDIRECT_URL}`)
   } catch (e) {
     const error: any = e
     res.status(500).json(error.errors[0])

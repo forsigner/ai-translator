@@ -7,9 +7,8 @@ export function useLogout() {
   async function logout() {
     if (process.env.NEXT_PUBLIC_PLATFORM === 'WEB') {
       await request('/api/logout')
-      location.href = '/'
+      // location.href = '/'
     }
-
 
     push('/')
 

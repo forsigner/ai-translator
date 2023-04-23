@@ -5,6 +5,7 @@ import { useMode } from './useMode'
 import { useEffect } from 'react'
 import { useSettings } from '../stores/settings.store'
 import { Settings } from '../services/storage'
+import { isExtension } from '../common'
 
 export function useSettingsForm() {
   const { setMode } = useMode()
@@ -46,7 +47,10 @@ export function useSettingsForm() {
       ],
       value: settings.tokenProvider,
     },
-    {
+  ]
+
+  if (isExtension) {
+    nodes.push({
       label: '主题',
       name: 'theme',
       component: 'Select',
@@ -57,8 +61,8 @@ export function useSettingsForm() {
       ],
       value: settings.theme || '',
       componentProps: {},
-    },
-    {
+    })
+    nodes.push({
       label: '语言',
       name: 'lang',
       component: 'Select',
@@ -68,8 +72,8 @@ export function useSettingsForm() {
         { label: '简体中文', value: 'zh-CN' },
       ],
       value: settings.lang || '',
-    },
-  ]
+    })
+  }
 
   const form = useForm<Settings>({
     watch: {
@@ -93,7 +97,6 @@ export function useSettingsForm() {
 
   useEffect(() => {
     form.setValues(settings)
-    console.log('-====settings:', settings)
   }, [settings, form])
 
   return form

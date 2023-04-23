@@ -5,6 +5,8 @@ import { Nav } from './Nav'
 import { LocaleSelect } from '../../components/LocaleSelect'
 import { Footer } from './Footer'
 import { Logo } from '../../components'
+import { ThirdPartyLogin } from '../../modules/home/ThirdPartyLogin'
+import { LoginStatus } from './LoginStatus'
 
 interface Props {
   showNav?: boolean
@@ -13,16 +15,16 @@ interface Props {
 export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = true }) => {
   return (
     <Box black bgWhite bgGray900--dark h-100vh>
-      <Box w={['100%', 820]} mx-auto column h-100vh>
+      <Box w={['100%', 640, 768, 1024, 1280]} mx-auto column h-100vh>
         <Box className="nav" toBetween py3 px={[18, 0]}>
           <Box toCenterY spaceX2>
             <Logo />
             <Box textXL>Langpt.ai</Box>
           </Box>
-          <Box toCenterY spaceX2>
-            <Box>{showNav && <Nav />}</Box>
-            <LocaleSelect></LocaleSelect>
-            <ModeToggle></ModeToggle>
+
+          <Box>{showNav && <Nav />}</Box>
+          <Box toCenterY columnGap-4>
+            <LoginStatus />
           </Box>
         </Box>
         <Box flex-1 w-100p>

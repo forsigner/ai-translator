@@ -16,7 +16,7 @@ const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
 export const HOST =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://www.ownchat.me'
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://www.langpt.ai'
 
 const githubRedirectUri = `${HOST}/api/auth/callback/github`
 const googleRedirectUri = `${HOST}/api/auth/callback/google`
@@ -26,9 +26,7 @@ export const googleAuthUrl =
   `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=${googleRedirectUri}` +
   `&scope=profile email&client_id=${googleClientId}`
 
-export const CHAT_URL = '/chat'
-
-export const LOGIN_SUCCESS_REDIRECT_URL = CHAT_URL
+export const LOGIN_SUCCESS_REDIRECT_URL = '/'
 
 export const NAV_HEIGHT = 56
 export const SIDEBAR_WIDTH = 260
@@ -121,8 +119,8 @@ export const isProd = process.env.NODE_ENV === 'production'
 // export const baseURL = 'http://localhost:8001'
 // export const subscriptionsEndpoint = `ws://${host}/graphql`
 
-export const host = 'langpt.ownchat.me'
-export const baseURL = 'https://langpt.ownchat.me'
+export const host = 'langpt.langpt.ai'
+export const baseURL = 'https://langpt.langpt.ai'
 export const subscriptionsEndpoint = `wss://${host}/graphql`
 
 // export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`

@@ -1,4 +1,5 @@
 import { setConfig, composeAtom, setTheme, store } from '@fower/core'
+import { isExtension } from './utils'
 
 declare module '@fower/atomic-props' {
   export interface AtomicProps {
@@ -11,7 +12,7 @@ declare module '@fower/atomic-props' {
 
 export function initFower() {
   setConfig({
-    prefix: 'ai-c-',
+    prefix: isExtension ? 'langpt-' : '',
     inline: false,
     mode: {
       currentMode: 'dark',
