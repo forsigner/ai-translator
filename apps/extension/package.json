@@ -43,6 +43,7 @@
     "react-swipeable": "^6.2.2",
     "react-tooltip": "^5.11.1",
     "react-virtual": "^2.10.4",
+    "stook": "^1.17.0",
     "stream-browserify": "^3.0.0"
   },
   "devDependencies": {

@@ -10,7 +10,7 @@ declare global {
 
 window.addEventListener(
   'load',
-  () => {
+  async () => {
     window.windowLoaded = true
   },
   {

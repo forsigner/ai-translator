@@ -17505,6 +17505,14 @@ stook@^1.16.0:
     immer "^9.0.12"
     mitt "^3.0.0"
 
+stook@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/stook/-/stook-1.17.0.tgz#b2cf190ea437b9fb62d2501d79412d4241d4cfd5"
+  integrity sha512-Ps3/e4A+tS0+9ksKV/51qfZeXhV/7bBckY4g9s/SVH8fpljhk+fHXUcRfXVIFyHnzlju0TH8fZlgDfVK8QScYg==
+  dependencies:
+    immer "^9.0.12"
+    mitt "^3.0.0"
+
 stop-iteration-iterator@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stop-iteration-iterator/-/stop-iteration-iterator-1.0.0.tgz#6a60be0b4ee757d1ed5254858ec66b10c49285e4"

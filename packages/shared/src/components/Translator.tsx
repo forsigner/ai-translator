@@ -42,7 +42,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
             text={bot.text}
           />
         </Box>
-        <Footer />
+        {/* <Footer /> */}
       </Box>
     </Box>
   )

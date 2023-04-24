@@ -21,7 +21,6 @@ export function Footer() {
               size={28}
               icon={<IconSponsor fill="#bf3989" size={20} />}
               onClick={() => {
-                console.log('========xxxxxxxxx..')
                 setVisible(true)
               }}
             />

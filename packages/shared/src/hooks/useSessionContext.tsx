@@ -15,6 +15,6 @@ export const SessionProvider: FC<PropsWithChildren<useSessionProviderProps>> = (
   return <Provider value={session}>{children}</Provider>
 }
 
-export function useSession() {
+export function useSessionContext() {
   return useContext(sessionContext)
 }

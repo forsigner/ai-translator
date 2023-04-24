@@ -7,7 +7,7 @@ import { EasyModal } from '@langpt/easy-modal'
 import { useLogout } from '../hooks/useLogout'
 import { useMounted } from '../hooks/useMounted'
 import { DrawerProfile } from './DrawerProfile'
-import { useSession } from '../hooks'
+import { useSessionContext } from '../hooks'
 
 interface Props {}
 
@@ -16,7 +16,7 @@ export const UserAvatarPopover: FC<Props> = () => {
   const { mounted } = useMounted()
   // const { user } = useUser()
   const { logout } = useLogout()
-  const { user } = useSession()
+  const { user } = useSessionContext()
 
   function onLogout() {
     logout()
