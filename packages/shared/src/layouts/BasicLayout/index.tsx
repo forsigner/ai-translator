@@ -4,12 +4,16 @@ import { Nav } from './Nav'
 import { Footer } from './Footer'
 import { Logo } from '../../components'
 import { LoginStatus } from './LoginStatus'
+import { useDeviceId } from '../../hooks/useDeviceId'
 
 interface Props {
   showNav?: boolean
 }
 
 export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = true }) => {
+  const deviceId = useDeviceId()
+
+  if (!deviceId) return null
   return (
     <Box black bgWhite bgGray900--dark h-100vh>
       <Box w={['100%', 640, 768, 1024, 1280]} mx-auto column h-100vh>

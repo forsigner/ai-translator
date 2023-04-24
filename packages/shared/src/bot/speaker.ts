@@ -1,7 +1,7 @@
 import { Buffer } from 'buffer/'
 import { toast } from 'bone-ui'
 import { updatePlaying } from './hooks/usePlaying'
-import { baseURL } from '../common'
+import { API_BASE_URL } from '../common'
 
 export class Speaker {
   playing = false
@@ -10,7 +10,7 @@ export class Speaker {
 
   audio: HTMLAudioElement
 
-  url = `${baseURL}/api/tts`
+  url = `${API_BASE_URL}/api/tts`
   //  url = `http://localhost:8002/api/tts`
 
   private async loadAudioData(text: string, languageCode: string) {

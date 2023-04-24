@@ -4,13 +4,17 @@ export const ONE_HOUR = ONE_MINUTE * 60 // 一小时
 export const ONE_DAY = ONE_HOUR * 24 // 一天
 export const ONE_YEAR = ONE_DAY * 365 // 一年
 
-// export const isProd = process.env.NODE_ENV === 'production'
-export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'
-// export const baseURL = process.env.NEXT_PUBLIC_API_HOST as string
+export const isProd = process.env.NODE_ENV === 'production'
 
-// export const host = process.env.NEXT_PUBLIC_HOST
+export const API_HOST = process.env.NEXT_PUBLIC_API_HOST
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
+export const subscriptionsEndpoint = `wss://${API_HOST}/graphql`
 
 // export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
+
+// export const isProd = process.env.NODE_ENV === 'production'
+export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'
+// export const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL as string
 
 const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
@@ -112,18 +116,6 @@ export const langMap: Map<string, string> = new Map(supportLanguages)
 export const langMapReverse = new Map(
   supportLanguages.map(([standardLang, lang]) => [lang, standardLang]),
 )
-
-export const isProd = process.env.NODE_ENV === 'production'
-
-// export const host = 'localhost:8001'
-// export const baseURL = 'http://localhost:8001'
-// export const subscriptionsEndpoint = `ws://${host}/graphql`
-
-export const host = 'langpt.ai'
-export const baseURL = 'https://langpt.ai'
-export const subscriptionsEndpoint = `wss://${host}/graphql`
-
-// export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
 
 export interface BotType {
   name: string

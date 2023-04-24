@@ -215,7 +215,7 @@ export class ChatAPI {
     let responseText = ''
 
     try {
-      const url = `${baseURL}/api/boter/completions`
+      const url = `${baseURL}/api/langpt/completions`
 
       const TIME_OUT_MS = 60 * 1000
       const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)

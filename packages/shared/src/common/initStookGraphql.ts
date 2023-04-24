@@ -1,5 +1,5 @@
 import { config, applyMiddleware } from 'stook-graphql'
-import { baseURL, subscriptionsEndpoint } from './constants'
+import { API_BASE_URL, subscriptionsEndpoint } from './constants'
 
 export function initStookGraphql() {
   applyMiddleware(async (ctx, next) => {
@@ -20,7 +20,7 @@ export function initStookGraphql() {
   })
 
   config({
-    endpoint: baseURL + '/graphql',
+    endpoint: API_BASE_URL + '/graphql',
     subscriptionsEndpoint,
   })
 }

@@ -1,8 +1,5 @@
 import { Box } from '@fower/react'
-import { IconLogo } from '../IconLogo'
 import { Avatar, Button } from 'bone-ui'
-import { useSettingsVisible } from '../../stores/settings.store'
-import { HEADER_HEIGHT, isExtension } from '../../common'
 import { useSession } from '../../hooks'
 
 export function UserInfo() {

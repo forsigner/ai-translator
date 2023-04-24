@@ -4,12 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { IconGitHub } from '../../icons/IconGitHub'
 import { IconGoogle } from '../../icons/IconGoogle'
 import { githubAuthUrl, googleAuthUrl, isProd } from '../../common'
-import { useSessionContext } from '../../hooks'
 
 export function ThirdPartyLogin() {
   const { t } = useTranslation('home')
-  const session = useSessionContext()
-  console.log('session:', session)
 
   return (
     <Button

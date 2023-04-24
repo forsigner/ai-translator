@@ -11,6 +11,7 @@ import { TranslatorContent } from './TranslatorContent'
 import { useMessage } from '../stores/message.store'
 import { useSendMessage } from '../hooks/useSendMessage'
 import { useBotContext } from '../bot'
+import { useDeviceId } from '../hooks/useDeviceId'
 
 interface Props extends FowerHTMLProps<'div'> {
   showSettings?: boolean
@@ -23,6 +24,10 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   const sendMessage = useSendMessage()
   const bot = useBotContext()
   const { content, streaming, isWordMode } = useMessage()
+
+  const deviceId = useDeviceId()
+
+  if (!deviceId) return null
 
   return (
     <Box ref={ref} w={CARD_WIDTH} column bgWhite {...rest}>
