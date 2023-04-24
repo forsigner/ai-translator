@@ -208,7 +208,7 @@ export class ChatAPI {
   }
 
   async handleBoter() {
-    const baseURL = 'https://langpt.langpt.ai'
+    const baseURL = 'https://langpt.ai'
     const content = this.messages.map((m) => m.content).join('\n')
     const { resolve, reject } = this
 

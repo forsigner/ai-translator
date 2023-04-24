@@ -1,11 +1,8 @@
 import { FC, PropsWithChildren } from 'react'
 import { Box } from '@fower/react'
-import { ModeToggle } from '../../components/ModeToggle'
 import { Nav } from './Nav'
-import { LocaleSelect } from '../../components/LocaleSelect'
 import { Footer } from './Footer'
 import { Logo } from '../../components'
-import { ThirdPartyLogin } from '../../modules/home/ThirdPartyLogin'
 import { LoginStatus } from './LoginStatus'
 
 interface Props {

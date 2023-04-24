@@ -20,6 +20,7 @@
   },
   "include": [
     "custom.d.ts",
+    "custom-types.ts",
     "src/**/*.ts",
     "src/**/*.tsx"
   ]

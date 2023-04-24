@@ -3,6 +3,7 @@ import { renderApp } from './renderApp'
 import { updateText } from '@langpt/shared/src/stores/text.store'
 import { hideThumbnail, showThumbnail } from '@langpt/shared/src/stores/thumbnail.store'
 
+
 window.onload = async () => {
   const settings = await storage.getSettings()
   document.documentElement.classList.add(settings?.theme || 'light')
