@@ -2,6 +2,8 @@ import { createRoot } from 'react-dom/client'
 import App from './App'
 import { init } from '@langpt/shared'
 
+console.log('-----:', process.env.API_HOST, process.env.NEXT_PUBLIC_API_BASE_URL)
+
 declare global {
   interface Window {
     windowLoaded: boolean

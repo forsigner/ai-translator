@@ -9,12 +9,7 @@ export const isProd = process.env.NODE_ENV === 'production'
 export const API_HOST = process.env.NEXT_PUBLIC_API_HOST
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 export const subscriptionsEndpoint = `wss://${API_HOST}/graphql`
-
-// export const subscriptionsEndpoint = isProd ? `wss://${host}/graphql` : `ws://${host}/graphql`
-
-// export const isProd = process.env.NODE_ENV === 'production'
 export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'
-// export const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL as string
 
 const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID

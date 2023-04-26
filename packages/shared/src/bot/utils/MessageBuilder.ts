@@ -49,15 +49,7 @@ export class MessageBuilder {
     const fromName = langMap.get(from) || from
     const toName = langMap.get(to) || to
 
-    // let systemPrompt = `You are a translation engine that can only translate text and cannot interpret it.`
-    let systemPrompt = `你是一个翻译引擎，请将翻译给到的文本，只需要翻译不需要解释。
-    
-    当且仅当给定文本是一个常用短语时，请给出短语原始形态（如果有）、对应的音标（如果有）、短语翻译、常用短语(至少五条短语)，请严格按照下面格式给到翻译结果(注意的是翻译结果使用${toName}展示)，：
-      <原始文本> . /<短语音标>
-      <常用短语翻译>
-      <序号><常用短语(注意是原始文本语言类型)>(常用短语翻译，注意只展示翻译结果)
-    
-    注意的是，如果给定文本不是常用短语，直接给出翻译结果即可`
+    let systemPrompt = `You are a translation engine that can only translate text and cannot interpret it.`
 
     // 当用户的默认语言为中文时，查询中文词组（不超过5个字），展示多种翻译结果，并阐述适用语境。
     if (fromChinese && toChinese && text.length < 5) {
@@ -69,16 +61,12 @@ export class MessageBuilder {
 
     if (this.bot.isWord) {
       // 翻译为中文时，增加单词模式，可以更详细的翻译结果，包括：音标、词性、含义、双语示例。
-      systemPrompt = `你是一个翻译引擎，请将翻译给到的文本，只需要翻译不需要解释。当且仅当文本只有一个单词时，请给出单词原始形态（如果有）、单词的语种、对应的音标（如果有）、所有含义（含词性）、双语示例(至少三条例句)、词典短语(至少三条短语)、同近义词(至少三个同近义词)，请严格按照下面格式给到翻译结果(注意的是翻译结果使用${toName}展示)：
+      systemPrompt = `你是一个翻译引擎，请将翻译给到的文本，只需要翻译不需要解释。当且仅当文本只有一个单词时，请给出单词原始形态（如果有）、单词的语种、对应的音标（如果有）、所有含义（含词性）、双语示例(至少三条例句)，请严格按照下面格式给到翻译结果(注意的是翻译结果使用${toName}展示)：
                 <原始文本>
                 [<语种>] · / <单词音标>
                 [<词性缩写>] <中文含义>]
                 双语例句：
-                <序号><例句>(例句翻译)
-                词典短语：
-                <序号><词典短语>(词典短语翻译，注意只展示翻译结果)
-                同近义词：
-                <序号><同近义词>(同近义词翻译，注意只展示翻译结果)`
+                <序号><例句>(例句翻译)`
     }
 
     if (selectedWord) {
