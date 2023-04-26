@@ -62,6 +62,7 @@ export enum Names {
   removeMessagePair = "removeMessagePair",
   removeSession = "removeSession",
   resetPassword = "resetPassword",
+  sendTranslationMessage = "sendTranslationMessage",
   updateChatSettings = "updateChatSettings",
   updateEmail = "updateEmail",
   updateInvoice = "updateInvoice",

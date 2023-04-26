@@ -59,6 +59,12 @@ input AddTokenInput {
 }
 
 """"""
+type ChatMessage {
+  """"""
+  content: String!
+}
+
+""""""
 type ChatSettings {
   """"""
   followUpMessageLength: Float
@@ -753,6 +759,9 @@ type Mutation {
   resetPassword(input: ResetPasswordInput!): Boolean!
 
   """"""
+  sendTranslationMessage(input: SendTranslationMessageInput!): Boolean!
+
+  """"""
   updateChatSettings(input: UpdateChatSettingsInput!): Boolean!
 
   """修改email"""
@@ -1018,6 +1027,7 @@ type Provider {
 enum ProviderType {
   AccessToken
   ApiKey
+  ChatGptUnofficial
   Official
   SelfHosted
 }
@@ -1703,6 +1713,15 @@ enum RoleType {
   Reader
 }
 
+"""创建"""
+input SendTranslationMessageInput {
+  """"""
+  content: String!
+
+  """设备唯一ID"""
+  deviceId: String!
+}
+
 """"""
 type Session {
   """访问权限类型"""
@@ -1793,6 +1812,11 @@ type SettingsConnection {
   hasNextPage: Boolean!
   items: [Setting!]!
   totalCount: Int!
+}
+
+type Subscription {
+  """poe chat message"""
+  chatMessageSubscription(deviceId: String!): ChatMessage!
 }
 
 """"""

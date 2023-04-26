@@ -4,6 +4,8 @@ import { emitter, getBot, useBotContext } from '../bot'
 import { RegionChecker } from '../services/RegionChecker'
 import { storage } from '../services/storage'
 import { useEffect } from 'react'
+import { isDailyUsageLimit } from '../common'
+import { DailyUsageLimit } from '../components/chat-error-tips/DailyUsageLimit'
 
 // translate from English to 简体中文: Share your wildest ChatGPT conversations with one click.
 
@@ -51,8 +53,14 @@ export function useSendMessage() {
       updateStreaming(false)
     } catch (error) {
       updateStreaming(false)
-      console.log('send message error:', error)
-      updateMessage(error as any, isWord)
+      if (typeof error === 'string') {
+        updateMessage(error as any, isWord)
+        return
+      }
+
+      if (isDailyUsageLimit(error)) {
+        return updateMessage(<DailyUsageLimit />)
+      }
     }
     return
   }

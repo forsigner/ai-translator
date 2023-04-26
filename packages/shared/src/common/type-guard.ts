@@ -12,3 +12,16 @@ export function isApiError(error: any): error is ApiError {
   }
   return false
 }
+
+export type DailyUsageLimit = {
+  success: boolean
+  code: string
+  message: string
+}
+
+export function isDailyUsageLimit(error: any = {}): error is DailyUsageLimit {
+  if (error?.message && error?.code === 'DailyUsageLimit') {
+    return true
+  }
+  return false
+}

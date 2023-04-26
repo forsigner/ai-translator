@@ -61,6 +61,11 @@ export type AddTokenInput = {
   type?: InputMaybe<Scalars['String']>;
 };
 
+export type ChatMessage = {
+  __typename?: 'ChatMessage';
+  content: Scalars['String'];
+};
+
 export type ChatSettings = {
   __typename?: 'ChatSettings';
   followUpMessageLength?: Maybe<Scalars['Float']>;
@@ -569,6 +574,7 @@ export type Mutation = {
   removeSession: Scalars['Boolean'];
   /** 重置密码 */
   resetPassword: Scalars['Boolean'];
+  sendTranslationMessage: Scalars['Boolean'];
   updateChatSettings: Scalars['Boolean'];
   /** 修改email */
   updateEmail: Scalars['Boolean'];
@@ -951,6 +957,11 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationSendTranslationMessageArgs = {
+  input: SendTranslationMessageInput;
+};
+
+
 export type MutationUpdateChatSettingsArgs = {
   input: UpdateChatSettingsInput;
 };
@@ -1237,6 +1248,7 @@ export type Provider = {
 export enum ProviderType {
   AccessToken = 'AccessToken',
   ApiKey = 'ApiKey',
+  ChatGptUnofficial = 'ChatGptUnofficial',
   Official = 'Official',
   SelfHosted = 'SelfHosted'
 }
@@ -1800,6 +1812,13 @@ export enum RoleType {
   Reader = 'Reader'
 }
 
+/** 创建 */
+export type SendTranslationMessageInput = {
+  content: Scalars['String'];
+  /** 设备唯一ID */
+  deviceId: Scalars['String'];
+};
+
 export type Session = {
   __typename?: 'Session';
   /** 访问权限类型 */
@@ -1867,6 +1886,17 @@ export type SettingsConnection = {
   hasNextPage: Scalars['Boolean'];
   items: Array<Setting>;
   totalCount: Scalars['Int'];
+};
+
+export type Subscription = {
+  __typename?: 'Subscription';
+  /** poe chat message */
+  chatMessageSubscription: ChatMessage;
+};
+
+
+export type SubscriptionChatMessageSubscriptionArgs = {
+  deviceId: Scalars['String'];
 };
 
 export type Team = {

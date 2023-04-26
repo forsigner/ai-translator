@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
-import { useSendMessage } from '@src/hooks/useSendMessage'
-import { storage } from '@src/services/storage'
-import { useText } from '@src/stores/text.store'
 import { Button, toast } from 'bone-ui'
+import { useText } from '../../stores/text.store'
+import { useSendMessage } from '../../hooks/useSendMessage'
+import { storage } from '../../services/storage'
 
 export const UseFreeTokenErrorTips = () => {
   const { text } = useText()

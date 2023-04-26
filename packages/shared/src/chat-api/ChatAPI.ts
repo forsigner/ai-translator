@@ -1,6 +1,8 @@
 import { createParser } from 'eventsource-parser'
 import { ChatCompletionRequestMessage } from 'openai'
 import { CompletionParams } from './types'
+import { API_BASE_URL } from '../common'
+import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
 
 export const TIME_OUT_MS = 60 * 1000
 
@@ -58,7 +60,7 @@ export class ChatAPI {
       this.reject = reject
 
       if (requestMode === RequestMode.Boter) {
-        await this.handleBoter()
+        await this.handleLangpt()
       } else if (requestMode === RequestMode.Proxy) {
         await this.handleProxy()
       } else {
@@ -207,24 +209,25 @@ export class ChatAPI {
     }
   }
 
-  async handleBoter() {
-    const baseURL = 'https://langpt.ai'
+  async handleLangpt() {
     const content = this.messages.map((m) => m.content).join('\n')
     const { resolve, reject } = this
 
     let responseText = ''
 
     try {
-      const url = `${baseURL}/api/langpt/completions`
+      const url = `${API_BASE_URL}/api/langpt/completions`
 
       const TIME_OUT_MS = 60 * 1000
       const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)
 
+      const deviceId = await getOrGenerateDeviceId()
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           content,
+          deviceId,
         }),
         signal: this.abortController.signal,
       })
@@ -233,8 +236,8 @@ export class ChatAPI {
 
       if (!res.ok || !res.body) {
         // TODO: need to improve
-        const errorRes = await res.json()
-        reject(errorRes.error.message)
+        const error = await res.json()
+        reject(error)
         return
       }
 

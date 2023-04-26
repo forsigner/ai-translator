@@ -7,7 +7,7 @@ const isProd = NODE_ENV === 'production'
 
 export const getEndpoint = () => {
   if (isProd) return 'https://www.langpt.ai/graphql'
-  return 'http://localhost:5001/graphql'
+  return 'http://localhost:8001/graphql'
 }
 
 const gqlConfig: ConfigItem[] = [
