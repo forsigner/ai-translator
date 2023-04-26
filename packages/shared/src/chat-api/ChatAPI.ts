@@ -17,6 +17,7 @@ interface SendMessageOptions {
   messages: ChatCompletionRequestMessage[]
   completionParams?: CompletionParams
   abortController?: AbortController
+  token?: string
   onMessage?: (text: string) => void
 }
 
@@ -224,7 +225,10 @@ export class ChatAPI {
       const deviceId = await getOrGenerateDeviceId()
       const res = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          Authorization: `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           content,
           deviceId,

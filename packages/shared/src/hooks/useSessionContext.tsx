@@ -1,5 +1,6 @@
-import { FC, PropsWithChildren, createContext, useContext } from 'react'
+import { FC, PropsWithChildren, createContext, useContext, useEffect } from 'react'
 import { LoginSuccessPayload } from '@langpt/api-sdk'
+import { storage } from '../services/storage'
 
 type useSessionProviderProps = {
   session: LoginSuccessPayload
@@ -12,6 +13,11 @@ export const SessionProvider: FC<PropsWithChildren<useSessionProviderProps>> = (
   session,
 }) => {
   const { Provider } = sessionContext
+
+  useEffect(() => {
+    storage.setToken(session.token)
+  }, [session])
+
   return <Provider value={session}>{children}</Provider>
 }
 

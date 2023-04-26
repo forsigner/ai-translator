@@ -3,14 +3,12 @@ import FomirBoneUI from './fomir-bone-ui'
 import { initFower } from './initFower'
 import { initI18n } from './initI18n'
 import { initStookGraphql } from './initStookGraphql'
-import { initDeviceId } from './initDeviceId'
 import { initSettingsStorage } from './initSettingsStorage'
 import { RegionChecker } from '../services/RegionChecker'
 import { isExtension } from './utils'
 
 export function init() {
   initSettingsStorage()
-  initDeviceId()
   initFower()
   initI18n()
   initStookGraphql()

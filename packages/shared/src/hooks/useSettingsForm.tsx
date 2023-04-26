@@ -79,18 +79,16 @@ export function useSettingsForm() {
     watch: {
       '*.value': (val) => {
         const values = val as any as Settings
-        console.log('values:', val)
         setSettings(values)
       },
 
       'theme.value': (val) => {
         const theme = val as any as string
-        console.log('valu:', val)
         setMode(theme)
       },
     },
     async onSubmit(values) {
-      console.log('values:', values)
+      //
     },
     children: nodes,
   })

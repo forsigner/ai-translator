@@ -1,6 +1,7 @@
 import { LoginSuccessPayload } from '@langpt/api-sdk'
 import { useEffect } from 'react'
 import { useStore } from 'stook'
+import { storage } from '../services/storage'
 
 type State = {
   loading: boolean
@@ -23,6 +24,7 @@ export function useSession() {
           s.loading = false
           s.session = session
         })
+        await storage.setToken(session.token)
       } else {
         setSession((s) => {
           s.loading = false

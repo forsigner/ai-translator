@@ -2,8 +2,8 @@ import { nanoid } from 'nanoid'
 import { AsyncStorage } from './AsyncStorage'
 
 enum Keys {
-  DeviceId = 'DEVICE_ID',
   Settings = 'SETTINGS',
+  Token = 'TOKEN',
 }
 
 export interface Settings {
@@ -14,14 +14,13 @@ export interface Settings {
 }
 
 class Storage {
-  async setDeviceId() {
-    const id = nanoid()
-    await AsyncStorage.setItem(Keys.DeviceId, id)
+  async setToken(token: string) {
+    await AsyncStorage.setItem(Keys.Token, token)
   }
 
-  async getDeviceId(): Promise<string> {
-    const id = await AsyncStorage.getItem(Keys.DeviceId)
-    return id
+  async getToken(): Promise<string> {
+    const token = await AsyncStorage.getItem(Keys.Token)
+    return token
   }
 
   async setSettings(settings: Settings) {
