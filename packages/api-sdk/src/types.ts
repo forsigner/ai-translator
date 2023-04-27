@@ -14,43 +14,30 @@ export type Scalars = {
   JSON: any;
 };
 
-/** 添加成员 */
-export type AddMemberInput = {
-  /** 角色类型 */
-  roleType: RoleType;
-  /** Team ID */
-  teamId: Scalars['Int'];
+/** 添加 Bot */
+export type AddBotInput = {
+  /** 访问权限类型 */
+  accessType?: InputMaybe<BotAccessType>;
+  desc?: InputMaybe<Scalars['String']>;
+  isPromptVisible?: InputMaybe<Scalars['Boolean']>;
+  /** 该 Bot Name */
+  name?: InputMaybe<Scalars['String']>;
+  paramsSchema?: InputMaybe<Scalars['JSON']>;
+  prompt?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
   /** 用户ID */
   userId: Scalars['Int'];
 };
 
 /** 添加 Message */
 export type AddMessageInput = {
+  /** botId */
+  botId: Scalars['Int'];
   content: Scalars['String'];
   role: Scalars['String'];
-  /** sessionId */
-  sessionId: Scalars['Int'];
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
   userMessageId?: InputMaybe<Scalars['Int']>;
-};
-
-/** 添加 Session */
-export type AddSessionInput = {
-  /** 该 Session Name */
-  name: Scalars['String'];
-  /** teamId */
-  teamId: Scalars['Int'];
-  /** 用户ID */
-  userId?: InputMaybe<Scalars['Int']>;
-};
-
-/** 添加 Team */
-export type AddTeamInput = {
-  /** 该 Team Name */
-  name: Scalars['String'];
-  /** 用户ID */
-  userId: Scalars['Int'];
 };
 
 /** 添加 access token */
@@ -59,6 +46,46 @@ export type AddTokenInput = {
   description: Scalars['String'];
   /** type */
   type?: InputMaybe<Scalars['String']>;
+};
+
+export type Bot = {
+  __typename?: 'Bot';
+  /** 访问权限类型 */
+  accessType?: Maybe<BotAccessType>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  desc?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  isPromptVisible?: Maybe<Scalars['Boolean']>;
+  /** Message */
+  messages: Array<Message>;
+  name: Scalars['String'];
+  paramsSchema?: Maybe<Scalars['JSON']>;
+  prompt?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** Bot权限类型 */
+export enum BotAccessType {
+  Member = 'Member',
+  Private = 'Private',
+  Public = 'Public'
+}
+
+/** 筛选条件 */
+export type BotWhereInput = {
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** connection */
+export type BotsConnection = {
+  __typename?: 'BotsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<Bot>;
+  totalCount: Scalars['Int'];
 };
 
 export type ChatMessage = {
@@ -76,6 +103,20 @@ export type ChatSettings = {
 };
 
 /** 创建 */
+export type CreateBotInput = {
+  /** 访问权限类型 */
+  accessType?: InputMaybe<BotAccessType>;
+  isPromptVisible?: InputMaybe<Scalars['Boolean']>;
+  /** 该 Bot Name */
+  name?: InputMaybe<Scalars['String']>;
+  paramsSchema?: InputMaybe<Scalars['JSON']>;
+  prompt?: InputMaybe<Scalars['String']>;
+  slug: Scalars['String'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 创建 */
 export type CreateInvoiceInput = {
   dueDate?: InputMaybe<Scalars['DateTime']>;
   invoiceDate?: InputMaybe<Scalars['DateTime']>;
@@ -86,19 +127,11 @@ export type CreateInvoiceInput = {
 };
 
 /** 创建 */
-export type CreateMemberInput = {
-  /** Team ID */
-  teamId: Scalars['Int'];
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** 创建 */
 export type CreateMessageInput = {
+  /** botId */
+  botId: Scalars['Int'];
   content: Scalars['String'];
   role: Scalars['String'];
-  /** sessionId */
-  sessionId: Scalars['Int'];
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
   userMessageId?: InputMaybe<Scalars['Int']>;
@@ -131,27 +164,8 @@ export type CreatePlanInput = {
   interval?: InputMaybe<PlanInterval>;
   price?: InputMaybe<Scalars['Float']>;
   status: PlanStatus;
-  teamId: Scalars['Int'];
   type: PlanType;
-};
-
-/** 创建 */
-export type CreateProviderInput = {
-  accessToken?: InputMaybe<Scalars['String']>;
-  apiKey?: InputMaybe<Scalars['String']>;
-  /** self host auth code */
-  authorizationCode?: InputMaybe<Scalars['String']>;
-  /** self host server endpoint */
-  endpoint?: InputMaybe<Scalars['String']>;
-  /** teamId */
-  teamId: Scalars['Int'];
-  type: ProviderType;
-};
-
-/** 创建 */
-export type CreateProxyInput = {
-  host?: InputMaybe<Scalars['String']>;
-  valid?: InputMaybe<Scalars['Boolean']>;
+  userId: Scalars['Int'];
 };
 
 /** 创建 */
@@ -164,33 +178,9 @@ export type CreateRefundInput = {
 };
 
 /** 创建 */
-export type CreateSessionInput = {
-  /** 访问权限类型 */
-  accessType?: InputMaybe<Scalars['String']>;
-  /** 该 Session Name */
-  name: Scalars['String'];
-  /** 设置 */
-  settings?: InputMaybe<Scalars['JSON']>;
-  slug?: InputMaybe<Scalars['String']>;
-  /** Team Id */
-  teamId?: InputMaybe<Scalars['Int']>;
-  /** 用户ID */
-  userId?: InputMaybe<Scalars['Int']>;
-};
-
-/** 创建 */
 export type CreateSettingInput = {
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** 创建 */
-export type CreateTeamInput = {
-  /** 该 Team Name */
-  name: Scalars['String'];
-  slug?: InputMaybe<Scalars['String']>;
   /** 用户ID */
   userId: Scalars['Int'];
 };
@@ -208,6 +198,14 @@ export type CreateTokenInput = {
 };
 
 /** 创建 */
+export type CreateUserBotInput = {
+  /** Bot ID */
+  botId: Scalars['Int'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 创建 */
 export type CreateUserInput = {
   nickname: Scalars['String'];
   username: Scalars['String'];
@@ -220,15 +218,15 @@ export type CreateWalletInput = {
   userId: Scalars['Int'];
 };
 
-/** 删除成员 */
-export type DeleteInvoiceInput = {
+/** 删除 */
+export type DeleteBotInput = {
   /** ID */
   id: Scalars['Int'];
 };
 
 /** 删除成员 */
-export type DeleteMemberInput = {
-  /** member ID */
+export type DeleteInvoiceInput = {
+  /** ID */
   id: Scalars['Int'];
 };
 
@@ -256,26 +254,8 @@ export type DeletePlanInput = {
   id: Scalars['Int'];
 };
 
-/** 删除 */
-export type DeleteProviderInput = {
-  /** ID */
-  id: Scalars['Int'];
-};
-
-/** 删除 */
-export type DeleteProxyInput = {
-  /** ID */
-  id: Scalars['Int'];
-};
-
 /** 删除成员 */
 export type DeleteRefundInput = {
-  /** ID */
-  id: Scalars['Int'];
-};
-
-/** 删除 */
-export type DeleteSessionInput = {
   /** ID */
   id: Scalars['Int'];
 };
@@ -287,15 +267,15 @@ export type DeleteSettingInput = {
 };
 
 /** 删除 */
-export type DeleteTeamInput = {
-  /** ID */
-  id: Scalars['Int'];
-};
-
-/** 删除 */
 export type DeleteTokenInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 删除 */
+export type DeleteUserBotInput = {
+  /** ID */
+  id: Scalars['Int'];
 };
 
 /** 删除 */
@@ -309,12 +289,6 @@ export type DeleteUserInput = {
 /** 删除成员 */
 export type DeleteWalletInput = {
   /** ID */
-  id: Scalars['Int'];
-};
-
-/** 退出团队 */
-export type ExitMemberInput = {
-  /** member ID */
   id: Scalars['Int'];
 };
 
@@ -362,50 +336,22 @@ export type LoginByEmailInput = {
 /** 登录成功返回给客户端的数据 */
 export type LoginSuccessPayload = {
   __typename?: 'LoginSuccessPayload';
-  siteName?: Maybe<Scalars['String']>;
+  plan: Plan;
   token: Scalars['String'];
   user: User;
   userId: Scalars['Int'];
   username?: Maybe<Scalars['String']>;
 };
 
-/** 协作者 */
-export type Member = {
-  __typename?: 'Member';
-  id: Scalars['Int'];
-  /** 角色类型 */
-  roleType: RoleType;
-  /** Team ID */
-  teamId: Scalars['Int'];
-  /** User */
-  user: User;
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** 筛选条件 */
-export type MemberWhereInput = {
-  /** Team ID */
-  teamId: Scalars['Int'];
-};
-
-/** connection */
-export type MembersConnection = {
-  __typename?: 'MembersConnection';
-  hasNextPage: Scalars['Boolean'];
-  items: Array<Member>;
-  totalCount: Scalars['Int'];
-};
-
 export type Message = {
   __typename?: 'Message';
+  /** botId */
+  botId: Scalars['Int'];
   content: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   private: Scalars['Boolean'];
   role: Scalars['String'];
-  /** sessionId */
-  sessionId: Scalars['Int'];
   /** streaming status */
   streaming?: Maybe<Scalars['Boolean']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -418,8 +364,8 @@ export type Message = {
 
 /** 筛选条件 */
 export type MessageWhereInput = {
-  /** sessionId */
-  sessionId?: InputMaybe<Scalars['Int']>;
+  /** botId */
+  botId?: InputMaybe<Scalars['Int']>;
 };
 
 /** connection */
@@ -428,14 +374,6 @@ export type MessagesConnection = {
   hasNextPage: Scalars['Boolean'];
   items: Array<Message>;
   totalCount: Scalars['Int'];
-};
-
-/** 修改成员角色类型 */
-export type ModifyMemberRoleTypeInput = {
-  /** member ID */
-  id: Scalars['Int'];
-  /** 角色类型 */
-  roleType: RoleType;
 };
 
 /** 修改秘密 */
@@ -448,20 +386,16 @@ export type ModifyPasswordInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  /** 添加成员 */
-  addMember: Member;
+  /** 新增机器人 */
+  addBot: Bot;
   /** 添加Message */
   addMessage: Message;
-  /** 添加Session */
-  addSession: Session;
-  /** 添加Team */
-  addTeam: Team;
   /** 新增Token */
   addToken: Token;
   /** 创建 */
-  createInvoice: Invoice;
+  createBot: Bot;
   /** 创建 */
-  createMember: Member;
+  createInvoice: Invoice;
   /** 创建 */
   createMessage: Message;
   /** 创建 */
@@ -471,29 +405,25 @@ export type Mutation = {
   /** 创建 */
   createPlan: Plan;
   /** 创建 */
-  createProvider: Provider;
-  /** 创建 */
-  createProxy: Proxy;
-  /** 创建 */
   createRefund: Refund;
   /** 创建 */
-  createSession: Session;
-  /** 创建 */
   createSetting: Setting;
-  /** 创建 */
-  createTeam: Team;
   /** 创建 */
   createToken: Token;
   /** 创建 */
   createUser: User;
   /** 创建 */
+  createUserBot: UserBot;
+  /** 创建 */
   createWallet: Wallet;
+  /** 删除单个 */
+  deleteBot: Scalars['Boolean'];
   /** 删除单个 */
   deleteInvoice: Scalars['Boolean'];
   /** 批量删除 */
-  deleteManyInvoices: Scalars['Float'];
+  deleteManyBots: Scalars['Float'];
   /** 批量删除 */
-  deleteManyMembers: Scalars['Float'];
+  deleteManyInvoices: Scalars['Float'];
   /** 批量删除 */
   deleteManyMessages: Scalars['Float'];
   /** 批量删除 */
@@ -503,25 +433,17 @@ export type Mutation = {
   /** 批量删除 */
   deleteManyPlans: Scalars['Float'];
   /** 批量删除 */
-  deleteManyProviders: Scalars['Float'];
-  /** 批量删除 */
-  deleteManyProxys: Scalars['Float'];
-  /** 批量删除 */
   deleteManyRefunds: Scalars['Float'];
-  /** 批量删除 */
-  deleteManySessions: Scalars['Float'];
   /** 批量删除 */
   deleteManySettings: Scalars['Float'];
   /** 批量删除 */
-  deleteManyTeams: Scalars['Float'];
-  /** 批量删除 */
   deleteManyTokens: Scalars['Float'];
+  /** 批量删除 */
+  deleteManyUserBots: Scalars['Float'];
   /** 批量删除 */
   deleteManyUsers: Scalars['Float'];
   /** 批量删除 */
   deleteManyWallets: Scalars['Float'];
-  /** 删除单个 */
-  deleteMember: Scalars['Boolean'];
   /** 删除单个 */
   deleteMessage: Scalars['Boolean'];
   /** 删除单个 */
@@ -531,25 +453,17 @@ export type Mutation = {
   /** 删除单个 */
   deletePlan: Scalars['Boolean'];
   /** 删除单个 */
-  deleteProvider: Scalars['Boolean'];
-  /** 删除单个 */
-  deleteProxy: Scalars['Boolean'];
-  /** 删除单个 */
   deleteRefund: Scalars['Boolean'];
   /** 删除单个 */
-  deleteSession: Scalars['Boolean'];
-  /** 删除单个 */
   deleteSetting: Scalars['Boolean'];
-  /** 删除单个 */
-  deleteTeam: Scalars['Boolean'];
   /** 删除单个 */
   deleteToken: Scalars['Boolean'];
   /** 删除单个 */
   deleteUser: Scalars['Boolean'];
   /** 删除单个 */
+  deleteUserBot: Scalars['Boolean'];
+  /** 删除单个 */
   deleteWallet: Scalars['Boolean'];
-  /** 退出成员 */
-  exitMember: Scalars['Boolean'];
   /** 重置密码 */
   forgotPassword: Scalars['Boolean'];
   /** 邮箱登录 */
@@ -560,30 +474,27 @@ export type Mutation = {
   loginByGoogle: LoginSuccessPayload;
   /** Login by personal token */
   loginByPersonalToken: LoginSuccessPayload;
-  /** 修改角色类型 */
-  modifyMemberRoleType: Scalars['Boolean'];
   /** 修改密码 */
   modifyPassword: Scalars['Boolean'];
   /** 邮箱注册 */
   registerByEmail: Scalars['Boolean'];
-  /** 删除成员，只有管理员以上才能操作 */
-  removeMember: Scalars['Boolean'];
   /** 删除一组对话 */
   removeMessagePair: Scalars['Boolean'];
-  /** 删除Session */
-  removeSession: Scalars['Boolean'];
   /** 重置密码 */
   resetPassword: Scalars['Boolean'];
   sendTranslationMessage: Scalars['Boolean'];
+  /** 更新单个 */
+  updateBot: Bot;
+  updateBotParams: Scalars['Boolean'];
   updateChatSettings: Scalars['Boolean'];
   /** 修改email */
   updateEmail: Scalars['Boolean'];
   /** 更新单个 */
   updateInvoice: Invoice;
   /** 批量更新 */
-  updateManyInvoices: Scalars['Boolean'];
+  updateManyBots: Scalars['Boolean'];
   /** 批量更新 */
-  updateManyMembers: Scalars['Boolean'];
+  updateManyInvoices: Scalars['Boolean'];
   /** 批量更新 */
   updateManyMessages: Scalars['Boolean'];
   /** 批量更新 */
@@ -593,25 +504,17 @@ export type Mutation = {
   /** 批量更新 */
   updateManyPlans: Scalars['Boolean'];
   /** 批量更新 */
-  updateManyProviders: Scalars['Boolean'];
-  /** 批量更新 */
-  updateManyProxys: Scalars['Boolean'];
-  /** 批量更新 */
   updateManyRefunds: Scalars['Boolean'];
-  /** 批量更新 */
-  updateManySessions: Scalars['Boolean'];
   /** 批量更新 */
   updateManySettings: Scalars['Boolean'];
   /** 批量更新 */
-  updateManyTeams: Scalars['Boolean'];
-  /** 批量更新 */
   updateManyTokens: Scalars['Boolean'];
+  /** 批量更新 */
+  updateManyUserBots: Scalars['Boolean'];
   /** 批量更新 */
   updateManyUsers: Scalars['Boolean'];
   /** 批量更新 */
   updateManyWallets: Scalars['Boolean'];
-  /** 更新单个 */
-  updateMember: Member;
   /** 更新单个 */
   updateMessage: Message;
   /** 更新单个 */
@@ -621,29 +524,23 @@ export type Mutation = {
   /** 更新单个 */
   updatePlan: Plan;
   /** 更新单个 */
-  updateProvider: Provider;
-  /** 更新单个 */
-  updateProxy: Proxy;
-  /** 更新单个 */
   updateRefund: Refund;
   /** 更新单个 */
-  updateSession: Session;
-  /** 更新单个 */
   updateSetting: Setting;
-  /** 更新单个 */
-  updateTeam: Team;
   /** 更新单个 */
   updateToken: Token;
   /** 更新单个 */
   updateUser: User;
+  /** 更新单个 */
+  updateUserBot: UserBot;
   updateVisit: Scalars['Boolean'];
   /** 更新单个 */
   updateWallet: Wallet;
 };
 
 
-export type MutationAddMemberArgs = {
-  input: AddMemberInput;
+export type MutationAddBotArgs = {
+  input: AddBotInput;
 };
 
 
@@ -652,28 +549,18 @@ export type MutationAddMessageArgs = {
 };
 
 
-export type MutationAddSessionArgs = {
-  input: AddSessionInput;
-};
-
-
-export type MutationAddTeamArgs = {
-  input: AddTeamInput;
-};
-
-
 export type MutationAddTokenArgs = {
   input: AddTokenInput;
 };
 
 
-export type MutationCreateInvoiceArgs = {
-  input: CreateInvoiceInput;
+export type MutationCreateBotArgs = {
+  input: CreateBotInput;
 };
 
 
-export type MutationCreateMemberArgs = {
-  input: CreateMemberInput;
+export type MutationCreateInvoiceArgs = {
+  input: CreateInvoiceInput;
 };
 
 
@@ -697,33 +584,13 @@ export type MutationCreatePlanArgs = {
 };
 
 
-export type MutationCreateProviderArgs = {
-  input: CreateProviderInput;
-};
-
-
-export type MutationCreateProxyArgs = {
-  input: CreateProxyInput;
-};
-
-
 export type MutationCreateRefundArgs = {
   input: CreateRefundInput;
 };
 
 
-export type MutationCreateSessionArgs = {
-  input: CreateSessionInput;
-};
-
-
 export type MutationCreateSettingArgs = {
   input: CreateSettingInput;
-};
-
-
-export type MutationCreateTeamArgs = {
-  input: CreateTeamInput;
 };
 
 
@@ -737,8 +604,18 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationCreateUserBotArgs = {
+  input: CreateUserBotInput;
+};
+
+
 export type MutationCreateWalletArgs = {
   input: CreateWalletInput;
+};
+
+
+export type MutationDeleteBotArgs = {
+  input: DeleteBotInput;
 };
 
 
@@ -747,13 +624,13 @@ export type MutationDeleteInvoiceArgs = {
 };
 
 
-export type MutationDeleteManyInvoicesArgs = {
-  input: DeleteInvoiceInput;
+export type MutationDeleteManyBotsArgs = {
+  input: DeleteBotInput;
 };
 
 
-export type MutationDeleteManyMembersArgs = {
-  input: DeleteMemberInput;
+export type MutationDeleteManyInvoicesArgs = {
+  input: DeleteInvoiceInput;
 };
 
 
@@ -777,23 +654,8 @@ export type MutationDeleteManyPlansArgs = {
 };
 
 
-export type MutationDeleteManyProvidersArgs = {
-  input: DeleteProviderInput;
-};
-
-
-export type MutationDeleteManyProxysArgs = {
-  input: DeleteProxyInput;
-};
-
-
 export type MutationDeleteManyRefundsArgs = {
   input: DeleteRefundInput;
-};
-
-
-export type MutationDeleteManySessionsArgs = {
-  input: DeleteSessionInput;
 };
 
 
@@ -802,13 +664,13 @@ export type MutationDeleteManySettingsArgs = {
 };
 
 
-export type MutationDeleteManyTeamsArgs = {
-  input: DeleteTeamInput;
+export type MutationDeleteManyTokensArgs = {
+  input: DeleteTokenInput;
 };
 
 
-export type MutationDeleteManyTokensArgs = {
-  input: DeleteTokenInput;
+export type MutationDeleteManyUserBotsArgs = {
+  input: DeleteUserBotInput;
 };
 
 
@@ -819,11 +681,6 @@ export type MutationDeleteManyUsersArgs = {
 
 export type MutationDeleteManyWalletsArgs = {
   input: DeleteWalletInput;
-};
-
-
-export type MutationDeleteMemberArgs = {
-  input: DeleteMemberInput;
 };
 
 
@@ -847,33 +704,13 @@ export type MutationDeletePlanArgs = {
 };
 
 
-export type MutationDeleteProviderArgs = {
-  input: DeleteProviderInput;
-};
-
-
-export type MutationDeleteProxyArgs = {
-  input: DeleteProxyInput;
-};
-
-
 export type MutationDeleteRefundArgs = {
   input: DeleteRefundInput;
 };
 
 
-export type MutationDeleteSessionArgs = {
-  input: DeleteSessionInput;
-};
-
-
 export type MutationDeleteSettingArgs = {
   input: DeleteSettingInput;
-};
-
-
-export type MutationDeleteTeamArgs = {
-  input: DeleteTeamInput;
 };
 
 
@@ -887,13 +724,13 @@ export type MutationDeleteUserArgs = {
 };
 
 
-export type MutationDeleteWalletArgs = {
-  input: DeleteWalletInput;
+export type MutationDeleteUserBotArgs = {
+  input: DeleteUserBotInput;
 };
 
 
-export type MutationExitMemberArgs = {
-  input: ExitMemberInput;
+export type MutationDeleteWalletArgs = {
+  input: DeleteWalletInput;
 };
 
 
@@ -922,11 +759,6 @@ export type MutationLoginByPersonalTokenArgs = {
 };
 
 
-export type MutationModifyMemberRoleTypeArgs = {
-  input: ModifyMemberRoleTypeInput;
-};
-
-
 export type MutationModifyPasswordArgs = {
   input: ModifyPasswordInput;
 };
@@ -937,18 +769,8 @@ export type MutationRegisterByEmailArgs = {
 };
 
 
-export type MutationRemoveMemberArgs = {
-  input: RemoveMemberInput;
-};
-
-
 export type MutationRemoveMessagePairArgs = {
   input: RemoveMessagePairInput;
-};
-
-
-export type MutationRemoveSessionArgs = {
-  input: RemoveSessionInput;
 };
 
 
@@ -959,6 +781,16 @@ export type MutationResetPasswordArgs = {
 
 export type MutationSendTranslationMessageArgs = {
   input: SendTranslationMessageInput;
+};
+
+
+export type MutationUpdateBotArgs = {
+  input: UpdateBotInput;
+};
+
+
+export type MutationUpdateBotParamsArgs = {
+  input: UpdateBotParamsInput;
 };
 
 
@@ -977,13 +809,13 @@ export type MutationUpdateInvoiceArgs = {
 };
 
 
-export type MutationUpdateManyInvoicesArgs = {
-  input: UpdateManyInvoiceInput;
+export type MutationUpdateManyBotsArgs = {
+  input: UpdateManyBotInput;
 };
 
 
-export type MutationUpdateManyMembersArgs = {
-  input: UpdateManyMemberInput;
+export type MutationUpdateManyInvoicesArgs = {
+  input: UpdateManyInvoiceInput;
 };
 
 
@@ -1007,23 +839,8 @@ export type MutationUpdateManyPlansArgs = {
 };
 
 
-export type MutationUpdateManyProvidersArgs = {
-  input: UpdateManyProviderInput;
-};
-
-
-export type MutationUpdateManyProxysArgs = {
-  input: UpdateManyProxyInput;
-};
-
-
 export type MutationUpdateManyRefundsArgs = {
   input: UpdateManyRefundInput;
-};
-
-
-export type MutationUpdateManySessionsArgs = {
-  input: UpdateManySessionInput;
 };
 
 
@@ -1032,13 +849,13 @@ export type MutationUpdateManySettingsArgs = {
 };
 
 
-export type MutationUpdateManyTeamsArgs = {
-  input: UpdateManyTeamInput;
+export type MutationUpdateManyTokensArgs = {
+  input: UpdateManyTokenInput;
 };
 
 
-export type MutationUpdateManyTokensArgs = {
-  input: UpdateManyTokenInput;
+export type MutationUpdateManyUserBotsArgs = {
+  input: UpdateManyUserBotInput;
 };
 
 
@@ -1049,11 +866,6 @@ export type MutationUpdateManyUsersArgs = {
 
 export type MutationUpdateManyWalletsArgs = {
   input: UpdateManyWalletInput;
-};
-
-
-export type MutationUpdateMemberArgs = {
-  input: UpdateMemberInput;
 };
 
 
@@ -1077,33 +889,13 @@ export type MutationUpdatePlanArgs = {
 };
 
 
-export type MutationUpdateProviderArgs = {
-  input: UpdateProviderInput;
-};
-
-
-export type MutationUpdateProxyArgs = {
-  input: UpdateProxyInput;
-};
-
-
 export type MutationUpdateRefundArgs = {
   input: UpdateRefundInput;
 };
 
 
-export type MutationUpdateSessionArgs = {
-  input: UpdateSessionInput;
-};
-
-
 export type MutationUpdateSettingArgs = {
   input: UpdateSettingInput;
-};
-
-
-export type MutationUpdateTeamArgs = {
-  input: UpdateTeamInput;
 };
 
 
@@ -1114,6 +906,11 @@ export type MutationUpdateTokenArgs = {
 
 export type MutationUpdateUserArgs = {
   input: UpdateUserInput;
+};
+
+
+export type MutationUpdateUserBotArgs = {
+  input: UpdateUserBotInput;
 };
 
 
@@ -1184,14 +981,12 @@ export type PaymentsConnection = {
 
 export type Plan = {
   __typename?: 'Plan';
-  createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   interval?: Maybe<PlanInterval>;
   price?: Maybe<Scalars['Float']>;
   status: PlanStatus;
-  teamId: Scalars['Int'];
   type: PlanType;
-  updatedAt?: Maybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
 };
 
 /** Plan Interval */
@@ -1227,70 +1022,14 @@ export type PlansConnection = {
   totalCount: Scalars['Int'];
 };
 
-export type Provider = {
-  __typename?: 'Provider';
-  accessToken?: Maybe<Scalars['String']>;
-  apiKey?: Maybe<Scalars['String']>;
-  /** self host auth code */
-  authorizationCode?: Maybe<Scalars['String']>;
-  /** self host server endpoint */
-  endpoint?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  isPlus: Scalars['Boolean'];
-  /** proxy Host */
-  proxyHost?: Maybe<Scalars['String']>;
-  /** teamId */
-  teamId: Scalars['Int'];
-  type: ProviderType;
-};
-
-/** Provider 类型 */
-export enum ProviderType {
-  AccessToken = 'AccessToken',
-  ApiKey = 'ApiKey',
-  ChatGptUnofficial = 'ChatGptUnofficial',
-  Official = 'Official',
-  SelfHosted = 'SelfHosted'
-}
-
-/** 筛选条件 */
-export type ProviderWhereInput = {
-  /** teamId */
-  teamId?: InputMaybe<Scalars['Int']>;
-};
-
-/** connection */
-export type ProvidersConnection = {
-  __typename?: 'ProvidersConnection';
-  hasNextPage: Scalars['Boolean'];
-  items: Array<Provider>;
-  totalCount: Scalars['Int'];
-};
-
-export type Proxy = {
-  __typename?: 'Proxy';
-  host?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  valid?: Maybe<Scalars['Boolean']>;
-};
-
-/** 筛选条件 */
-export type ProxyWhereInput = {
-  id: Scalars['Int'];
-};
-
-/** connection */
-export type ProxysConnection = {
-  __typename?: 'ProxysConnection';
-  hasNextPage: Scalars['Boolean'];
-  items: Array<Proxy>;
-  totalCount: Scalars['Int'];
-};
-
 export type Query = {
   __typename?: 'Query';
-  activeProvider: Provider;
-  activeTeam: Team;
+  /** 获取单个 */
+  bot: Bot;
+  /** 获取列表 */
+  bots: Array<Bot>;
+  /** 获取分页列表 */
+  botsConnection: BotsConnection;
   /** Chat GPT settings */
   chatSettings: ChatSettings;
   /** check token */
@@ -1306,19 +1045,13 @@ export type Query = {
   /** 获取分页列表 */
   invoicesConnection: InvoicesConnection;
   /** 获取单个 */
-  member: Member;
-  /** 获取列表 */
-  members: Array<Member>;
-  /** 获取分页列表 */
-  membersConnection: MembersConnection;
-  /** 获取单个 */
   message: Message;
   /** 获取列表 */
   messages: Array<Message>;
   /** 获取分页列表 */
   messagesConnection: MessagesConnection;
-  /** 自己可以访问的 provider */
-  myTeams: Array<Team>;
+  /** 获取自己的机器人 */
+  myBots: Array<Bot>;
   /** 获取单个 */
   order: Order;
   /** 获取列表 */
@@ -1337,18 +1070,8 @@ export type Query = {
   plans: Array<Plan>;
   /** 获取分页列表 */
   plansConnection: PlansConnection;
-  /** 获取单个 */
-  provider: Provider;
-  /** 获取列表 */
-  providers: Array<Provider>;
-  /** 获取分页列表 */
-  providersConnection: ProvidersConnection;
-  /** 获取单个 */
-  proxy: Proxy;
-  /** 获取列表 */
-  proxys: Array<Proxy>;
-  /** 获取分页列表 */
-  proxysConnection: ProxysConnection;
+  /** 获取公开的的机器人 */
+  publicBots: Array<Bot>;
   /** 获取单个 */
   refund: Refund;
   /** 获取列表 */
@@ -1358,25 +1081,11 @@ export type Query = {
   /** 搜索用户 */
   searchUsers: Array<User>;
   /** 获取单个 */
-  session: Session;
-  /** 获取session */
-  sessionBySlug: Session;
-  /** 获取列表 */
-  sessions: Array<Session>;
-  /** 获取分页列表 */
-  sessionsConnection: SessionsConnection;
-  /** 获取单个 */
   setting: Setting;
   /** 获取列表 */
   settings: Array<Setting>;
   /** 获取分页列表 */
   settingsConnection: SettingsConnection;
-  /** 获取单个 */
-  team: Team;
-  /** 获取列表 */
-  teams: Array<Team>;
-  /** 获取分页列表 */
-  teamsConnection: TeamsConnection;
   /** 获取单个 */
   token: Token;
   /** 获取列表 */
@@ -1385,6 +1094,13 @@ export type Query = {
   tokensConnection: TokensConnection;
   /** 获取单个 */
   user: User;
+  /** 获取单个 */
+  userBot: UserBot;
+  userBotBySlug: UserBot;
+  /** 获取列表 */
+  userBots: Array<UserBot>;
+  /** 获取分页列表 */
+  userBotsConnection: UserBotsConnection;
   /** 获取列表 */
   users: Array<User>;
   /** 获取分页列表 */
@@ -1397,6 +1113,28 @@ export type Query = {
   wallets: Array<Wallet>;
   /** 获取分页列表 */
   walletsConnection: WalletsConnection;
+};
+
+
+export type QueryBotArgs = {
+  id?: InputMaybe<Scalars['Int']>;
+  slug?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryBotsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BotWhereInput>;
+};
+
+
+export type QueryBotsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BotWhereInput>;
 };
 
 
@@ -1433,27 +1171,6 @@ export type QueryInvoicesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<InvoiceWhereInput>;
-};
-
-
-export type QueryMemberArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QueryMembersArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<MemberWhereInput>;
-};
-
-
-export type QueryMembersConnectionArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<MemberWhereInput>;
 };
 
 
@@ -1541,48 +1258,6 @@ export type QueryPlansConnectionArgs = {
 };
 
 
-export type QueryProviderArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QueryProvidersArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProviderWhereInput>;
-};
-
-
-export type QueryProvidersConnectionArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProviderWhereInput>;
-};
-
-
-export type QueryProxyArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QueryProxysArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProxyWhereInput>;
-};
-
-
-export type QueryProxysConnectionArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ProxyWhereInput>;
-};
-
-
 export type QueryRefundArgs = {
   id: Scalars['Int'];
 };
@@ -1609,32 +1284,6 @@ export type QuerySearchUsersArgs = {
 };
 
 
-export type QuerySessionArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QuerySessionBySlugArgs = {
-  slug: Scalars['String'];
-};
-
-
-export type QuerySessionsArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<SessionWhereInput>;
-};
-
-
-export type QuerySessionsConnectionArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<SessionWhereInput>;
-};
-
-
 export type QuerySettingArgs = {
   id?: InputMaybe<Scalars['Int']>;
   userId?: InputMaybe<Scalars['Int']>;
@@ -1654,27 +1303,6 @@ export type QuerySettingsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SettingWhereInput>;
-};
-
-
-export type QueryTeamArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QueryTeamsArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<TeamWhereInput>;
-};
-
-
-export type QueryTeamsConnectionArgs = {
-  orderBy?: InputMaybe<Scalars['String']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<TeamWhereInput>;
 };
 
 
@@ -1703,6 +1331,32 @@ export type QueryUserArgs = {
   id?: InputMaybe<Scalars['Int']>;
   nickname?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryUserBotArgs = {
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryUserBotBySlugArgs = {
+  botSlug: Scalars['String'];
+};
+
+
+export type QueryUserBotsArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<UserBotWhereInput>;
+};
+
+
+export type QueryUserBotsConnectionArgs = {
+  orderBy?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<UserBotWhereInput>;
 };
 
 
@@ -1776,24 +1430,10 @@ export type RegisterByEmailInput = {
   password: Scalars['String'];
 };
 
-/** 删除成员 */
-export type RemoveMemberInput = {
-  /** member ID */
-  id: Scalars['Int'];
-};
-
 /** 删除 */
 export type RemoveMessagePairInput = {
   /** ID */
   messageId: Scalars['Int'];
-};
-
-/** 删除 */
-export type RemoveSessionInput = {
-  /** ID */
-  id: Scalars['Int'];
-  /** teamId */
-  teamId: Scalars['Int'];
 };
 
 /** 重置密码 */
@@ -1804,61 +1444,11 @@ export type ResetPasswordInput = {
   token: Scalars['String'];
 };
 
-/** 角色类型 */
-export enum RoleType {
-  Admin = 'Admin',
-  Member = 'Member',
-  Owner = 'Owner',
-  Reader = 'Reader'
-}
-
 /** 创建 */
 export type SendTranslationMessageInput = {
   content: Scalars['String'];
   /** 设备唯一ID */
   deviceId: Scalars['String'];
-};
-
-export type Session = {
-  __typename?: 'Session';
-  /** 访问权限类型 */
-  accessType: SessionAccessType;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['Int'];
-  /** Message */
-  messages: Array<Message>;
-  name: Scalars['String'];
-  /** 设置 */
-  settings?: Maybe<Scalars['JSON']>;
-  slug: Scalars['String'];
-  /** teamId */
-  teamId: Scalars['Int'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** 会话对话类型 */
-export enum SessionAccessType {
-  Member = 'Member',
-  Private = 'Private',
-  Public = 'Public'
-}
-
-/** 筛选条件 */
-export type SessionWhereInput = {
-  /** teamId */
-  teamId?: InputMaybe<Scalars['Int']>;
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** connection */
-export type SessionsConnection = {
-  __typename?: 'SessionsConnection';
-  hasNextPage: Scalars['Boolean'];
-  items: Array<Session>;
-  totalCount: Scalars['Int'];
 };
 
 export type Setting = {
@@ -1899,40 +1489,6 @@ export type SubscriptionChatMessageSubscriptionArgs = {
   deviceId: Scalars['String'];
 };
 
-export type Team = {
-  __typename?: 'Team';
-  activeProviderId: Scalars['Int'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['Int'];
-  /** Member */
-  members: Array<Member>;
-  name: Scalars['String'];
-  /** Plan */
-  plan: Plan;
-  /** Provider */
-  providers: Array<Provider>;
-  slug: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** User */
-  user: User;
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** 筛选条件 */
-export type TeamWhereInput = {
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** connection */
-export type TeamsConnection = {
-  __typename?: 'TeamsConnection';
-  hasNextPage: Scalars['Boolean'];
-  items: Array<Team>;
-  totalCount: Scalars['Int'];
-};
-
 /** personal token */
 export type Token = {
   __typename?: 'Token';
@@ -1965,6 +1521,41 @@ export type TokensConnection = {
   hasNextPage: Scalars['Boolean'];
   items: Array<Token>;
   totalCount: Scalars['Int'];
+};
+
+/** 更新data */
+export type UpdateBotDataInput = {
+  /** 访问权限类型 */
+  accessType?: InputMaybe<BotAccessType>;
+  desc?: InputMaybe<Scalars['String']>;
+  isPromptVisible?: InputMaybe<Scalars['Boolean']>;
+  /** 该 Bot Name */
+  name?: InputMaybe<Scalars['String']>;
+  paramsSchema?: InputMaybe<Scalars['JSON']>;
+  prompt?: InputMaybe<Scalars['String']>;
+  slug: Scalars['String'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新单个 */
+export type UpdateBotInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateBotDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateBotWhereInput>;
+};
+
+export type UpdateBotParamsInput = {
+  /** Bot ID */
+  botId: Scalars['Int'];
+  params?: InputMaybe<Scalars['JSON']>;
+};
+
+/** 更新条件 */
+export type UpdateBotWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 export type UpdateChatSettingsInput = {
@@ -2007,19 +1598,19 @@ export type UpdateInvoiceWhereInput = {
 };
 
 /** 批量更新 */
+export type UpdateManyBotInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateBotDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateBotWhereInput>;
+};
+
+/** 批量更新 */
 export type UpdateManyInvoiceInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateInvoiceDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdateInvoiceWhereInput>;
-};
-
-/** 批量更新 */
-export type UpdateManyMemberInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateMemberDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateMemberWhereInput>;
 };
 
 /** 批量更新 */
@@ -2055,35 +1646,11 @@ export type UpdateManyPlanInput = {
 };
 
 /** 批量更新 */
-export type UpdateManyProviderInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateProviderDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateProviderWhereInput>;
-};
-
-/** 批量更新 */
-export type UpdateManyProxyInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateProxyDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateProxyWhereInput>;
-};
-
-/** 批量更新 */
 export type UpdateManyRefundInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateRefundDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdateRefundWhereInput>;
-};
-
-/** 批量更新 */
-export type UpdateManySessionInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateSessionDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateSessionWhereInput>;
 };
 
 /** 批量更新 */
@@ -2095,19 +1662,19 @@ export type UpdateManySettingInput = {
 };
 
 /** 批量更新 */
-export type UpdateManyTeamInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateTeamDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateTeamWhereInput>;
-};
-
-/** 批量更新 */
 export type UpdateManyTokenInput = {
   /** 更新的数据 */
   data?: InputMaybe<UpdateTokenDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdateTokenWhereInput>;
+};
+
+/** 批量更新 */
+export type UpdateManyUserBotInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateUserBotDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateUserBotWhereInput>;
 };
 
 /** 批量更新 */
@@ -2124,28 +1691,6 @@ export type UpdateManyWalletInput = {
   data?: InputMaybe<UpdateWalletDataInput>;
   /** 更新条件 */
   where?: InputMaybe<UpdateWalletWhereInput>;
-};
-
-/** 更新data */
-export type UpdateMemberDataInput = {
-  /** Team ID */
-  teamId: Scalars['Int'];
-  /** 用户ID */
-  userId: Scalars['Int'];
-};
-
-/** 更新单个 */
-export type UpdateMemberInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateMemberDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateMemberWhereInput>;
-};
-
-/** 更新条件 */
-export type UpdateMemberWhereInput = {
-  /** member ID */
-  id: Scalars['Int'];
 };
 
 /** 更新data */
@@ -2223,8 +1768,8 @@ export type UpdatePlanDataInput = {
   interval?: InputMaybe<PlanInterval>;
   price?: InputMaybe<Scalars['Float']>;
   status: PlanStatus;
-  teamId: Scalars['Int'];
   type: PlanType;
+  userId: Scalars['Int'];
 };
 
 /** 更新单个 */
@@ -2239,52 +1784,6 @@ export type UpdatePlanInput = {
 export type UpdatePlanWhereInput = {
   /** ID */
   id: Scalars['Int'];
-};
-
-/** 更新data */
-export type UpdateProviderDataInput = {
-  accessToken?: InputMaybe<Scalars['String']>;
-  active?: InputMaybe<Scalars['Boolean']>;
-  apiKey?: InputMaybe<Scalars['String']>;
-  /** self host auth code */
-  authorizationCode?: InputMaybe<Scalars['String']>;
-  /** self host server endpoint */
-  endpoint?: InputMaybe<Scalars['String']>;
-};
-
-/** 更新单个 */
-export type UpdateProviderInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateProviderDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateProviderWhereInput>;
-};
-
-/** 更新条件 */
-export type UpdateProviderWhereInput = {
-  /** ID */
-  id?: InputMaybe<Scalars['Int']>;
-};
-
-/** 更新data */
-export type UpdateProxyDataInput = {
-  host?: InputMaybe<Scalars['String']>;
-  id: Scalars['Int'];
-  valid?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** 更新单个 */
-export type UpdateProxyInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateProxyDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateProxyWhereInput>;
-};
-
-/** 更新条件 */
-export type UpdateProxyWhereInput = {
-  /** ID */
-  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** 更新data */
@@ -2311,30 +1810,6 @@ export type UpdateRefundWhereInput = {
 };
 
 /** 更新data */
-export type UpdateSessionDataInput = {
-  /** 访问权限类型 */
-  accessType?: InputMaybe<SessionAccessType>;
-  /** 该 Session Name */
-  name?: InputMaybe<Scalars['String']>;
-  /** 设置 */
-  settings?: InputMaybe<Scalars['JSON']>;
-};
-
-/** 更新单个 */
-export type UpdateSessionInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateSessionDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateSessionWhereInput>;
-};
-
-/** 更新条件 */
-export type UpdateSessionWhereInput = {
-  /** ID */
-  id?: InputMaybe<Scalars['Int']>;
-};
-
-/** 更新data */
 export type UpdateSettingDataInput = {
   activeSessionId?: InputMaybe<Scalars['Int']>;
   activeTeamId?: InputMaybe<Scalars['Int']>;
@@ -2354,28 +1829,6 @@ export type UpdateSettingWhereInput = {
   id?: InputMaybe<Scalars['Int']>;
   /** 用户ID */
   userId?: InputMaybe<Scalars['Int']>;
-};
-
-/** 更新data */
-export type UpdateTeamDataInput = {
-  activeProviderId?: InputMaybe<Scalars['Int']>;
-  /** 该 Team Name */
-  name?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-/** 更新单个 */
-export type UpdateTeamInput = {
-  /** 更新的数据 */
-  data?: InputMaybe<UpdateTeamDataInput>;
-  /** 更新条件 */
-  where?: InputMaybe<UpdateTeamWhereInput>;
-};
-
-/** 更新条件 */
-export type UpdateTeamWhereInput = {
-  /** ID */
-  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** 更新data */
@@ -2400,6 +1853,28 @@ export type UpdateTokenInput = {
 
 /** 更新条件 */
 export type UpdateTokenWhereInput = {
+  /** ID */
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新data */
+export type UpdateUserBotDataInput = {
+  /** Bot ID */
+  botId: Scalars['Int'];
+  /** 用户ID */
+  userId?: InputMaybe<Scalars['Int']>;
+};
+
+/** 更新单个 */
+export type UpdateUserBotInput = {
+  /** 更新的数据 */
+  data?: InputMaybe<UpdateUserBotDataInput>;
+  /** 更新条件 */
+  where?: InputMaybe<UpdateUserBotWhereInput>;
+};
+
+/** 更新条件 */
+export type UpdateUserBotWhereInput = {
   /** ID */
   id?: InputMaybe<Scalars['Int']>;
 };
@@ -2484,8 +1959,37 @@ export type User = {
   nickname: Scalars['String'];
   /** 手机 */
   phone?: Maybe<Scalars['String']>;
+  /** Plan */
+  plan: Plan;
   /** 用户名 */
   username: Scalars['String'];
+};
+
+export type UserBot = {
+  __typename?: 'UserBot';
+  bot: Bot;
+  /** Bot ID */
+  botId: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  params?: Maybe<Scalars['JSON']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** 筛选条件 */
+export type UserBotWhereInput = {
+  /** 用户ID */
+  userId: Scalars['Int'];
+};
+
+/** connection */
+export type UserBotsConnection = {
+  __typename?: 'UserBotsConnection';
+  hasNextPage: Scalars['Boolean'];
+  items: Array<UserBot>;
+  totalCount: Scalars['Int'];
 };
 
 /** 筛选条件 */
@@ -2524,7 +2028,7 @@ export type WalletWhereInput = {
   /** ID */
   id: Scalars['Int'];
   /** 策略ID */
-  teamId: Scalars['Int'];
+  userId: Scalars['Int'];
 };
 
 /** connection */

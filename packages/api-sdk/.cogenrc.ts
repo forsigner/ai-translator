@@ -23,44 +23,16 @@ const gqlConfig: ConfigItem[] = [
   { name: 'searchUsers', actions: ['useQuery', 'refetch'] },
   { name: 'updateUser', actions: ['query'] },
 
-  { name: 'members', actions: ['useQuery', 'refetch'] },
-  { name: 'addMember', actions: ['query'] },
-  { name: 'removeMember', actions: ['query'] },
-  { name: 'exitMember', actions: ['query'] },
-
   { name: 'visit', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateVisit', actions: ['query'] },
 
   { name: 'chatSettings', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'updateChatSettings', actions: ['query'] },
 
-  { name: 'team', actions: ['query', 'useQuery', 'refetch'] },
-  { name: 'activeTeam', actions: ['query', 'useQuery', 'refetch'] },
-  { name: 'myTeams', actions: ['useQuery', 'refetch'] },
-  { name: 'updateTeam', actions: ['query'] },
-  { name: 'addTeam', actions: ['query'] },
-
-  {
-    name: 'sessions',
-    actions: ['useQuery', 'refetch', 'mutator'],
-    excludes: ['sessions.messages'],
-  },
-  {
-    name: 'sessionBySlug',
-    actions: ['query', 'useQuery', 'refetch'],
-  },
-  { name: 'addSession', actions: ['query'], excludes: ['addSession.messages'] },
-  { name: 'updateSession', actions: ['query'], excludes: ['updateSession.messages'] },
-  { name: 'removeSession', actions: ['query'] },
-
   { name: 'messages', actions: ['useQuery', 'refetch', 'mutator'] },
   { name: 'addMessage', actions: ['query'] },
   { name: 'updateMessage', actions: ['query'] },
   { name: 'removeMessagePair', actions: ['query'] },
-
-  { name: 'providers', actions: ['useQuery', 'refetch', 'mutator'] },
-  { name: 'updateProvider', actions: ['query'] },
-  { name: 'activeProvider', actions: ['query', 'useQuery', 'refetch'] },
 ]
 
 const dirName = 'src'

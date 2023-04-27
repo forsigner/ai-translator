@@ -41,8 +41,11 @@ export function useSendMessage() {
       requestMode = RequestMode.Boter
     }
 
+    const token = await storage.getToken()
+
     try {
       await api.sendMessage({
+        token,
         requestMode,
         messages,
         onMessage(text) {

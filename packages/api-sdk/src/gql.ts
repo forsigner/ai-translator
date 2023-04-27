@@ -41,31 +41,15 @@ query searchUsers($q: String!){
         login
         nickname
         phone
-        username
-    }
-}
-`;
-export const MEMBERS = gql`
-query members($orderBy: String, $skip: Int, $take: Int, $where: MemberWhereInput){
-    members(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
-        id
-        roleType
-        teamId
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
+        plan{
             id
-            jobTitle
-            login
-            nickname
-            phone
-            username
+            interval
+            price
+            status
+            type
+            userId
         }
-        userId
+        username
     }
 }
 `;
@@ -88,220 +72,15 @@ query chatSettings{
     }
 }
 `;
-export const TEAM = gql`
-query team($id: Int!){
-    team(id: $id){
-        activeProviderId
-        createdAt
-        id
-        members{
-            id
-            roleType
-            teamId
-            userId
-        }
-        name
-        plan{
-            createdAt
-            id
-            interval
-            price
-            status
-            teamId
-            type
-            updatedAt
-        }
-        providers{
-            accessToken
-            apiKey
-            authorizationCode
-            endpoint
-            id
-            isPlus
-            proxyHost
-            teamId
-            type
-        }
-        slug
-        updatedAt
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            username
-        }
-        userId
-    }
-}
-`;
-export const ACTIVE_TEAM = gql`
-query activeTeam{
-    activeTeam{
-        activeProviderId
-        createdAt
-        id
-        members{
-            id
-            roleType
-            teamId
-            userId
-        }
-        name
-        plan{
-            createdAt
-            id
-            interval
-            price
-            status
-            teamId
-            type
-            updatedAt
-        }
-        providers{
-            accessToken
-            apiKey
-            authorizationCode
-            endpoint
-            id
-            isPlus
-            proxyHost
-            teamId
-            type
-        }
-        slug
-        updatedAt
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            username
-        }
-        userId
-    }
-}
-`;
-export const MY_TEAMS = gql`
-query myTeams{
-    myTeams{
-        activeProviderId
-        createdAt
-        id
-        members{
-            id
-            roleType
-            teamId
-            userId
-        }
-        name
-        plan{
-            createdAt
-            id
-            interval
-            price
-            status
-            teamId
-            type
-            updatedAt
-        }
-        providers{
-            accessToken
-            apiKey
-            authorizationCode
-            endpoint
-            id
-            isPlus
-            proxyHost
-            teamId
-            type
-        }
-        slug
-        updatedAt
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            username
-        }
-        userId
-    }
-}
-`;
-export const SESSIONS = gql`
-query sessions($orderBy: String, $skip: Int, $take: Int, $where: SessionWhereInput){
-    sessions(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
-        accessType
-        createdAt
-        id
-        name
-        settings
-        slug
-        teamId
-        updatedAt
-        userId
-    }
-}
-`;
-export const SESSION_BY_SLUG = gql`
-query sessionBySlug($slug: String!){
-    sessionBySlug(slug: $slug){
-        accessType
-        createdAt
-        id
-        messages{
-            content
-            createdAt
-            id
-            private
-            role
-            sessionId
-            streaming
-            updatedAt
-            userId
-            userMessageId
-            views
-        }
-        name
-        settings
-        slug
-        teamId
-        updatedAt
-        userId
-    }
-}
-`;
 export const MESSAGES = gql`
 query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInput){
     messages(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
+        botId
         content
         createdAt
         id
         private
         role
-        sessionId
         streaming
         updatedAt
         userId
@@ -310,40 +89,17 @@ query messages($orderBy: String, $skip: Int, $take: Int, $where: MessageWhereInp
     }
 }
 `;
-export const PROVIDERS = gql`
-query providers($orderBy: String, $skip: Int, $take: Int, $where: ProviderWhereInput){
-    providers(orderBy: $orderBy, skip: $skip, take: $take, where: $where){
-        accessToken
-        apiKey
-        authorizationCode
-        endpoint
-        id
-        isPlus
-        proxyHost
-        teamId
-        type
-    }
-}
-`;
-export const ACTIVE_PROVIDER = gql`
-query activeProvider{
-    activeProvider{
-        accessToken
-        apiKey
-        authorizationCode
-        endpoint
-        id
-        isPlus
-        proxyHost
-        teamId
-        type
-    }
-}
-`;
 export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
-        siteName
+        plan{
+            id
+            interval
+            price
+            status
+            type
+            userId
+        }
         token
         user{
             avatar
@@ -367,7 +123,14 @@ mutation loginByGithub($code: String!){
 export const LOGIN_BY_GOOGLE = gql`
 mutation loginByGoogle($code: String!){
     loginByGoogle(code: $code){
-        siteName
+        plan{
+            id
+            interval
+            price
+            status
+            type
+            userId
+        }
         token
         user{
             avatar
@@ -391,7 +154,14 @@ mutation loginByGoogle($code: String!){
 export const LOGIN_BY_PERSONAL_TOKEN = gql`
 mutation loginByPersonalToken($token: String!){
     loginByPersonalToken(token: $token){
-        siteName
+        plan{
+            id
+            interval
+            price
+            status
+            type
+            userId
+        }
         token
         user{
             avatar
@@ -458,42 +228,16 @@ mutation updateUser($input: UpdateUserInput!){
         login
         nickname
         phone
+        plan{
+            id
+            interval
+            price
+            status
+            type
+            userId
+        }
         username
     }
-}
-`;
-export const ADD_MEMBER = gql`
-mutation addMember($input: AddMemberInput!){
-    addMember(input: $input){
-        id
-        roleType
-        teamId
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            username
-        }
-        userId
-    }
-}
-`;
-export const REMOVE_MEMBER = gql`
-mutation removeMember($input: RemoveMemberInput!){
-    removeMember(input: $input)
-}
-`;
-export const EXIT_MEMBER = gql`
-mutation exitMember($input: ExitMemberInput!){
-    exitMember(input: $input)
 }
 `;
 export const UPDATE_VISIT = gql`
@@ -506,158 +250,15 @@ mutation updateChatSettings($input: UpdateChatSettingsInput!){
     updateChatSettings(input: $input)
 }
 `;
-export const UPDATE_TEAM = gql`
-mutation updateTeam($input: UpdateTeamInput!){
-    updateTeam(input: $input){
-        activeProviderId
-        createdAt
-        id
-        members{
-            id
-            roleType
-            teamId
-            userId
-        }
-        name
-        plan{
-            createdAt
-            id
-            interval
-            price
-            status
-            teamId
-            type
-            updatedAt
-        }
-        providers{
-            accessToken
-            apiKey
-            authorizationCode
-            endpoint
-            id
-            isPlus
-            proxyHost
-            teamId
-            type
-        }
-        slug
-        updatedAt
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            username
-        }
-        userId
-    }
-}
-`;
-export const ADD_TEAM = gql`
-mutation addTeam($input: AddTeamInput!){
-    addTeam(input: $input){
-        activeProviderId
-        createdAt
-        id
-        members{
-            id
-            roleType
-            teamId
-            userId
-        }
-        name
-        plan{
-            createdAt
-            id
-            interval
-            price
-            status
-            teamId
-            type
-            updatedAt
-        }
-        providers{
-            accessToken
-            apiKey
-            authorizationCode
-            endpoint
-            id
-            isPlus
-            proxyHost
-            teamId
-            type
-        }
-        slug
-        updatedAt
-        user{
-            avatar
-            bio
-            email
-            emailValidatedAt
-            githubId
-            googleId
-            id
-            jobTitle
-            login
-            nickname
-            phone
-            username
-        }
-        userId
-    }
-}
-`;
-export const ADD_SESSION = gql`
-mutation addSession($input: AddSessionInput!){
-    addSession(input: $input){
-        accessType
-        createdAt
-        id
-        name
-        settings
-        slug
-        teamId
-        updatedAt
-        userId
-    }
-}
-`;
-export const UPDATE_SESSION = gql`
-mutation updateSession($input: UpdateSessionInput!){
-    updateSession(input: $input){
-        accessType
-        createdAt
-        id
-        name
-        settings
-        slug
-        teamId
-        updatedAt
-        userId
-    }
-}
-`;
-export const REMOVE_SESSION = gql`
-mutation removeSession($input: RemoveSessionInput!){
-    removeSession(input: $input)
-}
-`;
 export const ADD_MESSAGE = gql`
 mutation addMessage($input: AddMessageInput!){
     addMessage(input: $input){
+        botId
         content
         createdAt
         id
         private
         role
-        sessionId
         streaming
         updatedAt
         userId
@@ -669,12 +270,12 @@ mutation addMessage($input: AddMessageInput!){
 export const UPDATE_MESSAGE = gql`
 mutation updateMessage($input: UpdateMessageInput!){
     updateMessage(input: $input){
+        botId
         content
         createdAt
         id
         private
         role
-        sessionId
         streaming
         updatedAt
         userId
@@ -686,20 +287,5 @@ mutation updateMessage($input: UpdateMessageInput!){
 export const REMOVE_MESSAGE_PAIR = gql`
 mutation removeMessagePair($input: RemoveMessagePairInput!){
     removeMessagePair(input: $input)
-}
-`;
-export const UPDATE_PROVIDER = gql`
-mutation updateProvider($input: UpdateProviderInput!){
-    updateProvider(input: $input){
-        accessToken
-        apiKey
-        authorizationCode
-        endpoint
-        id
-        isPlus
-        proxyHost
-        teamId
-        type
-    }
 }
 `;

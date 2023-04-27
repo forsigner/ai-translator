@@ -15,7 +15,7 @@ export const SessionProvider: FC<PropsWithChildren<useSessionProviderProps>> = (
   const { Provider } = sessionContext
 
   useEffect(() => {
-    storage.setToken(session.token)
+    if (session) storage.setToken(session.token)
   }, [session])
 
   return <Provider value={session}>{children}</Provider>

@@ -223,12 +223,18 @@ export class ChatAPI {
       const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)
 
       const deviceId = await getOrGenerateDeviceId()
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      }
+
+      if (this.opt.token) {
+        headers.Authorization = `Bearer ${this.opt.token}`
+      }
+
       const res = await fetch(url, {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify({
           content,
           deviceId,

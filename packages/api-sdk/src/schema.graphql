@@ -1,10 +1,25 @@
-"""添加成员"""
-input AddMemberInput {
-  """角色类型"""
-  roleType: RoleType!
+"""添加 Bot"""
+input AddBotInput {
+  """访问权限类型"""
+  accessType: BotAccessType
 
-  """Team ID"""
-  teamId: Int!
+  """"""
+  desc: String
+
+  """"""
+  isPromptVisible: Boolean
+
+  """该 Bot Name"""
+  name: String
+
+  """"""
+  paramsSchema: JSON
+
+  """"""
+  prompt: String
+
+  """"""
+  slug: String
 
   """用户ID"""
   userId: Int!
@@ -12,41 +27,20 @@ input AddMemberInput {
 
 """添加 Message"""
 input AddMessageInput {
+  """botId"""
+  botId: Int!
+
   """"""
   content: String!
 
   """"""
   role: String!
 
-  """sessionId"""
-  sessionId: Int!
-
   """用户ID"""
   userId: Int
 
   """"""
   userMessageId: Int
-}
-
-"""添加 Session"""
-input AddSessionInput {
-  """该 Session Name"""
-  name: String!
-
-  """teamId"""
-  teamId: Int!
-
-  """用户ID"""
-  userId: Int
-}
-
-"""添加 Team"""
-input AddTeamInput {
-  """该 Team Name"""
-  name: String!
-
-  """用户ID"""
-  userId: Int!
 }
 
 """添加 access token"""
@@ -56,6 +50,61 @@ input AddTokenInput {
 
   """type"""
   type: String
+}
+
+""""""
+type Bot {
+  """访问权限类型"""
+  accessType: BotAccessType
+  createdAt: DateTime
+
+  """"""
+  desc: String
+
+  """"""
+  id: Int!
+
+  """"""
+  isPromptVisible: Boolean
+
+  """Message"""
+  messages: [Message!]!
+
+  """"""
+  name: String!
+
+  """"""
+  paramsSchema: JSON
+
+  """"""
+  prompt: String
+
+  """"""
+  slug: String!
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""Bot权限类型"""
+enum BotAccessType {
+  Member
+  Private
+  Public
+}
+
+"""筛选条件"""
+input BotWhereInput {
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type BotsConnection {
+  hasNextPage: Boolean!
+  items: [Bot!]!
+  totalCount: Int!
 }
 
 """"""
@@ -83,6 +132,30 @@ type ChatSettings {
 }
 
 """创建"""
+input CreateBotInput {
+  """访问权限类型"""
+  accessType: BotAccessType
+
+  """"""
+  isPromptVisible: Boolean
+
+  """该 Bot Name"""
+  name: String
+
+  """"""
+  paramsSchema: JSON
+
+  """"""
+  prompt: String
+
+  """"""
+  slug: String!
+
+  """用户ID"""
+  userId: Int
+}
+
+"""创建"""
 input CreateInvoiceInput {
   dueDate: DateTime
   invoiceDate: DateTime
@@ -101,24 +174,15 @@ input CreateInvoiceInput {
 }
 
 """创建"""
-input CreateMemberInput {
-  """Team ID"""
-  teamId: Int!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
 input CreateMessageInput {
+  """botId"""
+  botId: Int!
+
   """"""
   content: String!
 
   """"""
   role: String!
-
-  """sessionId"""
-  sessionId: Int!
 
   """用户ID"""
   userId: Int
@@ -179,40 +243,10 @@ input CreatePlanInput {
   status: PlanStatus!
 
   """"""
-  teamId: Int!
-
-  """"""
   type: PlanType!
-}
-
-"""创建"""
-input CreateProviderInput {
-  """"""
-  accessToken: String
 
   """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-
-  """self host server endpoint"""
-  endpoint: String
-
-  """teamId"""
-  teamId: Int!
-
-  """"""
-  type: ProviderType!
-}
-
-"""创建"""
-input CreateProxyInput {
-  """"""
-  host: String
-
-  """"""
-  valid: Boolean
+  userId: Int!
 }
 
 """创建"""
@@ -232,45 +266,12 @@ input CreateRefundInput {
 }
 
 """创建"""
-input CreateSessionInput {
-  """访问权限类型"""
-  accessType: String
-
-  """该 Session Name"""
-  name: String!
-
-  """设置"""
-  settings: JSON
-
-  """"""
-  slug: String
-
-  """Team Id"""
-  teamId: Int
-
-  """用户ID"""
-  userId: Int
-}
-
-"""创建"""
 input CreateSettingInput {
   """"""
   activeSessionId: Int
 
   """"""
   activeTeamId: Int
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""创建"""
-input CreateTeamInput {
-  """该 Team Name"""
-  name: String!
-
-  """"""
-  slug: String
 
   """用户ID"""
   userId: Int!
@@ -289,6 +290,15 @@ input CreateTokenInput {
 
   """description"""
   value: String
+}
+
+"""创建"""
+input CreateUserBotInput {
+  """Bot ID"""
+  botId: Int!
+
+  """用户ID"""
+  userId: Int
 }
 
 """创建"""
@@ -311,15 +321,15 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
-"""删除成员"""
-input DeleteInvoiceInput {
+"""删除"""
+input DeleteBotInput {
   """ID"""
   id: Int!
 }
 
 """删除成员"""
-input DeleteMemberInput {
-  """member ID"""
+input DeleteInvoiceInput {
+  """ID"""
   id: Int!
 }
 
@@ -347,26 +357,8 @@ input DeletePlanInput {
   id: Int!
 }
 
-"""删除"""
-input DeleteProviderInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除"""
-input DeleteProxyInput {
-  """ID"""
-  id: Int!
-}
-
 """删除成员"""
 input DeleteRefundInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除"""
-input DeleteSessionInput {
   """ID"""
   id: Int!
 }
@@ -378,15 +370,15 @@ input DeleteSettingInput {
 }
 
 """删除"""
-input DeleteTeamInput {
-  """ID"""
-  id: Int!
-}
-
-"""删除"""
 input DeleteTokenInput {
   """ID"""
   id: Int
+}
+
+"""删除"""
+input DeleteUserBotInput {
+  """ID"""
+  id: Int!
 }
 
 """删除"""
@@ -400,12 +392,6 @@ input DeleteUserInput {
 """删除成员"""
 input DeleteWalletInput {
   """ID"""
-  id: Int!
-}
-
-"""退出团队"""
-input ExitMemberInput {
-  """member ID"""
   id: Int!
 }
 
@@ -467,46 +453,18 @@ input LoginByEmailInput {
 
 """登录成功返回给客户端的数据"""
 type LoginSuccessPayload {
-  siteName: String
+  plan: Plan!
   token: String!
   user: User!
   userId: Int!
   username: String
 }
 
-"""协作者"""
-type Member {
-  """"""
-  id: Int!
-
-  """角色类型"""
-  roleType: RoleType!
-
-  """Team ID"""
-  teamId: Int!
-
-  """User"""
-  user: User!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""筛选条件"""
-input MemberWhereInput {
-  """Team ID"""
-  teamId: Int!
-}
-
-"""connection"""
-type MembersConnection {
-  hasNextPage: Boolean!
-  items: [Member!]!
-  totalCount: Int!
-}
-
 """"""
 type Message {
+  """botId"""
+  botId: Int!
+
   """"""
   content: String!
   createdAt: DateTime
@@ -519,9 +477,6 @@ type Message {
 
   """"""
   role: String!
-
-  """sessionId"""
-  sessionId: Int!
 
   """streaming status"""
   streaming: Boolean
@@ -539,8 +494,8 @@ type Message {
 
 """筛选条件"""
 input MessageWhereInput {
-  """sessionId"""
-  sessionId: Int
+  """botId"""
+  botId: Int
 }
 
 """connection"""
@@ -548,15 +503,6 @@ type MessagesConnection {
   hasNextPage: Boolean!
   items: [Message!]!
   totalCount: Int!
-}
-
-"""修改成员角色类型"""
-input ModifyMemberRoleTypeInput {
-  """member ID"""
-  id: Int!
-
-  """角色类型"""
-  roleType: RoleType!
 }
 
 """修改秘密"""
@@ -569,26 +515,20 @@ input ModifyPasswordInput {
 }
 
 type Mutation {
-  """添加成员"""
-  addMember(input: AddMemberInput!): Member!
+  """新增机器人"""
+  addBot(input: AddBotInput!): Bot!
 
   """添加Message"""
   addMessage(input: AddMessageInput!): Message!
-
-  """添加Session"""
-  addSession(input: AddSessionInput!): Session!
-
-  """添加Team"""
-  addTeam(input: AddTeamInput!): Team!
 
   """新增Token"""
   addToken(input: AddTokenInput!): Token!
 
   """创建"""
-  createInvoice(input: CreateInvoiceInput!): Invoice!
+  createBot(input: CreateBotInput!): Bot!
 
   """创建"""
-  createMember(input: CreateMemberInput!): Member!
+  createInvoice(input: CreateInvoiceInput!): Invoice!
 
   """创建"""
   createMessage(input: CreateMessageInput!): Message!
@@ -603,22 +543,10 @@ type Mutation {
   createPlan(input: CreatePlanInput!): Plan!
 
   """创建"""
-  createProvider(input: CreateProviderInput!): Provider!
-
-  """创建"""
-  createProxy(input: CreateProxyInput!): Proxy!
-
-  """创建"""
   createRefund(input: CreateRefundInput!): Refund!
 
   """创建"""
-  createSession(input: CreateSessionInput!): Session!
-
-  """创建"""
   createSetting(input: CreateSettingInput!): Setting!
-
-  """创建"""
-  createTeam(input: CreateTeamInput!): Team!
 
   """创建"""
   createToken(input: CreateTokenInput!): Token!
@@ -627,16 +555,22 @@ type Mutation {
   createUser(input: CreateUserInput!): User!
 
   """创建"""
+  createUserBot(input: CreateUserBotInput!): UserBot!
+
+  """创建"""
   createWallet(input: CreateWalletInput!): Wallet!
+
+  """删除单个"""
+  deleteBot(input: DeleteBotInput!): Boolean!
 
   """删除单个"""
   deleteInvoice(input: DeleteInvoiceInput!): Boolean!
 
   """批量删除"""
-  deleteManyInvoices(input: DeleteInvoiceInput!): Float!
+  deleteManyBots(input: DeleteBotInput!): Float!
 
   """批量删除"""
-  deleteManyMembers(input: DeleteMemberInput!): Float!
+  deleteManyInvoices(input: DeleteInvoiceInput!): Float!
 
   """批量删除"""
   deleteManyMessages(input: DeleteMessageInput!): Float!
@@ -651,34 +585,22 @@ type Mutation {
   deleteManyPlans(input: DeletePlanInput!): Float!
 
   """批量删除"""
-  deleteManyProviders(input: DeleteProviderInput!): Float!
-
-  """批量删除"""
-  deleteManyProxys(input: DeleteProxyInput!): Float!
-
-  """批量删除"""
   deleteManyRefunds(input: DeleteRefundInput!): Float!
-
-  """批量删除"""
-  deleteManySessions(input: DeleteSessionInput!): Float!
 
   """批量删除"""
   deleteManySettings(input: DeleteSettingInput!): Float!
 
   """批量删除"""
-  deleteManyTeams(input: DeleteTeamInput!): Float!
+  deleteManyTokens(input: DeleteTokenInput!): Float!
 
   """批量删除"""
-  deleteManyTokens(input: DeleteTokenInput!): Float!
+  deleteManyUserBots(input: DeleteUserBotInput!): Float!
 
   """批量删除"""
   deleteManyUsers(input: DeleteUserInput!): Float!
 
   """批量删除"""
   deleteManyWallets(input: DeleteWalletInput!): Float!
-
-  """删除单个"""
-  deleteMember(input: DeleteMemberInput!): Boolean!
 
   """删除单个"""
   deleteMessage(input: DeleteMessageInput!): Boolean!
@@ -693,22 +615,10 @@ type Mutation {
   deletePlan(input: DeletePlanInput!): Boolean!
 
   """删除单个"""
-  deleteProvider(input: DeleteProviderInput!): Boolean!
-
-  """删除单个"""
-  deleteProxy(input: DeleteProxyInput!): Boolean!
-
-  """删除单个"""
   deleteRefund(input: DeleteRefundInput!): Boolean!
 
   """删除单个"""
-  deleteSession(input: DeleteSessionInput!): Boolean!
-
-  """删除单个"""
   deleteSetting(input: DeleteSettingInput!): Boolean!
-
-  """删除单个"""
-  deleteTeam(input: DeleteTeamInput!): Boolean!
 
   """删除单个"""
   deleteToken(input: DeleteTokenInput!): Boolean!
@@ -717,10 +627,10 @@ type Mutation {
   deleteUser(input: DeleteUserInput!): Boolean!
 
   """删除单个"""
-  deleteWallet(input: DeleteWalletInput!): Boolean!
+  deleteUserBot(input: DeleteUserBotInput!): Boolean!
 
-  """退出成员"""
-  exitMember(input: ExitMemberInput!): Boolean!
+  """删除单个"""
+  deleteWallet(input: DeleteWalletInput!): Boolean!
 
   """重置密码"""
   forgotPassword(input: ForgotPasswordInput!): Boolean!
@@ -737,29 +647,26 @@ type Mutation {
   """Login by personal token"""
   loginByPersonalToken(token: String!): LoginSuccessPayload!
 
-  """修改角色类型"""
-  modifyMemberRoleType(input: ModifyMemberRoleTypeInput!): Boolean!
-
   """修改密码"""
   modifyPassword(input: ModifyPasswordInput!): Boolean!
 
   """邮箱注册"""
   registerByEmail(input: RegisterByEmailInput!): Boolean!
 
-  """删除成员，只有管理员以上才能操作"""
-  removeMember(input: RemoveMemberInput!): Boolean!
-
   """删除一组对话"""
   removeMessagePair(input: RemoveMessagePairInput!): Boolean!
-
-  """删除Session"""
-  removeSession(input: RemoveSessionInput!): Boolean!
 
   """重置密码"""
   resetPassword(input: ResetPasswordInput!): Boolean!
 
   """"""
   sendTranslationMessage(input: SendTranslationMessageInput!): Boolean!
+
+  """更新单个"""
+  updateBot(input: UpdateBotInput!): Bot!
+
+  """"""
+  updateBotParams(input: UpdateBotParamsInput!): Boolean!
 
   """"""
   updateChatSettings(input: UpdateChatSettingsInput!): Boolean!
@@ -771,10 +678,10 @@ type Mutation {
   updateInvoice(input: UpdateInvoiceInput!): Invoice!
 
   """批量更新"""
-  updateManyInvoices(input: UpdateManyInvoiceInput!): Boolean!
+  updateManyBots(input: UpdateManyBotInput!): Boolean!
 
   """批量更新"""
-  updateManyMembers(input: UpdateManyMemberInput!): Boolean!
+  updateManyInvoices(input: UpdateManyInvoiceInput!): Boolean!
 
   """批量更新"""
   updateManyMessages(input: UpdateManyMessageInput!): Boolean!
@@ -789,34 +696,22 @@ type Mutation {
   updateManyPlans(input: UpdateManyPlanInput!): Boolean!
 
   """批量更新"""
-  updateManyProviders(input: UpdateManyProviderInput!): Boolean!
-
-  """批量更新"""
-  updateManyProxys(input: UpdateManyProxyInput!): Boolean!
-
-  """批量更新"""
   updateManyRefunds(input: UpdateManyRefundInput!): Boolean!
-
-  """批量更新"""
-  updateManySessions(input: UpdateManySessionInput!): Boolean!
 
   """批量更新"""
   updateManySettings(input: UpdateManySettingInput!): Boolean!
 
   """批量更新"""
-  updateManyTeams(input: UpdateManyTeamInput!): Boolean!
+  updateManyTokens(input: UpdateManyTokenInput!): Boolean!
 
   """批量更新"""
-  updateManyTokens(input: UpdateManyTokenInput!): Boolean!
+  updateManyUserBots(input: UpdateManyUserBotInput!): Boolean!
 
   """批量更新"""
   updateManyUsers(input: UpdateManyUserInput!): Boolean!
 
   """批量更新"""
   updateManyWallets(input: UpdateManyWalletInput!): Boolean!
-
-  """更新单个"""
-  updateMember(input: UpdateMemberInput!): Member!
 
   """更新单个"""
   updateMessage(input: UpdateMessageInput!): Message!
@@ -831,28 +726,19 @@ type Mutation {
   updatePlan(input: UpdatePlanInput!): Plan!
 
   """更新单个"""
-  updateProvider(input: UpdateProviderInput!): Provider!
-
-  """更新单个"""
-  updateProxy(input: UpdateProxyInput!): Proxy!
-
-  """更新单个"""
   updateRefund(input: UpdateRefundInput!): Refund!
 
   """更新单个"""
-  updateSession(input: UpdateSessionInput!): Session!
-
-  """更新单个"""
   updateSetting(input: UpdateSettingInput!): Setting!
-
-  """更新单个"""
-  updateTeam(input: UpdateTeamInput!): Team!
 
   """更新单个"""
   updateToken(input: UpdateTokenInput!): Token!
 
   """更新单个"""
   updateUser(input: UpdateUserInput!): User!
+
+  """更新单个"""
+  updateUserBot(input: UpdateUserBotInput!): UserBot!
 
   """"""
   updateVisit(input: UpdateVisitInput!): Boolean!
@@ -939,8 +825,6 @@ type PaymentsConnection {
 
 """"""
 type Plan {
-  createdAt: DateTime
-
   """"""
   id: Int!
 
@@ -954,11 +838,10 @@ type Plan {
   status: PlanStatus!
 
   """"""
-  teamId: Int!
+  type: PlanType!
 
   """"""
-  type: PlanType!
-  updatedAt: DateTime
+  userId: Int!
 }
 
 """Plan Interval"""
@@ -993,89 +876,39 @@ type PlansConnection {
   totalCount: Int!
 }
 
-""""""
-type Provider {
-  """"""
-  accessToken: String
-
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-
-  """self host server endpoint"""
-  endpoint: String
-
-  """"""
-  id: Int!
-
-  """"""
-  isPlus: Boolean!
-
-  """proxy Host"""
-  proxyHost: String
-
-  """teamId"""
-  teamId: Int!
-
-  """"""
-  type: ProviderType!
-}
-
-"""Provider 类型"""
-enum ProviderType {
-  AccessToken
-  ApiKey
-  ChatGptUnofficial
-  Official
-  SelfHosted
-}
-
-"""筛选条件"""
-input ProviderWhereInput {
-  """teamId"""
-  teamId: Int
-}
-
-"""connection"""
-type ProvidersConnection {
-  hasNextPage: Boolean!
-  items: [Provider!]!
-  totalCount: Int!
-}
-
-""""""
-type Proxy {
-  """"""
-  host: String
-
-  """"""
-  id: Int!
-
-  """"""
-  valid: Boolean
-}
-
-"""筛选条件"""
-input ProxyWhereInput {
-  """"""
-  id: Int!
-}
-
-"""connection"""
-type ProxysConnection {
-  hasNextPage: Boolean!
-  items: [Proxy!]!
-  totalCount: Int!
-}
-
 type Query {
-  """"""
-  activeProvider: Provider!
+  """获取单个"""
+  bot(id: Int, slug: String): Bot!
 
-  """"""
-  activeTeam: Team!
+  """获取列表"""
+  bots(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: BotWhereInput
+  ): [Bot!]!
+
+  """获取分页列表"""
+  botsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: BotWhereInput
+  ): BotsConnection!
 
   """Chat GPT settings"""
   chatSettings: ChatSettings!
@@ -1126,42 +959,6 @@ type Query {
   ): InvoicesConnection!
 
   """获取单个"""
-  member(
-    """ID"""
-    id: Int!
-  ): Member!
-
-  """获取列表"""
-  members(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: MemberWhereInput
-  ): [Member!]!
-
-  """获取分页列表"""
-  membersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: MemberWhereInput
-  ): MembersConnection!
-
-  """获取单个"""
   message(id: Int!): Message!
 
   """获取列表"""
@@ -1194,8 +991,8 @@ type Query {
     where: MessageWhereInput
   ): MessagesConnection!
 
-  """自己可以访问的 provider"""
-  myTeams: [Team!]!
+  """获取自己的机器人"""
+  myBots: [Bot!]!
 
   """获取单个"""
   order(
@@ -1305,71 +1102,8 @@ type Query {
     where: PlanWhereInput
   ): PlansConnection!
 
-  """获取单个"""
-  provider(id: Int!): Provider!
-
-  """获取列表"""
-  providers(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ProviderWhereInput
-  ): [Provider!]!
-
-  """获取分页列表"""
-  providersConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ProviderWhereInput
-  ): ProvidersConnection!
-
-  """获取单个"""
-  proxy(id: Int!): Proxy!
-
-  """获取列表"""
-  proxys(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ProxyWhereInput
-  ): [Proxy!]!
-
-  """获取分页列表"""
-  proxysConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: ProxyWhereInput
-  ): ProxysConnection!
+  """获取公开的的机器人"""
+  publicBots: [Bot!]!
 
   """获取单个"""
   refund(
@@ -1411,42 +1145,6 @@ type Query {
   searchUsers(q: String!): [User!]!
 
   """获取单个"""
-  session(id: Int!): Session!
-
-  """获取session"""
-  sessionBySlug(slug: String!): Session!
-
-  """获取列表"""
-  sessions(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: SessionWhereInput
-  ): [Session!]!
-
-  """获取分页列表"""
-  sessionsConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: SessionWhereInput
-  ): SessionsConnection!
-
-  """获取单个"""
   setting(
     """"""
     id: Int
@@ -1484,39 +1182,6 @@ type Query {
     """筛选条件"""
     where: SettingWhereInput
   ): SettingsConnection!
-
-  """获取单个"""
-  team(id: Int!): Team!
-
-  """获取列表"""
-  teams(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: TeamWhereInput
-  ): [Team!]!
-
-  """获取分页列表"""
-  teamsConnection(
-    """排序类型, 例如：id_ASC、id_DESC"""
-    orderBy: String
-
-    """跳过元素个数"""
-    skip: Int = 0
-
-    """take"""
-    take: Int = 20
-
-    """筛选条件"""
-    where: TeamWhereInput
-  ): TeamsConnection!
 
   """获取单个"""
   token(
@@ -1561,6 +1226,42 @@ type Query {
     nickname: String
     username: String
   ): User!
+
+  """获取单个"""
+  userBot(id: Int): UserBot!
+
+  """"""
+  userBotBySlug(botSlug: String!): UserBot!
+
+  """获取列表"""
+  userBots(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: UserBotWhereInput
+  ): [UserBot!]!
+
+  """获取分页列表"""
+  userBotsConnection(
+    """排序类型, 例如：id_ASC、id_DESC"""
+    orderBy: String
+
+    """跳过元素个数"""
+    skip: Int = 0
+
+    """take"""
+    take: Int = 20
+
+    """筛选条件"""
+    where: UserBotWhereInput
+  ): UserBotsConnection!
 
   """获取列表"""
   users(
@@ -1675,25 +1376,10 @@ input RegisterByEmailInput {
   password: String!
 }
 
-"""删除成员"""
-input RemoveMemberInput {
-  """member ID"""
-  id: Int!
-}
-
 """删除"""
 input RemoveMessagePairInput {
   """ID"""
   messageId: Int!
-}
-
-"""删除"""
-input RemoveSessionInput {
-  """ID"""
-  id: Int!
-
-  """teamId"""
-  teamId: Int!
 }
 
 """重置密码"""
@@ -1705,14 +1391,6 @@ input ResetPasswordInput {
   token: String!
 }
 
-"""角色类型"""
-enum RoleType {
-  Admin
-  Member
-  Owner
-  Reader
-}
-
 """创建"""
 input SendTranslationMessageInput {
   """"""
@@ -1720,58 +1398,6 @@ input SendTranslationMessageInput {
 
   """设备唯一ID"""
   deviceId: String!
-}
-
-""""""
-type Session {
-  """访问权限类型"""
-  accessType: SessionAccessType!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """Message"""
-  messages: [Message!]!
-
-  """"""
-  name: String!
-
-  """设置"""
-  settings: JSON
-
-  """"""
-  slug: String!
-
-  """teamId"""
-  teamId: Int!
-  updatedAt: DateTime
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""会话对话类型"""
-enum SessionAccessType {
-  Member
-  Private
-  Public
-}
-
-"""筛选条件"""
-input SessionWhereInput {
-  """teamId"""
-  teamId: Int
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type SessionsConnection {
-  hasNextPage: Boolean!
-  items: [Session!]!
-  totalCount: Int!
 }
 
 """"""
@@ -1819,51 +1445,6 @@ type Subscription {
   chatMessageSubscription(deviceId: String!): ChatMessage!
 }
 
-""""""
-type Team {
-  """"""
-  activeProviderId: Int!
-  createdAt: DateTime
-
-  """"""
-  id: Int!
-
-  """Member"""
-  members: [Member!]!
-
-  """"""
-  name: String!
-
-  """Plan"""
-  plan: Plan!
-
-  """Provider"""
-  providers: [Provider!]!
-
-  """"""
-  slug: String!
-  updatedAt: DateTime
-
-  """User"""
-  user: User!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""筛选条件"""
-input TeamWhereInput {
-  """用户ID"""
-  userId: Int!
-}
-
-"""connection"""
-type TeamsConnection {
-  hasNextPage: Boolean!
-  items: [Team!]!
-  totalCount: Int!
-}
-
 """personal token"""
 type Token {
   createdAt: DateTime
@@ -1902,6 +1483,57 @@ type TokensConnection {
   hasNextPage: Boolean!
   items: [Token!]!
   totalCount: Int!
+}
+
+"""更新data"""
+input UpdateBotDataInput {
+  """访问权限类型"""
+  accessType: BotAccessType
+
+  """"""
+  desc: String
+
+  """"""
+  isPromptVisible: Boolean
+
+  """该 Bot Name"""
+  name: String
+
+  """"""
+  paramsSchema: JSON
+
+  """"""
+  prompt: String
+
+  """"""
+  slug: String!
+
+  """用户ID"""
+  userId: Int
+}
+
+"""更新单个"""
+input UpdateBotInput {
+  """更新的数据"""
+  data: UpdateBotDataInput
+
+  """更新条件"""
+  where: UpdateBotWhereInput
+}
+
+""""""
+input UpdateBotParamsInput {
+  """Bot ID"""
+  botId: Int!
+
+  """"""
+  params: JSON
+}
+
+"""更新条件"""
+input UpdateBotWhereInput {
+  """ID"""
+  id: Int
 }
 
 """"""
@@ -1962,21 +1594,21 @@ input UpdateInvoiceWhereInput {
 }
 
 """批量更新"""
+input UpdateManyBotInput {
+  """更新的数据"""
+  data: UpdateBotDataInput
+
+  """更新条件"""
+  where: UpdateBotWhereInput
+}
+
+"""批量更新"""
 input UpdateManyInvoiceInput {
   """更新的数据"""
   data: UpdateInvoiceDataInput
 
   """更新条件"""
   where: UpdateInvoiceWhereInput
-}
-
-"""批量更新"""
-input UpdateManyMemberInput {
-  """更新的数据"""
-  data: UpdateMemberDataInput
-
-  """更新条件"""
-  where: UpdateMemberWhereInput
 }
 
 """批量更新"""
@@ -2016,39 +1648,12 @@ input UpdateManyPlanInput {
 }
 
 """批量更新"""
-input UpdateManyProviderInput {
-  """更新的数据"""
-  data: UpdateProviderDataInput
-
-  """更新条件"""
-  where: UpdateProviderWhereInput
-}
-
-"""批量更新"""
-input UpdateManyProxyInput {
-  """更新的数据"""
-  data: UpdateProxyDataInput
-
-  """更新条件"""
-  where: UpdateProxyWhereInput
-}
-
-"""批量更新"""
 input UpdateManyRefundInput {
   """更新的数据"""
   data: UpdateRefundDataInput
 
   """更新条件"""
   where: UpdateRefundWhereInput
-}
-
-"""批量更新"""
-input UpdateManySessionInput {
-  """更新的数据"""
-  data: UpdateSessionDataInput
-
-  """更新条件"""
-  where: UpdateSessionWhereInput
 }
 
 """批量更新"""
@@ -2061,21 +1666,21 @@ input UpdateManySettingInput {
 }
 
 """批量更新"""
-input UpdateManyTeamInput {
-  """更新的数据"""
-  data: UpdateTeamDataInput
-
-  """更新条件"""
-  where: UpdateTeamWhereInput
-}
-
-"""批量更新"""
 input UpdateManyTokenInput {
   """更新的数据"""
   data: UpdateTokenDataInput
 
   """更新条件"""
   where: UpdateTokenWhereInput
+}
+
+"""批量更新"""
+input UpdateManyUserBotInput {
+  """更新的数据"""
+  data: UpdateUserBotDataInput
+
+  """更新条件"""
+  where: UpdateUserBotWhereInput
 }
 
 """批量更新"""
@@ -2094,30 +1699,6 @@ input UpdateManyWalletInput {
 
   """更新条件"""
   where: UpdateWalletWhereInput
-}
-
-"""更新data"""
-input UpdateMemberDataInput {
-  """Team ID"""
-  teamId: Int!
-
-  """用户ID"""
-  userId: Int!
-}
-
-"""更新单个"""
-input UpdateMemberInput {
-  """更新的数据"""
-  data: UpdateMemberDataInput
-
-  """更新条件"""
-  where: UpdateMemberWhereInput
-}
-
-"""更新条件"""
-input UpdateMemberWhereInput {
-  """member ID"""
-  id: Int!
 }
 
 """更新data"""
@@ -2223,10 +1804,10 @@ input UpdatePlanDataInput {
   status: PlanStatus!
 
   """"""
-  teamId: Int!
+  type: PlanType!
 
   """"""
-  type: PlanType!
+  userId: Int!
 }
 
 """更新单个"""
@@ -2242,66 +1823,6 @@ input UpdatePlanInput {
 input UpdatePlanWhereInput {
   """ID"""
   id: Int!
-}
-
-"""更新data"""
-input UpdateProviderDataInput {
-  """"""
-  accessToken: String
-
-  """"""
-  active: Boolean
-
-  """"""
-  apiKey: String
-
-  """self host auth code"""
-  authorizationCode: String
-
-  """self host server endpoint"""
-  endpoint: String
-}
-
-"""更新单个"""
-input UpdateProviderInput {
-  """更新的数据"""
-  data: UpdateProviderDataInput
-
-  """更新条件"""
-  where: UpdateProviderWhereInput
-}
-
-"""更新条件"""
-input UpdateProviderWhereInput {
-  """ID"""
-  id: Int
-}
-
-"""更新data"""
-input UpdateProxyDataInput {
-  """"""
-  host: String
-
-  """"""
-  id: Int!
-
-  """"""
-  valid: Boolean
-}
-
-"""更新单个"""
-input UpdateProxyInput {
-  """更新的数据"""
-  data: UpdateProxyDataInput
-
-  """更新条件"""
-  where: UpdateProxyWhereInput
-}
-
-"""更新条件"""
-input UpdateProxyWhereInput {
-  """ID"""
-  id: Int
 }
 
 """更新data"""
@@ -2336,33 +1857,6 @@ input UpdateRefundWhereInput {
 }
 
 """更新data"""
-input UpdateSessionDataInput {
-  """访问权限类型"""
-  accessType: SessionAccessType
-
-  """该 Session Name"""
-  name: String
-
-  """设置"""
-  settings: JSON
-}
-
-"""更新单个"""
-input UpdateSessionInput {
-  """更新的数据"""
-  data: UpdateSessionDataInput
-
-  """更新条件"""
-  where: UpdateSessionWhereInput
-}
-
-"""更新条件"""
-input UpdateSessionWhereInput {
-  """ID"""
-  id: Int
-}
-
-"""更新data"""
 input UpdateSettingDataInput {
   """"""
   activeSessionId: Int
@@ -2387,33 +1881,6 @@ input UpdateSettingWhereInput {
 
   """用户ID"""
   userId: Int
-}
-
-"""更新data"""
-input UpdateTeamDataInput {
-  """"""
-  activeProviderId: Int
-
-  """该 Team Name"""
-  name: String
-
-  """"""
-  slug: String
-}
-
-"""更新单个"""
-input UpdateTeamInput {
-  """更新的数据"""
-  data: UpdateTeamDataInput
-
-  """更新条件"""
-  where: UpdateTeamWhereInput
-}
-
-"""更新条件"""
-input UpdateTeamWhereInput {
-  """ID"""
-  id: Int
 }
 
 """更新data"""
@@ -2442,6 +1909,30 @@ input UpdateTokenInput {
 
 """更新条件"""
 input UpdateTokenWhereInput {
+  """ID"""
+  id: Int
+}
+
+"""更新data"""
+input UpdateUserBotDataInput {
+  """Bot ID"""
+  botId: Int!
+
+  """用户ID"""
+  userId: Int
+}
+
+"""更新单个"""
+input UpdateUserBotInput {
+  """更新的数据"""
+  data: UpdateUserBotDataInput
+
+  """更新条件"""
+  where: UpdateUserBotWhereInput
+}
+
+"""更新条件"""
+input UpdateUserBotWhereInput {
   """ID"""
   id: Int
 }
@@ -2550,8 +2041,43 @@ type User {
   """手机"""
   phone: String
 
+  """Plan"""
+  plan: Plan!
+
   """用户名"""
   username: String!
+}
+
+""""""
+type UserBot {
+  bot: Bot!
+
+  """Bot ID"""
+  botId: Int!
+  createdAt: DateTime
+
+  """"""
+  id: Int!
+
+  """"""
+  params: JSON
+  updatedAt: DateTime
+
+  """用户ID"""
+  userId: Int!
+}
+
+"""筛选条件"""
+input UserBotWhereInput {
+  """用户ID"""
+  userId: Int!
+}
+
+"""connection"""
+type UserBotsConnection {
+  hasNextPage: Boolean!
+  items: [UserBot!]!
+  totalCount: Int!
 }
 
 """筛选条件"""
@@ -2599,7 +2125,7 @@ input WalletWhereInput {
   id: Int!
 
   """策略ID"""
-  teamId: Int!
+  userId: Int!
 }
 
 """connection"""

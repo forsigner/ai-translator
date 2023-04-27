@@ -1,7 +1,7 @@
 import { Result } from "stook-graphql";
 import { mutate } from "stook";
-import { CHAT_SETTINGS, MESSAGES, PROVIDERS, SESSIONS, VISIT } from "./gql";
-import { ChatSettings, Message, Provider, Session, Visit } from "./types";
+import { CHAT_SETTINGS, MESSAGES, VISIT } from "./gql";
+import { ChatSettings, Message, Visit } from "./types";
 
 class MutatorService {
   mutateChatSettings(fn: (state: ChatSettings) => void) {
@@ -12,18 +12,6 @@ class MutatorService {
 
   mutateMessages(fn: (state: Message[]) => void) {
     return mutate(MESSAGES, (state: Result<Message[]>) => {
-      fn(state.data)
-    })
-  }
-
-  mutateProviders(fn: (state: Provider[]) => void) {
-    return mutate(PROVIDERS, (state: Result<Provider[]>) => {
-      fn(state.data)
-    })
-  }
-
-  mutateSessions(fn: (state: Session[]) => void) {
-    return mutate(SESSIONS, (state: Result<Session[]>) => {
       fn(state.data)
     })
   }
