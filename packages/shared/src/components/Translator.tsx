@@ -4,7 +4,6 @@ import { Header } from './Header'
 import { SendMessageBox } from './SendMessageBox'
 // import { useSendMessage } from '@src/hooks/useSendMessage'
 import { CARD_HEIGHT, CARD_WIDTH } from '../common/constants'
-
 import { Footer } from './Footer'
 import { forwardRef, useEffect, useState } from 'react'
 import { TranslatorContent } from './TranslatorContent'
@@ -12,6 +11,7 @@ import { useMessage } from '../stores/message.store'
 import { useSendMessage } from '../hooks/useSendMessage'
 import { useBotContext } from '../bot'
 import { useDeviceId } from '../hooks/useDeviceId'
+import { detectLanguageCode } from '../utils/detectLanguage'
 
 interface Props extends FowerHTMLProps<'div'> {
   showSettings?: boolean
@@ -26,6 +26,10 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   const { content, streaming, isWordMode } = useMessage()
 
   const deviceId = useDeviceId()
+
+  useEffect(() => {
+    detectLanguageCode('love').then((code) => console.log('code:', code))
+  }, [])
 
   if (!deviceId) return null
 

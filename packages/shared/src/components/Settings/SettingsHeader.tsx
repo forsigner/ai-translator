@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { IconLogo } from '../IconLogo'
+import { IconLogo } from '../../icons/IconLogo'
 import { Button } from 'bone-ui'
 import { useSettingsVisible } from '../../stores/settings.store'
 import { HEADER_HEIGHT, isExtension } from '../../common'

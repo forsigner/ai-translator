@@ -1,11 +1,11 @@
 import { Box } from '@fower/react'
 import { BotSlugs, HEADER_HEIGHT } from '../common/constants'
 import { SettingsButton } from './SettingsButton'
-// import { BotSelect } from './BotSelect'
-import { IconLogoLight } from './IconLogoLight'
 import { CodeFromTo } from './code-translator/CodeFromTo'
 import { TranslatorLangSelect } from './TranslatorLangSelect'
 import { useBot } from '../bot'
+import { IconLogo } from '../icons'
+import { IconLogoLight } from '../icons/IconLogoLight'
 
 interface Props {
   showSettings: boolean
@@ -27,7 +27,7 @@ export function Header({ showSettings }: Props) {
         <Box bgBrand500 square7 rounded2XL toCenter>
           <IconLogoLight
             size={24}
-            white
+            black
             onClick={(e) => {
               e.stopPropagation()
             }}

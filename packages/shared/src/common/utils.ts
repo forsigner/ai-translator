@@ -3,7 +3,6 @@ import reactFastCompare from 'react-fast-compare'
 import { FieldNode } from 'fomir'
 import { toast } from 'bone-ui'
 import { ONE_DAY, ONE_HOUR, ONE_MINUTE, ONE_SECOND } from './constants'
-import { Provider, ProviderType, Team } from '@langpt/api-sdk'
 
 export const isServer = typeof window === 'undefined'
 
@@ -112,21 +111,4 @@ export function formatFieldNodes(nodes: (FieldNode & { children?: FieldNode[] })
       return node
     }
   })
-}
-
-export function getStreamingKey(provider: Provider) {
-  let id: string = ''
-  if (provider.type === ProviderType.ApiKey) {
-    id = provider.apiKey!
-  }
-
-  if (provider.type === ProviderType.SelfHosted) {
-    id = provider.endpoint!
-  }
-
-  if (provider.type === ProviderType.Official) {
-    // TODO:
-  }
-
-  return `streaming_key_${id}`
 }

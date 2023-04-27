@@ -13,7 +13,6 @@
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
     "@fower/react": "^1.76.0",
-    "@monaco-editor/react": "^4.4.6",
     "@langpt/api-sdk": "*",
     "@langpt/shared": "*",
     "bone-ui": "^0.34.1",

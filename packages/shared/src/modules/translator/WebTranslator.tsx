@@ -5,6 +5,7 @@ import { BotProvider, useBotContext } from '../../bot'
 import { useSendMessage } from '../../hooks/useSendMessage'
 import { TranslatorContent } from '../../components'
 import { useMessage } from '../../stores/message.store'
+import { useEffect } from 'react'
 
 export function WebTranslator() {
   const { t } = useTranslation('home')
@@ -16,7 +17,7 @@ export function WebTranslator() {
     <BotProvider>
       <Box column mb-80 minH-70vh toCenterY maxW-640 mx-auto>
         <Box toCenter text4XL fontBold mb5 columnGap-8>
-          <Box inlineFlex bgYellow200 px2 black--dark bgYellow200--dark>
+          <Box inlineFlex bgBrand100 py1 px2 black--dark bgYellow200--dark>
             Langpt
           </Box>
           <Box>AI</Box>

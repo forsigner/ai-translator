@@ -2,11 +2,11 @@ import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { getBot, useBotContext } from '../bot'
 import { Box } from '@fower/react'
-import { IconSpeaker } from './IconSpeaker'
-import { IconStop } from './IconStop'
 import { usePlaying } from '../bot/hooks/usePlaying'
 import { useText } from '../stores/text.store'
 import { useMessage } from '../stores/message.store'
+import { IconStop } from '../icons/IconStop'
+import { IconSpeaker } from '../icons/IconSpeaker'
 
 interface Props {
   onSendMessage(value: string): Promise<any>

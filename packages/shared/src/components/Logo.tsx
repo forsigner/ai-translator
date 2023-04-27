@@ -1,9 +1,9 @@
 import { Box } from '@fower/react'
-import { IconLogo } from './IconLogo'
+import { IconLogo } from '../icons/IconLogo'
 
 export const Logo = () => {
   return (
-    <Box bgYellow200 bgYellow200--dark square8 roundedFull toCenter>
+    <Box bgBrand100 bgYellow200--dark square8 roundedFull toCenter>
       <IconLogo />
     </Box>
   )
