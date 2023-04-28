@@ -6,7 +6,7 @@ import { IconGoogle } from '../../icons/IconGoogle'
 import { githubAuthUrl, googleAuthUrl, isProd } from '../../common'
 
 export function ThirdPartyLogin() {
-  const { t } = useTranslation('home')
+  const { t } = useTranslation('common')
 
   return (
     <Button

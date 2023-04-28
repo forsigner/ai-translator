@@ -9,7 +9,7 @@ import { LocaleSelect } from '../../components/LocaleSelect'
 import { ModeToggle } from '../../components/ModeToggle'
 
 export function DesktopHome() {
-  const { t } = useTranslation('home')
+  const { t } = useTranslation('common')
   const [token, setToken] = useState('')
   const { login } = useLoginByToken()
 
@@ -24,13 +24,7 @@ export function DesktopHome() {
       </Box>
       <Box toCenter column mb-80 minH-70vh>
         <Box fontBold text3XL mb6>
-          Login to OwnChat
-        </Box>
-
-        <Box column toCenterX rowGap-8 mb4>
-          <Box gray600 textXL w-60p textCenter>
-            {t('desktop-login-tips')}
-          </Box>
+          Login to Langpt
         </Box>
 
         <Box column rowGap-12 mb4 toCenter w-360 mt8>

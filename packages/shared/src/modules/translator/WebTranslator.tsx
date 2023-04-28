@@ -8,7 +8,6 @@ import { useMessage } from '../../stores/message.store'
 import { useEffect } from 'react'
 
 export function WebTranslator() {
-  const { t } = useTranslation('home')
   const bot = useBotContext()
   const sendMessage = useSendMessage()
   const { content, streaming, isWordMode } = useMessage()

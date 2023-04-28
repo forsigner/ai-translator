@@ -1,4 +1,7 @@
 {
+  "home": "首页",
+  "feedback": "反馈",
+  "github": "GitHub",
   "openai-api-key": "OpenAI API Key",
   "get-api-key": "Get API Key",
   "token-provider": "Token 消耗方式",

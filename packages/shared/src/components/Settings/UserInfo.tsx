@@ -30,7 +30,7 @@ export function UserInfo() {
           Not logged in
         </Box>
         <Box textBase gray500>
-          <Button roundedFull size={28} variant="light">
+          <Button as="a" roundedFull size={28} variant="light">
             Login to Langpt
           </Button>
         </Box>
