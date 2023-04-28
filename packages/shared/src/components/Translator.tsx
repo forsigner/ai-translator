@@ -11,7 +11,6 @@ import { useMessage } from '../stores/message.store'
 import { useSendMessage } from '../hooks/useSendMessage'
 import { useBotContext } from '../bot'
 import { useDeviceId } from '../hooks/useDeviceId'
-import { detectLanguageCode } from '../utils/detectLanguage'
 
 interface Props extends FowerHTMLProps<'div'> {
   showSettings?: boolean
@@ -26,10 +25,6 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   const { content, streaming, isWordMode } = useMessage()
 
   const deviceId = useDeviceId()
-
-  useEffect(() => {
-    detectLanguageCode('love').then((code) => console.log('code:', code))
-  }, [])
 
   if (!deviceId) return null
 
