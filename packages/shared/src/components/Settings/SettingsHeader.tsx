@@ -3,12 +3,14 @@ import { IconLogo } from '../../icons/IconLogo'
 import { Button } from 'bone-ui'
 import { useSettingsVisible } from '../../stores/settings.store'
 import { HEADER_HEIGHT, isExtension } from '../../common'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   title?: string
 }
 
 export function SettingsHeader({ title }: Props) {
+  const { t } = useTranslation('common')
   const { setVisible } = useSettingsVisible()
   return (
     <Box
@@ -41,7 +43,7 @@ export function SettingsHeader({ title }: Props) {
             setVisible(false)
           }}
         >
-          返回
+          {t('back')}
         </Button>
       )}
     </Box>

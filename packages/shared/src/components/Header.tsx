@@ -23,7 +23,7 @@ export function Header({ showSettings }: Props) {
       px4
       h={HEADER_HEIGHT}
     >
-      <Box toCenterY toBetween columnGap-4>
+      <Box toCenterY toBetween columnGap-8>
         <Box bgBrand500 square7 rounded2XL toCenter>
           <IconLogoLight
             size={24}
@@ -32,6 +32,9 @@ export function Header({ showSettings }: Props) {
               e.stopPropagation()
             }}
           />
+        </Box>
+        <Box textLG fontSemibold>
+          Langpt
         </Box>
         {/* <BotSelect /> */}
       </Box>

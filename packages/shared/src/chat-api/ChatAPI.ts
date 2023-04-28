@@ -23,9 +23,10 @@ interface SendMessageOptions {
 
 export class ChatAPI {
   completionParams = {
-    temperature: 0.8,
-    top_p: 1.0,
-    presence_penalty: 1.0,
+    temperature: 0,
+    top_p: 1,
+    frequency_penalty: 1,
+    presence_penalty: 1,
     model: 'gpt-3.5-turbo',
   }
 

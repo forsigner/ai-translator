@@ -24,8 +24,6 @@ export class Bot {
 
   isWord = false
 
-  selectedWord = ''
-
   constructor() {
     this.init(this._bots[0])
   }

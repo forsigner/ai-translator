@@ -12,6 +12,7 @@ import {
 } from 'bone-ui'
 import { CARD_HEIGHT, HEADER_HEIGHT } from '../common/constants'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface Option {
   label: string
@@ -31,6 +32,7 @@ export function Select({
   options,
   containerHeight = CARD_HEIGHT - HEADER_HEIGHT - 10,
 }: SelectProps) {
+  const { t } = useTranslation('common')
   const selected = options.find((item) => item.value == value)
   const [searchedValue, setSearchedValue] = useState('')
 
@@ -60,7 +62,7 @@ export function Select({
                 </InputElement>
                 <Input
                   borderNone
-                  placeholder="Search..."
+                  placeholder={t('search')}
                   variant="unstyled"
                   value={searchedValue}
                   onChange={(e) => setSearchedValue(e.target.value)}

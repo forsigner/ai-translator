@@ -1,11 +1,11 @@
 {
   "openai-api-key": "OpenAI API Key",
   "get-api-key": "Get API Key",
-  "back": "Back",
+  "back": "戻る",
   "token-provider": "Token provider",
-  "theme": "Theme",
-  "language": "Language",
-  "free": "Free",
+  "theme": "テーマ",
+  "language": "言語",
+  "free": "フリー",
   "api-key": "API Key",
-  "search": "Search"
+  "search": "検索"
 }

@@ -1,30 +1,31 @@
 import i18n from 'i18next'
+import Backend from 'i18next-http-backend'
+import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
-import common from '../locales/en/common.json'
-import home from '../locales/en/home.json'
-import cn_common from '../locales/zh-CN/common.json'
-import cn_home from '../locales/zh-CN/home.json'
+import en from '../locales/en/common.json'
+import ja from '../locales/ja/common.json'
+import zhHans from '../locales/zh-CN/common.json'
 
 export function initI18n() {
-  const lng = 'en'
-  i18n.use(initReactI18next).init({
-    resources: {
-      en: {
-        common,
-        home,
+  i18n
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      resources: {
+        'zh-CN': {
+          common: zhHans,
+        },
+        en: {
+          common: en,
+        },
+        ja: {
+          common: ja,
+        },
       },
-      'zh-CN': {
-        common: cn_common,
-        home: cn_home,
+      fallbackLng: 'en',
+      interpolation: {
+        escapeValue: false,
       },
-    },
-    // lng: 'zh-CN',
-    // lng,
-    fallbackLng: 'en',
-
-    interpolation: {
-      escapeValue: false,
-    },
-  })
+    })
 }
-

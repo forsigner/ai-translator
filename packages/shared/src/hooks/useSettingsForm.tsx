@@ -6,16 +6,20 @@ import { useEffect } from 'react'
 import { useSettings } from '../stores/settings.store'
 import { Settings } from '../services/storage'
 import { isExtension } from '../common'
+import { useTranslation } from 'react-i18next'
+import { useLang } from './useLang'
 
 export function useSettingsForm() {
   const { setMode } = useMode()
+  const { setLang } = useLang()
   const { settings, setSettings } = useSettings()
+  const { t } = useTranslation('common')
 
   const nodes: Node[] = [
     {
       label: (
         <Box toCenterY spaceX2>
-          <Box>OpenAI API Key</Box>
+          <Box>{t('openai-api-key')}</Box>
           <Button
             as="a"
             px2
@@ -25,7 +29,7 @@ export function useSettingsForm() {
             href="https://platform.openai.com/account/api-keys"
             target="_blank"
           >
-            Get API Key
+            {t('get-api-key')}
           </Button>
         </Box>
       ),
@@ -38,12 +42,12 @@ export function useSettingsForm() {
       },
     },
     {
-      label: 'Token 消耗方式',
+      label: t('token-provider'),
       component: 'Select',
       name: 'tokenProvider',
       options: [
-        { label: '免费 Token', value: 'Free' },
-        { label: 'API Key Token', value: 'ApiKey' },
+        { label: t('free'), value: 'Free' },
+        { label: t('api-key'), value: 'ApiKey' },
       ],
       value: settings.tokenProvider,
     },
@@ -51,7 +55,7 @@ export function useSettingsForm() {
 
   if (isExtension) {
     nodes.push({
-      label: '主题',
+      label: t('theme'),
       name: 'theme',
       component: 'Select',
       options: [
@@ -63,13 +67,14 @@ export function useSettingsForm() {
       componentProps: {},
     })
     nodes.push({
-      label: '语言',
+      label: t('language'),
       name: 'lang',
       component: 'Select',
 
       options: [
         { label: 'English', value: 'en' },
         { label: '简体中文', value: 'zh-CN' },
+        { label: 'Japanese', value: 'ja' },
       ],
       value: settings.lang || '',
     })
@@ -84,7 +89,15 @@ export function useSettingsForm() {
 
       'theme.value': (val) => {
         const theme = val as any as string
+        if (!theme) return
+        console.log('theme:', theme)
         setMode(theme)
+      },
+
+      'lang.value': (val) => {
+        const lang = val as any as string
+        if (!lang) return
+        setLang(lang)
       },
     },
     async onSubmit(values) {
