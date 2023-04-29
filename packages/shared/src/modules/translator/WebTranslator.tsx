@@ -5,7 +5,7 @@ import { BotProvider, useBotContext } from '../../bot'
 import { useSendMessage } from '../../hooks/useSendMessage'
 import { TranslatorContent } from '../../components'
 import { useMessage } from '../../stores/message.store'
-import { Stripe } from '../stripe/Stripe'
+import { apiService } from '@langpt/api-sdk'
 
 export function WebTranslator() {
   const bot = useBotContext()

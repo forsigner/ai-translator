@@ -33,6 +33,9 @@ const gqlConfig: ConfigItem[] = [
   { name: 'addMessage', actions: ['query'] },
   { name: 'updateMessage', actions: ['query'] },
   { name: 'removeMessagePair', actions: ['query'] },
+
+  { name: 'initStripeCustomerId', actions: ['query'] },
+  { name: 'modifyPlan', actions: ['query'] },
 ]
 
 const dirName = 'src'

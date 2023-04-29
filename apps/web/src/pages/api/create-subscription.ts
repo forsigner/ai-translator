@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from 'stripe'
-import { CURRENCY, MIN_AMOUNT, MAX_AMOUNT } from '../config'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
@@ -13,14 +12,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).end('Method Not Allowed')
   }
 
-  console.log('req.body.priceId:', req.body.priceId)
-  const { priceId } = req.body
+  const { priceId, userId, email } = req.body
+  console.log('body--------:', req.body)
+
   const DOMAIN = req.headers.origin
 
   try {
     const session = await stripe.checkout.sessions.create({
-      client_reference_id: 'user_001',
-      customer_email: 'leen-c@gmail.com',
+      client_reference_id: userId,
+      customer_email: email,
       billing_address_collection: 'auto',
       line_items: [
         {

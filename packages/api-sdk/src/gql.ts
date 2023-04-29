@@ -289,3 +289,13 @@ mutation removeMessagePair($input: RemoveMessagePairInput!){
     removeMessagePair(input: $input)
 }
 `;
+export const INIT_STRIPE_CUSTOMER_ID = gql`
+mutation initStripeCustomerId($input: InitStripeCustomerIdInput!){
+    initStripeCustomerId(input: $input)
+}
+`;
+export const MODIFY_PLAN = gql`
+mutation modifyPlan($input: ModifyPlanInput!){
+    modifyPlan(input: $input)
+}
+`;

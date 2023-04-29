@@ -298,6 +298,10 @@ export type ForgotPasswordInput = {
   email: Scalars['String'];
 };
 
+export type InitStripeCustomerIdInput = {
+  customerId: Scalars['String'];
+};
+
 export type Invoice = {
   __typename?: 'Invoice';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -384,6 +388,14 @@ export type ModifyPasswordInput = {
   oldPassword: Scalars['String'];
 };
 
+export type ModifyPlanInput = {
+  interval?: InputMaybe<PlanInterval>;
+  price?: InputMaybe<Scalars['Float']>;
+  status: PlanStatus;
+  type: PlanType;
+  userId: Scalars['Int'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** 新增机器人 */
@@ -466,6 +478,7 @@ export type Mutation = {
   deleteWallet: Scalars['Boolean'];
   /** 重置密码 */
   forgotPassword: Scalars['Boolean'];
+  initStripeCustomerId: Scalars['Boolean'];
   /** 邮箱登录 */
   loginByEmail: LoginSuccessPayload;
   /** 使用 GitHub 登录 */
@@ -476,6 +489,7 @@ export type Mutation = {
   loginByPersonalToken: LoginSuccessPayload;
   /** 修改密码 */
   modifyPassword: Scalars['Boolean'];
+  modifyPlan: Scalars['Boolean'];
   /** 邮箱注册 */
   registerByEmail: Scalars['Boolean'];
   /** 删除一组对话 */
@@ -739,6 +753,11 @@ export type MutationForgotPasswordArgs = {
 };
 
 
+export type MutationInitStripeCustomerIdArgs = {
+  input: InitStripeCustomerIdInput;
+};
+
+
 export type MutationLoginByEmailArgs = {
   input: LoginByEmailInput;
 };
@@ -761,6 +780,11 @@ export type MutationLoginByPersonalTokenArgs = {
 
 export type MutationModifyPasswordArgs = {
   input: ModifyPasswordInput;
+};
+
+
+export type MutationModifyPlanArgs = {
+  input: ModifyPlanInput;
 };
 
 

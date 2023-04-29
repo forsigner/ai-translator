@@ -1,9 +1,10 @@
 import { Box } from '@fower/react'
 import { PlanList } from './PlanList'
-import { createSubscription } from './createSubscription'
 import getStripe from './get-stripejs'
+import { useCreateSubscription } from './useCreateSubscription'
 
 export function Plan() {
+  const { createSubscription } = useCreateSubscription()
   async function handleUpgrade(priceId = '') {
     const session = await createSubscription(priceId)
     const stripe = await getStripe()
