@@ -13,7 +13,7 @@ Langpt is an AI-powered translation tool that supports multiple languages for fa
 ## Features
 
 - Accurate and efficient translation between multiple languages.
-- Support for a variety of languages
+- Support for a variety of languages.
 - Automatic language detection during translation.
 - Speech translation.
 - Text-to-speech.

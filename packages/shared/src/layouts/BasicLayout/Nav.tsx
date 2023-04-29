@@ -14,7 +14,7 @@ export const Nav = () => {
   const navData: NavItem[] = [
     // { text: t('docs'), to: 'https://boter.app/docs/intro', isExternal: true },
     { text: t('home'), to: '/' },
-    // { text: t('pricing'), to: 'pricing' },
+    { text: t('pricing'), to: '/pricing' },
     // { text: t('about'), to: 'about' },
     {
       text: t('feedback'),
