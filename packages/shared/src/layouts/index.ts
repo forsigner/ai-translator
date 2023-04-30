@@ -1,2 +1,2 @@
 export * from './BasicLayout'
-export * from './ChatLayout'
+export * from './DashboardLayout'

@@ -27,6 +27,12 @@ export const googleAuthUrl =
 
 export const LOGIN_SUCCESS_REDIRECT_URL = '/'
 
+export enum Paths {
+  BILLING = '/dashboard/billing',
+  PROFILE = '/dashboard/profile',
+  TRANSLATION = '/dashboard/translation',
+}
+
 export const NAV_HEIGHT = 56
 export const SIDEBAR_WIDTH = 260
 export const CHAT_WIDTH = 720

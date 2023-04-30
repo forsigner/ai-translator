@@ -19,5 +19,10 @@
   "language": "Language",
   "free": "Free",
   "api-key": "API Key",
-  "search": "Search"
+  "search": "Search",
+  "dashboard": "Dashboard",
+  "upgrade": "Search",
+  "billing": "Subscription",
+  "profile": "Profile",
+  "translation": "My translation"
 }

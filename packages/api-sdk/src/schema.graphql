@@ -404,6 +404,9 @@ input ForgotPasswordInput {
 input InitStripeCustomerIdInput {
   """"""
   customerId: String!
+
+  """邮箱"""
+  email: String
 }
 
 """"""
@@ -520,20 +523,21 @@ input ModifyPasswordInput {
 }
 
 input ModifyPlanInput {
+  cancelAt: DateTime
+  currentPeriodEnd: DateTime
+  currentPeriodStart: DateTime
+
+  """"""
+  customerId: String!
+
   """"""
   interval: PlanInterval
 
   """"""
-  price: Float
+  priceId: String!
 
   """"""
-  status: PlanStatus!
-
-  """"""
-  type: PlanType!
-
-  """"""
-  userId: Int!
+  subscriptionId: String!
 }
 
 type Mutation {
@@ -853,6 +857,13 @@ type PaymentsConnection {
 
 """"""
 type Plan {
+  cancelAt: DateTime
+  currentPeriodEnd: DateTime
+  currentPeriodStart: DateTime
+
+  """"""
+  customerId: String!
+
   """"""
   id: Int!
 
@@ -863,7 +874,13 @@ type Plan {
   price: Float
 
   """"""
+  priceId: String!
+
+  """"""
   status: PlanStatus!
+
+  """"""
+  subscriptionId: String!
 
   """"""
   type: PlanType!
@@ -874,8 +891,10 @@ type Plan {
 
 """Plan Interval"""
 enum PlanInterval {
-  Monthly
-  Yearly
+  day
+  month
+  week
+  year
 }
 
 """plan status"""

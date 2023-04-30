@@ -8,6 +8,7 @@ import { useLogout } from '../hooks/useLogout'
 import { useMounted } from '../hooks/useMounted'
 import { DrawerProfile } from './DrawerProfile'
 import { useSessionContext } from '../hooks'
+import { useRouter } from 'next/router'
 
 interface Props {}
 
@@ -15,6 +16,7 @@ export const UserAvatarPopover: FC<Props> = () => {
   const { t } = useTranslation('common')
   const { mounted } = useMounted()
   // const { user } = useUser()
+  const { push } = useRouter()
   const { logout } = useLogout()
   const { user } = useSessionContext()
 
@@ -46,11 +48,12 @@ export const UserAvatarPopover: FC<Props> = () => {
             </Box>
             <MenuItem
               onClick={() => {
-                EasyModal.show(DrawerProfile)
+                // EasyModal.show(DrawerProfile)
+                push('/dashboard/billing')
                 close()
               }}
             >
-              {t('settings')}
+              {t('dashboard')}
             </MenuItem>
             {/* <MenuItem onClick={onLogout}>{t('personal-token')}</MenuItem> */}
             <MenuItem onClick={onLogout}>{t('logout')}</MenuItem>

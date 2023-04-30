@@ -2,7 +2,8 @@ import { buffer } from 'micro'
 import Cors from 'micro-cors'
 import Stripe from 'stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { handleChargeSucceeded } from '../../stripe/handleChargeSucceeded'
+import { handleChargeSucceeded } from '../../../stripe/handleChargeSucceeded'
+import { handleSubscriptionCreated } from '../../../stripe/handleSubscriptionCreated'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
@@ -23,11 +24,6 @@ const cors = Cors({
 })
 
 const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST')
-    res.status(405).end('Method Not Allowed')
-  }
-
   const buf = await buffer(req)
   const sig = req.headers['stripe-signature']!
 
@@ -68,9 +64,8 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const charge = event.data.object as Stripe.Charge
     handleChargeSucceeded(charge)
   } else if (event.type === 'customer.subscription.created') {
-    //
     const subscription = event.data.object as Stripe.Subscription
-    console.log('创建订阅.........:', JSON.stringify(event.data, null, 2))
+    handleSubscriptionCreated(subscription)
   } else if (event.type === 'customer.subscription.updated') {
     //
     console.log('更新订阅.........:', event.data.object)
@@ -80,7 +75,10 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const subscription = event.data.object as Stripe.Subscription
     subscription.collection_method
   } else {
-    console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`)
+    console.warn(
+      `🤷‍♀️ Unhandled event type: ${event.type}`,
+      JSON.stringify(event.data.object, null, 2),
+    )
   }
 
   // Return a response to acknowledge receipt of the event.

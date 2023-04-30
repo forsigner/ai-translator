@@ -42,10 +42,16 @@ query searchUsers($q: String!){
         nickname
         phone
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -93,10 +99,16 @@ export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -124,10 +136,16 @@ export const LOGIN_BY_GOOGLE = gql`
 mutation loginByGoogle($code: String!){
     loginByGoogle(code: $code){
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -155,10 +173,16 @@ export const LOGIN_BY_PERSONAL_TOKEN = gql`
 mutation loginByPersonalToken($token: String!){
     loginByPersonalToken(token: $token){
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -229,10 +253,16 @@ mutation updateUser($input: UpdateUserInput!){
         nickname
         phone
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }

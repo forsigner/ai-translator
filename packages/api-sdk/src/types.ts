@@ -300,6 +300,8 @@ export type ForgotPasswordInput = {
 
 export type InitStripeCustomerIdInput = {
   customerId: Scalars['String'];
+  /** 邮箱 */
+  email?: InputMaybe<Scalars['String']>;
 };
 
 export type Invoice = {
@@ -389,11 +391,13 @@ export type ModifyPasswordInput = {
 };
 
 export type ModifyPlanInput = {
+  cancelAt?: InputMaybe<Scalars['DateTime']>;
+  currentPeriodEnd?: InputMaybe<Scalars['DateTime']>;
+  currentPeriodStart?: InputMaybe<Scalars['DateTime']>;
+  customerId: Scalars['String'];
   interval?: InputMaybe<PlanInterval>;
-  price?: InputMaybe<Scalars['Float']>;
-  status: PlanStatus;
-  type: PlanType;
-  userId: Scalars['Int'];
+  priceId: Scalars['String'];
+  subscriptionId: Scalars['String'];
 };
 
 export type Mutation = {
@@ -1005,18 +1009,26 @@ export type PaymentsConnection = {
 
 export type Plan = {
   __typename?: 'Plan';
+  cancelAt?: Maybe<Scalars['DateTime']>;
+  currentPeriodEnd?: Maybe<Scalars['DateTime']>;
+  currentPeriodStart?: Maybe<Scalars['DateTime']>;
+  customerId: Scalars['String'];
   id: Scalars['Int'];
   interval?: Maybe<PlanInterval>;
   price?: Maybe<Scalars['Float']>;
+  priceId: Scalars['String'];
   status: PlanStatus;
+  subscriptionId: Scalars['String'];
   type: PlanType;
   userId: Scalars['Int'];
 };
 
 /** Plan Interval */
 export enum PlanInterval {
-  Monthly = 'Monthly',
-  Yearly = 'Yearly'
+  Day = 'day',
+  Month = 'month',
+  Week = 'week',
+  Year = 'year'
 }
 
 /** plan status */

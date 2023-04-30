@@ -7,12 +7,14 @@ export async function handleChargeSucceeded(charge: Stripe.Charge) {
   try {
     const customerId = charge?.customer
     if (customerId) {
-      // const data: any = await graphqlClient.query(INIT_STRIPE_CUSTOMER_ID, {
-      //   code,
-      // })
+      await graphqlClient.query(INIT_STRIPE_CUSTOMER_ID, {
+        input: {
+          customerId: charge.customer,
+          email: charge.billing_details.email,
+        },
+      })
     }
   } catch (error) {
-    //
+    console.log('error==========:', error)
   }
-  //
 }
