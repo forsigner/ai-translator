@@ -42,16 +42,10 @@ query searchUsers($q: String!){
         nickname
         phone
         plan{
-            cancelAt
-            currentPeriodEnd
-            currentPeriodStart
-            customerId
             id
             interval
             price
-            priceId
             status
-            subscriptionId
             type
             userId
         }
@@ -99,16 +93,10 @@ export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
         plan{
-            cancelAt
-            currentPeriodEnd
-            currentPeriodStart
-            customerId
             id
             interval
             price
-            priceId
             status
-            subscriptionId
             type
             userId
         }
@@ -136,16 +124,10 @@ export const LOGIN_BY_GOOGLE = gql`
 mutation loginByGoogle($code: String!){
     loginByGoogle(code: $code){
         plan{
-            cancelAt
-            currentPeriodEnd
-            currentPeriodStart
-            customerId
             id
             interval
             price
-            priceId
             status
-            subscriptionId
             type
             userId
         }
@@ -173,16 +155,10 @@ export const LOGIN_BY_PERSONAL_TOKEN = gql`
 mutation loginByPersonalToken($token: String!){
     loginByPersonalToken(token: $token){
         plan{
-            cancelAt
-            currentPeriodEnd
-            currentPeriodStart
-            customerId
             id
             interval
             price
-            priceId
             status
-            subscriptionId
             type
             userId
         }
@@ -253,16 +229,10 @@ mutation updateUser($input: UpdateUserInput!){
         nickname
         phone
         plan{
-            cancelAt
-            currentPeriodEnd
-            currentPeriodStart
-            customerId
             id
             interval
             price
-            priceId
             status
-            subscriptionId
             type
             userId
         }
@@ -317,15 +287,5 @@ mutation updateMessage($input: UpdateMessageInput!){
 export const REMOVE_MESSAGE_PAIR = gql`
 mutation removeMessagePair($input: RemoveMessagePairInput!){
     removeMessagePair(input: $input)
-}
-`;
-export const INIT_STRIPE_CUSTOMER_ID = gql`
-mutation initStripeCustomerId($input: InitStripeCustomerIdInput!){
-    initStripeCustomerId(input: $input)
-}
-`;
-export const MODIFY_PLAN = gql`
-mutation modifyPlan($input: ModifyPlanInput!){
-    modifyPlan(input: $input)
 }
 `;

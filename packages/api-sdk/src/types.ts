@@ -298,12 +298,6 @@ export type ForgotPasswordInput = {
   email: Scalars['String'];
 };
 
-export type InitStripeCustomerIdInput = {
-  customerId: Scalars['String'];
-  /** 邮箱 */
-  email?: InputMaybe<Scalars['String']>;
-};
-
 export type Invoice = {
   __typename?: 'Invoice';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -390,16 +384,6 @@ export type ModifyPasswordInput = {
   oldPassword: Scalars['String'];
 };
 
-export type ModifyPlanInput = {
-  cancelAt?: InputMaybe<Scalars['DateTime']>;
-  currentPeriodEnd?: InputMaybe<Scalars['DateTime']>;
-  currentPeriodStart?: InputMaybe<Scalars['DateTime']>;
-  customerId: Scalars['String'];
-  interval?: InputMaybe<PlanInterval>;
-  priceId: Scalars['String'];
-  subscriptionId: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   /** 新增机器人 */
@@ -482,7 +466,6 @@ export type Mutation = {
   deleteWallet: Scalars['Boolean'];
   /** 重置密码 */
   forgotPassword: Scalars['Boolean'];
-  initStripeCustomerId: Scalars['Boolean'];
   /** 邮箱登录 */
   loginByEmail: LoginSuccessPayload;
   /** 使用 GitHub 登录 */
@@ -493,7 +476,6 @@ export type Mutation = {
   loginByPersonalToken: LoginSuccessPayload;
   /** 修改密码 */
   modifyPassword: Scalars['Boolean'];
-  modifyPlan: Scalars['Boolean'];
   /** 邮箱注册 */
   registerByEmail: Scalars['Boolean'];
   /** 删除一组对话 */
@@ -757,11 +739,6 @@ export type MutationForgotPasswordArgs = {
 };
 
 
-export type MutationInitStripeCustomerIdArgs = {
-  input: InitStripeCustomerIdInput;
-};
-
-
 export type MutationLoginByEmailArgs = {
   input: LoginByEmailInput;
 };
@@ -784,11 +761,6 @@ export type MutationLoginByPersonalTokenArgs = {
 
 export type MutationModifyPasswordArgs = {
   input: ModifyPasswordInput;
-};
-
-
-export type MutationModifyPlanArgs = {
-  input: ModifyPlanInput;
 };
 
 
@@ -1009,26 +981,18 @@ export type PaymentsConnection = {
 
 export type Plan = {
   __typename?: 'Plan';
-  cancelAt?: Maybe<Scalars['DateTime']>;
-  currentPeriodEnd?: Maybe<Scalars['DateTime']>;
-  currentPeriodStart?: Maybe<Scalars['DateTime']>;
-  customerId: Scalars['String'];
   id: Scalars['Int'];
   interval?: Maybe<PlanInterval>;
   price?: Maybe<Scalars['Float']>;
-  priceId: Scalars['String'];
   status: PlanStatus;
-  subscriptionId: Scalars['String'];
   type: PlanType;
   userId: Scalars['Int'];
 };
 
 /** Plan Interval */
 export enum PlanInterval {
-  Day = 'day',
-  Month = 'month',
-  Week = 'week',
-  Year = 'year'
+  Monthly = 'Monthly',
+  Yearly = 'Yearly'
 }
 
 /** plan status */

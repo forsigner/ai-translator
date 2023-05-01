@@ -5,6 +5,9 @@ import { Footer } from './Footer'
 import { Logo } from '../../components'
 import { LoginStatus } from './LoginStatus'
 import { useDeviceId } from '../../hooks/useDeviceId'
+import { BadgeCheckOutline, BadgeCheckSolid, Button } from 'bone-ui'
+import { EasyModal } from '@langpt/easy-modal'
+import { ModalUpgrade } from './ModalUpgrade'
 
 interface Props {
   showNav?: boolean
@@ -24,7 +27,17 @@ export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = 
           </Box>
 
           <Box>{showNav && <Nav />}</Box>
-          <Box toCenterY columnGap-4>
+          <Box toCenterY columnGap-8>
+            <Button
+              px3
+              leftIcon={<BadgeCheckSolid />}
+              roundedFull
+              onClick={() => {
+                EasyModal.show(ModalUpgrade)
+              }}
+            >
+              Upgrade to Plus
+            </Button>
             <LoginStatus />
           </Box>
         </Box>

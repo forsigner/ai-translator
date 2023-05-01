@@ -10,6 +10,7 @@ import { IconTelegram } from '../../icons/IconTelegram'
 import { useUser } from '../../stores'
 import { useMounted } from '../../hooks/useMounted'
 import { IconSubscription } from '../../icons/IconSubscription'
+import { UserAvatarPopover } from './UserAvatarPopover'
 
 export const Sidebar = () => {
   const { t } = useTranslation('common')
@@ -60,18 +61,8 @@ export const Sidebar = () => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <Box column rowGap-1 textLG fontBold>
-          <SidebarItem to="/dashboard/notifiers" icon={ChipOutline}>
-            gogo
-          </SidebarItem>
-        </Box>
-        <Box spaceX2 pt2 toCenter>
-          <Box as="a" href="https://twitter.com/boter_eth" target="_blank">
-            <IconTwitter cursorPointer fillGray600 size={24} />
-          </Box>
-          <IconTelegram cursorPointer fillGray600 size={24} />
-        </Box>
+      <Box px5 py4>
+        <UserAvatarPopover />
       </Box>
     </Box>
   )

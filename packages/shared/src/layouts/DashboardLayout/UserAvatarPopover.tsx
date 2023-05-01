@@ -2,13 +2,10 @@ import { FC } from 'react'
 import { Popover, PopoverContent, PopoverTrigger, Avatar, Menu, MenuItem } from 'bone-ui'
 import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
-import { useUser } from '../stores'
-import { EasyModal } from '@langpt/easy-modal'
-import { useLogout } from '../hooks/useLogout'
-import { useMounted } from '../hooks/useMounted'
-import { DrawerProfile } from './DrawerProfile'
-import { useSessionContext } from '../hooks'
 import { useRouter } from 'next/router'
+import { useMounted } from '../../hooks/useMounted'
+import { useLogout } from '../../hooks/useLogout'
+import { useSessionContext } from '../../hooks'
 
 interface Props {}
 
@@ -28,11 +25,14 @@ export const UserAvatarPopover: FC<Props> = () => {
   if (!user) return null
 
   return (
-    <Popover placement="bottom-end">
+    <Popover placement="top">
       <PopoverTrigger>
-        <Avatar cursorPointer src={user.avatar} name={user.nickname} />
+        <Box toCenterY columnGap-8 bgGray100 bgGray200--hover roundedFull px4 py3 cursorPointer>
+          <Avatar cursorPointer src={user.avatar} name={user.nickname} />
+          <Box textLG>{user.nickname}</Box>
+        </Box>
       </PopoverTrigger>
-      <PopoverContent shadow rounded overflowHidden bgGray800--T20--dark>
+      <PopoverContent shadow rounded bgGray800--T20--dark>
         {({ close }) => (
           <>
             <Box p4>
