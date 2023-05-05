@@ -1,0 +1,45 @@
+{
+  "name": "@ai-translator/chatgpt-api",
+  "version": "0.0.0",
+  "description": "",
+  "author": "forsigner",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "type-check": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "treeshake": true,
+    "sourcemap": true,
+    "minify": false,
+    "clean": true,
+    "dts": true,
+    "splitting": false,
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "external": []
+  }
+}

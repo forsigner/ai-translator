@@ -1,27 +1,27 @@
 import { createParser } from 'eventsource-parser'
 import { ChatCompletionRequestMessage } from 'openai'
 import { CompletionParams } from './types'
-import { API_BASE_URL } from '../common'
-import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
 
 export const TIME_OUT_MS = 60 * 1000
 
 export enum RequestMode {
-  Boter = 'Boter',
   Proxy = 'Proxy',
   Official = 'Official',
+  Unofficial = 'Unofficial',
 }
 
-interface SendMessageOptions {
+export interface SendMessageOptions {
   requestMode: RequestMode
   messages: ChatCompletionRequestMessage[]
+  deviceId: string
   completionParams?: CompletionParams
   abortController?: AbortController
   token?: string
+  baseURL: string
   onMessage?: (text: string) => void
 }
 
-export class ChatAPI {
+export class ChatgptAPI {
   completionParams = {
     temperature: 0,
     top_p: 1,
@@ -33,6 +33,8 @@ export class ChatAPI {
   apiKey = ''
   messages: SendMessageOptions['messages'] = []
   abortController: AbortController
+
+  deviceId = ''
 
   resolve: (value: string) => void
 
@@ -57,11 +59,13 @@ export class ChatAPI {
 
     this.abortController = opt.abortController || new AbortController()
 
+    this.deviceId = opt.deviceId
+
     return new Promise<string>(async (resolve, reject) => {
       this.resolve = resolve
       this.reject = reject
 
-      if (requestMode === RequestMode.Boter) {
+      if (requestMode === RequestMode.Unofficial) {
         await this.handleLangpt()
       } else if (requestMode === RequestMode.Proxy) {
         await this.handleProxy()
@@ -213,17 +217,15 @@ export class ChatAPI {
 
   async handleLangpt() {
     const content = this.messages.map((m) => m.content).join('\n')
-    const { resolve, reject } = this
+    const { resolve, reject, deviceId } = this
 
     let responseText = ''
 
     try {
-      const url = `${API_BASE_URL}/api/langpt/completions`
+      const url = `${this.opt.baseURL}/api/langpt/completions`
 
       const TIME_OUT_MS = 60 * 1000
       const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)
-
-      const deviceId = await getOrGenerateDeviceId()
 
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',

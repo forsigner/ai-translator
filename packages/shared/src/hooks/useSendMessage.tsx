@@ -1,11 +1,12 @@
 import { updateMessage, updateStreaming } from '../stores/message.store'
-import { ChatAPI, RequestMode } from '../chat-api/ChatAPI'
-import { emitter, getBot, useBotContext } from '../bot'
+import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
+import { emitter, getBot } from '../bot'
 import { RegionChecker } from '../services/RegionChecker'
 import { storage } from '../services/storage'
 import { useEffect } from 'react'
-import { isDailyUsageLimit } from '../common'
+import { API_BASE_URL, isDailyUsageLimit } from '../common'
 import { DailyUsageLimit } from '../components/chat-error-tips/DailyUsageLimit'
+import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
 
 // translate from English to 简体中文: Share your wildest ChatGPT conversations with one click.
 
@@ -25,9 +26,15 @@ export function useSendMessage() {
     updateStreaming(true)
     const { isWord } = bot
     value = value.replace(/[\r\n]+$/, '') // 去掉结尾的换行符
-    const settings = await storage.getSettings()
-    const regionChecker = await RegionChecker.fromStorage()
-    const api = new ChatAPI(settings.apiKey)
+
+    const [settings, regionChecker, token, deviceId] = await Promise.all([
+      storage.getSettings(),
+      RegionChecker.fromStorage(),
+      storage.getToken(),
+      getOrGenerateDeviceId(),
+    ])
+
+    const api = new ChatgptAPI(settings.apiKey)
 
     const messages = bot.buildMessages()
 
@@ -38,13 +45,13 @@ export function useSendMessage() {
     }
 
     if (settings.tokenProvider === 'Free') {
-      requestMode = RequestMode.Boter
+      requestMode = RequestMode.Unofficial
     }
-
-    const token = await storage.getToken()
 
     try {
       await api.sendMessage({
+        baseURL: API_BASE_URL,
+        deviceId,
         token,
         requestMode,
         messages,

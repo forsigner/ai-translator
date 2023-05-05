@@ -7,7 +7,7 @@ export const ONE_YEAR = ONE_DAY * 365 // 一年
 export const isProd = process.env.NODE_ENV === 'production'
 
 export const API_HOST = process.env.NEXT_PUBLIC_API_HOST
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL as string
 export const subscriptionsEndpoint = `wss://${API_HOST}/graphql`
 export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'
 
@@ -15,7 +15,9 @@ const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
 export const HOST =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://ai-translator.langpt.ai'
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8000'
+    : 'https://ai-translator.langpt.ai'
 
 const githubRedirectUri = `${HOST}/api/auth/callback/github`
 const googleRedirectUri = `${HOST}/api/auth/callback/google`

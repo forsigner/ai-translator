@@ -16,7 +16,7 @@ export function Settings({ title }: Props) {
     <Box column w-360>
       <SettingsHeader title={title} />
 
-      {isExtension && <UserInfo />}
+      {/* {isExtension && <UserInfo />} */}
 
       <Box p4>
         <Form form={form} />
