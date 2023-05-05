@@ -31,7 +31,7 @@ export function UserInfo() {
         </Box>
         <Box textBase gray500>
           <Button as="a" roundedFull size={28} variant="light">
-            Login to Langpt
+            Login to AI Translator
           </Button>
         </Box>
       </Box>

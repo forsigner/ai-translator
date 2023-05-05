@@ -1,6 +1,6 @@
 import { HtmlInputProps } from 'bone-ui'
 import { FieldNode } from 'fomir'
-import { BoneUINode } from '@langpt/shared'
+import { BoneUINode } from '@ai-translator/shared'
 
 export interface DatePickerNode extends FieldNode {
   component: 'DatePicker'

@@ -7,10 +7,10 @@ import {
   Button,
   ArrowRightOutline,
 } from 'bone-ui'
-import { useModal } from '@langpt/easy-modal'
+import { useModal } from '@ai-translator/easy-modal'
 import { PlanIntervalSelect } from './PlanIntervalSelect'
 import { useState } from 'react'
-import { PlanInterval } from '@langpt/api-sdk'
+import { PlanInterval } from '@ai-translator/api-sdk'
 import { UpgradeCard } from './UpgradeCard'
 import { PlanFeatures } from './PlanFeatures'
 

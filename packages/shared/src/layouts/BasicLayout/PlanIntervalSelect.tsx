@@ -1,6 +1,6 @@
 import { RadioGroup } from 'bone-ui'
 import { Box } from '@fower/react'
-import { PlanInterval } from '@langpt/api-sdk'
+import { PlanInterval } from '@ai-translator/api-sdk'
 import { check } from 'prettier'
 
 interface Props {

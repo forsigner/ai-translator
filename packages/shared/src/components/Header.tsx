@@ -34,7 +34,7 @@ export function Header({ showSettings }: Props) {
           />
         </Box>
         <Box textLG fontSemibold>
-          Langpt
+          AI Translator
         </Box>
         {/* <BotSelect /> */}
       </Box>

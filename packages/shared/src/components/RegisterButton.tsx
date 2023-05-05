@@ -1,6 +1,6 @@
 import { Button } from 'bone-ui'
 import { FC, PropsWithChildren } from 'react'
-import { EasyModal } from '@langpt/easy-modal'
+import { EasyModal } from '@ai-translator/easy-modal'
 import { ModalSign } from '../modules/home/ModalSign'
 import { mutateSignStatus } from '../modules/home/ModalSign/hooks/sign-status.store'
 

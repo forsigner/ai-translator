@@ -1,4 +1,4 @@
-import { User } from '@langpt/api-sdk'
+import { User } from '@ai-translator/api-sdk'
 import { useLocalStorage, getLocalStorage, mutateLocalStorage } from 'stook-localstorage'
 
 const key = 'User'

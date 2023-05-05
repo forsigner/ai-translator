@@ -5,7 +5,7 @@ import { mergeRefs } from '@bone-ui/utils'
 import { FowerHTMLProps } from '@fower/core'
 import { Box } from '@fower/react'
 import { usePopoverContext } from './context'
-import { Translator } from '@langpt/shared'
+import { Translator } from '@ai-translator/shared'
 
 export interface PopoverContentProps extends Omit<FowerHTMLProps<'div'>, 'children'> {
   x?: number
@@ -27,7 +27,7 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
           <Box
             ref={ref}
             black
-            className="langpt-content"
+            className="ai-translator-content"
             shadow
             shadow--dark="0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4)"
             roundedLG

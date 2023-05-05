@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, createContext, useContext, useEffect } from 'react'
-import { LoginSuccessPayload } from '@langpt/api-sdk'
+import { LoginSuccessPayload } from '@ai-translator/api-sdk'
 import { storage } from '../services/storage'
 
 type useSessionProviderProps = {

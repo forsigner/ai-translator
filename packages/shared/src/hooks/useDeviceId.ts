@@ -3,7 +3,7 @@ import { get as getCache, set as setCache } from 'idb-keyval'
 import { nanoid } from 'nanoid'
 import { useStore } from 'stook'
 
-const DEVICE_ID_KEY = 'langpt_device_id'
+const DEVICE_ID_KEY = 'ai_translator_device_id'
 
 export const getOrGenerateDeviceId = async (): Promise<string> => {
   const deviceId = await getCache<string | undefined>(DEVICE_ID_KEY)

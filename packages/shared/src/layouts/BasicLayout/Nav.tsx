@@ -18,12 +18,12 @@ export const Nav = () => {
     // { text: t('about'), to: 'about' },
     {
       text: t('feedback'),
-      to: 'https://github.com/forsigner/langpt/issues',
+      to: 'https://github.com/forsigner/ai-translator/issues',
       isExternal: true,
     },
     {
       text: t('github'),
-      to: 'https://github.com/forsigner/langpt',
+      to: 'https://github.com/forsigner/ai-translator',
       isExternal: true,
     },
     // { text: 'Contact', to: 'contact' },

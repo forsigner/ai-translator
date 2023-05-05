@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { useRouter } from 'next/router'
 import { Button, CheckOutline } from 'bone-ui'
-import { PlanType } from '@langpt/api-sdk'
+import { PlanType } from '@ai-translator/api-sdk'
 
 type PlanItem = {
   type: PlanType

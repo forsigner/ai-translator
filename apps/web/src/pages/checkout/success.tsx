@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { BasicLayout } from '@langpt/shared'
+import { BasicLayout } from '@ai-translator/shared'
 import { CheckoutSuccess } from '@components/CheckoutSuccess'
 
 export default function PageCheckoutSuccess() {

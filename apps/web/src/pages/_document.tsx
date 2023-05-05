@@ -8,7 +8,7 @@ import Document, {
 } from 'next/document'
 import { getAtomIds, getCssString } from '@fower/react'
 import { setCookie, getCookie } from 'cookies-next'
-import { LANGUAGE_KEY } from '@langpt/shared'
+import { LANGUAGE_KEY } from '@ai-translator/shared'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {

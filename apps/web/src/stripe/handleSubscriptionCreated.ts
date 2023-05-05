@@ -1,5 +1,5 @@
 import { graphqlClient } from '@common/query'
-import { MODIFY_PLAN } from '@langpt/api-sdk'
+import { MODIFY_PLAN } from '@ai-translator/api-sdk'
 import Stripe from 'stripe'
 
 export async function handleSubscriptionCreated(subscription: Stripe.Subscription) {

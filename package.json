@@ -1,5 +1,5 @@
 {
-  "name": "langpt",
+  "name": "ai-translator",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -15,7 +15,7 @@
     "clean": "turbo run clean",
     "test": "turbo run test",
     "dev": "turbo run dev",
-    "deploy:web": "docker-compose -p langpt-web -f docker-compose.web.yml up --build -d",
+    "deploy:web": "docker-compose -p ai-translator-web -f docker-compose.web.yml up --build -d",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",

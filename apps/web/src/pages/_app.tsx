@@ -1,13 +1,13 @@
 import { ToastContainer } from 'bone-ui'
 import type { AppProps } from 'next/app'
 import { Fragment, useEffect } from 'react'
-import { EasyModalProvider } from '@langpt/easy-modal'
+import { EasyModalProvider } from '@ai-translator/easy-modal'
 import { injectGlobalStyle } from '@fower/core'
-import { LANGUAGE_KEY, SessionProvider, init } from '@langpt/shared'
+import { LANGUAGE_KEY, SessionProvider, init } from '@ai-translator/shared'
 import { useTranslation, withTranslation } from 'react-i18next'
 import { getCookie } from 'cookies-next'
 import '../styles/globals.scss'
-import { LoginSuccessPayload } from '@langpt/api-sdk'
+import { LoginSuccessPayload } from '@ai-translator/api-sdk'
 
 interface Props<T> extends AppProps<T> {
   Component: AppProps<T>['Component'] & { Layout: any }

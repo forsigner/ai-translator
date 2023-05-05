@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Langpt",
+  "name": "AI Translator",
   "version": "0.0.2",
   "description": "Translator by AI",
   "background": {

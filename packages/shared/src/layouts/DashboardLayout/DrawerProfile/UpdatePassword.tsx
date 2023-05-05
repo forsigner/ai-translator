@@ -1,6 +1,6 @@
 import { Button } from 'bone-ui'
 import { Box } from '@fower/react'
-import { apiService } from '@langpt/api-sdk'
+import { apiService } from '@ai-translator/api-sdk'
 import { Popover, PopoverContent, PopoverTrigger, toast, usePopoverContext } from 'bone-ui'
 import { PencilSolid } from '@bone-ui/icons'
 import { Form, useForm } from 'fomir'

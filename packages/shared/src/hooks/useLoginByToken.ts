@@ -1,7 +1,7 @@
 import { toast } from 'bone-ui'
 import { useRouter } from 'next/router'
 import { useToken, useUser } from '../stores'
-import { apiService } from '@langpt/api-sdk'
+import { apiService } from '@ai-translator/api-sdk'
 
 export function useLoginByToken() {
   const { setUser } = useUser()

@@ -1,5 +1,5 @@
 {
-  "name": "@langpt/shared",
+  "name": "@ai-translator/shared",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -22,8 +22,8 @@
     "@bone-ui/iconify": "^0.33.2",
     "@bone-ui/icons": "^0.33.2",
     "@fower/react": "^1.76.0",
-    "@langpt/api-sdk": "*",
-    "@langpt/easy-modal": "*",
+    "@ai-translator/api-sdk": "*",
+    "@ai-translator/easy-modal": "*",
     "@types/chrome": "^0.0.233",
     "bone-ui": "^0.33.2",
     "endent": "^2.1.0",

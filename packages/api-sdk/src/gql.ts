@@ -11,6 +11,7 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
         user{
             avatar
             bio
+            createdAt
             email
             emailValidatedAt
             githubId
@@ -20,6 +21,7 @@ query tokens($orderBy: String, $skip: Int, $take: Int, $where: TokenWhereInput){
             login
             nickname
             phone
+            updatedAt
             username
         }
         userId
@@ -32,6 +34,7 @@ query searchUsers($q: String!){
     searchUsers(q: $q){
         avatar
         bio
+        createdAt
         email
         emailValidatedAt
         githubId
@@ -42,13 +45,20 @@ query searchUsers($q: String!){
         nickname
         phone
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
+        updatedAt
         username
     }
 }
@@ -93,10 +103,16 @@ export const LOGIN_BY_GITHUB = gql`
 mutation loginByGithub($code: String!){
     loginByGithub(code: $code){
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -104,6 +120,7 @@ mutation loginByGithub($code: String!){
         user{
             avatar
             bio
+            createdAt
             email
             emailValidatedAt
             githubId
@@ -113,6 +130,7 @@ mutation loginByGithub($code: String!){
             login
             nickname
             phone
+            updatedAt
             username
         }
         userId
@@ -124,10 +142,16 @@ export const LOGIN_BY_GOOGLE = gql`
 mutation loginByGoogle($code: String!){
     loginByGoogle(code: $code){
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -135,6 +159,7 @@ mutation loginByGoogle($code: String!){
         user{
             avatar
             bio
+            createdAt
             email
             emailValidatedAt
             githubId
@@ -144,6 +169,7 @@ mutation loginByGoogle($code: String!){
             login
             nickname
             phone
+            updatedAt
             username
         }
         userId
@@ -155,10 +181,16 @@ export const LOGIN_BY_PERSONAL_TOKEN = gql`
 mutation loginByPersonalToken($token: String!){
     loginByPersonalToken(token: $token){
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
@@ -166,6 +198,7 @@ mutation loginByPersonalToken($token: String!){
         user{
             avatar
             bio
+            createdAt
             email
             emailValidatedAt
             githubId
@@ -175,6 +208,7 @@ mutation loginByPersonalToken($token: String!){
             login
             nickname
             phone
+            updatedAt
             username
         }
         userId
@@ -193,6 +227,7 @@ mutation addToken($input: AddTokenInput!){
         user{
             avatar
             bio
+            createdAt
             email
             emailValidatedAt
             githubId
@@ -202,6 +237,7 @@ mutation addToken($input: AddTokenInput!){
             login
             nickname
             phone
+            updatedAt
             username
         }
         userId
@@ -219,6 +255,7 @@ mutation updateUser($input: UpdateUserInput!){
     updateUser(input: $input){
         avatar
         bio
+        createdAt
         email
         emailValidatedAt
         githubId
@@ -229,13 +266,20 @@ mutation updateUser($input: UpdateUserInput!){
         nickname
         phone
         plan{
+            cancelAt
+            currentPeriodEnd
+            currentPeriodStart
+            customerId
             id
             interval
             price
+            priceId
             status
+            subscriptionId
             type
             userId
         }
+        updatedAt
         username
     }
 }
@@ -287,5 +331,15 @@ mutation updateMessage($input: UpdateMessageInput!){
 export const REMOVE_MESSAGE_PAIR = gql`
 mutation removeMessagePair($input: RemoveMessagePairInput!){
     removeMessagePair(input: $input)
+}
+`;
+export const INIT_STRIPE_CUSTOMER_ID = gql`
+mutation initStripeCustomerId($input: InitStripeCustomerIdInput!){
+    initStripeCustomerId(input: $input)
+}
+`;
+export const MODIFY_PLAN = gql`
+mutation modifyPlan($input: ModifyPlanInput!){
+    modifyPlan(input: $input)
 }
 `;

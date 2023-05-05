@@ -401,6 +401,14 @@ input ForgotPasswordInput {
   email: String!
 }
 
+input InitStripeCustomerIdInput {
+  """"""
+  customerId: String!
+
+  """邮箱"""
+  email: String
+}
+
 """"""
 type Invoice {
   createdAt: DateTime
@@ -512,6 +520,27 @@ input ModifyPasswordInput {
 
   """旧密码"""
   oldPassword: String!
+}
+
+input ModifyPlanInput {
+  cancelAt: DateTime
+  currentPeriodEnd: DateTime
+  currentPeriodStart: DateTime
+
+  """"""
+  customerId: String!
+
+  """"""
+  interval: PlanInterval
+
+  """"""
+  priceId: String
+
+  """"""
+  subscriptionId: String
+
+  """"""
+  type: PlanType
 }
 
 type Mutation {
@@ -635,6 +664,9 @@ type Mutation {
   """重置密码"""
   forgotPassword(input: ForgotPasswordInput!): Boolean!
 
+  """"""
+  initStripeCustomerId(input: InitStripeCustomerIdInput!): Boolean!
+
   """邮箱登录"""
   loginByEmail(input: LoginByEmailInput!): LoginSuccessPayload!
 
@@ -649,6 +681,9 @@ type Mutation {
 
   """修改密码"""
   modifyPassword(input: ModifyPasswordInput!): Boolean!
+
+  """"""
+  modifyPlan(input: ModifyPlanInput!): Boolean!
 
   """邮箱注册"""
   registerByEmail(input: RegisterByEmailInput!): Boolean!
@@ -825,6 +860,13 @@ type PaymentsConnection {
 
 """"""
 type Plan {
+  cancelAt: DateTime
+  currentPeriodEnd: DateTime
+  currentPeriodStart: DateTime
+
+  """"""
+  customerId: String!
+
   """"""
   id: Int!
 
@@ -835,7 +877,13 @@ type Plan {
   price: Float
 
   """"""
+  priceId: String!
+
+  """"""
   status: PlanStatus!
+
+  """"""
+  subscriptionId: String!
 
   """"""
   type: PlanType!
@@ -846,8 +894,10 @@ type Plan {
 
 """Plan Interval"""
 enum PlanInterval {
-  Monthly
-  Yearly
+  day
+  month
+  week
+  year
 }
 
 """plan status"""
@@ -2014,6 +2064,9 @@ type User {
   """个人简介"""
   bio: String
 
+  """"""
+  createdAt: DateTime
+
   """邮箱"""
   email: String
 
@@ -2043,6 +2096,9 @@ type User {
 
   """Plan"""
   plan: Plan!
+
+  """"""
+  updatedAt: DateTime
 
   """用户名"""
   username: String!

@@ -2,10 +2,10 @@ import { ToastContainer } from 'bone-ui'
 import { Popover } from './Popover'
 import { Thumbnail } from './Thumbnail'
 import { TranslatorContainer } from './TranslatorContainer'
-import { BotProvider, getBot } from '@langpt/shared'
-import { useSendMessage } from '@langpt/shared/src/hooks/useSendMessage'
-import { useText } from '@langpt/shared/src/stores/text.store'
-import { useThumbnail, hideThumbnail } from '@langpt/shared/src/stores/thumbnail.store'
+import { BotProvider, getBot } from '@ai-translator/shared'
+import { useSendMessage } from '@ai-translator/shared/src/hooks/useSendMessage'
+import { useText } from '@ai-translator/shared/src/stores/text.store'
+import { useThumbnail, hideThumbnail } from '@ai-translator/shared/src/stores/thumbnail.store'
 
 export function App() {
   const { x, y, visible } = useThumbnail()

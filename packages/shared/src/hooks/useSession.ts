@@ -1,4 +1,4 @@
-import { LoginSuccessPayload } from '@langpt/api-sdk'
+import { LoginSuccessPayload } from '@ai-translator/api-sdk'
 import { useEffect } from 'react'
 import { useStore } from 'stook'
 import { storage } from '../services/storage'
@@ -8,7 +8,7 @@ type State = {
   session: LoginSuccessPayload | null
 }
 
-const key = 'LANGPT_SESSION'
+const key = 'AI_TRANSLATOR_SESSION'
 
 export function useSession() {
   const [{ loading, session }, setSession] = useStore<State>(key, {

@@ -1,12 +1,12 @@
 import { Box } from '@fower/react'
 import { withTranslation } from 'react-i18next'
 import { ToastContainer } from 'bone-ui'
-import { BotProvider, Settings, Translator, TranslatorLoading, useSession } from '@langpt/shared'
+import { BotProvider, Settings, Translator, TranslatorLoading, useSession } from '@ai-translator/shared'
 import { ReactElement } from 'react'
 
 import './index.scss'
 import '../assets/style/markdown.scss'
-import { useSettingsVisible } from '@langpt/shared/src/stores/settings.store'
+import { useSettingsVisible } from '@ai-translator/shared/src/stores/settings.store'
 
 function App(): ReactElement {
   const { visible } = useSettingsVisible()

@@ -1,14 +1,14 @@
-# Langpt
+# AI Translator
 
 <div align="center">
-  <h1>Langpt</h1>
+  <h1>AI Translator</h1>
   <h3><strong>Translator power by AI</strong></h3>
 </div>
 <br>
 
-## About Langpt
+## About AI Translator
 
-Langpt is an AI-powered translation tool that supports multiple languages for fast and accurate translations.
+AI Translator is an AI-powered translation tool that supports multiple languages for fast and accurate translations.
 
 ## Features
 
@@ -40,4 +40,4 @@ yarn dev
 
 ## 📑 License
 
-Licensed under [AGPL-3.0](https://github.com/forsigner/langpt/blob/main/LICENSE).
+Licensed under [AGPL-3.0](https://github.com/forsigner/ai-translator/blob/main/LICENSE).

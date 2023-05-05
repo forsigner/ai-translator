@@ -6,7 +6,7 @@ import { Logo } from '../../components'
 import { LoginStatus } from './LoginStatus'
 import { useDeviceId } from '../../hooks/useDeviceId'
 import { BadgeCheckOutline, BadgeCheckSolid, Button } from 'bone-ui'
-import { EasyModal } from '@langpt/easy-modal'
+import { EasyModal } from '@ai-translator/easy-modal'
 import { ModalUpgrade } from './ModalUpgrade'
 
 interface Props {
@@ -23,7 +23,7 @@ export const BasicLayout: FC<PropsWithChildren<Props>> = ({ children, showNav = 
         <Box className="nav" toBetween py3 px={[18, 0]}>
           <Box toCenterY spaceX2>
             <Logo />
-            <Box textXL>Langpt.ai</Box>
+            <Box textXL>AI Translator.ai</Box>
           </Box>
 
           <Box>{showNav && <Nav />}</Box>

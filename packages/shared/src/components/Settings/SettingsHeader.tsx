@@ -29,7 +29,7 @@ export function SettingsHeader({ title }: Props) {
             title
           ) : (
             <>
-              <Box>Langpt</Box>
+              <Box>AI Translator</Box>
               <Box brand500>for Chrome</Box>
             </>
           )}

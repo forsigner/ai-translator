@@ -24,7 +24,7 @@ export function DesktopHome() {
       </Box>
       <Box toCenter column mb-80 minH-70vh>
         <Box fontBold text3XL mb6>
-          Login to Langpt
+          Login to AI Translator
         </Box>
 
         <Box column rowGap-12 mb4 toCenter w-360 mt8>

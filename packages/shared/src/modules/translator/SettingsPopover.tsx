@@ -21,7 +21,7 @@ export const SettingsPopover = () => {
         />
       </PopoverTrigger>
       <PopoverContent>
-        <Settings title="Langpt" />
+        <Settings title="AI Translator" />
       </PopoverContent>
     </Popover>
   )

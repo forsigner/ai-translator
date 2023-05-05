@@ -15,12 +15,12 @@ export const Footer = () => {
     // { text: t('about'), to: 'about' },
     {
       text: t('feedback'),
-      to: 'https://github.com/forsigner/langpt/issues/new',
+      to: 'https://github.com/forsigner/ai-translator/issues/new',
       isExternal: true,
     },
     {
       text: t('github'),
-      to: 'https://github.com/forsigner/langpt',
+      to: 'https://github.com/forsigner/ai-translator',
       isExternal: true,
     },
     // { text: 'Contact', to: 'contact' },
@@ -30,7 +30,7 @@ export const Footer = () => {
   return (
     <Box toCenter py6>
       <Box mr5 gray500>
-        © 2023 Langpt
+        © 2023 AI Translator
       </Box>
       <Box toCenterY spaceX2 textSM display={['none', 'flex']}>
         {navData.map((item) => (

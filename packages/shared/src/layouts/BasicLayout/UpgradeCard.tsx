@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { PlanInterval } from '@langpt/api-sdk'
+import { PlanInterval } from '@ai-translator/api-sdk'
 import { Button, ArrowRightOutline } from 'bone-ui'
 
 interface Props {

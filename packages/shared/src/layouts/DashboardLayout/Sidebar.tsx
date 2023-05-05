@@ -40,7 +40,7 @@ export const Sidebar = () => {
         <Box pl6 toCenterY spaceX2 pb8>
           <Logo></Logo>
           <Box text2XL fontBold>
-            Langpt
+            AI Translator
           </Box>
         </Box>
       </Box>

@@ -7,7 +7,7 @@
  */
 import 'i18next'
 
-import type common from '@langpt/shared/src/locales/en/common.json'
+import type common from '@ai-translator/shared/src/locales/en/common.json'
 
 interface I18nNamespaces {
   common: typeof common

@@ -12,7 +12,7 @@ declare module '@fower/atomic-props' {
 
 export function initFower() {
   setConfig({
-    prefix: isExtension ? 'langpt-' : '',
+    prefix: isExtension ? 'at-' : '',
     inline: false,
     mode: {
       currentMode: 'dark',

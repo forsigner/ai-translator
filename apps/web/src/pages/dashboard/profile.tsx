@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { BasicLayout, DashboardLayout, LOGIN_SUCCESS_REDIRECT_URL, Plan } from '@langpt/shared'
+import { BasicLayout, DashboardLayout, LOGIN_SUCCESS_REDIRECT_URL, Plan } from '@ai-translator/shared'
 
 export default function PageProfile() {
   return <Plan />

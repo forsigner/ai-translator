@@ -1,5 +1,5 @@
 import { graphqlClient } from '@common/query'
-import { INIT_STRIPE_CUSTOMER_ID } from '@langpt/api-sdk'
+import { INIT_STRIPE_CUSTOMER_ID } from '@ai-translator/api-sdk'
 import Stripe from 'stripe'
 
 export async function handleChargeSucceeded(charge: Stripe.Charge) {

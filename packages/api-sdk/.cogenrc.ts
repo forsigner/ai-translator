@@ -6,7 +6,7 @@ const { NODE_ENV } = process.env
 const isProd = NODE_ENV === 'production'
 
 export const getEndpoint = () => {
-  if (isProd) return 'https://www.langpt.ai/graphql'
+  if (isProd) return 'https://ai-translator.langpt.ai/graphql'
   return 'http://localhost:8001/graphql'
 }
 
