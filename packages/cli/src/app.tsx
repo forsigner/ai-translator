@@ -14,19 +14,21 @@ export default function App({ input = [] }: Props) {
   const [content, setContent] = useState('')
   const [loading, setLoading] = useState(true)
 
-  console.log('=============input:', input)
+  const text = input.join(' ')
 
   async function sendMessage() {
-    if (!input?.[0]) return
+    if (!text) {
+      setContent('Please input texts to translate')
+      setLoading(false)
+      return
+    }
 
     const api = new ChatgptAPI('')
     try {
       const messageBuilder = new MessageBuilder({
-        text: input?.[0] || '',
+        text,
         to: '简体中文',
       })
-
-      console.log('======:', messageBuilder.buildMessages())
 
       await api.sendMessage({
         baseURL: API_BASE_URL,

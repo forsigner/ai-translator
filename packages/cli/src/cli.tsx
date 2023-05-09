@@ -10,8 +10,7 @@ const cli = meow(
 	  $ translate
 
 	Examples
-	  $ translate --name=Jane
-	  Hello, Jane
+	  $ translate Hello world
 `,
   {
     importMeta: import.meta,
