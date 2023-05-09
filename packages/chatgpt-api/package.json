@@ -20,7 +20,9 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "cross-fetch": "^3.1.5"
+  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "tsup": "^6.7.0",

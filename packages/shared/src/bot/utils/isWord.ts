@@ -5,7 +5,7 @@ export function isChinesLang(text: string) {
 }
 
 export function isWord(lang: string, text: string) {
-  const Segmenter = Intl.Segmenter
+  const Segmenter = (Intl as any).Segmenter
   if (!Segmenter) return false
   const segmenter = new Segmenter(lang, { granularity: 'word' })
   const iterator = segmenter.segment(text)[Symbol.iterator]()

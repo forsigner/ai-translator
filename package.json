@@ -2,11 +2,17 @@
   "name": "ai-translator",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "fower/*",
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "fower/*",
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/ink",
+      "**/ink-spinner"
+    ]
+  },
   "scripts": {
     "build": "turbo run build --filter=./packages/*",
     "build:web": "yarn turbo run build --filter=web...",

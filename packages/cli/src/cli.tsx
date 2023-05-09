@@ -15,11 +15,7 @@ const cli = meow(
 `,
   {
     importMeta: import.meta,
-    flags: {
-      name: {
-        type: 'string',
-      },
-    },
+    flags: {},
   },
 )
 
