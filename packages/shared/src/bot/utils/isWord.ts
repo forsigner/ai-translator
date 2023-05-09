@@ -10,7 +10,5 @@ export function isWord(lang: string, text: string) {
   const segmenter = new Segmenter(lang, { granularity: 'word' })
   const iterator = segmenter.segment(text)[Symbol.iterator]()
   const is = iterator.next().value?.segment === text
-
-  // return is && isChinesLang(text)
   return is
 }

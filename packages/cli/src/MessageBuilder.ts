@@ -1,10 +1,18 @@
 import { ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum } from 'openai'
 
-const chineseLangs = ['zh-Hans', 'zh-Hant', 'wyw', 'yue']
-
 interface Options {
   text: string
   to: string
+}
+
+function isWord(text: string = '') {
+  if (!/^[a-z]+$/.test(text)) return false
+  const Segmenter = Intl.Segmenter
+  if (!Segmenter) return false
+  const segmenter = new Segmenter('en', { granularity: 'word' })
+  const iterator = segmenter.segment(text)[Symbol.iterator]()
+  const is = iterator.next().value?.segment === text
+  return is
 }
 
 export class MessageBuilder {
@@ -19,15 +27,14 @@ export class MessageBuilder {
   constructor(private opt: Options) {
     this.text = opt.text
     this.to = opt.to || 'English'
+    this.isWord = isWord(opt.text)
   }
 
   buildMessages = () => {
-    const toChinese = chineseLangs.includes(this.to)
-
     this.messages = [
       {
         role: ChatCompletionResponseMessageRoleEnum.User,
-        content: this.isWord && toChinese ? this.createWordPrompt() : this.createLangPrompt(),
+        content: this.isWord ? this.createWordPrompt() : this.createLangPrompt(),
       },
     ]
 
