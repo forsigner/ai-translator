@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 import React from 'react'
+import yargs from 'yargs/yargs'
+import { hideBin } from 'yargs/helpers'
 import { render } from 'ink'
-import meow from 'meow'
-import App from './app.js'
+import config from './commands/config'
+import { App } from './ui/App'
 
-const cli = meow(
-  `
-	Usage
-	  $ translate
+type CLI = {
+  _: string[]
+  $0: string
+  [x: string]: any
+}
 
-	Examples
-	  $ translate Hello world
-`,
-  {
-    importMeta: import.meta,
-    flags: {},
-  },
-)
+const cli = yargs(hideBin(process.argv))
+  .command(config)
+  .alias('version', 'v')
+  .describe('version', 'Show version information')
+  .parse() as CLI
 
-render(<App input={cli.input} />)
+if (cli._) {
+  render(<App input={cli._} />)
+}

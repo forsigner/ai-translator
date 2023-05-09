@@ -8,10 +8,7 @@
       "fower/*",
       "packages/*"
     ],
-    "nohoist": [
-      "**/ink",
-      "**/ink-spinner"
-    ]
+    "nohoist": []
   },
   "scripts": {
     "build": "turbo run build --filter=./packages/*",

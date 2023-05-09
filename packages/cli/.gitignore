@@ -1,2 +1,10 @@
+*.log
+.DS_Store
 node_modules
-dist
+lerna-debug.log
+coverage/
+dist/
+build/
+.bcc
+
+yarn.lock

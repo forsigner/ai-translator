@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Text } from 'ink'
 import Spinner from 'ink-spinner'
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
-import { MessageBuilder } from './MessageBuilder.js'
+import { MessageBuilder } from '../MessageBuilder'
 
 type Props = {
   input: string[]
@@ -10,7 +10,7 @@ type Props = {
 
 const API_BASE_URL = 'https://ai-translator.langpt.ai'
 
-export default function App({ input = [] }: Props) {
+export function App({ input = [] }: Props) {
   const [content, setContent] = useState('')
   const [loading, setLoading] = useState(true)
 
