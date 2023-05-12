@@ -3,12 +3,32 @@ import { Text } from 'ink'
 import Spinner from 'ink-spinner'
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
 import { MessageBuilder } from '../MessageBuilder'
+import { readConfig } from '../config'
+import { langMap } from '../langMap'
+import { detectLanguage } from '../detectLanguage'
 
 type Props = {
   input: string[]
 }
 
 const API_BASE_URL = 'https://ai-translator.langpt.ai'
+
+async function getTargetLang(): Promise<string> {
+  const config = await readConfig()
+  let to = 'English'
+  if (config?.to) {
+    const arr = config.to.split(',')
+
+    if (arr?.[0]) {
+      if (langMap.get(arr[0])) {
+        return langMap.get(arr[0])!
+      }
+    }
+  }
+  return to
+}
+
+console.log('----:', detectLanguage('你好'))
 
 export function App({ input = [] }: Props) {
   const [content, setContent] = useState('')
@@ -23,11 +43,13 @@ export function App({ input = [] }: Props) {
       return
     }
 
-    const api = new ChatgptAPI('')
     try {
+      const api = new ChatgptAPI('')
+      const to = await getTargetLang()
+
       const messageBuilder = new MessageBuilder({
         text,
-        to: '简体中文',
+        to,
       })
 
       await api.sendMessage({

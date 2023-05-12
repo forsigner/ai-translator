@@ -13,7 +13,7 @@ type CLI = {
 }
 
 const cli = yargs(hideBin(process.argv))
-  .command(config)
+  .command(config as any)
   .alias('version', 'v')
   .describe('version', 'Show version information')
   .parse() as CLI

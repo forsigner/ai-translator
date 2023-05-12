@@ -2,13 +2,15 @@ import os from 'os'
 import { join } from 'path'
 import jetpack from 'fs-jetpack'
 
-interface Config {
-  token: string
+export interface Config {
+  openaiApiKey: string
+  provider: string
+  to: string
 }
 
 export function getConfigPath() {
   const fileName = '.ai-translator.json'
-  const configPath = join(os.homedir(), fileName)
+  const configPath = join(os.homedir(), '.config', 'ai-translator', fileName)
   return configPath
 }
 
