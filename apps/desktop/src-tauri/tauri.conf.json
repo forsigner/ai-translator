@@ -58,7 +58,7 @@
       {
         "resizable": true,
         "title": "menubar",
-        "height": 400,
+        "height": 600,
         "width": 600,
         "visible": false,
         "hiddenTitle": true,

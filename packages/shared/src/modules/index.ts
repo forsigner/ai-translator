@@ -1,3 +1,5 @@
 export * from './translator/WebTranslator'
+export * from './translator/DesktopTranslator'
+export * from './translator/TranslatorEditor'
 export * from './home/DesktopHome'
 export * from './plan/Plan'

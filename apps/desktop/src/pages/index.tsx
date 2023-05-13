@@ -1,15 +1,10 @@
-import { Box } from '@fower/react'
-import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
+
+const DynamicHome = dynamic(() => import('../components/PageHome'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+})
 
 export default function PageHome() {
-  const { push } = useRouter()
-
-  return (
-    <Box rounded2XL p4 bgWhite h-100vh>
-      <Box>gogo</Box>
-      <Box>gogo</Box>
-      <Box>gogo</Box>
-      <Box>gogo</Box>
-    </Box>
-  )
+  return <DynamicHome />
 }

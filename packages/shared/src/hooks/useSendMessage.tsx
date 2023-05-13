@@ -48,9 +48,11 @@ export function useSendMessage() {
       requestMode = RequestMode.Unofficial
     }
 
+    requestMode = RequestMode.Official
+
     try {
       await api.sendMessage({
-        baseURL: API_BASE_URL,
+        baseURL: API_BASE_URL || 'https://ai-translator.langpt.ai',
         deviceId,
         token,
         requestMode,

@@ -1,4 +1,5 @@
 import { css } from '@fower/core'
+import { FowerHTMLProps } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from '@fower/react'
 import { ArrowRightOutline, Button } from 'bone-ui'
@@ -6,12 +7,17 @@ import { useBotContext } from '../../bot'
 import { useText } from '../../stores/text.store'
 import { SettingsPopover } from './SettingsPopover'
 import { TranslatorLangSelect } from '../../components/TranslatorLangSelect'
+import { forwardRef } from 'react'
 
-interface Props {
+interface Props extends FowerHTMLProps<'div'> {
+  showSettings?: boolean
   onSendMessage(value: string): Promise<any>
 }
 
-export function TranslatorEditor({ onSendMessage }: Props) {
+export const TranslatorEditor = forwardRef<HTMLDivElement, Props>(function TranslatorEditor(
+  { onSendMessage, ...rest },
+  ref,
+) {
   const bot = useBotContext()
   const { text, setText } = useText()
   const disabled = false
@@ -24,7 +30,19 @@ export function TranslatorEditor({ onSendMessage }: Props) {
   }
 
   return (
-    <Box border-2 borderBlack borderGray300--dark relative toBetween shadow2XL rounded-30 toCenterY>
+    <Box
+      ref={ref}
+      border-2
+      borderBlack
+      borderGray300--dark
+      relative
+      toBetween
+      shadow2XL
+      rounded-30
+      toCenterY
+      bgWhite
+      {...rest}
+    >
       <Box pl3>
         <TranslatorLangSelect containerHeight="50vh" />
       </Box>
@@ -75,4 +93,4 @@ export function TranslatorEditor({ onSendMessage }: Props) {
       />
     </Box>
   )
-}
+})
