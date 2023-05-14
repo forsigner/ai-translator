@@ -10,11 +10,8 @@ async function run() {
     await register(key, async () => {
       const window = getCurrent()
       const isVisible = await window.isVisible()
-      console.log('isVisible:', isVisible)
 
       if (isVisible) {
-        console.log('hide...')
-
         await window.hide()
         await window.show()
         await window.setFocus()

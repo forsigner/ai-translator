@@ -1,3 +1,4 @@
+import { BotProvider } from '@ai-translator/shared'
 import dynamic from 'next/dynamic'
 
 const DynamicHome = dynamic(() => import('../components/PageHome'), {
@@ -6,5 +7,9 @@ const DynamicHome = dynamic(() => import('../components/PageHome'), {
 })
 
 export default function PageHome() {
-  return <DynamicHome />
+  return (
+    <BotProvider>
+      <DynamicHome />
+    </BotProvider>
+  )
 }

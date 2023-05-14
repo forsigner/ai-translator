@@ -43,7 +43,7 @@ export function useSettingsForm() {
     },
     {
       label: t('token-provider'),
-      component: 'Select',
+      component: 'RadioGroup',
       name: 'tokenProvider',
       options: [
         { label: t('free'), value: 'Free' },
