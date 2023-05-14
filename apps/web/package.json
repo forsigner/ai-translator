@@ -43,7 +43,7 @@
     "qs": "^6.11.1",
     "rc-table": "^7.31.1",
     "re-resizable": "^6.9.9",
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.0",
     "react-merge-refs": "^2.0.1",

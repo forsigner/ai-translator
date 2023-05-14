@@ -42,7 +42,7 @@
     "p-timeout": "^6.1.1",
     "quick-lru": "^6.1.1",
     "rc-slider": "^10.1.1",
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-highlight-words": "^0.20.0",
     "react-i18next": "^12.2.0",
