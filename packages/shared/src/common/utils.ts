@@ -39,17 +39,6 @@ export function getClickEvent(t = 150) {
   }
 }
 
-export function copyToClipboard(text: string) {
-  navigator.clipboard
-    .writeText(text)
-    .then((res) => {
-      toast.info('Copy success')
-    })
-    .catch((err) => {
-      toast.error('Copy failed')
-    })
-}
-
 /**
  * 获取前景色
  */
