@@ -1,5 +1,5 @@
 import { getState } from 'stook'
-import { useParams } from '../../bot'
+import { useParams } from '@ai-translator/bot'
 
 interface State {
   to: string

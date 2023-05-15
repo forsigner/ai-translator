@@ -1,8 +1,8 @@
 import { Box } from '@fower/react'
 import { ChevronDownOutline } from '@bone-ui/icons'
 import { Popover, PopoverTrigger, PopoverContent, Menu, MenuItem } from 'bone-ui'
-import { CARD_HEIGHT, HEADER_HEIGHT, bots } from '@src/common/constants'
-import { useBot } from '@src/bot'
+import { CARD_HEIGHT, HEADER_HEIGHT, bots } from '../common'
+import { useBot } from '@ai-translator/bot'
 
 export function BotSelect() {
   const containerHeight = CARD_HEIGHT - HEADER_HEIGHT - 10

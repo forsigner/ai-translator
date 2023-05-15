@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
+import { useBotContext } from '@ai-translator/bot'
 import { getCurrent } from '@tauri-apps/api/window'
 import { TranslatorEditor } from './TranslatorEditor'
-import { useBotContext } from '../../bot'
 import { useSendMessage } from '../../hooks/useSendMessage'
 import { TranslatorContent } from '../../components'
 import { useMessage } from '../../stores/message.store'

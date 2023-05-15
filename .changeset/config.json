@@ -11,6 +11,7 @@
     "desktop",
     "extension",
     "web",
+    "mobile",
     "@ai-translator/shared",
     "tsconfig",
     "eslint-config-custom",

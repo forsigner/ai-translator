@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, createContext, useContext, useEffect, useRef } from 'react'
-import { Bot } from './bot.domain'
 import { mutate } from 'stook'
+import { Bot } from './bot.domain'
 
 export const botContext = createContext<Bot>({} as Bot)
 

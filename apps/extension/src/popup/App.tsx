@@ -1,7 +1,8 @@
 import { Box } from '@fower/react'
 import { withTranslation } from 'react-i18next'
 import { ToastContainer } from 'bone-ui'
-import { BotProvider, Settings, Translator, TranslatorLoading, useSession } from '@ai-translator/shared'
+import { Settings, Translator, TranslatorLoading, useSession } from '@ai-translator/shared'
+import { BotProvider } from '@ai-translator/bot'
 import { ReactElement } from 'react'
 
 import './index.scss'

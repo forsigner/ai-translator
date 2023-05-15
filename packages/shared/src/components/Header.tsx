@@ -3,7 +3,7 @@ import { BotSlugs, HEADER_HEIGHT } from '../common/constants'
 import { SettingsButton } from './SettingsButton'
 import { CodeFromTo } from './code-translator/CodeFromTo'
 import { TranslatorLangSelect } from './TranslatorLangSelect'
-import { useBot } from '../bot'
+import { useBot } from '@ai-translator/bot'
 import { IconLogo } from '../icons'
 import { IconLogoLight } from '../icons/IconLogoLight'
 

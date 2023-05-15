@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { updateMessage, updateStreaming } from '../stores/message.store'
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
-import { emitter, getBot } from '../bot'
+import { emitter, getBot } from '@ai-translator/bot'
 import { RegionChecker } from '../services/RegionChecker'
 import { storage } from '../services/storage'
 import { API_BASE_URL, isDailyUsageLimit } from '../common'
@@ -47,8 +47,6 @@ export function useSendMessage() {
     if (settings.tokenProvider === 'Free') {
       requestMode = RequestMode.Unofficial
     }
-
-    requestMode = RequestMode.Official
 
     try {
       await api.sendMessage({

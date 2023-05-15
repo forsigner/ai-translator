@@ -1,5 +1,6 @@
 import { Box } from '@fower/react'
 import { FowerHTMLProps } from '@fower/core'
+import { useBotContext } from '@ai-translator/bot'
 import { Header } from './Header'
 import { SendMessageBox } from './SendMessageBox'
 // import { useSendMessage } from '@src/hooks/useSendMessage'
@@ -9,7 +10,6 @@ import { forwardRef, useEffect, useState } from 'react'
 import { TranslatorContent } from './TranslatorContent'
 import { useMessage } from '../stores/message.store'
 import { useSendMessage } from '../hooks/useSendMessage'
-import { useBotContext } from '../bot'
 import { useDeviceId } from '../hooks/useDeviceId'
 
 interface Props extends FowerHTMLProps<'div'> {

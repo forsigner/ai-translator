@@ -1,7 +1,8 @@
 import { Buffer } from 'buffer/'
 import { toast } from 'bone-ui'
 import { updatePlaying } from './hooks/usePlaying'
-import { API_BASE_URL } from '../common'
+
+const API_BASE_URL = 'https://ai-translator.langpt.ai'
 
 export class Speaker {
   playing = false

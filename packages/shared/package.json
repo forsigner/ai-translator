@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@ai-translator/api-sdk": "*",
+    "@ai-translator/bot": "*",
     "@ai-translator/chatgpt-api": "*",
     "@ai-translator/easy-modal": "*",
     "@bone-ui/iconify": "^0.33.2",

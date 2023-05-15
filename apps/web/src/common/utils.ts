@@ -12,7 +12,7 @@ export const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
 })
 
-export function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: Function) {
+export function runMiddleware(req: NextApiRequest, res: any, fn: Function) {
   return new Promise((resolve, reject) => {
     fn(req, res, (result: any) => {
       if (result instanceof Error) {

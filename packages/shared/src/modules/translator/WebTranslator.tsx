@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { TranslatorEditor } from './TranslatorEditor'
-import { BotProvider, useBotContext } from '../../bot'
+import { BotProvider, useBotContext } from '@ai-translator/bot'
 import { useSendMessage } from '../../hooks/useSendMessage'
 import { TranslatorContent } from '../../components'
 import { useMessage } from '../../stores/message.store'
