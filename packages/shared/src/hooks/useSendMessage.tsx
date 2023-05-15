@@ -34,7 +34,9 @@ export function useSendMessage() {
       getOrGenerateDeviceId(),
     ])
 
-    const api = new ChatgptAPI(settings.apiKey)
+    const api = new ChatgptAPI({
+      apiKey: settings.apiKey,
+    })
 
     const messages = bot.buildMessages()
 

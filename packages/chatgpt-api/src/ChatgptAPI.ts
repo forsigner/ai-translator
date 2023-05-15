@@ -21,6 +21,18 @@ export interface SendMessageOptions {
   onMessage?: (text: string) => void
 }
 
+type Options = {
+  apiKey?: string
+  isNative?: boolean
+  fetch?: typeof fetch
+}
+
+type FetchOptions = RequestInit & {
+  reactNative?: {
+    textStreaming: boolean
+  }
+}
+
 export class ChatgptAPI {
   completionParams = {
     temperature: 0,
@@ -36,14 +48,20 @@ export class ChatgptAPI {
 
   deviceId = ''
 
+  isNative: boolean = false
+
   resolve: (value: string) => void
 
   reject: (reason?: any) => void
 
   opt: SendMessageOptions
 
-  constructor(apiKey: string = '') {
-    this.apiKey = apiKey
+  fetch: typeof fetch
+
+  constructor(opt: Options) {
+    this.apiKey = opt.apiKey || ''
+    this.fetch = opt?.fetch || fetch
+    this.isNative = opt.isNative || false
   }
 
   async sendMessage(opt: SendMessageOptions) {
@@ -80,24 +98,33 @@ export class ChatgptAPI {
     const API_PATH = '/v1/chat/completions'
     const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)
 
+    const url = `${API_HOST}${API_PATH}`
+    console.log('url:', url, this.apiKey)
+
     const { resolve, reject } = this
 
     let responseText = ''
 
+    const opt: FetchOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...this.completionParams,
+        stream: true,
+        messages: this.messages,
+      }),
+      signal: this.abortController.signal,
+    }
+
+    if (this.isNative) {
+      opt.reactNative = { textStreaming: true }
+    }
+
     try {
-      const res = await fetch(`${API_HOST}${API_PATH}`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...this.completionParams,
-          stream: true,
-          messages: this.messages,
-        }),
-        signal: this.abortController.signal,
-      })
+      const res = await this.fetch(url, opt)
 
       clearTimeout(reqTimeoutId)
 
@@ -154,24 +181,29 @@ export class ChatgptAPI {
 
     const baseURL = 'https://styli.js.org'
     const url = `${baseURL}/api/chat-stream?apiKey=${this.apiKey}`
-
     const { resolve, reject } = this
+
+    const opt: FetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...this.completionParams,
+        stream: true,
+        messages: this.messages,
+      }),
+      signal: this.abortController.signal,
+    }
+
+    if (this.isNative) {
+      opt.reactNative = { textStreaming: true }
+    }
 
     let responseText = ''
 
     try {
-      const result = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...this.completionParams,
-          stream: true,
-          messages: this.messages,
-        }),
-        signal: this.abortController.signal,
-      })
+      const result = await this.fetch(url, opt)
 
       clearTimeout(reqTimeoutId)
 
@@ -235,7 +267,7 @@ export class ChatgptAPI {
         headers.Authorization = `Bearer ${this.opt.token}`
       }
 
-      const res = await fetch(url, {
+      const opt: FetchOptions = {
         method: 'POST',
         headers,
         body: JSON.stringify({
@@ -243,7 +275,13 @@ export class ChatgptAPI {
           deviceId,
         }),
         signal: this.abortController.signal,
-      })
+      }
+
+      if (this.isNative) {
+        opt.reactNative = { textStreaming: true }
+      }
+
+      const res = await this.fetch(url, opt)
 
       clearTimeout(reqTimeoutId)
 
@@ -283,6 +321,8 @@ export class ChatgptAPI {
         reader.releaseLock()
       }
     } catch (error) {
+      console.log('error:,,,,, ', error)
+
       if ((error as any)?.name == 'AbortError') {
         reject(responseText)
         return

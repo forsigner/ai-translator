@@ -44,7 +44,7 @@ export function App({ input = [] }: Props) {
     }
 
     try {
-      const api = new ChatgptAPI('')
+      const api = new ChatgptAPI({})
       const to = await getTargetLang()
 
       const messageBuilder = new MessageBuilder({
