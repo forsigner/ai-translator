@@ -2,21 +2,21 @@ import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { getBot, useBotContext } from '@ai-translator/bot'
 import { Box } from '@fower/react'
-import { usePlaying } from '@ai-translator/bot'
 import { useText } from '../stores/text.store'
 import { useMessage } from '../stores/message.store'
 import { IconStop } from '../icons/IconStop'
 import { IconSpeaker } from '../icons/IconSpeaker'
+import { useSpeaker } from '../hooks/useSpeaker'
 
 interface Props {
   onSendMessage(value: string): Promise<any>
 }
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
-  const { playing } = usePlaying()
   const { text, setText } = useText()
   const { streaming } = useMessage()
   const bot = useBotContext()
+  const { playing, speaker } = useSpeaker()
 
   async function send() {
     if (!text) return
@@ -69,8 +69,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
               fillGray600
               fillGray700--hover
               onClick={() => {
-                const bot = getBot()
-                bot.speaker.stop()
+                speaker.stop()
               }}
             />
           )}
@@ -81,7 +80,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
               size={18}
               onClick={() => {
                 const bot = getBot()
-                bot.speaker.play(bot.text, bot.params.from!)
+                speaker.play(bot.text, bot.params.from!)
               }}
             />
           )}

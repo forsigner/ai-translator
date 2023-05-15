@@ -1,10 +1,16 @@
 import { Buffer } from 'buffer/'
+import mitt from 'mitt'
 import { toast } from 'bone-ui'
-import { updatePlaying } from './hooks/usePlaying'
 
 const API_BASE_URL = 'https://ai-translator.langpt.ai'
 
+type Events = {
+  PLAYING_STATUS_CHANGE: boolean
+}
+
 export class Speaker {
+  emitter = mitt<Events>()
+
   playing = false
 
   audioMap = new Map<string, HTMLAudioElement>()
@@ -34,6 +40,11 @@ export class Speaker {
     return arrayBuffer
   }
 
+  private setPlaying(playing: boolean) {
+    this.playing = playing
+    this.emitter.emit('PLAYING_STATUS_CHANGE', playing)
+  }
+
   play = async (text: string, languageCode: string) => {
     try {
       const id = `<${languageCode}>:${text}`
@@ -48,25 +59,21 @@ export class Speaker {
         this.audioMap.set(id, this.audio)
       }
 
-      updatePlaying(true)
-      this.playing = true
+      this.setPlaying(true)
       await this.audio.play()
     } catch (error) {
-      updatePlaying(false)
-      this.playing = false
+      this.setPlaying(false)
       toast.warning('Speaker is bad')
     }
 
     this.audio.onended = () => {
-      updatePlaying(false)
-      this.playing = false
+      this.setPlaying(false)
     }
   }
 
   stop = () => {
-    updatePlaying(false)
     this.audio.pause()
     this.audio.currentTime = 0
-    this.playing = false
+    this.setPlaying(false)
   }
 }

@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar'
 import { View, Text } from '@fower/react-native'
 import { SafeAreaView } from 'react-native'
 import { RootSiblingParent } from 'react-native-root-siblings'
-import { BotProvider } from './bot'
-
+import { BotProvider } from '@ai-translator/bot'
 import { Nav } from './components/Nav'
 import { TranslatorInput } from './components/TranslatorInput'
 

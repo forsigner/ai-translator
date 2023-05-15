@@ -56,11 +56,8 @@ export class ChatgptAPI {
 
   opt: SendMessageOptions
 
-  fetch: typeof fetch
-
   constructor(opt: Options) {
     this.apiKey = opt.apiKey || ''
-    this.fetch = opt?.fetch || fetch
     this.isNative = opt.isNative || false
   }
 
@@ -124,7 +121,7 @@ export class ChatgptAPI {
     }
 
     try {
-      const res = await this.fetch(url, opt)
+      const res = await fetch(url, opt)
 
       clearTimeout(reqTimeoutId)
 
@@ -203,7 +200,7 @@ export class ChatgptAPI {
     let responseText = ''
 
     try {
-      const result = await this.fetch(url, opt)
+      const result = await fetch(url, opt)
 
       clearTimeout(reqTimeoutId)
 
@@ -281,7 +278,7 @@ export class ChatgptAPI {
         opt.reactNative = { textStreaming: true }
       }
 
-      const res = await this.fetch(url, opt)
+      const res = await fetch(url, opt)
 
       clearTimeout(reqTimeoutId)
 

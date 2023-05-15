@@ -1,7 +1,7 @@
 import { View, Text, TextInput } from '@fower/react-native'
 import { Button, Colors } from 'react-native-ui-lib'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { getBot, useBotContext } from '../bot'
+import { getBot, useBotContext } from '@ai-translator/bot'
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
 import { useEffect, useState } from 'react'
 import Toast from 'react-native-root-toast'
@@ -46,6 +46,7 @@ export function TranslatorInput() {
                   isNative: true,
                   apiKey: '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',
                 })
+
                 const messages = bot.buildMessages()
 
                 await api.sendMessage({

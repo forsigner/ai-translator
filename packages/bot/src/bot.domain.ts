@@ -1,6 +1,5 @@
 import { BotSlugs, BotType, bots } from './constants'
 import { emitter } from './emitter'
-import { Speaker } from './speaker'
 import { isWord } from './utils/isWord'
 import { MessageBuilder } from './utils/MessageBuilder'
 
@@ -12,10 +11,10 @@ export interface Params {
 
 export class Bot {
   private _bots: BotType[] = bots
-  private _bot: BotType
-  private _params: Params = {}
 
-  speaker = new Speaker()
+  private _bot: BotType
+
+  private _params: Params = {}
 
   /**
    * current input text
