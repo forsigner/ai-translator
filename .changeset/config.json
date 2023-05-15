@@ -11,6 +11,7 @@
     "desktop",
     "extension",
     "web",
+    "@ai-translator/shared",
     "tsconfig",
     "eslint-config-custom",
     "jest-presets"

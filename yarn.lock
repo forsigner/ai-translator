@@ -5316,13 +5316,6 @@
   dependencies:
     ci-info "^3.1.0"
 
-"@types/is-promise@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@types/is-promise/-/is-promise-2.2.0.tgz#46a3944f06f6c2899b152006e3e18c20e5458521"
-  integrity sha512-3ZWSl4E6mj0VlzLs4aaBOG8ZzAYn6l0rq+NjBLSd5Fsg4WUgn/AEXIl/50E8PTGMJESx6U15v7692fyBpMcpSQ==
-  dependencies:
-    is-promise "*"
-
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz#8467d4b3c087805d63580480890791277ce35c44"
@@ -5350,7 +5343,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*", "@types/jest@^29.4.0", "@types/jest@^29.5.0":
+"@types/jest@*", "@types/jest@^29.5.0":
   version "29.5.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.1.tgz#83c818aa9a87da27d6da85d3378e5a34d2f31a47"
   integrity sha512-tEuVcHrpaixS36w7hpsfLBLpjtMRJUE09/MHXn923LOVojDwyC14cWcfc0rDs0VEfUyYmt/+iX1kxxp+gZMcaQ==
@@ -5511,7 +5504,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.45.tgz#2c0fafd78705e7a18b7906b5201a522719dc5190"
   integrity sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==
 
-"@types/node@^18.11.18", "@types/node@^18.15.11", "@types/node@^18.15.13", "@types/node@^18.7.23":
+"@types/node@^18.15.11", "@types/node@^18.15.13", "@types/node@^18.7.23":
   version "18.16.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.6.tgz#d0ffffe201b253989b17ea157ddabec677a4f4fe"
   integrity sha512-N7KINmeB8IN3vRR8dhgHEp+YpWvGFcpDoh5XZ8jB5a00AdFKCKEyyGTOPTddUf4JqU1ZKTVxkOxakDvchNVI2Q==
@@ -11064,6 +11057,15 @@ follow-redirects@^1.0.0, follow-redirects@^1.14.8:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
 
+fomir@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/fomir/-/fomir-0.22.0.tgz#dedf256ac1eade2a17774ba6be0faa5d8709eedb"
+  integrity sha512-otQGCwN5LztkrTzuGa87Xe1rRVuzhiLYsyPWYS0T7ksZYKxGv5bbv++s14cCe8rXTys3Medjt8Eu5AuwX4rRtw==
+  dependencies:
+    array-move "^3.0.1"
+    is-promise "^4.0.0"
+    react-fast-compare "^3.2.0"
+
 fontfaceobserver@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.3.0.tgz#5fb392116e75d5024b7ec8e4f2ce92106d1488c8"
@@ -13163,7 +13165,7 @@ is-potential-custom-element-name@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-potential-custom-element-name/-/is-potential-custom-element-name-1.0.1.tgz#171ed6f19e3ac554394edf78caa05784a45bebb5"
   integrity sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==
 
-is-promise@*, is-promise@^4.0.0:
+is-promise@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-4.0.0.tgz#42ff9f84206c1991d26debf520dd5c01042dd2f3"
   integrity sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==
@@ -14564,7 +14566,7 @@ jest@^26.6.3:
     import-local "^3.0.2"
     jest-cli "^26.6.3"
 
-jest@^29.4.1, jest@^29.5.0:
+jest@^29.4.1:
   version "29.5.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-29.5.0.tgz#f75157622f5ce7ad53028f2f8888ab53e1f1f24e"
   integrity sha512-juMg3he2uru1QoXX078zTa7pO85QyB9xajZc6bU+d9yEGwrKX6+vGmJQ3UdVZsvTEUARIdObzH68QItim6OSSQ==
@@ -20358,6 +20360,13 @@ stealthy-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha512-ZnWpYnYugiOVEY5GkcuJK1io5V8QmNYChG62gSit9pQVGErXtrKuPC55ITaVSukmMta5qpMU7vqLt2Lnni4f/g==
 
+stook-async-storage@*:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/stook-async-storage/-/stook-async-storage-1.17.0.tgz#d4fb456560a2277a2588054989c430af0942d933"
+  integrity sha512-oYaTNPLBQCp4h9tx2VFzMCC5CePd3wSJ83h98Muz1Ftc8GeZXUZa6WSVwqCkXIfSRj89kIRBZnWCMv/ZQzeDCQ==
+  dependencies:
+    stook "^1.17.0"
+
 stook-devtools@^1.16.0:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/stook-devtools/-/stook-devtools-1.17.0.tgz#fefc2d9f763bd8697eeb02a3ed08c8c6321699cd"
@@ -21711,7 +21720,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@*, typescript@^5.0.2, typescript@^5.0.3:
+typescript@*, typescript@^5.0.2:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.4.tgz#b217fd20119bd61a94d4011274e0ab369058da3b"
   integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==
