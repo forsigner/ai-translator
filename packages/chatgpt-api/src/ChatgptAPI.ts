@@ -252,6 +252,7 @@ export class ChatgptAPI {
 
     try {
       const url = `${this.opt.baseURL}/api/langpt/completions`
+      console.log('url:---', url)
 
       const TIME_OUT_MS = 60 * 1000
       const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)

@@ -7,6 +7,8 @@ import { storage } from '../services/storage'
 import { API_BASE_URL, isDailyUsageLimit } from '../common'
 import { DailyUsageLimit } from '../components/chat-error-tips/DailyUsageLimit'
 import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
+import { SettingsStorage } from '../services/SettingsStorage'
+import { TokenStorage } from '../services/TokenStorage'
 
 // translate from English to 简体中文: Share your wildest ChatGPT conversations with one click.
 
@@ -25,12 +27,11 @@ export function useSendMessage() {
     if (!value) return
     updateStreaming(true)
     const { isWord } = bot
-    value = value.replace(/[\r\n]+$/, '') // 去掉结尾的换行符
 
     const [settings, regionChecker, token, deviceId] = await Promise.all([
-      storage.getSettings(),
+      SettingsStorage.get(),
       RegionChecker.fromStorage(),
-      storage.getToken(),
+      TokenStorage.get(),
       getOrGenerateDeviceId(),
     ])
 

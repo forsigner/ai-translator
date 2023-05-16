@@ -5,7 +5,7 @@ import { initI18n } from './initI18n'
 import { initStookGraphql } from './initStookGraphql'
 import { initSettingsStorage } from './initSettingsStorage'
 import { RegionChecker } from '../services/RegionChecker'
-import { isExtension } from './utils'
+import { isExtension } from './constants'
 
 export function init() {
   initSettingsStorage()

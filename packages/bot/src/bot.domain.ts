@@ -1,5 +1,6 @@
 import { BotSlugs, BotType, bots } from './constants'
 import { emitter } from './emitter'
+import { Message } from './message.domain'
 import { isWord } from './utils/isWord'
 import { MessageBuilder } from './utils/MessageBuilder'
 
@@ -16,12 +17,16 @@ export class Bot {
 
   private _params: Params = {}
 
+  emitter = emitter
+
   /**
    * current input text
    */
   text = ''
 
   isWord = false
+
+  message = new Message()
 
   constructor() {
     this.init(this._bots[0])
@@ -45,7 +50,8 @@ export class Bot {
   }
 
   updateText = (value = '') => {
-    this.text = value.trim()
+    this.text = value.trim().replace(/[\r\n]+$/, '')
+
     if (this.slug === BotSlugs.TextTranslator) {
       this.isWord = isWord(this.params.from!, value)
     }
@@ -67,5 +73,10 @@ export class Bot {
   buildMessages = () => {
     const messageBuilder = new MessageBuilder(this)
     return messageBuilder.buildMessages()
+  }
+
+  sendMessage = async () => {
+    if (!this.text) return
+    this.message.updateStreaming(true)
   }
 }

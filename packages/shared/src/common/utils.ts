@@ -4,9 +4,6 @@ import { FieldNode } from 'fomir'
 import { toast } from 'bone-ui'
 import { ONE_DAY, ONE_HOUR, ONE_MINUTE, ONE_SECOND } from './constants'
 
-export const isServer = typeof window === 'undefined'
-
-export const isExtension = process.env.NEXT_PUBLIC_PLATFORM === 'EXTENSION'
 
 export const isEqual = reactFastCompare
 

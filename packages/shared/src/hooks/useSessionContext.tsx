@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, createContext, useContext, useEffect } from 'react'
 import { LoginSuccessPayload } from '@ai-translator/api-sdk'
-import { storage } from '../services/storage'
+import { TokenStorage } from '../services/TokenStorage'
 
 type useSessionProviderProps = {
   session: LoginSuccessPayload
@@ -15,7 +15,9 @@ export const SessionProvider: FC<PropsWithChildren<useSessionProviderProps>> = (
   const { Provider } = sessionContext
 
   useEffect(() => {
-    if (session) storage.setToken(session.token)
+    if (session) {
+      TokenStorage.set(session.token)
+    }
   }, [session])
 
   return <Provider value={session}>{children}</Provider>

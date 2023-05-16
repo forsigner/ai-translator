@@ -14,6 +14,10 @@ export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'
 const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
+export const isServer = typeof window === 'undefined'
+
+export const isExtension = process.env.NEXT_PUBLIC_PLATFORM === 'EXTENSION'
+
 export const HOST =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'

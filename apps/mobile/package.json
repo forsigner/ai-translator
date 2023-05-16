@@ -15,7 +15,6 @@
     "@flyskywhy/react-native-gcanvas": "^6.0.3",
     "@fower/react": "^1.76.0",
     "@fower/react-native": "^1.76.0",
-    "babel-plugin-transform-globals": "^1.0.1",
     "base-64": "^1.0.0",
     "expo": "~48.0.15",
     "expo-status-bar": "~1.4.4",

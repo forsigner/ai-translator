@@ -1,5 +1,5 @@
 import { setConfig, composeAtom, setTheme, store } from '@fower/core'
-import { isExtension } from './utils'
+import { isExtension } from './constants'
 
 declare module '@fower/atomic-props' {
   export interface AtomicProps {

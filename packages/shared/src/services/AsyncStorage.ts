@@ -1,4 +1,5 @@
-import { isExtension, isServer } from '../common'
+import { isExtension, isServer } from '../common/constants'
+import NativeAsyncStorage from '@react-native-async-storage/async-storage'
 
 export class AsyncStorage {
   static async setItem<T = any>(key: string, value: T) {
@@ -11,7 +12,7 @@ export class AsyncStorage {
       return
     }
 
-    localStorage.setItem(key, JSON.stringify(value))
+    await NativeAsyncStorage.setItem(key, JSON.stringify(value))
   }
 
   static async getItem<T = any>(key: string): Promise<T | undefined> {
@@ -20,7 +21,9 @@ export class AsyncStorage {
       const storage = await chrome.storage.sync.get(key)
       return storage?.[key]
     }
-    const str = localStorage.getItem(key)
+
+    const str = await NativeAsyncStorage.getItem(key)
+
     if (!str) return
     try {
       return JSON.parse(str)

@@ -1,8 +1,8 @@
 import { setCookie, getCookie } from 'cookies-next'
 import { store } from '@fower/core'
 import { useState, useEffect } from 'react'
-import { storage } from '../services/storage'
 import { isExtension } from '../common'
+import { SettingsStorage } from '../services/SettingsStorage'
 interface Result {
   mode: string
   setMode: (mode: string) => void
@@ -13,7 +13,7 @@ export function useMode(): Result {
 
   async function initMode() {
     if (isExtension) {
-      const settings = await storage.getSettings()
+      const settings = await SettingsStorage.get()
       setMode(settings.theme || 'light')
     } else {
       const mode = getCookie('fower-mode') as string

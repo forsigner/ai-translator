@@ -2,6 +2,7 @@ import { LoginSuccessPayload } from '@ai-translator/api-sdk'
 import { useEffect } from 'react'
 import { useStore } from 'stook'
 import { storage } from '../services/storage'
+import { TokenStorage } from '../services/TokenStorage'
 
 type State = {
   loading: boolean
@@ -24,7 +25,7 @@ export function useSession() {
           s.loading = false
           s.session = session
         })
-        await storage.setToken(session.token)
+        await TokenStorage.set(session.token)
       } else {
         setSession((s) => {
           s.loading = false

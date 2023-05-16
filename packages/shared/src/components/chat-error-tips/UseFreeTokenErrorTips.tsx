@@ -2,7 +2,7 @@ import { Box } from '@fower/react'
 import { Button, toast } from 'bone-ui'
 import { useText } from '../../stores/text.store'
 import { useSendMessage } from '../../hooks/useSendMessage'
-import { storage } from '../../services/storage'
+import { SettingsStorage } from '../../services/SettingsStorage'
 
 export const UseFreeTokenErrorTips = () => {
   const { text } = useText()
@@ -14,11 +14,13 @@ export const UseFreeTokenErrorTips = () => {
       <Button
         size="sm"
         onClick={async () => {
-          const settings = await storage.getSettings()
-          await storage.setSettings({
+          const settings = await SettingsStorage.get()
+
+          await SettingsStorage.set({
             ...settings,
             tokenProvider: 'ApiKey',
           })
+
           toast.success('已设置为 API Key 模式')
           sendMessage(text)
         }}
