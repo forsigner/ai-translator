@@ -1,12 +1,12 @@
 import { Box } from '@fower/react'
 import { Button, toast } from 'bone-ui'
 import { useText } from '../../stores/text.store'
-import { useSendMessage } from '../../hooks/useSendMessage'
 import { SettingsStorage } from '../../services/SettingsStorage'
+import { useBotContext } from '@ai-translator/bot'
 
 export const UseFreeTokenErrorTips = () => {
   const { text } = useText()
-  const sendMessage = useSendMessage()
+  const bot = useBotContext()
 
   return (
     <Box toCenterY spaceX2>
@@ -22,7 +22,7 @@ export const UseFreeTokenErrorTips = () => {
           })
 
           toast.success('已设置为 API Key 模式')
-          sendMessage(text)
+          await bot.sendMessage()
         }}
       >
         开启 API key 模式

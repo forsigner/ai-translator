@@ -96,7 +96,6 @@ export class ChatgptAPI {
     const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)
 
     const url = `${API_HOST}${API_PATH}`
-    console.log('url:', url, this.apiKey)
 
     const { resolve, reject } = this
 
@@ -252,7 +251,6 @@ export class ChatgptAPI {
 
     try {
       const url = `${this.opt.baseURL}/api/langpt/completions`
-      console.log('url:---', url)
 
       const TIME_OUT_MS = 60 * 1000
       const reqTimeoutId = setTimeout(() => this.abortController.abort(), TIME_OUT_MS)

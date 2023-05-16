@@ -1,15 +1,12 @@
 import { Box } from '@fower/react'
-import { useBotContext } from '@ai-translator/bot'
-import { getCurrent } from '@tauri-apps/api/window'
+import { useBotContext, useMessageContent, useStreaming } from '@ai-translator/bot'
 import { TranslatorEditor } from './TranslatorEditor'
-import { useSendMessage } from '../../hooks/useSendMessage'
 import { TranslatorContent } from '../../components'
-import { useMessage } from '../../stores/message.store'
 
 export function DesktopTranslator() {
   const bot = useBotContext()
-  const sendMessage = useSendMessage()
-  const { content, streaming, isWordMode } = useMessage()
+  const { content } = useMessageContent()
+  const { streaming } = useStreaming()
 
   return (
     <Box column maxW-640 mx-auto h-100vh bgWhite rounded2XL>
@@ -29,7 +26,7 @@ export function DesktopTranslator() {
           //   height: bot.isWord ? 600 : 500,
           // })
 
-          await sendMessage(text)
+          await bot.sendMessage()
         }}
       />
 
@@ -39,7 +36,7 @@ export function DesktopTranslator() {
             <TranslatorContent
               streaming={streaming}
               content={content}
-              isWordMode={isWordMode}
+              isWordMode={bot.isWord}
               text={bot.text}
             />
           </Box>

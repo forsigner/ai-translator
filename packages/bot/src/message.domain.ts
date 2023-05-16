@@ -14,11 +14,12 @@ export class Message {
 
   updateStreaming(streaming: boolean) {
     this.streaming = streaming
-    this.emitter.emit('UPDATE_MESSAGE_CONTENT', streaming)
+    this.emitter.emit('UPDATE_MESSAGE_STREAMING', streaming)
   }
 
   updateContent(content: any) {
     this.content = content
+
     this.emitter.emit('UPDATE_MESSAGE_CONTENT', content)
   }
 }

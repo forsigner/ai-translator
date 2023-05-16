@@ -5,6 +5,7 @@ import { RootSiblingParent } from 'react-native-root-siblings'
 import { BotProvider } from '@ai-translator/bot'
 import { Nav } from './components/Nav'
 import { TranslatorInput } from './components/TranslatorInput'
+import { TranslatorContent } from './components/TranslatorContent'
 
 export default function App() {
   return (
@@ -16,11 +17,7 @@ export default function App() {
             <Nav />
             <TranslatorInput />
             <View flex-1>
-              <View>
-                <Text p0 red300>
-                  TODO...
-                </Text>
-              </View>
+              <TranslatorContent />
             </View>
           </View>
         </SafeAreaView>

@@ -18,6 +18,6 @@ export class SettingsStorage {
 
   static async get(): Promise<Settings> {
     const settings = await AsyncStorage.getItem(Keys.Settings)
-    return settings
+    return settings || {}
   }
 }

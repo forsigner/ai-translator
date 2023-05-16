@@ -1,9 +1,14 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
 import { WebTranslator, BasicLayout } from '@ai-translator/shared'
+import { BotProvider } from '@ai-translator/bot'
 
 export default function PageHome() {
-  return <WebTranslator />
+  return (
+    <BotProvider>
+      <WebTranslator />
+    </BotProvider>
+  )
 }
 
 PageHome.Layout = BasicLayout
