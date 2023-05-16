@@ -4,10 +4,10 @@ import { Node, useForm } from 'fomir'
 import { useMode } from './useMode'
 import { useEffect } from 'react'
 import { useSettings } from '../stores/settings.store'
-import { Settings } from '../services/storage'
 import { isExtension } from '../common'
 import { useTranslation } from 'react-i18next'
 import { useLang } from './useLang'
+import { Settings } from '../services/SettingsStorage'
 
 export function useSettingsForm() {
   const { setMode } = useMode()

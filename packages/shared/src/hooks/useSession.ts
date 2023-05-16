@@ -1,7 +1,6 @@
 import { LoginSuccessPayload } from '@ai-translator/api-sdk'
 import { useEffect } from 'react'
 import { useStore } from 'stook'
-import { storage } from '../services/storage'
 import { TokenStorage } from '../services/TokenStorage'
 
 type State = {
