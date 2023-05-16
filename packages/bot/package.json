@@ -31,10 +31,13 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.1",
     "bone-ui": "^0.34.1",
     "buffer": "^6.0.3",
     "endent": "^2.1.0",
+    "idb-keyval": "^6.2.0",
     "mitt": "^3.0.0",
+    "nanoid": "^3.3.6",
     "openai": "^3.2.1",
     "stook": "^1.17.0"
   },
@@ -53,10 +56,13 @@
       "esm"
     ],
     "external": [
+      "@react-native-async-storage/async-storage",
       "bone-ui",
       "buffer",
       "endent",
+      "idb-keyval",
       "mitt",
+      "nanoid",
       "openai",
       "react",
       "stook"
