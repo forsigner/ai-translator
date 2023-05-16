@@ -98,7 +98,7 @@ export class Bot {
 
     const api = new ChatgptAPI({
       isNative: isReactNative(),
-      apiKey: settings?.apiKey || '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',
+      apiKey: settings?.apiKey || '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',
     })
 
     const messages = this.buildMessages()
