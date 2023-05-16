@@ -80,6 +80,8 @@ export class ChatgptAPI {
       this.resolve = resolve
       this.reject = reject
 
+      console.log('requestMode=======:', requestMode)
+
       if (requestMode === RequestMode.Unofficial) {
         await this.handleLangpt()
       } else if (requestMode === RequestMode.Proxy) {

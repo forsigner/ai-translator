@@ -1,6 +1,6 @@
 import { useStore } from 'stook'
 import { useBotContext } from '../context'
-import type { Params } from '../bot.domain'
+import type { Params } from '../domains/bot.domain'
 
 const key = 'BOT_PARAMS'
 

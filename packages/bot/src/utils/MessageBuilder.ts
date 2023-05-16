@@ -1,6 +1,6 @@
 import { ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum } from 'openai'
 import endent from 'endent'
-import type { Bot, Params } from '../bot.domain'
+import type { Bot, Params } from '../domains/bot.domain'
 import { BotSlugs } from '../constants'
 import { langMap } from './constants'
 

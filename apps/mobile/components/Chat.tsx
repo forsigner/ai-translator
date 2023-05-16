@@ -1,8 +1,28 @@
+import { useBotContext } from '@ai-translator/bot'
 import React, { useState, useCallback, useEffect } from 'react'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, IChatMessage } from 'react-native-gifted-chat'
 
 export function Chat() {
-  const [messages, setMessages] = useState<any[]>([])
+  const bot = useBotContext()
+  const [messages, setMessages] = useState<IChatMessage[]>([])
+
+  // console.log('messages:', messages)
+
+  useEffect(() => {
+    bot.emitter.on('ADD_MESSAGE', (message) => {
+      setMessages((previousMessages) => {
+        return [message.toChatMessage(), ...previousMessages]
+      })
+    })
+
+    bot.emitter.on('STREAMING_MESSAGE', (text) => {
+      setMessages((messages) => {
+        messages[0].text = text
+
+        return [...messages]
+      })
+    })
+  }, [bot])
 
   useEffect(() => {
     setMessages([
@@ -19,14 +39,23 @@ export function Chat() {
     ])
   }, [])
 
-  const onSend = useCallback((messages: any[] = []) => {
-    setMessages((previousMessages) => GiftedChat.append(previousMessages, messages))
+  const onSend = useCallback(async (messages: IChatMessage[] = []) => {
+    try {
+      await bot.sendMessage(messages[0].text)
+    } catch (error) {
+      console.log('xx-error:', error)
+    }
   }, [])
 
   return (
     <GiftedChat
       messages={messages}
-      onSend={(messages) => onSend(messages)}
+      onInputTextChanged={(text) => {
+        if (text) bot.updateText(text)
+      }}
+      onSend={(messages) => {
+        onSend(messages)
+      }}
       user={{
         _id: 1,
       }}

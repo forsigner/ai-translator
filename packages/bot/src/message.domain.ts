@@ -12,12 +12,12 @@ export class Message {
 
   streaming: boolean
 
-  updateStreaming(streaming: boolean) {
+  updateStreaming = (streaming: boolean) => {
     this.streaming = streaming
     this.emitter.emit('UPDATE_MESSAGE_STREAMING', streaming)
   }
 
-  updateContent(content: any) {
+  updateContent = (content: any) => {
     this.content = content
 
     this.emitter.emit('UPDATE_MESSAGE_CONTENT', content)
