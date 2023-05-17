@@ -2,7 +2,7 @@ import { ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum } f
 import endent from 'endent'
 import type { Bot, Params } from '../domains/bot.domain'
 import { BotSlugs } from '../constants'
-import { langMap } from './constants'
+import { langMap } from '../supportLanguages'
 
 const chineseLangs = ['zh-Hans', 'zh-Hant', 'wyw', 'yue']
 

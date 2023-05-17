@@ -1,7 +1,8 @@
 import { View, Text } from '@fower/react-native'
 import { SettingsButton } from './SettingsButton'
+import { LangSelectButton } from './LangSelectButton'
 
-export function Nav() {
+export function HomeNav() {
   return (
     <View toBetween px2 pt2 w="100%" toCenterY bgTransparent>
       <View
@@ -17,7 +18,10 @@ export function Nav() {
           </Text>
         </View>
       </View>
-      <SettingsButton />
+      <View toCenterY>
+        <LangSelectButton />
+        <SettingsButton />
+      </View>
     </View>
   )
 }

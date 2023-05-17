@@ -1,6 +1,6 @@
+import { supportLanguages } from '@ai-translator/bot'
 import { Option, Select } from '../Select'
 import { useLangFromTo } from './useLangFromTo'
-import { supportLanguages } from '../../common'
 
 interface Props {
   containerHeight?: number | string

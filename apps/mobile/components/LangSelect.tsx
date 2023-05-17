@@ -1,91 +1,91 @@
-import React, { useRef } from 'react'
-import { View, Text } from '@fower/react-native'
-import { Portal } from '@gorhom/portal'
-import { Ionicons } from '@expo/vector-icons'
+import React, { memo, useState } from 'react'
+import { styled } from '@fower/styled'
 import { TouchableOpacity } from 'react-native'
-import { Modalize } from 'react-native-modalize'
-import { Button, Colors } from 'react-native-ui-lib'
+import { ScrollView, Text, TextInput, View } from '@fower/react-native'
+import { supportLanguages } from '@ai-translator/bot'
 
-export function LangSelect() {
-  const modalizeRef = useRef<Modalize>(null)
+const Opacity = styled(TouchableOpacity)
 
-  const onOpen = () => {
-    modalizeRef.current?.open()
-  }
+interface Props {
+  value: string
+  onChange: (value: string) => void
+}
+
+interface LangSelectItemProps {
+  langName: string
+  langCode: string
+  selected: boolean
+  onClick: (value: string) => void
+}
+
+const LangSelectItem = memo(
+  function LangSelectItem({ langName, langCode, selected, onClick }: LangSelectItemProps) {
+    return (
+      <Opacity
+        row
+        toBetween
+        py2
+        px6
+        onPress={() => {
+          onClick(langCode)
+        }}
+      >
+        <View>
+          <Text textLG fontBold={selected} brand500={selected}>
+            {langName}
+          </Text>
+        </View>
+        <Text gray400 brand500={selected}>
+          {langCode}
+        </Text>
+      </Opacity>
+    )
+  },
+  (prev, cur) => {
+    if (prev.langCode === cur.langCode && prev.selected === cur.selected) return true
+    return false
+  },
+)
+
+export function LangSelect({ value, onChange }: Props) {
+  const [searchedValue, setSearchedValue] = useState('')
+
+  let filtered = supportLanguages.filter((item) => {
+    const reg = new RegExp(`${searchedValue}`, 'i')
+    return (
+      reg.test((item[0] || '').toString().toLowerCase()) ||
+      (typeof item[1] === 'string' && reg.test(item[1].toLowerCase()))
+    )
+  })
 
   return (
     <View>
-      <TouchableOpacity>
-        <Ionicons
-          name="md-cog"
-          size={24}
-          color="black"
-          onPress={() => {
-            onOpen()
-          }}
+      <View px6>
+        <TextInput
+          px4
+          py2
+          roundedFull
+          border-2
+          placeholder="Search"
+          onChangeText={(text) => setSearchedValue(text)}
         />
-      </TouchableOpacity>
-      <Portal>
-        <Modalize
-          onOverlayPress={() => {
-            console.log('gogo........')
-            modalizeRef.current?.close()
-          }}
-          ref={modalizeRef}
-          // withHandle={false}
-          // handlePosition="inside"
-          adjustToContentHeight={true}
-        >
-          <View>
-            <Text
-              onPress={() => {
-                modalizeRef.current?.close()
-              }}
-            >
-              ...your content
-            </Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-          <View>
-            <Text>...your content</Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-
-          <View>
-            <Text>...your content</Text>
-          </View>
-          <Button
-            label={'Press'}
-            size={Button.sizes.medium}
-            backgroundColor={Colors.red30}
-            onPress={() => {
-              modalizeRef.current?.close()
-            }}
-          />
-        </Modalize>
-      </Portal>
+      </View>
+      <ScrollView>
+        <View column flex-1 pt2>
+          {filtered.map((lang) => {
+            const selected = lang[0] === value
+            return (
+              <LangSelectItem
+                key={lang[0]}
+                langCode={lang[0]}
+                langName={lang[1]}
+                selected={selected}
+                onClick={onChange}
+              />
+            )
+          })}
+        </View>
+      </ScrollView>
     </View>
   )
 }

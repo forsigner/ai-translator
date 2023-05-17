@@ -4,9 +4,10 @@ import { Ionicons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native'
 import { Modalize } from 'react-native-modalize'
 import { useNavigation } from '@react-navigation/native'
+import { SettingsScreenNavigationProp } from '../types'
 
 export function SettingsButton() {
-  const navigation = useNavigation<any>()
+  const navigation = useNavigation<SettingsScreenNavigationProp>()
 
   return (
     <View>
