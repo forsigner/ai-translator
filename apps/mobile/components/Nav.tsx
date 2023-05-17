@@ -1,5 +1,5 @@
 import { View, Text } from '@fower/react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { SettingsButton } from './SettingsButton'
 
 export function Nav() {
   return (
@@ -22,7 +22,7 @@ export function Nav() {
           </Text>
         </View>
       </View>
-      <Ionicons name="md-cog" size={24} color="black" />
+      <SettingsButton />
     </View>
   )
 }
