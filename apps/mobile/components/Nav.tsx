@@ -16,11 +16,6 @@ export function Nav() {
             翻译
           </Text>
         </View>
-        <View>
-          <Text gray400 textLG>
-            收藏
-          </Text>
-        </View>
       </View>
       <SettingsButton />
     </View>
