@@ -4,8 +4,6 @@ import { Platform, SafeAreaView, StatusBar as RNStatusBar } from 'react-native'
 import { RootSiblingParent } from 'react-native-root-siblings'
 import { BotProvider } from '@ai-translator/bot'
 import { Nav } from './components/Nav'
-import { TranslatorInput } from './components/TranslatorInput'
-import { TranslatorContent } from './components/TranslatorContent'
 import { Chat } from './components/Chat'
 
 export default function App() {
@@ -18,12 +16,10 @@ export default function App() {
           <View column flex-1 toCenter>
             <StatusBar style="auto" />
             <Nav />
-            <TranslatorInput />
-            <View flex-1>
-              <TranslatorContent />
+            <View flex-1 w-100p>
+              <Chat />
             </View>
           </View>
-          <Chat></Chat>
         </SafeAreaView>
       </BotProvider>
     </RootSiblingParent>

@@ -151,12 +151,8 @@ export class Bot {
           requestMode,
           messages,
           onMessage: (text) => {
-            try {
-              this.message.updateContent(text)
-              this.updateStreamingMessage(text)
-            } catch (error) {
-              console.log('hello---:', error)
-            }
+            this.message.updateContent(text)
+            this.updateStreamingMessage(text)
           },
         })
 
