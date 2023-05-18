@@ -12,6 +12,8 @@ import { isWord } from '../utils/isWord'
 import { MessageBuilder } from '../utils/MessageBuilder'
 import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
+import { MessageStorage } from '../services/MessageStorage'
+import { defaultMessages } from '../defaultMessages'
 
 export interface Params {
   from?: string
@@ -39,10 +41,6 @@ export class Bot {
 
   messages: MyMessage[] = []
 
-  constructor() {
-    this.init(this._bots[0])
-  }
-
   get params() {
     return this._params || {}
   }
@@ -55,7 +53,20 @@ export class Bot {
     return this._bot.name
   }
 
-  init(bot: BotType) {
+  static async create() {
+    const bot = new Bot()
+    bot.init(bot._bots[0])
+    // await MessageStorage.clear()
+    const messages = await MessageStorage.get()
+
+    if (messages.length) {
+      bot.messages = messages
+    }
+
+    return bot
+  }
+
+  private init(bot: BotType) {
     this._bot = bot
     this._params = this._bot.defaultParams || {}
   }
@@ -89,10 +100,18 @@ export class Bot {
     return messageBuilder.buildMessages()
   }
 
-  addMessage = (input: CreateMessageInput) => {
-    const message = new MyMessage(input)
+  clearMessages = async () => {
+    this.messages = []
+    this.emitter.emit('CLEAR_MESSAGES')
+    await MessageStorage.clear()
+  }
+
+  addMessage = async (input: CreateMessageInput) => {
+    const message = MyMessage.create(input)
     this.messages.push(message)
     this.emitter.emit('ADD_MESSAGE', message)
+
+    await MessageStorage.set(this.messages)
   }
 
   updateStreamingMessage = (text: string) => {
@@ -105,15 +124,17 @@ export class Bot {
     if (!this.text) return
     this.message.updateStreaming(true)
 
-    this.addMessage({
+    console.log('send..................')
+
+    await this.addMessage({
       userId: 1, // TODO:
       content: this.text,
       role: ChatCompletionResponseMessageRoleEnum.User,
     })
 
-    this.addMessage({
+    await this.addMessage({
       userId: 2, // TODO:
-      content: '',
+      content: 'init...',
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       streaming: true,
     })
@@ -127,7 +148,7 @@ export class Bot {
 
     const api = new ChatgptAPI({
       isNative: isReactNative(),
-      apiKey: settings?.apiKey || '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',
+      apiKey: settings?.apiKey || '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',
     })
 
     const messages = this.buildMessages()
@@ -154,6 +175,8 @@ export class Bot {
           this.updateStreamingMessage(text)
         },
       })
+
+      await MessageStorage.set(this.messages)
 
       this.message.updateStreaming(false)
     } catch (error) {

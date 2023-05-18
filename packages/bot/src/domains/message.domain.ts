@@ -1,5 +1,24 @@
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
+import { v4 } from 'uuid'
 import { IChatMessage } from 'react-native-gifted-chat'
+
+export type MessageJson = {
+  id: number | string
+
+  botId: number
+
+  userId: number
+
+  content: string
+
+  role: ChatCompletionResponseMessageRoleEnum
+
+  extra: any
+
+  streaming: boolean
+
+  createdAt: Date
+}
 
 export type CreateMessageInput = {
   content: string
@@ -30,18 +49,55 @@ export class Message {
 
   createdAt: Date
 
-  constructor(input: CreateMessageInput) {
-    this.id = Date.now().toString() + Math.random()
-    this.userId = input.userId
-    this.content = input.content
-    this.role = input.role
+  static create(input: CreateMessageInput) {
+    try {
+      const message = new Message()
 
-    if (typeof input.botId !== 'undefined') {
-      this.botId = input.botId
+      message.id = v4()
+      message.userId = input.userId
+      message.content = input.content
+      message.role = input.role
+      message.createdAt = new Date()
+
+      if (typeof input.botId !== 'undefined') {
+        message.botId = input.botId
+      }
+
+      if (typeof input.streaming !== 'undefined') {
+        message.streaming = input.streaming
+      }
+      return message
+    } catch (error) {
+      console.log('errro.....:', error)
+      throw new Error('')
     }
+  }
 
-    if (typeof input.streaming !== 'undefined') {
-      this.streaming = input.streaming
+  static fromJSON(json: MessageJson): Message {
+    const message = new Message()
+
+    message.id = json.id
+    message.botId = json.botId
+    message.userId = json.userId
+    message.content = json.content
+    message.role = json.role
+    message.extra = json.extra
+    message.streaming = json.streaming
+    message.createdAt = json.createdAt
+
+    return message
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      botId: this.botId,
+      userId: this.userId,
+      content: this.content,
+      role: this.role,
+      extra: this.extra,
+      streaming: this.streaming,
+      createdAt: this.createdAt,
     }
   }
 

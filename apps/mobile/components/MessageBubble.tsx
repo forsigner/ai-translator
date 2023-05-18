@@ -20,19 +20,31 @@ export const MessageBubble = (props: MessageProps<IMessage>) => {
   }
 
   const renderMessageText = () => {
-    if (currentMessage.text) {
-      const { containerStyle, ...messageTextProps } = props
-      return (
-        <MessageText
-          {...messageTextProps}
-          textStyle={{
-            left: [styles.standardFont, styles.slackMessageText],
-            right: [],
-          }}
-        />
-      )
+    if ((currentMessage as any).streaming) {
+      return <Streaming />
     }
-    return <Streaming />
+
+    const { containerStyle, ...messageTextProps } = props
+
+    return (
+      <MessageText
+        {...messageTextProps}
+        textStyle={{
+          left: [
+            styles.standardFont,
+            styles.slackMessageText,
+            {
+              lineHeight: 24,
+            },
+          ],
+          right: [
+            {
+              lineHeight: 24,
+            },
+          ],
+        }}
+      />
+    )
   }
 
   const renderMessageImage = () => {

@@ -9,6 +9,8 @@ export type BotEvents = {
 
   ADD_MESSAGE: Message
 
+  CLEAR_MESSAGES: undefined
+
   STREAMING_MESSAGE: string
 }
 

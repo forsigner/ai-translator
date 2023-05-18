@@ -1,6 +1,7 @@
 import { View, Text } from '@fower/react-native'
 import { SettingsButton } from './SettingsButton'
 import { LangSelectButton } from './LangSelectButton'
+import { ClearMessageButton } from './ClearMessageButton'
 
 export function HomeNav() {
   return (
@@ -17,6 +18,7 @@ export function HomeNav() {
             翻译
           </Text>
         </View>
+        <ClearMessageButton />
       </View>
       <View toCenterY>
         <LangSelectButton />
