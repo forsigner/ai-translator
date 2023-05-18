@@ -68,12 +68,12 @@ export class Bot {
     }
   }
 
-  updateParams = (params: Params) => {
+  updateParams = (params: Params, isResendMessage = false) => {
     this._params = params
 
     if (params.to) {
       emitter.emit('CHANGE_LANG_TO', '')
-      if (this.text) {
+      if (this.text && isResendMessage) {
         this.sendMessage()
       }
     }
@@ -118,60 +118,56 @@ export class Bot {
       streaming: true,
     })
 
-    try {
-      const [settings, regionChecker, token, deviceId] = await Promise.all([
-        SettingsStorage.get(),
-        RegionChecker.fromStorage(),
-        TokenStorage.get(),
-        getOrGenerateDeviceId(),
-      ])
+    const [settings, regionChecker, token, deviceId] = await Promise.all([
+      SettingsStorage.get(),
+      RegionChecker.fromStorage(),
+      TokenStorage.get(),
+      getOrGenerateDeviceId(),
+    ])
 
-      const api = new ChatgptAPI({
-        isNative: isReactNative(),
-        apiKey: settings?.apiKey || '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',
+    const api = new ChatgptAPI({
+      isNative: isReactNative(),
+      apiKey: settings?.apiKey || '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',
+    })
+
+    const messages = this.buildMessages()
+
+    let requestMode = RequestMode.Official
+
+    if (!regionChecker.isSupported) {
+      requestMode = RequestMode.Proxy
+    }
+
+    if (settings.tokenProvider === 'Free') {
+      requestMode = RequestMode.Unofficial
+    }
+
+    try {
+      await api.sendMessage({
+        baseURL: API_BASE_URL || 'https://ai-translator.langpt.ai',
+        deviceId,
+        token,
+        requestMode,
+        messages,
+        onMessage: (text) => {
+          this.message.updateContent(text)
+          this.updateStreamingMessage(text)
+        },
       })
 
-      const messages = this.buildMessages()
-
-      let requestMode = RequestMode.Official
-
-      if (!regionChecker.isSupported) {
-        requestMode = RequestMode.Proxy
-      }
-
-      if (settings.tokenProvider === 'Free') {
-        requestMode = RequestMode.Unofficial
-      }
-
-      try {
-        await api.sendMessage({
-          baseURL: API_BASE_URL || 'https://ai-translator.langpt.ai',
-          deviceId,
-          token,
-          requestMode,
-          messages,
-          onMessage: (text) => {
-            this.message.updateContent(text)
-            this.updateStreamingMessage(text)
-          },
-        })
-
-        this.message.updateStreaming(false)
-      } catch (error) {
-        this.message.updateStreaming(false)
-        if (typeof error === 'string') {
-          this.message.updateContent(error)
-          return
-        }
-
-        if (isDailyUsageLimit(error)) {
-          // updateMessage(<DailyUsageLimit />)
-          // TODO:
-          return
-        }
-      }
+      this.message.updateStreaming(false)
     } catch (error) {
-      console.log('0200202:', error)
+      this.message.updateStreaming(false)
+      if (typeof error === 'string') {
+        this.message.updateContent(error)
+        return
+      }
+
+      if (isDailyUsageLimit(error)) {
+        // updateMessage(<DailyUsageLimit />)
+        // TODO:
+        return
+      }
     }
   }
 }

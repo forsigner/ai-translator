@@ -52,6 +52,7 @@ export function Chat() {
 
   const onSend = useCallback(async (messages: IChatMessage[] = []) => {
     await bot.sendMessage(messages[0].text)
+    bot.updateText('')
   }, [])
 
   const renderMessage = (props: MessageProps<IChatMessage>) => {
