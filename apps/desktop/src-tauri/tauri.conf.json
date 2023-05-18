@@ -56,21 +56,12 @@
     "macOSPrivateApi": true,
     "windows": [
       {
+        "fullscreen": false,
+        "height": 780,
         "resizable": true,
-        "title": "menubar",
-        "height": 500,
-        "width": 600,
-        "visible": false,
-        "hiddenTitle": true,
-        "transparent": true,
-        "decorations": false,
-        "focus": false
+        "title": "AI Translator",
+        "width": 600
       }
-    ],
-    "systemTray": {
-      "iconPath": "icons/32x32.png",
-      "menuOnLeftClick": false,
-      "iconAsTemplate": true
-    }
+    ]
   }
 }

@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { Drawer, DrawerContent, DrawerOverlay } from 'bone-ui'
-import { useModal } from '@boter/easy-modal'
+import { useModal } from '@ai-translator/easy-modal'
 import { BasicInfo } from './BasicInfo'
 import { PersonalToken } from './PersonalToken'
 import { DeleteAccount } from './DeleteAccount'

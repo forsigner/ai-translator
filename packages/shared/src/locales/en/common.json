@@ -24,5 +24,6 @@
   "upgrade": "Search",
   "billing": "Subscription",
   "profile": "Profile",
-  "translation": "My translation"
+  "translation": "My translation",
+  "input-placeholder": "Input text"
 }

@@ -13,6 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-translator/bot": "*",
     "@ai-translator/easy-modal": "*",
     "@ai-translator/shared": "*",
     "@dnd-kit/core": "^6.0.8",

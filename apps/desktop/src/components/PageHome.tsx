@@ -1,4 +1,4 @@
-import { DesktopTranslator } from '@ai-translator/shared'
+import { DesktopTranslator, ModuleBot } from '@ai-translator/shared'
 import { getCurrent } from '@tauri-apps/api/window'
 import { register, isRegistered } from '@tauri-apps/api/globalShortcut'
 import useEscape from '@hooks/useEscape'
@@ -24,6 +24,5 @@ async function run() {
 run()
 
 export default function PageHome() {
-  useEscape()
-  return <DesktopTranslator />
+  return <ModuleBot />
 }

@@ -4,7 +4,6 @@ import { Button, Input } from 'bone-ui'
 import { useState } from 'react'
 import { useLoginByToken } from '../../hooks/useLoginByToken'
 import { BasicLayout } from '../../layouts'
-// import { Logo } from '../../components'
 import { LocaleSelect } from '../../components/LocaleSelect'
 import { ModeToggle } from '../../components/ModeToggle'
 

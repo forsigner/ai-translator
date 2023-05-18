@@ -11,7 +11,7 @@ import {
 } from 'bone-ui'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { memo, useState } from 'react'
-import { Message } from '@ai-translator/api-sdk'
+import { Message } from '@ai-translator/bot'
 import { useUser } from '../../stores'
 import { Markdown } from '../Markdown'
 import { IconChatLoading } from '../../icons/IconChatLoading'
@@ -84,7 +84,7 @@ const MessageItem = ({ message }: Props) => {
                 </Tooltip>
               )} */}
 
-              {!isUser && <RemoveMessage message={message} />}
+              {/* {!isUser && <RemoveMessage message={message} />} */}
             </Box>
           )}
         </Box>
