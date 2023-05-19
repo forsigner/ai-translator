@@ -106,6 +106,13 @@ export class Bot {
     await MessageStorage.clear()
   }
 
+  removeMessagePair = async (id: string | number) => {
+    const index = this.messages.findIndex((message) => message.id === id)
+    this.messages.splice(index - 1, 2)
+    this.emitter.emit('REMOVE_MESSAGE_PAIR')
+    await MessageStorage.set(this.messages)
+  }
+
   addMessage = async (input: CreateMessageInput) => {
     const message = MyMessage.create(input)
     this.messages.push(message)

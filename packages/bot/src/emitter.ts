@@ -11,6 +11,8 @@ export type BotEvents = {
 
   CLEAR_MESSAGES: undefined
 
+  REMOVE_MESSAGE_PAIR: undefined
+
   STREAMING_MESSAGE: string
 
   SCROLL_ANCHOR: undefined

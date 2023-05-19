@@ -17,6 +17,10 @@ export function useMessages() {
       setMessages(bot.messages.map((item) => item.toJSON()))
     })
 
+    bot.emitter.on('REMOVE_MESSAGE_PAIR', () => {
+      setMessages(bot.messages.map((item) => item.toJSON()))
+    })
+
     bot.emitter.on('CLEAR_MESSAGES', () => {
       setMessages([])
     })

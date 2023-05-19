@@ -85,7 +85,7 @@ const MessageItem = ({ message }: Props) => {
                 </Tooltip>
               )} */}
 
-              {/* {!isUser && <RemoveMessage message={message} />} */}
+              {!isUser && <RemoveMessage message={message} />}
             </Box>
           )}
         </Box>
