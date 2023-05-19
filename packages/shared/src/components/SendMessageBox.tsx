@@ -1,6 +1,6 @@
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
-import { getBot, useBotContext, useStreaming } from '@ai-translator/bot'
+import { getBot, useBotContext, useMessages } from '@ai-translator/bot'
 import { Box } from '@fower/react'
 import { useText } from '../stores/text.store'
 import { IconStop } from '../icons/IconStop'
@@ -13,7 +13,7 @@ interface Props {
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
   const { text, setText } = useText()
-  const { streaming } = useStreaming()
+  const { message } = useMessages()
   const bot = useBotContext()
   const { playing, speaker } = useSpeaker()
 
@@ -23,7 +23,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
     await onSendMessage?.(text)
   }
 
-  const disabled = streaming
+  const disabled = message.streaming
 
   return (
     <Box relative>

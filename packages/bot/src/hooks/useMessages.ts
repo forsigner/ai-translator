@@ -1,8 +1,7 @@
-import { produce } from 'immer'
 import { IChatMessage } from 'react-native-gifted-chat'
 import { useBotContext } from '../context'
 import { Message, MessageJson } from '../domains/message.domain'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export function useMessages() {
   const bot = useBotContext()
@@ -40,7 +39,14 @@ export function useMessages() {
     })
     .reverse()
 
+  const message = useMemo(() => {
+    const { messages } = bot
+    const lastMessage = messages[messages.length - 1]
+    return lastMessage.toJSON()
+  }, [messages])
+
   return {
+    message,
     messages,
     chatMessages,
     setMessages,

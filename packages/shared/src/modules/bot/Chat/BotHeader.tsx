@@ -23,7 +23,7 @@ export const BotHeader = () => {
       columnGap-4
       toBetween
       mx-auto
-      px={[12, 0]}
+      px={[12, 12, 0]}
       w={['100%', '100%', CHAT_WIDTH]}
     >
       <Box toCenterY columnGap-4>

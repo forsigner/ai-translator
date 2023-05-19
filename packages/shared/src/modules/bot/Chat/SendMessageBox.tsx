@@ -23,7 +23,6 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
     await onSendMessage?.(value)
   }
 
-  // const disabled = isStreaming || isFetching
   const disabled = false
 
   return (

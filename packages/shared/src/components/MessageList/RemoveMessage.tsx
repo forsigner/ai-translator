@@ -48,7 +48,7 @@ const RemoveMessage = ({ message }: Props) => {
         {({ close }) => (
           <>
             <PopoverHeader>Sure to delete this message?</PopoverHeader>
-            <PopoverBody spaceX3>
+            <PopoverBody spaceX3 toRight>
               <Button variant="light" size="sm" onClick={close} colorScheme="gray600">
                 {t('cancel')}
               </Button>

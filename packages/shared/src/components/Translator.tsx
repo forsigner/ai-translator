@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { FowerHTMLProps } from '@fower/core'
-import { useBotContext, useMessageContent, useStreaming } from '@ai-translator/bot'
+import { useBotContext, useMessages } from '@ai-translator/bot'
 import { Header } from './Header'
 import { SendMessageBox } from './SendMessageBox'
 import { CARD_HEIGHT, CARD_WIDTH } from '../common/constants'
@@ -18,8 +18,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   ref,
 ) {
   const bot = useBotContext()
-  const { content } = useMessageContent()
-  const { streaming } = useStreaming()
+  const { message } = useMessages()
 
   const deviceId = useDeviceId()
 
@@ -37,8 +36,8 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
         />
         <Box pt4 mb2 px2 textBase leadingNormal>
           <TranslatorContent
-            streaming={streaming}
-            content={content}
+            streaming={message.streaming}
+            content={message.content}
             isWordMode={bot.isWord}
             text={bot.text}
           />

@@ -3,8 +3,7 @@ import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { API_BASE_URL, BotSlugs, BotType, bots } from '../constants'
 import { emitter } from '../emitter'
 import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
-import { Message } from '../message.domain'
-import { CreateMessageInput, Message as MyMessage } from '../domains/message.domain'
+import { CreateMessageInput, Message } from '../domains/message.domain'
 import { RegionChecker } from '../services/RegionChecker'
 import { SettingsStorage } from '../services/SettingsStorage'
 import { TokenStorage } from '../services/TokenStorage'
@@ -36,9 +35,7 @@ export class Bot {
 
   isWord = false
 
-  message = new Message()
-
-  messages: MyMessage[] = []
+  messages: Message[] = []
 
   get params() {
     return this._params || {}
@@ -113,7 +110,7 @@ export class Bot {
   }
 
   addMessage = async (input: CreateMessageInput) => {
-    const message = MyMessage.create(input)
+    const message = Message.create(input)
     this.messages.push(message)
     this.emitter.emit('ADD_MESSAGE', message)
 
@@ -131,7 +128,6 @@ export class Bot {
     if (text) this.text = text
 
     if (!this.text) return
-    this.message.updateStreaming(true)
 
     await this.addMessage({
       userId: 1, // TODO:
@@ -180,20 +176,15 @@ export class Bot {
         requestMode,
         messages,
         onMessage: (text) => {
-          this.message.updateContent(text)
           this.updateStreamingMessage(text)
-
           this.emitter.emit('SCROLL_ANCHOR')
         },
       })
 
       await MessageStorage.set(this.messages)
-
-      this.message.updateStreaming(false)
     } catch (error) {
-      this.message.updateStreaming(false)
       if (typeof error === 'string') {
-        this.message.updateContent(error)
+        this.updateStreamingMessage(error)
         return
       }
 
