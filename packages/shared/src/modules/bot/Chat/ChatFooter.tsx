@@ -1,7 +1,5 @@
 import { Box } from '@fower/react'
 import { useBot } from '@ai-translator/bot'
-import { ChatController } from './ChatController'
-import { useSendMessage } from '../hooks/useSendMessage'
 import { CHAT_WIDTH } from '../../../common'
 import { SendMessageBox } from './SendMessageBox'
 import { ClearMessageButton } from './ClearMessageButton'

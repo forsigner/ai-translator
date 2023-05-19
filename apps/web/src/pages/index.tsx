@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebTranslator, BasicLayout, ModuleBot } from '@ai-translator/shared'
+import { BasicLayout, ModuleBot } from '@ai-translator/shared'
 import { BotProvider } from '@ai-translator/bot'
 
 export default function PageHome() {

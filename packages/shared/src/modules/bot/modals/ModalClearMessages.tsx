@@ -9,11 +9,9 @@ import {
   ModalBody,
 } from 'bone-ui'
 import { useModal } from '@ai-translator/easy-modal'
-import { useClearMessages } from '../hooks/useClearMessages'
 
 export const ModalClearMessages = () => {
   const { hide, register } = useModal()
-  const { clearMessages } = useClearMessages()
 
   return (
     <Modal {...register('bone-ui')}>
@@ -31,7 +29,7 @@ export const ModalClearMessages = () => {
               size="sm"
               colorScheme="red500"
               onClick={async () => {
-                await clearMessages()
+                // await clearMessages()
                 hide()
               }}
             >

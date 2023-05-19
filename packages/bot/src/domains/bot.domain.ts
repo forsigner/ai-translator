@@ -13,7 +13,6 @@ import { MessageBuilder } from '../utils/MessageBuilder'
 import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
-import { defaultMessages } from '../defaultMessages'
 
 export interface Params {
   from?: string
@@ -158,7 +157,7 @@ export class Bot {
 
     const api = new ChatgptAPI({
       isNative: isReactNative(),
-      apiKey: settings?.apiKey || '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',
+      apiKey: settings?.apiKey,
     })
 
     const messages = this.buildMessages()

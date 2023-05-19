@@ -1,19 +1,15 @@
 import { Button, RefreshOutline, Spinner, StopSolid } from 'bone-ui'
 import { Box } from '@fower/react'
-import { useRegenerateResponse } from '../hooks/useRegenerateResponse'
-import { useChatStatus } from '../hooks/useChatStatus'
-import { emitter } from '../../../common/emitter'
-import { useMessages } from '../hooks/useMessages'
-import { IconTrash } from '../../../icons'
 import { TrashOutline } from '@bone-ui/icons'
 import { useBotContext } from '@ai-translator/bot'
+import { IconClear } from '../../../icons/IconClear'
 
 export const ClearMessageButton = () => {
   const bot = useBotContext()
   return (
     <Box toCenter>
       <Button
-        leftIcon={<TrashOutline size={20}></TrashOutline>}
+        leftIcon={<IconClear size={20} />}
         roundedFull
         colorScheme="white"
         shadow

@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { WebTranslator, BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
+import { BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
 import { Box } from '@fower/react'
 import { FC, PropsWithChildren } from 'react'
 
@@ -36,9 +36,9 @@ export default function PageHome() {
       <Title>Browser permissions</Title>
 
       <Box>
-        If you use AI Translator on your browser, it may request permission to access all visited web pages
-        and browsing history. The only permission we requested is storage permission, we use it to
-        store you personal settings.
+        If you use AI Translator on your browser, it may request permission to access all visited
+        web pages and browsing history. The only permission we requested is storage permission, we
+        use it to store you personal settings.
       </Box>
 
       <Title>Contact us</Title>
