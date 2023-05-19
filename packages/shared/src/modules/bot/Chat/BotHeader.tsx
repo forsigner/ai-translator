@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
-import { NAV_HEIGHT } from '../../../common'
+import { CHAT_WIDTH, NAV_HEIGHT } from '../../../common'
 import { ChatSettings } from './ChatSettings'
 import { BotMenu } from './BotMenu'
 import { useBot } from '@ai-translator/bot'
@@ -19,10 +19,13 @@ export const BotHeader = () => {
       // borderBottom
       // borderBottomGray100
       // borderBottomGray800--dark
-      p4
+      py4
       toCenterY
       columnGap-4
       toBetween
+      mx-auto
+      px={[12, 0]}
+      w={['100%', '100%', CHAT_WIDTH]}
     >
       <Box toCenterY columnGap-4>
         {/* <MenuAlt1Solid /> */}

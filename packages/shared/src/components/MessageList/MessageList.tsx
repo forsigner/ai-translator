@@ -1,9 +1,9 @@
 import { Box } from '@fower/react'
-import { Message } from '@ai-translator/bot'
+import { Message, MessageJson } from '@ai-translator/bot'
 import MessageItem from './MessageItem'
 
 interface Props {
-  messages: Message[]
+  messages: MessageJson[]
 }
 
 export const MessageList = ({ messages }: Props) => {

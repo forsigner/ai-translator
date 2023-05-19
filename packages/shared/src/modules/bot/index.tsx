@@ -7,9 +7,7 @@ export function ModuleBot() {
   return (
     <BotProvider>
       {/* <Sidebar /> */}
-      <Box flex-1>
-        <Chat />
-      </Box>
+      <Chat />
     </BotProvider>
   )
 }

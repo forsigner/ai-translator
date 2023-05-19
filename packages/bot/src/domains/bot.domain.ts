@@ -115,6 +115,9 @@ export class Bot {
   }
 
   updateStreamingMessage = (text: string) => {
+    const len = this.messages.length
+    this.messages[len - 1].content = text
+    this.messages[len - 1].streaming = false
     this.emitter.emit('STREAMING_MESSAGE', text)
   }
 
@@ -124,8 +127,6 @@ export class Bot {
     if (!this.text) return
     this.message.updateStreaming(true)
 
-    console.log('send..................')
-
     await this.addMessage({
       userId: 1, // TODO:
       content: this.text,
@@ -134,10 +135,12 @@ export class Bot {
 
     await this.addMessage({
       userId: 2, // TODO:
-      content: 'init...',
+      content: '',
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       streaming: true,
     })
+
+    this.emitter.emit('SCROLL_ANCHOR')
 
     const [settings, regionChecker, token, deviceId] = await Promise.all([
       SettingsStorage.get(),
@@ -173,6 +176,8 @@ export class Bot {
         onMessage: (text) => {
           this.message.updateContent(text)
           this.updateStreamingMessage(text)
+
+          this.emitter.emit('SCROLL_ANCHOR')
         },
       })
 

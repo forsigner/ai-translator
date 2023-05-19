@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { Box } from '@fower/react'
-import { emitter } from '../../../common/emitter'
+import { useBotContext } from '@ai-translator/bot'
 
 export const Anchor = () => {
   const anchorRef = useRef<HTMLDivElement | null>(null)
+  const bot = useBotContext()
 
   useEffect(() => {
     const dom = anchorRef.current
@@ -13,13 +14,14 @@ export const Anchor = () => {
         block: 'end',
       })
     }
+
     if (dom) {
       setTimeout(() => {
         scroll(dom)
       }, 200)
     }
 
-    emitter.on('SCROLL_ANCHOR', () => {
+    bot.emitter.on('SCROLL_ANCHOR', () => {
       setTimeout(() => {
         scroll(dom!)
       }, 0)

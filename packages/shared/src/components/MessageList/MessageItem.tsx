@@ -1,4 +1,6 @@
 import { format } from 'date-fns'
+import { Message, MessageJson } from '@ai-translator/bot'
+import reactFastCompare from 'react-fast-compare'
 import { Box } from '@fower/react'
 import {
   Avatar,
@@ -11,7 +13,6 @@ import {
 } from 'bone-ui'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { memo, useState } from 'react'
-import { Message } from '@ai-translator/bot'
 import { useUser } from '../../stores'
 import { Markdown } from '../Markdown'
 import { IconChatLoading } from '../../icons/IconChatLoading'
@@ -21,7 +22,7 @@ import RemoveMessage from './RemoveMessage'
 import { useHover } from '../../hooks/useHover'
 
 interface Props {
-  message: Message
+  message: MessageJson
 }
 
 const MessageItem = ({ message }: Props) => {
@@ -33,9 +34,9 @@ const MessageItem = ({ message }: Props) => {
 
   return (
     <Box toLeft py3 ref={hoverRef}>
-      <Box mr-10>
+      <Box mr-10 mt2>
         {!isUser && <IconChatgpt />}
-        {isUser && <Avatar roundedLG src={user?.avatar} name={user?.nickname || 'U'} />}
+        {isUser && <Avatar size={24} roundedLG src={user?.avatar} name={user?.nickname || 'U'} />}
       </Box>
 
       <Box flex-1>
@@ -96,5 +97,5 @@ const MessageItem = ({ message }: Props) => {
 }
 
 export default memo(MessageItem, (prev, next) => {
-  return prev.message.content === next.message.content
+  return reactFastCompare(prev.message, next.message)
 })
