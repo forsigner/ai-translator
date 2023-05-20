@@ -12,8 +12,6 @@ import { MessageBuilder } from '../utils/MessageBuilder'
 import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
-import { API_HOST } from '../constants'
-import { set } from 'idb-keyval'
 
 export interface Params {
   from?: string
@@ -93,8 +91,9 @@ export class Bot {
   }
 
   selectBot = async (bot: BotType) => {
-    emitter.emit('SELECT_BOT', bot)
     this.init(bot)
+    this.messages = await MessageStorage.queryBotMessages(bot.slug)
+    emitter.emit('SELECT_BOT', bot)
   }
 
   buildMessages = () => {
@@ -164,12 +163,14 @@ export class Bot {
 
     await this.addMessage({
       userId: 1, // TODO:
+      botSlug: this.slug,
       content: this.text,
       role: ChatCompletionResponseMessageRoleEnum.User,
     })
 
     await this.addMessage({
       userId: 2, // TODO:
+      botSlug: this.slug,
       content: '',
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       streaming: true,

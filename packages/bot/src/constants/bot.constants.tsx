@@ -11,18 +11,18 @@ export interface BotType {
 }
 
 export enum BotSlugs {
-  'TextTranslator' = 'text-translator',
-  'CodeTranslator' = 'code-translator',
-  'TextPolisher' = 'text-polisher',
-  'TextSummarizer' = 'text-summarizer',
-  'GrammarAnalyzer' = 'grammar-analyzer',
-  'CodeInterpreter' = 'code-interpreter',
+  TextTranslator = 'text-translator',
+  CodeTranslator = 'code-translator',
+  TextPolisher = 'text-polisher',
+  TextSummarizer = 'text-summarizer',
+  GrammarAnalyzer = 'grammar-analyzer',
+  CodeInterpreter = 'code-interpreter',
 }
 
 export const bots: BotType[] = [
   {
     name: 'Translator',
-    slug: 'text-translator',
+    slug: BotSlugs.TextTranslator,
     intro: 'Translate text from one language to another',
     icon: (
       <Box square10 bgGray300--T20 roundedFull toCenter bgOrange100>
@@ -36,7 +36,7 @@ export const bots: BotType[] = [
   },
   {
     name: 'Code translator',
-    slug: 'code-translator',
+    slug: BotSlugs.CodeTranslator,
     intro: 'Code to Code, Python to JavaScript, Java to Python...',
     icon: (
       <Box square10 bgGray300--T20 roundedFull toCenter bgRed100>
@@ -50,6 +50,7 @@ export const bots: BotType[] = [
   },
   {
     name: 'Text polisher',
+    slug: BotSlugs.TextPolisher,
     intro: 'Translate text from one language to another, but with JSON Object',
     icon: (
       <Box square10 bgGray300--T20 roundedFull toCenter bgGreen100>
@@ -58,12 +59,11 @@ export const bots: BotType[] = [
         </Box>
       </Box>
     ),
-    slug: 'text-polisher',
   },
 
   {
     name: 'Text summarizer',
-    slug: 'text-summarize',
+    slug: BotSlugs.TextSummarizer,
     hide: true,
     intro: '',
   },
@@ -75,7 +75,7 @@ export const bots: BotType[] = [
   },
   {
     name: 'Code interpreter',
-    slug: 'code-interpreter',
+    slug: BotSlugs.CodeInterpreter,
     hide: true,
     intro: '',
   },

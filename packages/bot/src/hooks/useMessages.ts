@@ -20,6 +20,10 @@ export function useMessages() {
       setMessages(bot.messages.map((item) => item.toJSON()))
     })
 
+    bot.emitter.on('SELECT_BOT', () => {
+      setMessages(bot.messages.map((item) => item.toJSON()))
+    })
+
     bot.emitter.on('CLEAR_MESSAGES', () => {
       setMessages([])
     })

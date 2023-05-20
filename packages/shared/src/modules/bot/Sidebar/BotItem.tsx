@@ -1,21 +1,22 @@
 import { Box } from '@fower/react'
-import { BotType } from '@ai-translator/bot'
+import { BotType, getBot, useBot } from '@ai-translator/bot'
 
 interface Props {
-  bot: BotType
+  item: BotType
 }
 
-export const BotItem = ({ bot }: Props) => {
-  const active = bot.slug === 'text-translator'
+export const BotItem = ({ item }: Props) => {
+  const { bot } = useBot()
+  const active = item.slug === bot.slug
 
-  if (bot.hide) return null
+  if (item.hide) return null
 
   return (
     <Box
-      key={bot.slug}
+      key={item.slug}
       bgBrand100={active}
       onClick={() => {
-        console.log('..xgo')
+        getBot().selectBot(item)
       }}
     >
       <Box
@@ -34,12 +35,12 @@ export const BotItem = ({ bot }: Props) => {
         fontMedium
         spaceX2
       >
-        <Box>{!!bot.icon && bot.icon}</Box>
+        <Box>{!!item.icon && item.icon}</Box>
 
         <Box>
-          <Box textLG>{bot.name}</Box>
+          <Box textLG>{item.name}</Box>
           <Box textXS gray500>
-            {bot.intro}
+            {item.intro}
           </Box>
         </Box>
       </Box>

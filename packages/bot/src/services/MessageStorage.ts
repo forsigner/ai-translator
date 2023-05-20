@@ -20,4 +20,21 @@ export class MessageStorage {
   static async clear() {
     await AsyncStorage.setItem(key, null)
   }
+
+  static async add(data: Message) {
+    const messages = await MessageStorage.get()
+    messages.push(data)
+    await MessageStorage.set(messages)
+  }
+
+  static async delete() {
+    const messages = await MessageStorage.get()
+    messages.pop()
+    await MessageStorage.set(messages)
+  }
+
+  static async queryBotMessages(botSlug: string) {
+    const messages = await MessageStorage.get()
+    return messages.filter((message) => message.botSlug === botSlug)
+  }
 }

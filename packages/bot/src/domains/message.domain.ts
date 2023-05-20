@@ -5,7 +5,7 @@ import { IChatMessage } from 'react-native-gifted-chat'
 export type MessageJson = {
   id: number | string
 
-  botId: number
+  botSlug: string
 
   userId: number
 
@@ -21,13 +21,13 @@ export type MessageJson = {
 }
 
 export type CreateMessageInput = {
+  botSlug: string
+
   content: string
 
   role: ChatCompletionResponseMessageRoleEnum
 
   userId: number
-
-  botId?: number
 
   streaming?: boolean
 }
@@ -35,7 +35,7 @@ export type CreateMessageInput = {
 export class Message {
   id: number | string
 
-  botId: number
+  botSlug: string
 
   userId: number
 
@@ -50,34 +50,26 @@ export class Message {
   createdAt: Date
 
   static create(input: CreateMessageInput) {
-    try {
-      const message = new Message()
+    const message = new Message()
 
-      message.id = v4()
-      message.userId = input.userId
-      message.content = input.content
-      message.role = input.role
-      message.createdAt = new Date()
+    message.id = v4()
+    message.userId = input.userId
+    message.content = input.content
+    message.role = input.role
+    message.createdAt = new Date()
+    message.botSlug = input.botSlug
 
-      if (typeof input.botId !== 'undefined') {
-        message.botId = input.botId
-      }
-
-      if (typeof input.streaming !== 'undefined') {
-        message.streaming = input.streaming
-      }
-      return message
-    } catch (error) {
-      console.log('errro.....:', error)
-      throw new Error('')
+    if (typeof input.streaming !== 'undefined') {
+      message.streaming = input.streaming
     }
+    return message
   }
 
   static fromJSON(json: MessageJson): Message {
     const message = new Message()
 
     message.id = json.id
-    message.botId = json.botId
+    message.botSlug = json.botSlug
     message.userId = json.userId
     message.content = json.content
     message.role = json.role
@@ -91,7 +83,7 @@ export class Message {
   toJSON() {
     return {
       id: this.id,
-      botId: this.botId,
+      botSlug: this.botSlug,
       userId: this.userId,
       content: this.content,
       role: this.role,
