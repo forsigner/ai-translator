@@ -1,5 +1,6 @@
 import { YoudaoDictResult } from '@ai-translator/bot'
 import { Box } from '@fower/react'
+import { IconSpeaker } from '../../icons/IconSpeaker'
 
 type ExplainsProps = {
   explains: string[]
@@ -74,6 +75,12 @@ interface Props {
 
 export const YoudaoDictWord = ({ data }: Props) => {
   const { basic } = data
+
+  function play(src: string) {
+    const audio = new Audio(src)
+    audio.play()
+  }
+
   return (
     <Box column rowGap-4>
       <Box textLG fontBold>
@@ -86,6 +93,15 @@ export const YoudaoDictWord = ({ data }: Props) => {
               英
             </Box>
             <Box>{` / ${basic['uk-phonetic']} /`}</Box>
+            <IconSpeaker
+              cursorPointer
+              size={16}
+              gray500
+              gray900--hover
+              onClick={() => {
+                play(`https://dict.youdao.com/dictvoice?audio=${data.query}&type=1`)
+              }}
+            />
           </Box>
         )}
 
@@ -95,6 +111,16 @@ export const YoudaoDictWord = ({ data }: Props) => {
               美
             </Box>
             <Box>{` / ${basic['us-phonetic']} /`}</Box>
+
+            <IconSpeaker
+              cursorPointer
+              gray500
+              gray900--hover
+              size={16}
+              onClick={() => {
+                play(`https://dict.youdao.com/dictvoice?audio=${data.query}&type=2`)
+              }}
+            />
           </Box>
         )}
       </Box>
