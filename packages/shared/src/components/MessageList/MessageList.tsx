@@ -8,7 +8,7 @@ interface Props {
 
 export const MessageList = ({ messages }: Props) => {
   return (
-    <Box column rowGap-10>
+    <Box column rowGap-4>
       {messages.map((item, index) => (
         <MessageItem key={index} message={item} />
       ))}

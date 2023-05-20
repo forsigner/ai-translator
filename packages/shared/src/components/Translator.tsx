@@ -18,7 +18,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   ref,
 ) {
   const bot = useBotContext()
-  const { message } = useMessages()
+  const { messages } = useMessages()
 
   const deviceId = useDeviceId()
 
@@ -35,12 +35,14 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
           }}
         />
         <Box pt4 mb2 px2 textBase leadingNormal>
-          <TranslatorContent
-            streaming={message.streaming}
-            content={message.content}
-            isWordMode={bot.isWord}
-            text={bot.text}
-          />
+          {messages[messages.length - 1] && (
+            <TranslatorContent
+              streaming={messages[messages.length - 1].streaming}
+              content={messages[messages.length - 1].content}
+              isWordMode={bot.isWord}
+              text={bot.text}
+            />
+          )}
         </Box>
         {/* <Footer /> */}
       </Box>

@@ -2,12 +2,12 @@ import { Box } from '@fower/react'
 import Highlighter from 'react-highlight-words'
 import { IconChatLoading } from './IconChatLoading'
 import { Markdown } from './Markdown'
-import { ReactNode } from 'react'
 import { Tag } from 'bone-ui'
+import { YoudaoDictWord } from './MessageList/YoudaoDictWord'
 
 interface Props {
   streaming: boolean
-  content: ReactNode
+  content: any
   isWordMode: boolean
   text: string
 }
@@ -83,6 +83,10 @@ export const TranslatorContent = ({ streaming, content, isWordMode, text }: Prop
         <IconChatLoading />
       </Box>
     )
+  }
+
+  if (typeof content === 'object') {
+    return <YoudaoDictWord data={content?.data} />
   }
 
   if (typeof content === 'string') {

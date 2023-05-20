@@ -12,13 +12,20 @@ import { Bot } from './domains/bot.domain'
 
 export const botContext = createContext<Bot>({} as Bot)
 
-export const BotProvider: FC<PropsWithChildren> = ({ children }) => {
+interface BotProviderProps {
+  clearMessagesWhenInitialized?: boolean
+}
+
+export const BotProvider: FC<PropsWithChildren<BotProviderProps>> = ({
+  children,
+  clearMessagesWhenInitialized = false,
+}) => {
   const { Provider } = botContext
   const botRef = useRef<Bot>()
   const [inited, forceUpdate] = useState(false)
 
   useEffect(() => {
-    Bot.create().then((bot) => {
+    Bot.create(clearMessagesWhenInitialized).then((bot) => {
       botRef.current = bot
       mutate('BOTER_BOT', botRef.current)
       forceUpdate(true)

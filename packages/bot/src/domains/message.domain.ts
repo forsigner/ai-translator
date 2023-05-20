@@ -9,7 +9,7 @@ export type MessageJson = {
 
   userId: number
 
-  content: string
+  content: any
 
   role: ChatCompletionResponseMessageRoleEnum
 
@@ -39,7 +39,7 @@ export class Message {
 
   userId: number
 
-  content: string
+  content: any
 
   role: ChatCompletionResponseMessageRoleEnum
 

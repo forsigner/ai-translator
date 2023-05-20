@@ -12,6 +12,7 @@ import { MessageBuilder } from '../utils/MessageBuilder'
 import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
+import { API_HOST } from '../constants'
 
 export interface Params {
   from?: string
@@ -49,10 +50,14 @@ export class Bot {
     return this._bot.name
   }
 
-  static async create() {
+  static async create(clearMessagesWhenInitialized: boolean) {
     const bot = new Bot()
     bot.init(bot._bots[0])
-    // await MessageStorage.clear()
+
+    if (clearMessagesWhenInitialized) {
+      await MessageStorage.clear()
+    }
+
     const messages = await MessageStorage.get()
 
     if (messages.length) {
@@ -124,6 +129,33 @@ export class Bot {
     this.emitter.emit('STREAMING_MESSAGE', text)
   }
 
+  async queryDict() {
+    const url = `${API_BASE_URL}/api/dict`
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: 'zh-CHS',
+        word: this.text,
+      }),
+    })
+    const json = await res.json()
+
+    console.log('json:', json)
+
+    if (!json?.data?.isWord) {
+      throw new Error()
+    }
+
+    this.updateStreamingMessage(json)
+
+    this.emitter.emit('SCROLL_ANCHOR')
+
+    await MessageStorage.set(this.messages)
+  }
+
   sendMessage = async (text = '') => {
     if (text) this.text = text
 
@@ -143,6 +175,13 @@ export class Bot {
     })
 
     this.emitter.emit('SCROLL_ANCHOR')
+
+    if (this.isWord && this.params.to === 'zh-Hans') {
+      try {
+        await this.queryDict()
+        return
+      } catch (error) {}
+    }
 
     const [settings, regionChecker, token, deviceId] = await Promise.all([
       SettingsStorage.get(),

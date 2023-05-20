@@ -40,9 +40,8 @@ export function useMessages() {
     .reverse()
 
   const message = useMemo(() => {
-    const { messages } = bot
-    const lastMessage = messages[messages.length - 1]
-    return lastMessage.toJSON()
+    if (!messages.length) return {} as MessageJson
+    return messages[messages.length - 1]
   }, [messages])
 
   return {

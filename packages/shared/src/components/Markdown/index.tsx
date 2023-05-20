@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import RemarkMath from 'remark-math'
 import RemarkGfm from 'remark-gfm'
 import { Box } from '@fower/react'
+import './markdown.scss'
 
 interface MarkdownProps {
   content: string

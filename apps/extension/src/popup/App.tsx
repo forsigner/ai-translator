@@ -15,7 +15,7 @@ function App(): ReactElement {
   if (loading) return <TranslatorLoading />
 
   return (
-    <BotProvider>
+    <BotProvider clearMessagesWhenInitialized>
       <ToastContainer></ToastContainer>
       <Box inlineFlex black bgWhite>
         {!visible && <Translator showSettings />}

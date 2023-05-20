@@ -11,3 +11,5 @@ export * from './emitter'
 export * from './utils'
 export * from './supportLanguages'
 export * from './supportedRegions'
+
+export * from './types'

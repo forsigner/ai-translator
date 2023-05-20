@@ -13,7 +13,7 @@ export function App() {
   if (!visible) return null
 
   return (
-    <BotProvider>
+    <BotProvider clearMessagesWhenInitialized>
       <ToastContainer></ToastContainer>
       <Popover
         placement="bottom"
