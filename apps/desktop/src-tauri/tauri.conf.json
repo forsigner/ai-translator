@@ -57,10 +57,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 780,
+        "height": 980,
         "resizable": true,
         "title": "AI Translator",
-        "width": 600
+        "width": 1500
       }
     ]
   }

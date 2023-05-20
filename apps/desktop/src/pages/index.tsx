@@ -1,15 +1,6 @@
-import { BotProvider } from '@ai-translator/bot'
-import dynamic from 'next/dynamic'
-
-const DynamicHome = dynamic(() => import('../components/PageHome'), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-})
+import { ModuleBot } from '@ai-translator/shared'
 
 export default function PageHome() {
-  return (
-    <BotProvider>
-      <DynamicHome />
-    </BotProvider>
-  )
+
+  return <ModuleBot />
 }

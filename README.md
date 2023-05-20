@@ -2,7 +2,7 @@
 
 <div align="center">
   <h1>AI Translator</h1>
-  <h3><strong>Translator power by AI</strong></h3>
+  <h3><strong>Translator powered by AI</strong></h3>
 </div>
 <br>
 

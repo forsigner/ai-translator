@@ -13,6 +13,7 @@ import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
 import { API_HOST } from '../constants'
+import { set } from 'idb-keyval'
 
 export interface Params {
   from?: string
@@ -143,15 +144,15 @@ export class Bot {
     })
     const json = await res.json()
 
-    console.log('json:', json)
-
     if (!json?.data?.isWord) {
       throw new Error()
     }
 
     this.updateStreamingMessage(json)
 
-    this.emitter.emit('SCROLL_ANCHOR')
+    setTimeout(() => {
+      this.emitter.emit('SCROLL_ANCHOR')
+    }, 10)
 
     await MessageStorage.set(this.messages)
   }

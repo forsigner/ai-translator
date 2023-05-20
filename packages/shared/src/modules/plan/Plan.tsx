@@ -15,7 +15,7 @@ export function Plan() {
     <Box column mb-80 maxW-960 mx-auto px5>
       <Box my-100 textCenter>
         <Box text2XL text5XL--md text6XL--lg fontBold>
-          Translator power by AI
+          Translator powered by AI
         </Box>
       </Box>
       <PlanList

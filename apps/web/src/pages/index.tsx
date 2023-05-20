@@ -1,17 +1,10 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { BasicLayout, ModuleBot } from '@ai-translator/shared'
-import { BotProvider } from '@ai-translator/bot'
+import { ModuleBot } from '@ai-translator/shared'
 
 export default function PageHome() {
-  return (
-    <BotProvider>
-      <ModuleBot />
-    </BotProvider>
-  )
+  return <ModuleBot />
 }
-
-// PageHome.Layout = BasicLayout
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
   const { payload } = req.session

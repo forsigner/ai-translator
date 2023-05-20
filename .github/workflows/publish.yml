@@ -31,7 +31,7 @@ jobs:
               repo: context.repo.repo,
               tag_name: `ai-translator-v${process.env.PACKAGE_VERSION}`,
               name: `AI Translator v${process.env.PACKAGE_VERSION}`,
-              body: 'Translator power by AI',
+              body: 'Translator powered by AI',
               draft: true,
               prerelease: false
             })

@@ -5,7 +5,6 @@ import { SendMessageBox } from './SendMessageBox'
 import { ClearMessageButton } from './ClearMessageButton'
 
 export const ChatFooter = () => {
-  // const { sendMessage } = useSendMessage()
   const { bot } = useBot()
   // const plugin = getBotPlugin(bot.slug)
   // const paramsNode = plugin?.renderParams()
