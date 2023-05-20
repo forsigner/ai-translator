@@ -62,7 +62,7 @@ export const Sidebar = () => {
         </Box>
       </Box>
       <Box px5 py4>
-        <UserAvatarPopover />
+        {/* <UserAvatarPopover /> */}
       </Box>
     </Box>
   )

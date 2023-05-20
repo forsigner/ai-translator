@@ -36,7 +36,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       borderTransparent--dark
       bgGray800--dark
     >
-      <Box flex-1 minH={[56, 80]} toCenterY>
+      <Box flex-1 minH={[50]} toCenterY>
         <TextareaAutosize
           placeholder={t('input-placeholder')}
           className={css(

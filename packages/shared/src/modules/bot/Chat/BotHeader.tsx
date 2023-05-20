@@ -28,7 +28,6 @@ export const BotHeader = () => {
     >
       <Box toCenterY columnGap-4>
         {/* <MenuAlt1Solid /> */}
-
         <Box bgBrand500 square7 rounded2XL toCenter>
           <IconLogoLight
             size={24}
