@@ -1,6 +1,6 @@
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
-import { API_BASE_URL, BotSlugs, BotType, bots } from '../constants'
+import { API_BASE_URL, BotSlugs, BotType, LayoutType, bots } from '../constants'
 import { emitter } from '../emitter'
 import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
 import { CreateMessageInput, Message } from './message.domain'
@@ -49,29 +49,41 @@ export class Bot {
     return this._bot.name
   }
 
+  get layout() {
+    return this._bot.layout
+  }
+
+  get isChatLayout() {
+    return this.layout === LayoutType.Chat
+  }
+
   static async create(clearMessagesWhenInitialized: boolean) {
     const bot = new Bot()
-    bot.init(bot._bots[0])
+    await bot.init(bot._bots[0])
 
     if (clearMessagesWhenInitialized) {
       await MessageStorage.clear(bot.slug)
     }
 
-    const messages = await MessageStorage.queryBotMessages(bot.slug)
-
-    if (messages.length) {
-      bot.messages = messages
-    }
-
     return bot
   }
 
-  private init(bot: BotType) {
+  private async init(bot: BotType) {
     this._bot = bot
     this._params = this._bot.defaultParams || {}
+
+    if (this.isChatLayout) {
+      const messages = await MessageStorage.queryBotMessages(bot.slug)
+
+      if (messages.length) {
+        this.messages = messages
+      }
+    } else {
+      this.messages = []
+    }
   }
 
-  updateText = (value: string = '') => {
+  updateText = (value: string) => {
     this.text = value.trim().replace(/[\r\n]+$/, '')
 
     if (this.slug === BotSlugs.TextTranslator) {
@@ -90,9 +102,15 @@ export class Bot {
     }
   }
 
+  async setLayout(layout: LayoutType) {
+    this._bot.layout = layout
+
+    await this.init(this._bot)
+    emitter.emit('SET_LAYOUT')
+  }
+
   selectBot = async (bot: BotType) => {
-    this.init(bot)
-    this.messages = await MessageStorage.queryBotMessages(bot.slug)
+    await this.init(bot)
     emitter.emit('SELECT_BOT', bot)
   }
 
@@ -119,7 +137,9 @@ export class Bot {
     this.messages.push(message)
     this.emitter.emit('ADD_MESSAGE', message)
 
-    await MessageStorage.set(this.messages)
+    if (this.isChatLayout) {
+      await MessageStorage.set(this.messages)
+    }
   }
 
   updateStreamingMessage = (text: string) => {
@@ -153,7 +173,9 @@ export class Bot {
       this.emitter.emit('SCROLL_ANCHOR')
     }, 10)
 
-    await MessageStorage.set(this.messages)
+    if (this.isChatLayout) {
+      await MessageStorage.set(this.messages)
+    }
   }
 
   sendMessage = async (text = '') => {
@@ -222,7 +244,9 @@ export class Bot {
         },
       })
 
-      await MessageStorage.set(this.messages)
+      if (this.isChatLayout) {
+        await MessageStorage.set(this.messages)
+      }
     } catch (error) {
       if (typeof error === 'string') {
         this.updateStreamingMessage(error)

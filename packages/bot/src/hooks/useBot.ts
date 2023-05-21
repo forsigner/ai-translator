@@ -10,6 +10,10 @@ export function useBot() {
     emitter.on('SELECT_BOT', () => {
       update({})
     })
+
+    emitter.on('SET_LAYOUT', () => {
+      update({})
+    })
   }, [bot])
 
   return { bot }

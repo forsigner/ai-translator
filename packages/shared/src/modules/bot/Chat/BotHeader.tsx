@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
-import { CHAT_WIDTH, NAV_HEIGHT } from '../../../common'
+import { CHAT_WIDTH, NAV_HEIGHT, TOW_COLUMN_WIDTH } from '../../../common'
 import { ChatSettings } from './ChatSettings'
-import { useBot } from '@ai-translator/bot'
+import { LayoutType, useBot } from '@ai-translator/bot'
 import { SettingsPopover } from './SettingsPopover'
+import { LayoutSelect } from './LayoutSelect'
 
 export const BotHeader = () => {
   const { bot } = useBot()
@@ -21,7 +22,7 @@ export const BotHeader = () => {
       toBetween
       mx-auto
       px={[12, 12, 0]}
-      w={['100%', '100%', CHAT_WIDTH]}
+      w={['100%', '100%', bot.layout === LayoutType.Chat ? CHAT_WIDTH : '100%']}
     >
       <Box toCenterY columnGap-4>
         <Box textLG fontBold columnGap-4 toCenterY>
@@ -30,6 +31,7 @@ export const BotHeader = () => {
       </Box>
       <Box toCenterY columnGap-12 pr2>
         {/* <ChatSettings /> */}
+        <LayoutSelect />
         <SettingsPopover />
       </Box>
     </Box>

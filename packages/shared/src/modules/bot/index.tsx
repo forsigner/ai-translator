@@ -6,11 +6,9 @@ import { Sidebar } from './Sidebar/Sidebar'
 export function ModuleBot() {
   return (
     <BotProvider>
-      <Box toCenterX columnGap-40>
+      <Box toCenterX>
         <Sidebar />
-        <Box flex-1>
-          <Chat />
-        </Box>
+        <Chat />
       </Box>
     </BotProvider>
   )

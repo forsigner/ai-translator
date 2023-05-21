@@ -1,6 +1,5 @@
 import { Button, RefreshOutline, Spinner, StopSolid } from 'bone-ui'
 import { Box } from '@fower/react'
-import { TrashOutline } from '@bone-ui/icons'
 import { useBotContext } from '@ai-translator/bot'
 import { IconClear } from '../../../icons/IconClear'
 

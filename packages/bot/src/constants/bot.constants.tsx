@@ -2,15 +2,6 @@ import React from 'react'
 import { CodeOutline, TranslateOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
 
-export interface BotType {
-  name: string
-  slug: string
-  intro: string
-  hide?: boolean
-  icon?: any
-  defaultParams?: Record<string, string>
-}
-
 export enum BotSlugs {
   TextTranslator = 'text-translator',
   CodeTranslator = 'code-translator',
@@ -20,11 +11,27 @@ export enum BotSlugs {
   CodeInterpreter = 'code-interpreter',
 }
 
+export enum LayoutType {
+  Chat = 'Chat',
+  TwoColumn = 'TwoColumn',
+}
+
+export interface BotType {
+  name: string
+  slug: string
+  intro: string
+  layout?: LayoutType
+  hide?: boolean
+  icon?: any
+  defaultParams?: Record<string, string>
+}
+
 export const bots: BotType[] = [
   {
     name: 'Translator',
     slug: BotSlugs.TextTranslator,
     intro: 'Translate text from one language to another',
+    layout: LayoutType.Chat,
     icon: (
       <Box square10 bgGray300--T20 roundedFull toCenter bgOrange100>
         <TranslateOutline orange600 />
@@ -38,6 +45,7 @@ export const bots: BotType[] = [
   {
     name: 'Code translator',
     slug: BotSlugs.CodeTranslator,
+    layout: LayoutType.TwoColumn,
     intro: 'Code to Code, Python to JavaScript, Java to Python...',
     icon: (
       <Box square10 bgGray300--T20 roundedFull toCenter bgRed100>

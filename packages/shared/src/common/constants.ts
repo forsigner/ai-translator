@@ -42,6 +42,7 @@ export enum Paths {
 export const NAV_HEIGHT = 56
 export const SIDEBAR_WIDTH = 260
 export const CHAT_WIDTH = 720
+export const TOW_COLUMN_WIDTH = 1200
 
 export const THIRD_PARTY_LOGIN_TAG = 't'
 

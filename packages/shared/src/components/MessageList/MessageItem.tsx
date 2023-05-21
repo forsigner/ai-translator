@@ -1,4 +1,3 @@
-import { format } from 'date-fns'
 import { Message, MessageJson } from '@ai-translator/bot'
 import reactFastCompare from 'react-fast-compare'
 import { Box } from '@fower/react'
@@ -22,6 +21,7 @@ import RemoveMessage from './RemoveMessage'
 import { useHover } from '../../hooks/useHover'
 import { YoudaoDictWord } from './YoudaoDictWord'
 import { IconCopy } from '../../icons/IconCopy'
+import MessageContent from './MessageContent'
 
 interface Props {
   message: MessageJson
@@ -44,11 +44,7 @@ const MessageItem = ({ message }: Props) => {
       <Box flex-1>
         <Box bgGray100={!isUser} bgBrand100={isUser} rounded2XL px4 py3 inlineFlex mb1>
           {message.streaming && <IconChatLoading />}
-          {!message.streaming && typeof message.content === 'object' ? (
-            <YoudaoDictWord data={message.content.data} />
-          ) : (
-            <Markdown content={message.content} />
-          )}
+          {!message.streaming && <MessageContent content={message.content} />}
         </Box>
 
         <Box mb2 toCenterY toBetween h-30>

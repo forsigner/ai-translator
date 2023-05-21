@@ -60,6 +60,7 @@ export function Select({
           border-1
           borderGray200
           roundedFull
+          flexShrink-0
         >
           <Box gray900>{selected?.label}</Box>
           <ChevronDownOutline size={12} />
@@ -115,3 +116,33 @@ export function Select({
     </Popover>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

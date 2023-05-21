@@ -16,6 +16,8 @@ export type BotEvents = {
   STREAMING_MESSAGE: string
 
   SCROLL_ANCHOR: undefined
+
+  SET_LAYOUT: undefined
 }
 
 export const emitter = mitt<BotEvents>()
