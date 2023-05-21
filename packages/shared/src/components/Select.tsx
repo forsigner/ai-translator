@@ -47,7 +47,20 @@ export function Select({
   return (
     <Popover portal={false}>
       <PopoverTrigger>
-        <Box text-14 px1 py2 rounded gray600 gray700--hover cursorPointer toCenterY columnGap-4>
+        <Box
+          text-14
+          px3
+          py2
+          rounded
+          gray600
+          gray700--hover
+          cursorPointer
+          toCenterY
+          columnGap-4
+          border-1
+          borderGray200
+          roundedFull
+        >
           <Box gray900>{selected?.label}</Box>
           <ChevronDownOutline size={12} />
         </Box>

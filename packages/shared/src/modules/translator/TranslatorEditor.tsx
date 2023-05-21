@@ -6,7 +6,7 @@ import { ArrowRightOutline, Button } from 'bone-ui'
 import { useBotContext } from '@ai-translator/bot'
 import { useText } from '../../stores/text.store'
 import { SettingsPopover } from './SettingsPopover'
-import { TranslatorLangSelect } from '../../components/TranslatorLangSelect'
+import { TranslatorLangSelector } from '../../components/TranslatorLangSelector'
 import { forwardRef } from 'react'
 
 interface Props extends FowerHTMLProps<'div'> {
@@ -44,7 +44,7 @@ export const TranslatorEditor = forwardRef<HTMLDivElement, Props>(function Trans
       {...rest}
     >
       <Box pl3>
-        <TranslatorLangSelect containerHeight="50vh" />
+        <TranslatorLangSelector containerHeight="50vh" />
       </Box>
       <Box flex-1>
         <TextareaAutosize

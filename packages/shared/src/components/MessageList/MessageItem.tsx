@@ -21,6 +21,7 @@ import { useCopyToClipboard } from '../../hooks'
 import RemoveMessage from './RemoveMessage'
 import { useHover } from '../../hooks/useHover'
 import { YoudaoDictWord } from './YoudaoDictWord'
+import { IconCopy } from '../../icons/IconCopy'
 
 interface Props {
   message: MessageJson
@@ -60,7 +61,7 @@ const MessageItem = ({ message }: Props) => {
                     p1
                     variant="filled"
                     colorScheme="white"
-                    icon={<ClipboardCopyOutline gray600 />}
+                    icon={<IconCopy gray600 strokeWidth={1} />}
                     onClick={() => {
                       copy(message.content)
                       setCopyTips('Copied')

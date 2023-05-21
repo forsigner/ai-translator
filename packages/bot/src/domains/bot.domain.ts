@@ -82,7 +82,7 @@ export class Bot {
   updateParams = (params: Params, isResendMessage = false) => {
     this._params = params
 
-    if (params.to) {
+    if (params?.to) {
       emitter.emit('CHANGE_LANG_TO', '')
       if (this.text && isResendMessage) {
         this.sendMessage()

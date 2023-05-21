@@ -12,8 +12,6 @@ export const ClearMessageButton = () => {
         leftIcon={<IconClear size={20} />}
         roundedFull
         colorScheme="white"
-        shadow
-        borderNone
         gray500--i
         gray100--hover
         onClick={async () => {

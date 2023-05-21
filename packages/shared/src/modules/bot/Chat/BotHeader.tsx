@@ -3,7 +3,6 @@ import { Box } from '@fower/react'
 import { CHAT_WIDTH, NAV_HEIGHT } from '../../../common'
 import { ChatSettings } from './ChatSettings'
 import { useBot } from '@ai-translator/bot'
-import { TranslatorLangSelect } from '../../../components/TranslatorLangSelect'
 import { SettingsPopover } from './SettingsPopover'
 
 export const BotHeader = () => {
@@ -31,7 +30,6 @@ export const BotHeader = () => {
       </Box>
       <Box toCenterY columnGap-12 pr2>
         {/* <ChatSettings /> */}
-        <TranslatorLangSelect containerHeight="60vh" />
         <SettingsPopover />
       </Box>
     </Box>

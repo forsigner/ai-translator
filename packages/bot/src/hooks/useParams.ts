@@ -1,18 +1,20 @@
-import { useStore } from 'stook'
-import { useBotContext } from '../context'
 import type { Params } from '../domains/bot.domain'
-
-const key = 'BOT_PARAMS'
+import { useBotContext } from '../context'
+import { useEffect, useState } from 'react'
 
 export function useParams() {
   const bot = useBotContext()
-  const [params, setParams] = useStore<Params>(key, bot.params)
+  const [params, setParams] = useState<Params>(bot.params)
+
+  useEffect(() => {
+    bot.emitter.on('SELECT_BOT', () => {
+      setParams({ ...bot.params })
+    })
+  }, [])
 
   async function updateParams(params: any) {
-    const result = setParams(params)
-    console.log('result:', result)
-
-    bot.updateParams(result as any)
+    setParams(params)
+    bot.updateParams(params)
   }
 
   return { params, updateParams }

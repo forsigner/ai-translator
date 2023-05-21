@@ -3,17 +3,17 @@ import { useBot } from '@ai-translator/bot'
 import { CHAT_WIDTH } from '../../../common'
 import { SendMessageBox } from './SendMessageBox'
 import { ClearMessageButton } from './ClearMessageButton'
+import { BotParams } from './BotParams/BotParams'
 
 export const ChatFooter = () => {
   const { bot } = useBot()
-  // const plugin = getBotPlugin(bot.slug)
-  // const paramsNode = plugin?.renderParams()
 
   return (
     <Box pb4 px4>
       <Box maxW={CHAT_WIDTH} mx-auto>
-        <Box toCenterX mb2>
+        <Box mb2 toCenterY columnGap-12>
           {/* <ChatController /> */}
+          <BotParams />
           <ClearMessageButton />
         </Box>
 

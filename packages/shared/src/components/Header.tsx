@@ -2,7 +2,7 @@ import { Box } from '@fower/react'
 import { HEADER_HEIGHT } from '../common/constants'
 import { SettingsButton } from './SettingsButton'
 import { CodeFromTo } from './code-translator/CodeFromTo'
-import { TranslatorLangSelect } from './TranslatorLangSelect'
+import { TranslatorLangSelector } from './TranslatorLangSelector'
 import { useBot, BotSlugs } from '@ai-translator/bot'
 import { IconLogo } from '../icons'
 import { IconLogoLight } from '../icons/IconLogoLight'
@@ -39,7 +39,7 @@ export function Header({ showSettings }: Props) {
         {/* <BotSelect /> */}
       </Box>
       <Box toCenterY columnGap-8>
-        {bot.slug === BotSlugs.TextTranslator && <TranslatorLangSelect />}
+        {bot.slug === BotSlugs.TextTranslator && <TranslatorLangSelector />}
         {bot.slug === BotSlugs.CodeTranslator && <CodeFromTo />}
         {showSettings && <SettingsButton />}
       </Box>
