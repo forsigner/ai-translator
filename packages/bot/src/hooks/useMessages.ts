@@ -1,6 +1,6 @@
 import { IChatMessage } from 'react-native-gifted-chat'
 import { useBotContext } from '../context'
-import { Message, MessageJson } from '../domains/message.domain'
+import { MessageJson } from '../domains/message.domain'
 import { useEffect, useMemo, useState } from 'react'
 
 export function useMessages() {

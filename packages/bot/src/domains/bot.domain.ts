@@ -3,7 +3,7 @@ import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { API_BASE_URL, BotSlugs, BotType, bots } from '../constants'
 import { emitter } from '../emitter'
 import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
-import { CreateMessageInput, Message } from '../domains/message.domain'
+import { CreateMessageInput, Message } from './message.domain'
 import { RegionChecker } from '../services/RegionChecker'
 import { SettingsStorage } from '../services/SettingsStorage'
 import { TokenStorage } from '../services/TokenStorage'
@@ -54,10 +54,10 @@ export class Bot {
     bot.init(bot._bots[0])
 
     if (clearMessagesWhenInitialized) {
-      await MessageStorage.clear()
+      await MessageStorage.clear(bot.slug)
     }
 
-    const messages = await MessageStorage.get()
+    const messages = await MessageStorage.queryBotMessages(bot.slug)
 
     if (messages.length) {
       bot.messages = messages
@@ -104,7 +104,7 @@ export class Bot {
   clearMessages = async () => {
     this.messages = []
     this.emitter.emit('CLEAR_MESSAGES')
-    await MessageStorage.clear()
+    await MessageStorage.clear(this.slug)
   }
 
   removeMessagePair = async (id: string | number) => {

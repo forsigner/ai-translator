@@ -1,4 +1,4 @@
-import { Buffer } from 'buffer/'
+import { Buffer } from 'buffer'
 import mitt from 'mitt'
 import { toast } from 'bone-ui'
 

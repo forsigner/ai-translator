@@ -7,7 +7,7 @@ export function useBot() {
   const bot = useBotContext()
 
   useEffect(() => {
-    emitter.on('SELECT_BOT', (data) => {
+    emitter.on('SELECT_BOT', () => {
       update({})
     })
   }, [bot])

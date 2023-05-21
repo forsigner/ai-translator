@@ -30,9 +30,6 @@ export interface RegionCheckerStorage {
 
 const storageKey = 'REGION_CHECKER'
 
-const ONE_SECOND = 1000 // 一秒
-const ONE_MINUTE = ONE_SECOND * 60 // 一分钟
-
 export class RegionChecker {
   private TIME_OUT_MS = 5000
 

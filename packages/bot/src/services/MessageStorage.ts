@@ -17,8 +17,10 @@ export class MessageStorage {
     return messages.map((item) => Message.fromJSON(item))
   }
 
-  static async clear() {
-    await AsyncStorage.setItem(key, null)
+  static async clear(botSlug: string) {
+    const messages = await MessageStorage.get()
+    const filteredMessages = messages.filter((message) => message.botSlug !== botSlug)
+    await AsyncStorage.setItem(key, filteredMessages)
   }
 
   static async add(data: Message) {

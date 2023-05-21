@@ -1,3 +1,4 @@
+import React from 'react'
 import { CodeOutline, TranslateOutline } from '@bone-ui/icons'
 import { Box } from '@fower/react'
 
