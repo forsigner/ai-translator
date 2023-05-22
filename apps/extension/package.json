@@ -67,7 +67,7 @@
     "@types/nock": "^11.1.0",
     "@types/node": "^18.15.13",
     "@types/node-fetch": "^2.6.1",
-    "@types/react": "^18.0.37",
+    "@types/react": "^18.2.6",
     "@types/webpack": "^4.41.31",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",

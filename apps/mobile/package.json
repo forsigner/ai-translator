@@ -18,7 +18,6 @@
     "@gorhom/portal": "^1.0.14",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
-    "@types/react": "~18.0.27",
     "base-64": "^1.0.0",
     "expo": "~48.0.15",
     "expo-status-bar": "~1.4.4",
