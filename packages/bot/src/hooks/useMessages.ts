@@ -50,7 +50,7 @@ export function useMessages() {
     .reverse()
 
   const message = useMemo(() => {
-    if (!messages.length) return {} as MessageJson
+    if (!messages.length) return null as unknown as MessageJson
     return messages[messages.length - 1]
   }, [messages])
 

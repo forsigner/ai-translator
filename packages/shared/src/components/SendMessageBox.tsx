@@ -23,7 +23,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
     await onSendMessage?.(text)
   }
 
-  const disabled = message.streaming
+  const disabled = message?.streaming
 
   return (
     <Box relative>

@@ -85,6 +85,8 @@ export const TranslatorContent = ({ streaming, content, isWordMode, text }: Prop
     )
   }
 
+  if (!text) return null
+
   if (typeof content === 'object') {
     return <YoudaoDictWord data={content?.data} />
   }

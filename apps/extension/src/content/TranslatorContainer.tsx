@@ -1,4 +1,6 @@
 import { FC, useMemo } from 'react'
+import { motion, useMotionValue } from 'framer-motion'
+import { styled } from '@fower/styled'
 import { forwardRef } from '@bone-ui/utils'
 import { FloatingPortal, FloatingFocusManager } from '@floating-ui/react'
 import { mergeRefs } from '@bone-ui/utils'
@@ -11,6 +13,8 @@ export interface PopoverContentProps extends Omit<FowerHTMLProps<'div'>, 'childr
   x?: number
 }
 
+const MotionBox = styled(motion(Box))
+
 export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function Content(
   props: PopoverContentProps,
   propRef,
@@ -18,13 +22,16 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
   const { ...rest } = props
   const state = usePopoverContext()
 
+  const containerX = useMotionValue(0)
+  const containerY = useMotionValue(0)
+
   const ref = useMemo(() => mergeRefs([state.floating, propRef]), [state.floating, propRef])
 
   return (
     <FloatingPortal>
       {state.isOpen && (
         <FloatingFocusManager context={state.context} modal={state.modal}>
-          <Box
+          <MotionBox
             ref={ref}
             black
             className="ai-translator-content"
@@ -41,6 +48,8 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
             borderTransparent--dark
             zIndex-10000
             style={{
+              x: containerX,
+              y: containerY,
               position: state.strategy,
               top: state.y ?? 0,
               left: state.x ?? 0,
@@ -50,8 +59,8 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
             aria-describedby={state.descriptionId}
             {...state.getFloatingProps(rest as any)}
           >
-            <Translator />
-          </Box>
+            <Translator containerX={containerX} containerY={containerY} />
+          </MotionBox>
         </FloatingFocusManager>
       )}
     </FloatingPortal>

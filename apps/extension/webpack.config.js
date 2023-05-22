@@ -80,6 +80,8 @@ module.exports = {
   resolve: {
     extensions: ['.svg', '.ts', '.tsx', '.js', '.json'],
     fallback: {
+      zlib: false,
+      fs: false,
       crypto: require.resolve('crypto-browserify'),
       stream: require.resolve('stream-browserify')
     },
@@ -121,7 +123,7 @@ module.exports = {
       },
       {
         test: /\.(ts|tsx)$/,
-        exclude: /node_modules(?!\/@boter\/(shared))/,
+        exclude: /node_modules(?!\/@ai-translator\/(shared))/,
         use: [
           {
             loader: require.resolve('ts-loader'),

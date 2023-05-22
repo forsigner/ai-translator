@@ -12,21 +12,25 @@ export function useLangFromTo() {
   const { params, updateParams } = useParams()
 
   function setTo(to: string) {
-    updateParams((s: any) => {
-      s.to = to
+    updateParams({
+      ...params,
+      to,
     })
   }
 
   function setFrom(from: string) {
-    updateParams((s: any) => {
-      s.from = from
+    updateParams({
+      ...params,
+      from,
     })
   }
 
   function reverse() {
-    updateParams((s: any) => {
-      s.from = params.to
-      s.to = params.from
+    const to = params.to
+    const from = params.from
+    updateParams({
+      from: to,
+      to: from,
     })
   }
 
