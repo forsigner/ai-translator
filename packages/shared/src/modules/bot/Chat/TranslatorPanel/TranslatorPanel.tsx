@@ -12,7 +12,7 @@ import { IconChatLoading } from '../../../../components/IconChatLoading'
 export const TranslatorPanel = () => {
   const [text, setText] = useState('')
   const bot = useBotContext()
-  const { message, messages } = useMessages()
+  const { message } = useMessages()
   const disabled = message.streaming
 
   return (
@@ -65,7 +65,7 @@ export const TranslatorPanel = () => {
           </Box>
           <Box flex-1 p4>
             {message.streaming && <IconChatLoading />}
-            {!message.streaming && <MessageContent content={message.content} />}
+            {!message.streaming && <MessageContent content={text ? message.content : ''} />}
           </Box>
         </Box>
       </Box>

@@ -9,7 +9,7 @@ interface Props {
 const getIcon = (item: BotType) => {
   if (item.slug === BotSlugs.TextTranslator) {
     return (
-      <Box square10 bgGray300--T20 roundedFull toCenter bgOrange100>
+      <Box flexShrink-1 square10 bgGray300--T20 roundedFull toCenter bgOrange100>
         <TranslateOutline orange600 />
       </Box>
     )
@@ -17,7 +17,7 @@ const getIcon = (item: BotType) => {
 
   if (item.slug === BotSlugs.CodeTranslator) {
     return (
-      <Box square10 bgGray300--T20 roundedFull toCenter bgRed100>
+      <Box flexShrink-1 square10 bgGray300--T20 roundedFull toCenter bgRed100>
         <CodeOutline red700 />
       </Box>
     )
@@ -25,7 +25,7 @@ const getIcon = (item: BotType) => {
 
   if (item.slug === BotSlugs.TextPolisher) {
     return (
-      <Box square10 bgGray300--T20 roundedFull toCenter bgGreen100>
+      <Box flexShrink-1 square10 bgGray300--T20 roundedFull toCenter bgGreen100>
         <Box text-10 green600>
           JSON
         </Box>
@@ -66,9 +66,9 @@ export const BotItem = ({ item }: Props) => {
         spaceX2
       >
         {getIcon(item)}
-        <Box>
+        <Box flex-1>
           <Box textLG>{item.name}</Box>
-          <Box textXS gray500>
+          <Box textXS gray400>
             {item.intro}
           </Box>
         </Box>

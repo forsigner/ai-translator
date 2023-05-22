@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
-import { BotItem } from './BotItem'
 import { useBots } from '@ai-translator/bot'
+import { BotItem } from './BotItem'
 
 export const BotList = () => {
   const { bots } = useBots()

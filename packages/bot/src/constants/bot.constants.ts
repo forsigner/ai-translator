@@ -24,7 +24,7 @@ export interface BotType {
 
 export const botList: BotType[] = [
   {
-    name: 'Translator',
+    name: 'Language Translator',
     slug: BotSlugs.TextTranslator,
     intro: 'Translate text from one language to another',
     layout: LayoutType.Chat,
