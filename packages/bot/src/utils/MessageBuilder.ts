@@ -1,5 +1,4 @@
 import { ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum } from 'openai'
-import endent from 'endent'
 import type { Bot, Params } from '../domains/bot.domain'
 import { BotSlugs } from '../constants'
 import { langMap } from '../supportLanguages'
@@ -85,7 +84,7 @@ export class MessageBuilder {
     const { from, to } = this.params
 
     if (from === 'Natural Language') {
-      return endent`
+      return `
     You are an expert programmer in all programming languages. Translate the natural language to "${to}" code. Do not include \`\`\`.
 
     Example translating from natural language to JavaScript:
@@ -104,7 +103,7 @@ export class MessageBuilder {
     ${to} code (no \`\`\`):
     `
     } else if (to === 'Natural Language') {
-      return endent`
+      return `
       You are an expert programmer in all programming languages. Translate the "${from}" code to natural language in plain English that the average adult could understand. Respond as bullet points starting with -.
   
       Example translating from JavaScript to natural language:
@@ -123,7 +122,7 @@ export class MessageBuilder {
       Natural language:
      `
     } else {
-      return endent`
+      return `
       You are an expert programmer in all programming languages. Translate the "${from}" code to "${to}" code. Do not include \`\`\`.
   
       Example translating from JavaScript to Python:

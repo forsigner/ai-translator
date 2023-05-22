@@ -5,13 +5,12 @@
   "description": "",
   "author": "forsigner",
   "main": "dist/index.js",
-  "module": "dist/bot.esm.js",
+  "module": "dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint"
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "type-check": "tsc"
   },
   "files": [
     "dist"
@@ -45,6 +44,23 @@
     "openai": "^3.2.1",
     "react": "18.2.0",
     "stook": "^1.17.0",
+    "tsup": "^6.7.0",
     "uuid": "3.4.0"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "treeshake": true,
+    "sourcemap": true,
+    "minify": false,
+    "clean": true,
+    "dts": true,
+    "splitting": false,
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "external": []
   }
 }
