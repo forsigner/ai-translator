@@ -43,6 +43,7 @@
     "nanoid": "^3.3.6",
     "openai": "^3.2.1",
     "react": "18.2.0",
+    "react-native-gifted-chat": "^2.1.0",
     "stook": "^1.17.0",
     "tsup": "^6.7.0",
     "uuid": "3.4.0"
