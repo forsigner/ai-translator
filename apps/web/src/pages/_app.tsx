@@ -10,7 +10,8 @@ import '../styles/globals.scss'
 import { LoginSuccessPayload } from '@ai-translator/api-sdk'
 
 interface Props<T> extends AppProps<T> {
-  Component: AppProps<T>['Component'] & { Layout: any }
+  // Component: AppProps<T>['Component'] & { Layout: any }
+  Component: any
 }
 
 init()
