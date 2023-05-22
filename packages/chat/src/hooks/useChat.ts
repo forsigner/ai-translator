@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useBotContext } from '../context'
+import { useChatContext } from '../context'
 import { emitter } from '../emitter'
 
-export function useBot() {
+export function useChat() {
   const [, update] = useState<any>()
-  const bot = useBotContext()
+  const chat = useChatContext()
 
   useEffect(() => {
     emitter.on('SELECT_BOT', () => {
@@ -14,7 +14,7 @@ export function useBot() {
     emitter.on('SET_LAYOUT', () => {
       update({})
     })
-  }, [bot])
+  }, [chat])
 
-  return { bot }
+  return { chat }
 }

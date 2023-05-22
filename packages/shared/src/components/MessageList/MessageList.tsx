@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { Message, MessageJson } from '@ai-translator/bot'
+import { Message, MessageJson } from '@ai-translator/chat'
 import MessageItem from './MessageItem'
 
 interface Props {

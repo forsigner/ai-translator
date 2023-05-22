@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { motion, MotionValue } from 'framer-motion'
 import { FowerHTMLProps } from '@fower/core'
-import { useBot, useBotContext, useMessages } from '@ai-translator/bot'
+import { useChat, useChatContext, useMessages } from '@ai-translator/chat'
 import { Header } from './Header'
 import { SendMessageBox } from './SendMessageBox'
 import { CARD_HEIGHT, CARD_WIDTH } from '../common/constants'
@@ -20,7 +20,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
   { showSettings = false, containerX, containerY, ...rest },
   ref,
 ) {
-  const { bot } = useBot()
+  const { chat } = useChat()
   const { messages } = useMessages()
 
   const deviceId = useDeviceId()
@@ -35,7 +35,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
         <Box p3>
           <SendMessageBox
             onSendMessage={async (text) => {
-              await bot.sendMessage()
+              await chat.sendMessage()
             }}
           />
           <Box pt4 mb2 px2 textBase leadingNormal>
@@ -43,8 +43,8 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
               <TranslatorContent
                 streaming={messages[messages.length - 1].streaming}
                 content={messages[messages.length - 1].content}
-                isWordMode={bot.isWord}
-                text={bot.text}
+                isWordMode={chat.isWord}
+                text={chat.text}
               />
             )}
           </Box>

@@ -20,7 +20,7 @@ export interface Params {
   [key: string]: any
 }
 
-export class Bot {
+export class Chat {
   bots: BotType[] = []
 
   private _bot: BotType
@@ -59,7 +59,7 @@ export class Bot {
   }
 
   static async create(clearMessagesWhenInitialized: boolean) {
-    const bot = new Bot()
+    const bot = new Chat()
     const bots = await BotStorage.get()
 
     if (!bots?.length) {

@@ -1,4 +1,4 @@
-import { supportLanguages } from '@ai-translator/bot'
+import { supportLanguages } from '@ai-translator/chat'
 import { Option, Select } from '../Select'
 import { useLangFromTo } from './useLangFromTo'
 

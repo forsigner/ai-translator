@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@ai-translator/bot": "*",
+    "@ai-translator/chat": "*",
     "@expo/vector-icons": "^13.0.0",
     "@flyskywhy/react-native-browser-polyfill": "^2.0.1",
     "@flyskywhy/react-native-gcanvas": "^6.0.3",

@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { CodeFromTo } from './CodeFromTo'
-import { useParams } from '@ai-translator/bot'
+import { useParams } from '../../../../../../../chat/dist'
 
 export function CodeTranslatorSelector() {
   const { params, updateParams } = useParams()

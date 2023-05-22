@@ -3,7 +3,7 @@ import { FowerHTMLProps } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from '@fower/react'
 import { ArrowRightOutline, Button } from 'bone-ui'
-import { useBotContext } from '@ai-translator/bot'
+import { useChatContext } from '@ai-translator/chat'
 import { useText } from '../../stores/text.store'
 import { SettingsPopover } from './SettingsPopover'
 import { TranslatorLangSelector } from '../../components/TranslatorLangSelector'
@@ -18,13 +18,13 @@ export const TranslatorEditor = forwardRef<HTMLDivElement, Props>(function Trans
   { onSendMessage, ...rest },
   ref,
 ) {
-  const bot = useBotContext()
+  const chat = useChatContext()
   const { text, setText } = useText()
   const disabled = false
 
   async function send() {
     if (!text) return
-    bot.updateText(text)
+    chat.updateText(text)
     console.log('text:', text)
     await onSendMessage?.(text)
   }
@@ -63,7 +63,7 @@ export const TranslatorEditor = forwardRef<HTMLDivElement, Props>(function Trans
           onChange={(e) => {
             const text = e.target.value
             setText(text)
-            bot.updateText(text)
+            chat.updateText(text)
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && e.shiftKey) {

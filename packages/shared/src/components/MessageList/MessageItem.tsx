@@ -1,4 +1,4 @@
-import { Message, MessageJson } from '@ai-translator/bot'
+import { Message, MessageJson } from '@ai-translator/chat'
 import reactFastCompare from 'react-fast-compare'
 import { Box } from '@fower/react'
 import {

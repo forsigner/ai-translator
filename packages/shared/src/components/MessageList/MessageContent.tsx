@@ -1,4 +1,4 @@
-import { BotSlugs, Message, MessageJson, useBot } from '@ai-translator/bot'
+import { BotSlugs, Message, MessageJson, useChat } from '@ai-translator/chat'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import reactFastCompare from 'react-fast-compare'
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const MessageContent = ({ content }: Props) => {
-  const { bot } = useBot()
+  const { chat } = useChat()
 
   const lang = 'javascript'
 
@@ -20,7 +20,7 @@ const MessageContent = ({ content }: Props) => {
     return <YoudaoDictWord data={content.data} />
   }
 
-  if (bot.slug === BotSlugs.CodeTranslator) {
+  if (chat.slug === BotSlugs.CodeTranslator) {
     return (
       <Box
         rounded2XL

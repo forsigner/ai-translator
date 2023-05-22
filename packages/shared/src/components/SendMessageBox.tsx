@@ -1,6 +1,6 @@
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
-import { getBot, useBotContext, useMessages } from '@ai-translator/bot'
+import { getChat, useChatContext, useMessages } from '@ai-translator/chat'
 import { Box } from '@fower/react'
 import { useText } from '../stores/text.store'
 import { IconStop } from '../icons/IconStop'
@@ -14,12 +14,12 @@ interface Props {
 export const SendMessageBox = ({ onSendMessage }: Props) => {
   const { text, setText } = useText()
   const { message } = useMessages()
-  const bot = useBotContext()
+  const chat = useChatContext()
   const { playing, speaker } = useSpeaker()
 
   async function send() {
     if (!text) return
-    bot.updateText(text)
+    chat.updateText(text)
     await onSendMessage?.(text)
   }
 
@@ -44,7 +44,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
         onChange={(e) => {
           const text = e.target.value
           setText(text)
-          bot.updateText(text)
+          chat.updateText(text)
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && e.shiftKey) {
@@ -78,7 +78,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
               fillGray700--hover
               size={18}
               onClick={() => {
-                const bot = getBot()
+                const bot = getChat()
                 speaker.play(bot.text, bot.params.from!)
               }}
             />

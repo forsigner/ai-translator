@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { LayoutType, useBot } from '@ai-translator/bot'
+import { LayoutType, useChat } from '@ai-translator/chat'
 import { ChatSolid } from 'bone-ui'
 
 function IconTwoColumn() {
@@ -12,7 +12,7 @@ function IconTwoColumn() {
 }
 
 export const LayoutSelect = () => {
-  const { bot } = useBot()
+  const { chat } = useChat()
 
   return (
     <Box toCenterY bgGray100 rounded-6 p-3 h-40>
@@ -23,11 +23,11 @@ export const LayoutSelect = () => {
         columnGap-4
         h-100p
         cursorPointer
-        bgWhite={!bot.isChatLayout}
-        shadow={!bot.isChatLayout}
-        bgTransparent={bot.isChatLayout}
+        bgWhite={!chat.isChatLayout}
+        shadow={!chat.isChatLayout}
+        bgTransparent={chat.isChatLayout}
         onClick={() => {
-          bot.setLayout(LayoutType.TwoColumn)
+          chat.setLayout(LayoutType.TwoColumn)
         }}
       >
         <IconTwoColumn />
@@ -40,11 +40,11 @@ export const LayoutSelect = () => {
         toCenterY
         columnGap-2
         h-100p
-        shadow={bot.isChatLayout}
-        bgWhite={bot.isChatLayout}
-        bgTransparent={!bot.isChatLayout}
+        shadow={chat.isChatLayout}
+        bgWhite={chat.isChatLayout}
+        bgTransparent={!chat.isChatLayout}
         onClick={() => {
-          bot.setLayout(LayoutType.Chat)
+          chat.setLayout(LayoutType.Chat)
         }}
       >
         <ChatSolid size={20} gray500 />

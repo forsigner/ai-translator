@@ -1,12 +1,12 @@
 import { Box } from '@fower/react'
-import { useBot } from '@ai-translator/bot'
+import { useChat } from '@ai-translator/chat'
 import { CHAT_WIDTH } from '../../../common'
 import { SendMessageBox } from './SendMessageBox'
 import { ClearMessageButton } from './ClearMessageButton'
 import { BotParams } from './BotParams/BotParams'
 
 export const ChatFooter = () => {
-  const { bot } = useBot()
+  const { chat } = useChat()
 
   return (
     <Box pb4 px4>
@@ -19,7 +19,7 @@ export const ChatFooter = () => {
 
         <SendMessageBox
           onSendMessage={async (value) => {
-            await bot.sendMessage()
+            await chat.sendMessage()
           }}
         />
       </Box>

@@ -1,5 +1,5 @@
 import { ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum } from 'openai'
-import type { Bot, Params } from '../domains/bot.domain'
+import type { Chat, Params } from '../domains/chat.domain'
 import { BotSlugs } from '../constants'
 import { langMap } from '../supportLanguages'
 
@@ -12,7 +12,7 @@ export class MessageBuilder {
 
   messages: ChatCompletionRequestMessage[] = []
 
-  constructor(private bot: Bot) {
+  constructor(private bot: Chat) {
     this.text = bot.text
     this.params = bot.params
   }

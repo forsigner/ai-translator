@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { Button, PaperAirplaneSolid } from 'bone-ui'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useBotContext } from '@ai-translator/bot'
+import { useChatContext } from '@ai-translator/chat'
 // import { useChatStatus } from '../modules/bot/hooks/useChatStatus'
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const SendMessageBox = ({ onSendMessage }: Props) => {
-  const bot = useBotContext()
+  const chat = useChatContext()
   const [value, setValue] = useState('')
   const { t } = useTranslation('common')
   // const { isStreaming, isNormal, isFinished, isFetching } = useChatStatus()
@@ -47,7 +47,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
           value={value}
           onChange={(e) => {
             const text = e.target.value
-            bot.updateText(text)
+            chat.updateText(text)
             setValue(text)
           }}
           onKeyDown={(e) => {

@@ -5,7 +5,7 @@ import { HEADER_HEIGHT } from '../common/constants'
 import { SettingsButton } from './SettingsButton'
 import { CodeFromTo } from './code-translator/CodeFromTo'
 import { TranslatorLangSelector } from './TranslatorLangSelector'
-import { useBot, BotSlugs } from '@ai-translator/bot'
+import { useChat, BotSlugs } from '@ai-translator/chat'
 import { IconLogoLight } from '../icons/IconLogoLight'
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 const MotionBox = styled(motion(Box))
 
 export function Header({ showSettings, containerX, containerY }: Props) {
-  const { bot } = useBot()
+  const { chat } = useChat()
   const draggable = containerX && containerY
   return (
     <MotionBox
@@ -52,8 +52,8 @@ export function Header({ showSettings, containerX, containerY }: Props) {
         {/* <BotSelect /> */}
       </Box>
       <Box toCenterY columnGap-8>
-        {bot.slug === BotSlugs.TextTranslator && <TranslatorLangSelector />}
-        {bot.slug === BotSlugs.CodeTranslator && <CodeFromTo />}
+        {chat.slug === BotSlugs.TextTranslator && <TranslatorLangSelector />}
+        {chat.slug === BotSlugs.CodeTranslator && <CodeFromTo />}
         {showSettings && <SettingsButton />}
       </Box>
     </MotionBox>

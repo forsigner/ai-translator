@@ -1,10 +1,10 @@
 import { Button, RefreshOutline, Spinner, StopSolid } from 'bone-ui'
 import { Box } from '@fower/react'
-import { useBotContext } from '@ai-translator/bot'
+import { useChatContext } from '@ai-translator/chat'
 import { IconClear } from '../../../icons/IconClear'
 
 export const ClearMessageButton = () => {
-  const bot = useBotContext()
+  const chat = useChatContext()
   return (
     <Box toCenter>
       <Button
@@ -14,7 +14,7 @@ export const ClearMessageButton = () => {
         gray500--i
         gray100--hover
         onClick={async () => {
-          bot.clearMessages()
+          chat.clearMessages()
         }}
       >
         Clear history

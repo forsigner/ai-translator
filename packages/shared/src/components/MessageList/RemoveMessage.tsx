@@ -14,14 +14,14 @@ import {
 } from 'bone-ui'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { MessageJson, useBotContext } from '@ai-translator/bot'
+import { MessageJson, useChatContext } from '@ai-translator/chat'
 
 interface Props {
   message: MessageJson
 }
 
 const RemoveMessage = ({ message }: Props) => {
-  const bot = useBotContext()
+  const chat = useChatContext()
   const { t } = useTranslation('common')
   return (
     <Popover portal={false}>
@@ -56,7 +56,7 @@ const RemoveMessage = ({ message }: Props) => {
                 size="sm"
                 onClick={async () => {
                   close()
-                  await bot.removeMessagePair(message.id)
+                  await chat.removeMessagePair(message.id)
                 }}
               >
                 {t('confirm')}

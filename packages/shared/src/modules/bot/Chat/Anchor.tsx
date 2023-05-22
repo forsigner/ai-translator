@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { Box } from '@fower/react'
-import { useBotContext } from '@ai-translator/bot'
+import { useChatContext } from '@ai-translator/chat'
 
 export const Anchor = () => {
   const anchorRef = useRef<HTMLDivElement | null>(null)
-  const bot = useBotContext()
+  const chat = useChatContext()
 
   useEffect(() => {
     const dom = anchorRef.current
@@ -21,7 +21,7 @@ export const Anchor = () => {
       }, 200)
     }
 
-    bot.emitter.on('SCROLL_ANCHOR', () => {
+    chat.emitter.on('SCROLL_ANCHOR', () => {
       setTimeout(() => {
         scroll(dom!)
       }, 0)

@@ -1,4 +1,4 @@
-import { YoudaoDictResult } from '@ai-translator/bot'
+import { YoudaoDictResult } from '@ai-translator/chat'
 import { Box } from '@fower/react'
 import { IconSpeaker } from '../../icons/IconSpeaker'
 

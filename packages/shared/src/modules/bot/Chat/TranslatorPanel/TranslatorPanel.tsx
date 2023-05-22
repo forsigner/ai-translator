@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from '@fower/react'
-import { useBotContext, useMessages } from '@ai-translator/bot'
+import { useChatContext, useMessages } from '@ai-translator/chat'
 import { BotParams } from '../BotParams/BotParams'
 import { Button } from 'bone-ui'
 import { PaperAirplaneSolid } from '@bone-ui/icons'
@@ -11,7 +11,7 @@ import { IconChatLoading } from '../../../../components/IconChatLoading'
 
 export const TranslatorPanel = () => {
   const [text, setText] = useState('')
-  const bot = useBotContext()
+  const chat = useChatContext()
   const { message } = useMessages()
   const disabled = message?.streaming
 
@@ -23,7 +23,7 @@ export const TranslatorPanel = () => {
           <Button
             leftIcon={<PaperAirplaneSolid rotate-90 />}
             onClick={() => {
-              bot.sendMessage()
+              chat.sendMessage()
             }}
           >
             Translate
@@ -48,7 +48,7 @@ export const TranslatorPanel = () => {
               onChange={(e) => {
                 const text = e.target.value
                 setText(text)
-                bot.updateText(text)
+                chat.updateText(text)
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && e.shiftKey) {
@@ -56,7 +56,7 @@ export const TranslatorPanel = () => {
                 }
 
                 if (e.key === 'Enter') {
-                  bot.sendMessage()
+                  chat.sendMessage()
                   e.preventDefault()
                   return
                 }

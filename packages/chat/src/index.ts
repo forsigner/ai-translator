@@ -1,7 +1,7 @@
 export * from './context'
-export * from './getBot'
+export * from './getChat'
 
-export * from './domains/bot.domain'
+export * from './domains/chat.domain'
 export * from './domains/message.domain'
 
 export * from './services/AsyncStorage'

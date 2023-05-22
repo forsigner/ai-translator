@@ -4,7 +4,7 @@ import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-cont
 import { NavigationContainer } from '@react-navigation/native'
 import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack'
 import { PortalProvider } from '@gorhom/portal'
-import { BotProvider } from '@ai-translator/bot'
+import { ChatProvider } from '@ai-translator/chat'
 import { HomeNav } from './components/HomeNav'
 import { Chat } from './components/Chat'
 import { HomeScreen } from './screens/HomeScreen'
@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>()
 export default function App() {
   return (
     <PortalProvider>
-      <BotProvider>
+      <ChatProvider>
         <SafeAreaProvider>
           <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
@@ -58,7 +58,7 @@ export default function App() {
             </NavigationContainer>
           </GestureHandlerRootView>
         </SafeAreaProvider>
-      </BotProvider>
+      </ChatProvider>
     </PortalProvider>
   )
 }

@@ -1,15 +1,15 @@
 import React from 'react'
 import { Text, View } from '@fower/react-native'
 import { TouchableOpacity } from 'react-native'
-import { useBotContext } from '@ai-translator/bot'
+import { useChatContext } from '@ai-translator/chat'
 
 export function ClearMessageButton() {
-  const bot = useBotContext()
+  const chat = useChatContext()
   return (
     <View px3>
       <TouchableOpacity
         onPress={() => {
-          bot.clearMessages()
+          chat.clearMessages()
         }}
       >
         <Text>清除信息</Text>

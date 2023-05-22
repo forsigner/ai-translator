@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { BotSlugs, LayoutType, useBot, useMessages } from '@ai-translator/bot'
+import { BotSlugs, LayoutType, useChat, useMessages } from '@ai-translator/chat'
 import { CHAT_WIDTH } from '../../../common'
 import { Anchor } from './Anchor'
 import { ChatWelcome } from './ChatWelcome'
@@ -9,11 +9,11 @@ import { TranslatorPanel } from './TranslatorPanel/TranslatorPanel'
 
 export const ChatBody = () => {
   const { messages } = useMessages()
-  const { bot } = useBot()
+  const { chat } = useChat()
 
   console.log('messages:', messages)
 
-  if (bot.layout === LayoutType.Chat) {
+  if (chat.layout === LayoutType.Chat) {
     return (
       <Box flex-1 column overflowYAuto px4 pt5 pb0 w-100p>
         <Box mx-auto w={['100%', '100%', CHAT_WIDTH]}>
@@ -25,7 +25,7 @@ export const ChatBody = () => {
     )
   }
 
-  if (bot.slug === BotSlugs.CodeTranslator) {
+  if (chat.slug === BotSlugs.CodeTranslator) {
     return <CodeTranslatorLayout />
   }
   return <TranslatorPanel />

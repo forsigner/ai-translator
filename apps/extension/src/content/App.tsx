@@ -2,7 +2,7 @@ import { ToastContainer } from 'bone-ui'
 import { Popover } from './Popover'
 import { Thumbnail } from './Thumbnail'
 import { TranslatorContainer } from './TranslatorContainer'
-import { BotProvider, getBot } from '@ai-translator/bot'
+import { ChatProvider, getChat } from '@ai-translator/chat'
 import { useText } from '@ai-translator/shared/src/stores/text.store'
 import { useThumbnail, hideThumbnail } from '@ai-translator/shared/src/stores/thumbnail.store'
 
@@ -13,7 +13,7 @@ export function App() {
   if (!visible) return null
 
   return (
-    <BotProvider clearMessagesWhenInitialized>
+    <ChatProvider clearMessagesWhenInitialized>
       <ToastContainer></ToastContainer>
       <Popover
         placement="bottom"
@@ -22,7 +22,7 @@ export function App() {
             hideThumbnail()
           } else {
             setTimeout(() => {
-              const bot = getBot()
+              const bot = getChat()
               bot.updateText(text)
               bot.sendMessage()
             }, 0)
@@ -32,6 +32,6 @@ export function App() {
         <Thumbnail x={x} y={y} />
         <TranslatorContainer />
       </Popover>
-    </BotProvider>
+    </ChatProvider>
   )
 }

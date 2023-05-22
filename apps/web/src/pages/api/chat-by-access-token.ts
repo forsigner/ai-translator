@@ -14,7 +14,7 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   // Run the middleware
   await runMiddleware(req, res, cors)
 
-  return httpProxyMiddleware(req, res, {
+  return httpProxyMiddleware(req, res as any, {
     target: 'https://chat.openai.com',
     pathRewrite: [
       {

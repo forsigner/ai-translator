@@ -1,36 +1,38 @@
 import { IChatMessage } from 'react-native-gifted-chat'
-import { useBotContext } from '../context'
+import { useChatContext } from '../context'
 import { MessageJson } from '../domains/message.domain'
 import { useEffect, useMemo, useState } from 'react'
 
 export function useMessages() {
-  const bot = useBotContext()
-  const [messages, setMessages] = useState<MessageJson[]>(bot.messages.map((item) => item.toJSON()))
+  const chat = useChatContext()
+  const [messages, setMessages] = useState<MessageJson[]>(
+    chat.messages.map((item) => item.toJSON()),
+  )
 
   useEffect(() => {
-    bot.emitter.on('ADD_MESSAGE', () => {
-      setMessages([...bot.messages])
+    chat.emitter.on('ADD_MESSAGE', () => {
+      setMessages([...chat.messages])
     })
 
-    bot.emitter.on('STREAMING_MESSAGE', () => {
-      setMessages(bot.messages.map((item) => item.toJSON()))
+    chat.emitter.on('STREAMING_MESSAGE', () => {
+      setMessages(chat.messages.map((item) => item.toJSON()))
     })
 
-    bot.emitter.on('REMOVE_MESSAGE_PAIR', () => {
-      setMessages(bot.messages.map((item) => item.toJSON()))
+    chat.emitter.on('REMOVE_MESSAGE_PAIR', () => {
+      setMessages(chat.messages.map((item) => item.toJSON()))
     })
 
-    bot.emitter.on('SELECT_BOT', () => {
-      setMessages(bot.messages.map((item) => item.toJSON()))
+    chat.emitter.on('SELECT_BOT', () => {
+      setMessages(chat.messages.map((item) => item.toJSON()))
     })
 
-    bot.emitter.on('SET_LAYOUT', () => {
-      console.log('bot.messages:', bot.messages)
+    chat.emitter.on('SET_LAYOUT', () => {
+      console.log('bot.messages:', chat.messages)
 
-      setMessages(bot.messages.map((item) => item.toJSON()))
+      setMessages(chat.messages.map((item) => item.toJSON()))
     })
 
-    bot.emitter.on('CLEAR_MESSAGES', () => {
+    chat.emitter.on('CLEAR_MESSAGES', () => {
       setMessages([])
     })
   }, [])

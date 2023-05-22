@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ai-translator/api-sdk": "*",
-    "@ai-translator/bot": "*",
+    "@ai-translator/chat": "*",
     "@ai-translator/shared": "*",
     "@babel/runtime": "^7.17.9",
     "bone-ui": "^0.34.1",

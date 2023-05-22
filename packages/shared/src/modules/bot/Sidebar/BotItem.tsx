@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { CodeOutline, TranslateOutline } from '@bone-ui/icons'
-import { BotSlugs, BotType, getBot, useBot } from '@ai-translator/bot'
+import { BotSlugs, BotType, getChat, useChat } from '@ai-translator/chat'
 
 interface Props {
   item: BotType
@@ -36,8 +36,8 @@ const getIcon = (item: BotType) => {
 }
 
 export const BotItem = ({ item }: Props) => {
-  const { bot } = useBot()
-  const active = item.slug === bot.slug
+  const { chat } = useChat()
+  const active = item.slug === chat.slug
 
   if (item.hide) return null
 
@@ -46,7 +46,7 @@ export const BotItem = ({ item }: Props) => {
       key={item.slug}
       bgBrand100={active}
       onClick={() => {
-        getBot().selectBot(item)
+        getChat().selectBot(item)
       }}
     >
       <Box

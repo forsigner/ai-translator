@@ -1,4 +1,4 @@
-export * from './useBot'
+export * from './useChat'
 export * from './useDeviceId'
 export * from './useParams'
 export * from './useMessages'

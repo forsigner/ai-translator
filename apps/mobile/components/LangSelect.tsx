@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react'
 import { styled } from '@fower/styled'
 import { TouchableOpacity } from 'react-native'
 import { ScrollView, Text, TextInput, View } from '@fower/react-native'
-import { supportLanguages } from '@ai-translator/bot'
+import { supportLanguages } from '@ai-translator/chat'
 
 const Opacity = styled(TouchableOpacity)
 

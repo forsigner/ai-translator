@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Box } from '@fower/react'
 import { CodeBlock } from './CodeBlock'
-import { useBotContext, useMessages } from '@ai-translator/bot'
+import { useChatContext, useMessages } from '@ai-translator/chat'
 import { BotParams } from '../BotParams/BotParams'
 import { Button } from 'bone-ui'
 import { PaperAirplaneSolid } from '@bone-ui/icons'
 
 export const CodeTranslatorLayout = () => {
-  const bot = useBotContext()
+  const chat = useChatContext()
   const { message, messages } = useMessages()
   const [code, setCode] = useState(`\n\n\n`)
 
@@ -19,19 +19,13 @@ export const CodeTranslatorLayout = () => {
           <Button
             leftIcon={<PaperAirplaneSolid rotate-90 />}
             onClick={() => {
-              bot.sendMessage()
+              chat.sendMessage()
             }}
           >
             Translate
           </Button>
         </Box>
-        <Box
-          toLeft
-          shadow="rgba(17, 12, 46, 0.16) 0px 4px 50px -12px"
-          rounded2XL
-          bgWhite
-          mt4
-        >
+        <Box toLeft shadow="rgba(17, 12, 46, 0.16) 0px 4px 50px -12px" rounded2XL bgWhite mt4>
           <CodeBlock
             code={code}
             editable
@@ -39,7 +33,7 @@ export const CodeTranslatorLayout = () => {
             borderGray200
             onChange={(value) => {
               setCode(value)
-              bot.updateText(value)
+              chat.updateText(value)
             }}
           />
           <CodeBlock code={message?.content || ''} editable={false} />
