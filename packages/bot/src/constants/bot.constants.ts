@@ -1,7 +1,3 @@
-import React from 'react'
-import { CodeOutline, TranslateOutline } from '@bone-ui/icons'
-import { Box } from '@fower/react'
-
 export enum BotSlugs {
   TextTranslator = 'text-translator',
   CodeTranslator = 'code-translator',
@@ -22,22 +18,17 @@ export interface BotType {
   intro: string
   layout?: LayoutType
   hide?: boolean
-  icon?: any
-  defaultParams?: Record<string, string>
+  params?: Record<string, string>
+  selected?: boolean
 }
 
-export const bots: BotType[] = [
+export const botList: BotType[] = [
   {
     name: 'Translator',
     slug: BotSlugs.TextTranslator,
     intro: 'Translate text from one language to another',
     layout: LayoutType.Chat,
-    icon: (
-      <Box square10 bgGray300--T20 roundedFull toCenter bgOrange100>
-        <TranslateOutline orange600 />
-      </Box>
-    ),
-    defaultParams: {
+    params: {
       from: 'en',
       to: 'zh-Hans',
     },
@@ -47,12 +38,7 @@ export const bots: BotType[] = [
     slug: BotSlugs.CodeTranslator,
     layout: LayoutType.TwoColumn,
     intro: 'Code to Code, Python to JavaScript, Java to Python...',
-    icon: (
-      <Box square10 bgGray300--T20 roundedFull toCenter bgRed100>
-        <CodeOutline red700 />
-      </Box>
-    ),
-    defaultParams: {
+    params: {
       from: 'JavaScript',
       to: 'Python',
     },
@@ -61,13 +47,6 @@ export const bots: BotType[] = [
     name: 'Text polisher',
     slug: BotSlugs.TextPolisher,
     intro: 'Translate text from one language to another, but with JSON Object',
-    icon: (
-      <Box square10 bgGray300--T20 roundedFull toCenter bgGreen100>
-        <Box text-10 green600>
-          JSON
-        </Box>
-      </Box>
-    ),
   },
 
   {

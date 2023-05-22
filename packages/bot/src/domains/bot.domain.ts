@@ -1,6 +1,6 @@
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
-import { API_BASE_URL, BotSlugs, BotType, LayoutType, bots } from '../constants'
+import { API_BASE_URL, BotSlugs, BotType, LayoutType, botList } from '../constants'
 import { emitter } from '../emitter'
 import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
 import { CreateMessageInput, Message } from './message.domain'
@@ -12,6 +12,7 @@ import { MessageBuilder } from '../utils/MessageBuilder'
 import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
+import { BotStorage } from '../services/BotStorage'
 
 export interface Params {
   from?: string
@@ -20,7 +21,7 @@ export interface Params {
 }
 
 export class Bot {
-  private _bots: BotType[] = bots
+  bots: BotType[] = []
 
   private _bot: BotType
 
@@ -59,7 +60,18 @@ export class Bot {
 
   static async create(clearMessagesWhenInitialized: boolean) {
     const bot = new Bot()
-    await bot.init(bot._bots[0])
+    const bots = await BotStorage.get()
+
+    if (!bots?.length) {
+      await BotStorage.set(botList)
+      bot.bots = botList
+    } else {
+      bot.bots = bots
+    }
+
+    const activeBot = bots.find((bot) => bot.selected)
+
+    await bot.init(activeBot || bot.bots[0])
 
     if (clearMessagesWhenInitialized) {
       await MessageStorage.clear(bot.slug)
@@ -70,14 +82,13 @@ export class Bot {
 
   private async init(bot: BotType) {
     this._bot = bot
-    this._params = this._bot.defaultParams || {}
+    this._params = this._bot.params || {}
+
+    console.log('this.isChatLayout:', this.isChatLayout)
 
     if (this.isChatLayout) {
       const messages = await MessageStorage.queryBotMessages(bot.slug)
-
-      if (messages.length) {
-        this.messages = messages
-      }
+      this.messages = messages
     } else {
       this.messages = []
     }
@@ -104,14 +115,26 @@ export class Bot {
 
   async setLayout(layout: LayoutType) {
     this._bot.layout = layout
+    const index = this.bots.findIndex((bot) => bot.slug === this.slug)
+    this.bots[index].layout = layout
 
-    await this.init(this._bot)
+    await Promise.all([BotStorage.set(this.bots), this.init(this._bot)])
     emitter.emit('SET_LAYOUT')
   }
 
   selectBot = async (bot: BotType) => {
-    await this.init(bot)
-    emitter.emit('SELECT_BOT', bot)
+    for (const item of this.bots) {
+      if (item.slug === bot.slug) {
+        item.selected = true
+      } else {
+        item.selected = false
+      }
+    }
+
+    const currentBot = this.bots.find((item) => item.selected)!
+
+    await Promise.all([BotStorage.set(this.bots), this.init(currentBot)])
+    emitter.emit('SELECT_BOT', currentBot)
   }
 
   buildMessages = () => {
@@ -129,7 +152,7 @@ export class Bot {
     const index = this.messages.findIndex((message) => message.id === id)
     this.messages.splice(index - 1, 2)
     this.emitter.emit('REMOVE_MESSAGE_PAIR')
-    await MessageStorage.set(this.messages)
+    await MessageStorage.deleteMessagePair(id)
   }
 
   addMessage = async (input: CreateMessageInput) => {
@@ -138,7 +161,7 @@ export class Bot {
     this.emitter.emit('ADD_MESSAGE', message)
 
     if (this.isChatLayout) {
-      await MessageStorage.set(this.messages)
+      await MessageStorage.add(message)
     }
   }
 
@@ -174,7 +197,7 @@ export class Bot {
     }, 10)
 
     if (this.isChatLayout) {
-      await MessageStorage.set(this.messages)
+      await MessageStorage.update(this.messages[this.messages.length - 1])
     }
   }
 
@@ -245,7 +268,7 @@ export class Bot {
       })
 
       if (this.isChatLayout) {
-        await MessageStorage.set(this.messages)
+        await MessageStorage.update(this.messages[this.messages.length - 1])
       }
     } catch (error) {
       if (typeof error === 'string') {

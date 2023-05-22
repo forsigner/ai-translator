@@ -35,6 +35,22 @@ export class MessageStorage {
     await MessageStorage.set(messages)
   }
 
+  static async update(message: Message) {
+    const messages = await MessageStorage.get()
+    const index = messages.findIndex((item) => item.id === message.id)
+    messages[index] = message
+    await MessageStorage.set(messages)
+  }
+
+  static async deleteMessagePair(id: string | number) {
+    const messages = await MessageStorage.get()
+
+    const index = messages.findIndex((message) => message.id === id)
+    messages.splice(index - 1, 2)
+
+    await MessageStorage.set(messages)
+  }
+
   static async queryBotMessages(botSlug: string) {
     const messages = await MessageStorage.get()
     return messages.filter((message) => message.botSlug === botSlug)

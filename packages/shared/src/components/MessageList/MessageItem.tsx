@@ -19,7 +19,6 @@ import { IconChatgpt } from '../../icons/IconChatgpt'
 import { useCopyToClipboard } from '../../hooks'
 import RemoveMessage from './RemoveMessage'
 import { useHover } from '../../hooks/useHover'
-import { YoudaoDictWord } from './YoudaoDictWord'
 import { IconCopy } from '../../icons/IconCopy'
 import MessageContent from './MessageContent'
 

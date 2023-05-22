@@ -1,8 +1,38 @@
 import { Box } from '@fower/react'
-import { BotType, getBot, useBot } from '@ai-translator/bot'
+import { CodeOutline, TranslateOutline } from '@bone-ui/icons'
+import { BotSlugs, BotType, getBot, useBot } from '@ai-translator/bot'
 
 interface Props {
   item: BotType
+}
+
+const getIcon = (item: BotType) => {
+  if (item.slug === BotSlugs.TextTranslator) {
+    return (
+      <Box square10 bgGray300--T20 roundedFull toCenter bgOrange100>
+        <TranslateOutline orange600 />
+      </Box>
+    )
+  }
+
+  if (item.slug === BotSlugs.CodeTranslator) {
+    return (
+      <Box square10 bgGray300--T20 roundedFull toCenter bgRed100>
+        <CodeOutline red700 />
+      </Box>
+    )
+  }
+
+  if (item.slug === BotSlugs.TextPolisher) {
+    return (
+      <Box square10 bgGray300--T20 roundedFull toCenter bgGreen100>
+        <Box text-10 green600>
+          JSON
+        </Box>
+      </Box>
+    )
+  }
+  return null
 }
 
 export const BotItem = ({ item }: Props) => {
@@ -35,8 +65,7 @@ export const BotItem = ({ item }: Props) => {
         fontMedium
         spaceX2
       >
-        <Box>{!!item.icon && item.icon}</Box>
-
+        {getIcon(item)}
         <Box>
           <Box textLG>{item.name}</Box>
           <Box textXS gray500>

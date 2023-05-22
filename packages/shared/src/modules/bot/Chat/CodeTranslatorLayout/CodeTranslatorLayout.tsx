@@ -25,7 +25,13 @@ export const CodeTranslatorLayout = () => {
             Translate
           </Button>
         </Box>
-        <Box toLeft shadow2XL rounded2XL border bgWhite mt4>
+        <Box
+          toLeft
+          shadow="rgba(17, 12, 46, 0.16) 0px 4px 50px -12px"
+          rounded2XL
+          bgWhite
+          mt4
+        >
           <CodeBlock
             code={code}
             editable
