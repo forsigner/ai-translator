@@ -17,6 +17,8 @@ export type MessageJson = {
 
   streaming: boolean
 
+  layout: string
+
   createdAt: Date
 }
 
@@ -28,6 +30,8 @@ export type CreateMessageInput = {
   role: ChatCompletionResponseMessageRoleEnum
 
   userId: number
+
+  layout: string
 
   streaming?: boolean
 }
@@ -44,6 +48,8 @@ export class Message {
   role: ChatCompletionResponseMessageRoleEnum
 
   extra: any
+
+  layout: string
 
   streaming: boolean = false
 
@@ -88,6 +94,7 @@ export class Message {
       content: this.content,
       role: this.role,
       extra: this.extra,
+      layout: this.layout,
       streaming: this.streaming,
       createdAt: this.createdAt,
     }

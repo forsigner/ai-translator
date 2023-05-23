@@ -27,8 +27,6 @@ export function useMessages() {
     })
 
     chat.emitter.on('SET_LAYOUT', () => {
-      console.log('bot.messages:', chat.messages)
-
       setMessages(chat.messages.map((item) => item.toJSON()))
     })
 

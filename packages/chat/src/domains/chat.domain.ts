@@ -13,6 +13,7 @@ import { isDailyUsageLimit } from '../type-guard'
 import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
 import { BotStorage } from '../services/BotStorage'
+import { LRUCache } from 'lru-cache'
 
 export interface Params {
   from?: string
@@ -28,6 +29,8 @@ export class Chat {
   private _params: Params = {}
 
   emitter = emitter
+
+  lru = new LRUCache<string, string>({ max: 200 })
 
   /**
    * current input text
@@ -84,8 +87,6 @@ export class Chat {
     this._bot = bot
     this._params = this._bot.params || {}
 
-    console.log('this.isChatLayout:', this.isChatLayout)
-
     if (this.isChatLayout) {
       const messages = await MessageStorage.queryBotMessages(bot.slug)
       this.messages = messages
@@ -99,6 +100,15 @@ export class Chat {
 
     if (this.slug === BotSlugs.TextTranslator) {
       this.isWord = isWord(this.params.from!, value)
+    }
+
+    if (!this.isChatLayout && this.messages.length) {
+      console.log('gogo.....')
+
+      const message = this.messages[this.messages.length - 1]
+      if (message.content) {
+        this.updateStreamingMessage('')
+      }
     }
   }
 
@@ -196,9 +206,12 @@ export class Chat {
       this.emitter.emit('SCROLL_ANCHOR')
     }, 10)
 
+    const message = this.messages[this.messages.length - 1]
     if (this.isChatLayout) {
-      await MessageStorage.update(this.messages[this.messages.length - 1])
+      await MessageStorage.update(message)
     }
+
+    this.lru.set(this.text, message.content)
   }
 
   sendMessage = async (text = '') => {
@@ -210,6 +223,7 @@ export class Chat {
       userId: 1, // TODO:
       botSlug: this.slug,
       content: this.text,
+      layout: this.layout,
       role: ChatCompletionResponseMessageRoleEnum.User,
     })
 
@@ -217,15 +231,25 @@ export class Chat {
       userId: 2, // TODO:
       botSlug: this.slug,
       content: '',
+      layout: this.layout,
       role: ChatCompletionResponseMessageRoleEnum.Assistant,
       streaming: true,
     })
 
     this.emitter.emit('SCROLL_ANCHOR')
 
+    const cacheContent = this.lru.get(this.text)
+    console.log('cacheContent:', cacheContent)
+
+    if (cacheContent) {
+      this.updateStreamingMessage(cacheContent)
+      return
+    }
+
     if (this.isWord && this.params.to === 'zh-Hans') {
       try {
         await this.queryDict()
+
         return
       } catch (error) {}
     }
@@ -267,9 +291,12 @@ export class Chat {
         },
       })
 
+      const message = this.messages[this.messages.length - 1]
       if (this.isChatLayout) {
-        await MessageStorage.update(this.messages[this.messages.length - 1])
+        await MessageStorage.update(message)
       }
+
+      this.lru.set(this.text, message.content)
     } catch (error) {
       if (typeof error === 'string') {
         this.updateStreamingMessage(error)
