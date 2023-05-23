@@ -11,8 +11,8 @@ import { useSettingsVisible } from '@ai-translator/shared/src/stores/settings.st
 
 function App(): ReactElement {
   const { visible } = useSettingsVisible()
-  const { loading } = useSession()
-  if (loading) return <TranslatorLoading />
+  // const { loading } = useSession()
+  // if (loading) return <TranslatorLoading />
 
   return (
     <ChatProvider clearMessagesWhenInitialized>

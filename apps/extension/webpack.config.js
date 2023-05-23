@@ -91,7 +91,7 @@ module.exports = {
     rules: [
       {
         test: /icons(\/|\\).*\.svg$/,
-        exclude: /node_modules(\/|\\)(?!@dailydotdev)/,
+        exclude: /node_modules(\/|\\)(?!@ai-translator)/,
         use: [
           {
             loader: '@svgr/webpack',
@@ -123,7 +123,7 @@ module.exports = {
       },
       {
         test: /\.(ts|tsx)$/,
-        exclude: /node_modules(?!\/@ai-translator\/(shared))/,
+        exclude: /node_modules(?!\/@ai-translator\/shared)/,
         use: [
           {
             loader: require.resolve('ts-loader'),

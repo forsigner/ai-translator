@@ -1,7 +1,6 @@
 import { Box } from '@fower/react'
 import { Button } from 'bone-ui'
 import { Node, useForm } from 'fomir'
-import { useMode } from './useMode'
 import { useEffect } from 'react'
 import { useSettings } from '../stores/settings.store'
 import { isExtension } from '../common'
@@ -15,8 +14,6 @@ export function useSettingsForm() {
   const { settings, setSettings } = useSettings()
   const { hide } = useModal()
   const { t } = useTranslation('common')
-
-  console.log('settings:', settings)
 
   const nodes: Node[] = [
     {
@@ -86,7 +83,6 @@ export function useSettingsForm() {
 
   const form = useForm<Settings>({
     async onSubmit(values) {
-      console.log('----:', { ...settings, ...values })
       setSettings({ ...settings, ...values })
       hide()
     },
