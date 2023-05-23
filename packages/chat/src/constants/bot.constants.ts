@@ -1,6 +1,7 @@
 export enum BotSlugs {
   TextTranslator = 'text-translator',
   CodeTranslator = 'code-translator',
+  JSONTranslator = 'json-translator',
   TextPolisher = 'text-polisher',
   TextSummarizer = 'text-summarizer',
   GrammarAnalyzer = 'grammar-analyzer',
@@ -24,7 +25,7 @@ export interface BotType {
 
 export const botList: BotType[] = [
   {
-    name: 'Language Translator',
+    name: 'Language translator',
     slug: BotSlugs.TextTranslator,
     intro: 'Translate text from one language to another',
     layout: LayoutType.Chat,
@@ -43,10 +44,19 @@ export const botList: BotType[] = [
       to: 'Python',
     },
   },
+
+  {
+    name: 'JSON translator',
+    slug: BotSlugs.JSONTranslator,
+    layout: LayoutType.Chat,
+    intro: 'Translate text from one language to another, but with JSON Object',
+  },
+
   {
     name: 'Text polisher',
     slug: BotSlugs.TextPolisher,
     layout: LayoutType.Chat,
+    hide: true,
     intro: 'Translate text from one language to another, but with JSON Object',
   },
 

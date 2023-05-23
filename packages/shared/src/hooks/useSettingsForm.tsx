@@ -8,12 +8,15 @@ import { isExtension } from '../common'
 import { useTranslation } from 'react-i18next'
 import { useLang } from './useLang'
 import { Settings } from '../services/SettingsStorage'
+import { EasyModal, useModal } from '@ai-translator/easy-modal'
 
 export function useSettingsForm() {
-  const { setMode } = useMode()
   const { setLang } = useLang()
   const { settings, setSettings } = useSettings()
+  const { hide } = useModal()
   const { t } = useTranslation('common')
+
+  console.log('settings:', settings)
 
   const nodes: Node[] = [
     {
@@ -49,23 +52,24 @@ export function useSettingsForm() {
         { label: t('free'), value: 'Free' },
         { label: t('api-key'), value: 'ApiKey' },
       ],
-      value: settings.tokenProvider,
+      value: settings.tokenProvider || '',
     },
   ]
 
   if (isExtension) {
-    nodes.push({
-      label: t('theme'),
-      name: 'theme',
-      component: 'Select',
-      options: [
-        { label: 'Light', value: 'light' },
-        { label: 'Dark', value: 'dark' },
-        // { label: 'System theme', value: 'system' },
-      ],
-      value: settings.theme || '',
-      componentProps: {},
-    })
+    // nodes.push({
+    //   label: t('theme'),
+    //   name: 'theme',
+    //   component: 'Select',
+    //   options: [
+    //     { label: 'Light', value: 'light' },
+    //     { label: 'Dark', value: 'dark' },
+    //     // { label: 'System theme', value: 'system' },
+    //   ],
+    //   value: settings.theme || '',
+    //   componentProps: {},
+    // })
+
     nodes.push({
       label: t('language'),
       name: 'lang',
@@ -81,34 +85,17 @@ export function useSettingsForm() {
   }
 
   const form = useForm<Settings>({
-    watch: {
-      '*.value': (val) => {
-        const values = val as any as Settings
-        setSettings(values)
-      },
-
-      'theme.value': (val) => {
-        const theme = val as any as string
-        if (!theme) return
-        console.log('theme:', theme)
-        setMode(theme)
-      },
-
-      'lang.value': (val) => {
-        const lang = val as any as string
-        if (!lang) return
-        setLang(lang)
-      },
-    },
     async onSubmit(values) {
-      //
+      console.log('----:', { ...settings, ...values })
+      setSettings({ ...settings, ...values })
+      hide()
     },
     children: nodes,
   })
 
   useEffect(() => {
     form.setValues(settings)
-  }, [settings, form])
+  }, [])
 
   return form
 }

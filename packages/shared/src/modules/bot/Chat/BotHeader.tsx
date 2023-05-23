@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
 import { CHAT_WIDTH, NAV_HEIGHT, TOW_COLUMN_WIDTH } from '../../../common'
-import { ChatSettings } from './ChatSettings'
 import { LayoutType, useChat } from '@ai-translator/chat'
 import { SettingsPopover } from './SettingsPopover'
 import { LayoutSelect } from './LayoutSelect'
@@ -32,7 +31,6 @@ export const BotHeader = () => {
       <Box toCenterY columnGap-12 pr2>
         {/* <ChatSettings /> */}
         <LayoutSelect />
-        <SettingsPopover />
       </Box>
     </Box>
   )

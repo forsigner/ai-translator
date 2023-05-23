@@ -28,7 +28,7 @@ export const Input: FC<NodeProps<InputNode>> = (props) => {
           onChange={props.handler.handleChange}
           {...componentProps}
         />
-        {!!value?.length && focused && (
+        {!!value?.length && (
           <InputElement>
             <XCircleSolid
               cursorPointer

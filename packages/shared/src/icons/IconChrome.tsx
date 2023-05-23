@@ -11,12 +11,12 @@ export const IconChrome = iconify({
   path: (
     <>
       <linearGradient id="a" x1="4.546689%" x2="36.948096%" y1="56.05117%" y2="41.799482%">
-        <stop offset="0" stop-color="#a52714" stop-opacity=".6" />
-        <stop offset=".66" stop-color="#a52714" stop-opacity="0" />
+        <stop offset="0" stopColor="#a52714" stopOpacity=".6" />
+        <stop offset=".66" stopColor="#a52714" stopOpacity="0" />
       </linearGradient>
       <linearGradient id="b">
-        <stop offset="0" stop-color="#3e2723" stop-opacity=".2" />
-        <stop offset="1" stop-color="#3e2723" stop-opacity="0" />
+        <stop offset="0" stopColor="#3e2723" stopOpacity=".2" />
+        <stop offset="1" stopColor="#3e2723" stopOpacity="0" />
       </linearGradient>
       <radialGradient
         id="c"
@@ -26,8 +26,8 @@ export const IconChrome = iconify({
         r="136.321397%"
       />
       <linearGradient id="d" x1="77.759414%" x2="38.783313%" y1="87.775828%" y2="66.355316%">
-        <stop offset="0" stop-color="#055524" stop-opacity=".4" />
-        <stop offset=".33" stop-color="#055524" stop-opacity="0" />
+        <stop offset="0" stopColor="#055524" stopOpacity=".4" />
+        <stop offset=".33" stopColor="#055524" stopOpacity="0" />
       </linearGradient>
       <radialGradient
         id="e"
@@ -36,12 +36,12 @@ export const IconChrome = iconify({
         gradientTransform="matrix(1 0 0 .496419 0 -.061511)"
         r="226.352396%"
       >
-        <stop offset="0" stop-color="#263238" stop-opacity=".2" />
-        <stop offset="1" stop-color="#263238" stop-opacity="0" />
+        <stop offset="0" stopColor="#263238" stopOpacity=".2" />
+        <stop offset="1" stopColor="#263238" stopOpacity="0" />
       </radialGradient>
       <linearGradient id="f" x1="40.99375%" x2="49.249713%" y1="-4.840625%" y2="45.414063%">
-        <stop offset="0" stop-color="#ea6100" stop-opacity=".3" />
-        <stop offset=".66" stop-color="#ea6100" stop-opacity="0" />
+        <stop offset="0" stopColor="#ea6100" stopOpacity=".3" />
+        <stop offset=".66" stopColor="#ea6100" stopOpacity="0" />
       </linearGradient>
       <radialGradient
         id="g"
@@ -51,13 +51,13 @@ export const IconChrome = iconify({
         r="401.326969%"
       />
       <radialGradient id="h" cx="14.935227%" cy="13.644318%" r="100.426136%">
-        <stop offset="0" stop-color="#fff" stop-opacity=".1" />
-        <stop offset="1" stop-color="#fff" stop-opacity="0" />
+        <stop offset="0" stopColor="#fff" stopOpacity=".1" />
+        <stop offset="1" stopColor="#fff" stopOpacity="0" />
       </radialGradient>
       <mask id="i" fill="#fff">
-        <circle cx="10" cy="10" fill="#fff" fill-rule="evenodd" r="10" />
+        <circle cx="10" cy="10" fill="#fff" fillRule="evenodd" r="10" />
       </mask>
-      <g fill="none" fill-rule="nonzero" transform="translate(2 2)">
+      <g fill="none" fillRule="nonzero" transform="translate(2 2)">
         <g mask="url(#i)">
           <g transform="translate(1.477273)">
             <path
@@ -71,7 +71,7 @@ export const IconChrome = iconify({
             <path
               d="m4.69431818 12.2329545-4.52613636-7.76249995-.06590909.11363636 4.49318182 7.70454549z"
               fill="#3e2723"
-              fill-opacity=".15"
+              fillOpacity=".15"
             />
             <path
               d="m.11022727 4.59659091 4.06670212 4.0669289c-.12979771.4225635-.19965666.87136363-.19965666 1.33648019 0 .7889782.20101501 1.5310069.55462446 2.1776654z"
@@ -80,7 +80,7 @@ export const IconChrome = iconify({
             <path
               d="m.10832734 4.59424355 4.47689993 7.67848375c.79090909 1.3568182 2.25568182 2.2727272 3.9375 2.2727272 1.60428723 0 3.01184733-.834537 3.82042523-2.0904841l.111393-.1822431h.0068181v.1136363c-.7920454 1.3579546-2.2568181 2.2727273-3.93749996 2.2727273-1.6053719 0-3.01298131-.834537-3.82156146-2.0904841l-.11139309-.1822432h-.00454545l-4.51291355-7.73755658z"
               fill="#fff"
-              fill-opacity=".1"
+              fillOpacity=".1"
             />
           </g>
         </g>
@@ -97,7 +97,7 @@ export const IconChrome = iconify({
             <path
               d="m13.8454545 8.60568182-.0943181-.05454546-4.36250004 7.63068184h.13068182l4.32954542-7.57272729z"
               fill="#263238"
-              fill-opacity=".15"
+              fillOpacity=".15"
             />
             <path
               d="m9.52613636 16.1693182 2.38181814-8.88636365 2.0295455 1.1715909z"
@@ -106,7 +106,7 @@ export const IconChrome = iconify({
             <path
               d="m13.9772727 8.60568182c.3863637-.66818182.6102273-1.44090909.6102273-2.26818182 0-.47954545-.075-.94090909-.2125-1.37386364.1079545.38863637.1704545.79659091.1704545 1.21931819 0 .82727272-.2238636 1.6-.6102272 2.26818181l.0022727.00454546-4.41818182 7.72727268h.13181818l4.32840914-7.57272723z"
               fill="#fff"
-              fill-opacity=".2"
+              fillOpacity=".2"
             />
           </g>
         </g>
@@ -124,7 +124,7 @@ export const IconChrome = iconify({
             <g fill="#3e2723">
               <path
                 d="m4.56818182.88636364 8.85044168-.00030948.058719.11304961-8.90916068.00089623c-2.4385065 0-4.42876809 1.92058998-4.54050671 4.33149186l-.00494784.21396269v-.11363637c0-2.43850649 1.92058998-4.42876809 4.33149187-4.5405067z"
-                fill-opacity=".2"
+                fillOpacity=".2"
               />
               <path
                 d="m4.68181818 1c-.01931818 0-.0375.00227273-.05681818.00340909 2.48409091.03068182 4.48863636 2.05113636 4.48863636 4.54204546 0 2.49090909-2.00454545 4.51136365-4.48863636 4.54204545.01931818 0 .0375.0034091.05681818.0034091 2.51022727 0 4.54545455-2.03522728 4.54545455-4.54545455 0-2.51022728-2.03522728-4.54545455-4.54545455-4.54545455z"
@@ -142,13 +142,13 @@ export const IconChrome = iconify({
         <path
           d="m10 .11363636c5.5034091 0 9.9681818 4.44659091 9.9988636 9.94318184 0-.0193182.0011364-.0375.0011364-.0568182 0-5.52272727-4.4772727-10-10-10-5.52272727 0-10 4.47727273-10 10 0 .0193182.00113636.0375.00113636.0568182.03068182-5.49659093 4.49545455-9.94318184 9.99886364-9.94318184z"
           fill="#fff"
-          fill-opacity=".2"
+          fillOpacity=".2"
           mask="url(#i)"
         />
         <path
           d="m10 19.8863636c5.5034091 0 9.9681818-4.4465909 9.9988636-9.94318178 0 .01931818.0011364.0375.0011364.05681818 0 5.5227273-4.4772727 10-10 10-5.52272727 0-10-4.4772727-10-10 0-.01931818.00113636-.0375.00113636-.05681818.03068182 5.49659088 4.49545455 9.94318178 9.99886364 9.94318178z"
           fill="#3e2723"
-          fill-opacity=".15"
+          fillOpacity=".15"
           mask="url(#i)"
         />
         <circle cx="10" cy="10" fill="url(#h)" r="10" />

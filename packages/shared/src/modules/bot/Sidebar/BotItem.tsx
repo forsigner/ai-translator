@@ -23,7 +23,7 @@ const getIcon = (item: BotType) => {
     )
   }
 
-  if (item.slug === BotSlugs.TextPolisher) {
+  if (item.slug === BotSlugs.JSONTranslator) {
     return (
       <Box flexShrink-1 square10 bgGray300--T20 roundedFull toCenter bgGreen100>
         <Box text-10 green600>

@@ -10,6 +10,8 @@ import { EasyModal } from '@ai-translator/easy-modal'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
 import { IconLogoLight } from '../../../icons/IconLogoLight'
 import { DownloadBox } from './DownloadBox'
+import { ModalSettings } from '../modals/ModalSettings'
+import { Button } from 'bone-ui'
 
 export const Sidebar = () => {
   const { t } = useTranslation('common')
@@ -59,14 +61,25 @@ export const Sidebar = () => {
         <Box py2>
           <DownloadBox />
 
-          <SidebarItem
-            icon={CogSolid}
-            onClick={() => {
-              //
-            }}
-          >
-            Settings
-          </SidebarItem>
+          <Box mx4 py4>
+            <Button
+              w-100p
+              colorScheme="black"
+              toBetween
+              roundedFull
+              onClick={() => {
+                EasyModal.show(ModalSettings)
+              }}
+            >
+              <Box toCenterY columnGap-4>
+                <CogSolid size={20} />
+                <Box fontMedium>Settings</Box>
+              </Box>
+              <Box textXS gray400>
+                API Key
+              </Box>
+            </Button>
+          </Box>
 
           {/* <UserAvatarPopover /> */}
         </Box>
