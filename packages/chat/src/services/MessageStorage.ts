@@ -4,7 +4,13 @@ import { AsyncStorage } from './AsyncStorage'
 const key = 'MESSAGES'
 
 export class MessageStorage {
+  static maxSize = 200
+
   static async set(messages: Message[]) {
+    if (messages.length > MessageStorage.maxSize) {
+      messages = messages.slice(messages.length - MessageStorage.maxSize, messages.length)
+    }
+
     await AsyncStorage.setItem(
       key,
       messages.map((message) => message.toJSON()),
