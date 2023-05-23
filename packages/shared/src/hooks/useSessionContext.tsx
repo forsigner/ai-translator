@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, createContext, useContext, useEffect } from 'react'
 import { LoginSuccessPayload } from '@ai-translator/api-sdk'
-import { TokenStorage } from '../services/TokenStorage'
+import { TokenStorage } from '@ai-translator/chat'
 
 type useSessionProviderProps = {
   session: LoginSuccessPayload

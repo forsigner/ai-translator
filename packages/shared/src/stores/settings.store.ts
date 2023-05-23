@@ -2,7 +2,7 @@ import { useDebouncedCallback } from 'use-debounce'
 import { getState, useStore } from 'stook'
 import { useEffect } from 'react'
 import { toast } from 'bone-ui'
-import { Settings, SettingsStorage } from '../services/SettingsStorage'
+import { Settings, SettingsStorage } from '@ai-translator/chat'
 
 const key = 'Settings_visible'
 

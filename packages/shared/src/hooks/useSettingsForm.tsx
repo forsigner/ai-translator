@@ -1,4 +1,6 @@
 import { Box } from '@fower/react'
+import { EasyModal, useModal } from '@ai-translator/easy-modal'
+import { Settings } from '@ai-translator/chat'
 import { Button } from 'bone-ui'
 import { Node, useForm } from 'fomir'
 import { useEffect } from 'react'
@@ -6,8 +8,6 @@ import { useSettings } from '../stores/settings.store'
 import { isExtension } from '../common'
 import { useTranslation } from 'react-i18next'
 import { useLang } from './useLang'
-import { Settings } from '../services/SettingsStorage'
-import { EasyModal, useModal } from '@ai-translator/easy-modal'
 
 export function useSettingsForm() {
   const { setLang } = useLang()

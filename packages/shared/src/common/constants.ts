@@ -6,7 +6,8 @@ export const ONE_YEAR = ONE_DAY * 365 // 一年
 
 export const isProd = process.env.NODE_ENV === 'production'
 
-export const API_HOST = process.env.NEXT_PUBLIC_API_HOST
+export const API_HOST = process.env.NEXT_PUBLIC_API_HOST || process.env.NEXT_PUBLIC_API_HOST
+
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL as string
 export const subscriptionsEndpoint = `wss://${API_HOST}/graphql`
 export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'

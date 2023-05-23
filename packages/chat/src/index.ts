@@ -5,6 +5,12 @@ export * from './domains/chat.domain'
 export * from './domains/message.domain'
 
 export * from './services/AsyncStorage'
+export * from './services/RegionChecker'
+export * from './services/SettingsStorage'
+export * from './services/MessageStorage'
+export * from './services/TokenStorage'
+export * from './services/BotStorage'
+export * from './services/speaker'
 
 export * from './hooks'
 export * from './emitter'

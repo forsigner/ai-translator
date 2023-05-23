@@ -7,8 +7,14 @@ export const ONE_YEAR = ONE_DAY * 365 // 一年
 
 export const isProd = process.env.NODE_ENV === 'production'
 
-export const API_HOST = process.env.NEXT_PUBLIC_API_HOST
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL as string
+export const API_HOST =
+  process.env.NEXT_PUBLIC_API_HOST || process.env.NEXT_PUBLIC_API_HOST || 'translator.langpt.ai'
+
+export const API_BASE_URL =
+  (process.env.NEXT_PUBLIC_API_BASE_URL as string) ||
+  (process.env.PLASMO_PUBLIC_API_BASE_URL as string) ||
+  'https://translator.langpt.ai'
+
 export const subscriptionsEndpoint = `wss://${API_HOST}/graphql`
 export const isDesktop = process.env.NEXT_PUBLIC_PLATFORM === 'DESKTOP'
 
@@ -17,7 +23,9 @@ const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
 export const isServer = typeof window === 'undefined'
 
-export const isExtension = process.env.NEXT_PUBLIC_PLATFORM === 'EXTENSION'
+export const PLATFORM = process.env.NEXT_PUBLIC_PLATFORM || process.env.PLASMO_PUBLIC_PLATFORM
+
+export const isExtension = PLATFORM === 'EXTENSION'
 
 export const HOST =
   process.env.NODE_ENV === 'development'

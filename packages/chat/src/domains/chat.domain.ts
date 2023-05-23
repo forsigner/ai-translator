@@ -103,8 +103,6 @@ export class Chat {
     }
 
     if (!this.isChatLayout && this.messages.length) {
-      console.log('gogo.....')
-
       const message = this.messages[this.messages.length - 1]
       if (message.content) {
         this.updateStreamingMessage('')
@@ -239,7 +237,6 @@ export class Chat {
     this.emitter.emit('SCROLL_ANCHOR')
 
     const cacheContent = this.lru.get(this.text)
-    console.log('cacheContent:', cacheContent)
 
     if (cacheContent) {
       this.updateStreamingMessage(cacheContent)

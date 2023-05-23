@@ -1,0 +1,21 @@
+{
+  "home": "首页",
+  "feedback": "反馈",
+  "github": "GitHub",
+  "delete-account": "删除帐号",
+  "cancel": "取消",
+  "delete": "删除",
+  "edit-nickname-button-text": "编辑昵称",
+  "settings": "设置",
+  "logout": "注销",
+  "delete-account-button-text": "shi",
+  "login-with-google": "Login with Google",
+  "openai-api-key": "OpenAI API Key",
+  "get-api-key": "Get API Key",
+  "token-provider": "Token 消耗方式",
+  "theme": "主题",
+  "language": "语言",
+  "free": "免费",
+  "api-key": "API Key",
+  "search": "搜索"
+}
