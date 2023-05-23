@@ -9,6 +9,11 @@ const nextConfig = {
     unoptimized: true,
   },
 
+  experimental: {
+    esmExternals: 'loose'
+
+  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

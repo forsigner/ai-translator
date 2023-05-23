@@ -1,9 +1,9 @@
 import { Box } from '@fower/react'
+import { IconSponsor } from '@ai-translator/widgets'
 import { Button } from '@bone-ui/button'
 import { Avatar } from '@bone-ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@bone-ui/tooltip'
 import { useSettingsVisible } from '../stores/settings.store'
-import { IconSponsor } from '../icons/IconSponsor'
 
 export function Footer() {
   const { setVisible } = useSettingsVisible()

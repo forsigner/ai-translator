@@ -3,7 +3,8 @@ import type { AppProps } from 'next/app'
 import { Fragment, useEffect } from 'react'
 import { EasyModalProvider } from '@ai-translator/easy-modal'
 import { injectGlobalStyle } from '@fower/core'
-import { LANGUAGE_KEY, SessionProvider, init } from '@ai-translator/shared'
+import { LANGUAGE_KEY, SessionProvider } from '@ai-translator/shared'
+import { init, initFomir } from '@ai-translator/widgets'
 import { useTranslation, withTranslation } from 'react-i18next'
 import { getCookie } from 'cookies-next'
 import '../styles/globals.scss'
@@ -15,6 +16,7 @@ interface Props<T> extends AppProps<T> {
 }
 
 init()
+initFomir()
 
 injectGlobalStyle({
   a: {

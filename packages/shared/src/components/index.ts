@@ -1,6 +1,3 @@
 export * from './EmptyDataTip'
 export * from './Logo'
-export * from './Translator'
-export * from './Settings'
-export * from './TranslatorContent'
 export * from './TranslatorLoading'

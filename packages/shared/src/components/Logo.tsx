@@ -1,5 +1,5 @@
 import { Box } from '@fower/react'
-import { IconLogo } from '../icons/IconLogo'
+import { IconLogo } from '@ai-translator/widgets'
 
 export const Logo = () => {
   return (

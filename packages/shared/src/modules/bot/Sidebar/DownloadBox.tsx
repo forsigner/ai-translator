@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { Button, toast } from 'bone-ui'
-import { IconChrome, IconIOS, IconWindows } from '../../../icons'
+import { IconChrome, IconIOS, IconWindows } from '@ai-translator/widgets'
 
 export const DownloadBox = () => {
   function comingSoon() {

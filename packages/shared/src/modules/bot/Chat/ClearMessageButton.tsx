@@ -1,7 +1,7 @@
 import { Button, RefreshOutline, Spinner, StopSolid } from 'bone-ui'
 import { Box } from '@fower/react'
 import { useChatContext } from '@ai-translator/chat'
-import { IconClear } from '../../../icons/IconClear'
+import { IconClear } from '@ai-translator/widgets'
 
 export const ClearMessageButton = () => {
   const chat = useChatContext()

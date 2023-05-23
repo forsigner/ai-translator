@@ -1,4 +1,5 @@
 import { Box } from '@fower/react'
+import { IconLogoLight } from '@ai-translator/widgets'
 import { motion, MotionValue } from 'framer-motion'
 import { styled } from '@fower/styled'
 import { HEADER_HEIGHT } from '../common/constants'
@@ -6,7 +7,6 @@ import { SettingsButton } from './SettingsButton'
 import { CodeFromTo } from './code-translator/CodeFromTo'
 import { TranslatorLangSelector } from './TranslatorLangSelector'
 import { useChat, BotSlugs } from '@ai-translator/chat'
-import { IconLogoLight } from '../icons/IconLogoLight'
 
 interface Props {
   showSettings: boolean

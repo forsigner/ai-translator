@@ -1,8 +1,7 @@
 import { Button } from 'bone-ui'
 import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
-import { IconGitHub } from '../../icons/IconGitHub'
-import { IconGoogle } from '../../icons/IconGoogle'
+import { IconGoogle } from '@ai-translator/widgets'
 import { githubAuthUrl, googleAuthUrl, isProd } from '../../common'
 
 export function ThirdPartyLogin() {

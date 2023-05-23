@@ -1,25 +1,15 @@
 import { Message, MessageJson } from '@ai-translator/chat'
 import reactFastCompare from 'react-fast-compare'
 import { Box } from '@fower/react'
-import {
-  Avatar,
-  Button,
-  ClipboardCopyOutline,
-  RefreshOutline,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from 'bone-ui'
+import { Avatar, Button, Tooltip, TooltipContent, TooltipTrigger } from 'bone-ui'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { memo, useState } from 'react'
 import { useUser } from '../../stores'
 import { Markdown } from '../Markdown'
-import { IconChatLoading } from '../../icons/IconChatLoading'
-import { IconChatgpt } from '../../icons/IconChatgpt'
+import { IconChatLoading, IconChatgpt, IconCopy } from '@ai-translator/widgets'
 import { useCopyToClipboard } from '../../hooks'
 import RemoveMessage from './RemoveMessage'
 import { useHover } from '../../hooks/useHover'
-import { IconCopy } from '../../icons/IconCopy'
 import MessageContent from './MessageContent'
 
 interface Props {

@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@bone-ui/popover'
 import { CogOutline } from '@bone-ui/icons'
 import { useTranslation } from 'react-i18next'
-import { Settings } from '../../components'
+import { Settings } from '@ai-translator/widgets'
 import { Button } from 'bone-ui'
 
 export const SettingsPopover = () => {

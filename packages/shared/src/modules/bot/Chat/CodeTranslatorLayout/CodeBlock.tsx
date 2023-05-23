@@ -12,7 +12,7 @@ import { duotoneLight } from '@uiw/codemirror-theme-duotone'
 import { useCodeMirror } from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import { FC, useEffect, useRef, useState } from 'react'
-import { IconCopy } from '../../../../icons/IconCopy'
+import { IconCopy } from '@ai-translator/widgets'
 import { useCopyToClipboard } from '../../../../hooks'
 
 interface Props extends Omit<FowerHTMLProps<'div'>, 'children' | 'onChange'> {

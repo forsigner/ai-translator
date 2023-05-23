@@ -1,11 +1,11 @@
 import { BotSlugs, Message, MessageJson, useChat } from '@ai-translator/chat'
+import { YoudaoDictWord } from '@ai-translator/widgets'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import reactFastCompare from 'react-fast-compare'
 import { Box } from '@fower/react'
 import { memo } from 'react'
 import { Markdown } from '../Markdown'
-import { YoudaoDictWord } from './YoudaoDictWord'
 
 interface Props {
   content: any
