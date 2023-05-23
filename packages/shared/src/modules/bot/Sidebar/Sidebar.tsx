@@ -9,6 +9,7 @@ import { SidebarItem } from './SidebarItem'
 import { EasyModal } from '@ai-translator/easy-modal'
 import { UserAvatarPopover } from '../../../components/UserAvatarPopover'
 import { IconLogoLight } from '../../../icons/IconLogoLight'
+import { DownloadBox } from './DownloadBox'
 
 export const Sidebar = () => {
   const { t } = useTranslation('common')
@@ -56,6 +57,8 @@ export const Sidebar = () => {
       </Box>
       <Box flex-1 column toBottom>
         <Box py2>
+          <DownloadBox />
+
           <SidebarItem
             icon={CogSolid}
             onClick={() => {
