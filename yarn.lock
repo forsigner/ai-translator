@@ -4938,6 +4938,13 @@
   resolved "https://registry.yarnpkg.com/@plasmohq/init/-/init-0.6.3.tgz#e4878e4ec16d914979b86ff3f6ae7d0808b93ef7"
   integrity sha512-TdeisHX+Z0Rfez4251eCX0czcqnWO1OfurQhSQDijcmcjVU7r+IXh0svg7s+UVpCiHTagQ/JY+bnweuqnGPFHQ==
 
+"@plasmohq/messaging@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@plasmohq/messaging/-/messaging-0.3.1.tgz#684abb48306ac486f39c5b5af9efd0c8fe836d54"
+  integrity sha512-rOofrMacH667mQm1RJnAz224Rr7Ggi4txgQ5LT7ahP5VzW4nglqDNoBEcE/1a455JYOnWBtxMLpk/cYfnwNhWw==
+  dependencies:
+    nanoid "4.0.2"
+
 "@plasmohq/parcel-bundler@0.4.10":
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/@plasmohq/parcel-bundler/-/parcel-bundler-0.4.10.tgz#6ccdcbde031e78833a5311983474e2223e346202"
@@ -15629,6 +15636,11 @@ nano-css@^5.3.1:
     sourcemap-codec "^1.4.8"
     stacktrace-js "^2.0.2"
     stylis "^4.0.6"
+
+nanoid@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-4.0.2.tgz#140b3c5003959adbebf521c170f282c5e7f9fb9e"
+  integrity sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==
 
 nanoid@^3.1.23, nanoid@^3.3.1, nanoid@^3.3.4, nanoid@^3.3.6:
   version "3.3.6"

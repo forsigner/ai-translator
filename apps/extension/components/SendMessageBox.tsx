@@ -25,12 +25,12 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
   const disabled = message?.streaming
 
   return (
-    <Box relative>
+    <Box relative border borderGray100 rounded2XL borderTransparent--dark bgGray800--dark>
       <TextareaAutosize
-        minRows={2}
+        minRows={1}
         placeholder={`Enter to translate, Shift+Enter to new a line`}
         className={css(
-          'm0  borderNone w-100p outlineNone pl3 pr5 py3 placeholderGray400 text-14 gray300--dark bgGray100--T30 bgGray800--dark rounded leadingNormal',
+          'm0 borderNone borderNone--focus--i w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent bgTransparent--dark shadowNone--focus',
         )}
         disabled={disabled}
         style={{
@@ -59,7 +59,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       />
 
       {text && (
-        <Box absolute top2 right2 cursorPointer>
+        <Box absolute top-14 right2 cursorPointer>
           {playing && (
             <IconStop
               size={18}

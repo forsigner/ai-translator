@@ -79,11 +79,12 @@ export function usePopover({
     enabled: true,
   })
 
-  const dismiss = useDismiss(context)
+  const dismiss = useDismiss(context, {})
+
   const focus = useFocus(context)
   const role = useRole(context, { role: 'tooltip' })
 
-  const interactions = useInteractions([click, dismiss, role, focus])
+  const interactions = useInteractions([role, dismiss, click, focus])
 
   const open = useCallback(() => {
     setOpen(true)

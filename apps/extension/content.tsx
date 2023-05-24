@@ -1,4 +1,5 @@
 import { Portal, ToastContainer } from 'bone-ui'
+import { useMessage } from '@plasmohq/messaging/hook'
 import { ChatProvider, getChat } from '@ai-translator/chat'
 import { SettingsStorage } from '@ai-translator/chat'
 import { Popover } from './components/Popover'
@@ -51,10 +52,14 @@ document.addEventListener('click', (event) => {
 function IndexContent() {
   const { x, y, visible } = useThumbnail()
   const { text } = useText()
+  useMessage((req) => {
+    console.log('req....:', req)
+  })
+
   if (!visible) return null
   return (
     <ChatProvider clearMessagesWhenInitialized>
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
       <Popover
         placement="bottom"
         afterOpenChange={(isOpen) => {

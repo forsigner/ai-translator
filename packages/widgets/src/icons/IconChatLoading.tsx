@@ -11,7 +11,7 @@ export const IconChatLoading = iconify({
   },
   path: (
     <>
-      <circle cx="15" cy="15" r="15" fill="#10b981">
+      <circle cx="15" cy="15" r="15" fill="#6366f1" strokeWidth={0}>
         <animate
           attributeName="r"
           from="15"
@@ -33,7 +33,7 @@ export const IconChatLoading = iconify({
           repeatCount="indefinite"
         />
       </circle>
-      <circle cx="60" cy="15" r="9" fillOpacity="0.3" fill="#10b981">
+      <circle cx="60" cy="15" r="9" fillOpacity="0.3" fill="#6366f1" strokeWidth={0}>
         <animate
           attributeName="r"
           from="9"
@@ -55,7 +55,7 @@ export const IconChatLoading = iconify({
           repeatCount="indefinite"
         />
       </circle>
-      <circle cx="105" cy="15" r="15" fill="#10b981">
+      <circle cx="105" cy="15" r="15" fill="#6366f1" strokeWidth={0}>
         <animate
           attributeName="r"
           from="15"

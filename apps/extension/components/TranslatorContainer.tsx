@@ -35,13 +35,12 @@ export const TranslatorContainer: FC<PopoverContentProps> = forwardRef(function 
             ref={ref}
             black
             className="ai-translator-content"
-            shadow
+            shadowLG
             shadow--dark="0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4)"
-            roundedLG
+            roundedXL
             outlineNone
             white--dark
             bgWhite
-            overflowHidden
             bgGray800--dark
             border
             borderGray200

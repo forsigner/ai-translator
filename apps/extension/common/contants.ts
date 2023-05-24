@@ -1,0 +1,3 @@
+export enum Events {
+  EXTENSION_ICON_CLICK = 'EXTENSION_ICON_CLICK',
+}

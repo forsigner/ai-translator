@@ -43,13 +43,13 @@ export const Thumbnail: FC<ThumbnailProps> = forwardRef(function PopoverTrigger(
         borderRadius: 8,
         border: '1px solid #e8e8e8',
         cursor: 'pointer',
-        display: 'inline-block',
+        display: 'inline-flex',
         boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 2,
-        width: 24,
-        height: 24,
+        width: 26,
+        height: 26,
         background: 'white',
       }}
       data-state={state.isOpen ? 'opened' : 'closed'}

@@ -13,10 +13,11 @@
   "dependencies": {
     "@ai-translator/api-sdk": "*",
     "@ai-translator/chat": "*",
-    "@ai-translator/widgets": "*",
     "@ai-translator/shared": "*",
+    "@ai-translator/widgets": "*",
     "@bone-ui/utils": "^0.34.1",
     "@fower/react": "^1.77.0",
+    "@plasmohq/messaging": "^0.3.1",
     "bone-ui": "^0.34.1",
     "fomir": "^0.22.0",
     "idb-keyval": "^5.1.5",
@@ -37,6 +38,10 @@
     "host_permissions": [
       "https://*/*"
     ],
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    },
     "permissions": [
       "storage"
     ]

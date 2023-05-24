@@ -11,8 +11,6 @@ declare module '@fower/atomic-props' {
 }
 
 export function initFower() {
-  console.log('isExtension:', isExtension)
-
   setConfig({
     prefix: isExtension ? 'at-' : '',
     inline: false,

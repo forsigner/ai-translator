@@ -17,7 +17,6 @@ export function MessageContent({ message }: Props) {
   return (
     <Box
       rounded2XL
-      overflowHidden
       css={{
         pre: {
           background: 'transparent !important',

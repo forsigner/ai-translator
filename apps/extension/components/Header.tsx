@@ -7,6 +7,8 @@ import { CodeFromTo } from './code-translator/CodeFromTo'
 import { useChat, BotSlugs } from '@ai-translator/chat'
 import { IconLogoLight } from '@ai-translator/widgets'
 import { HEADER_HEIGHT } from '../constants'
+import { TranslatorLangSelector } from './TranslatorLangSelector'
+import { navToOptions } from '~common/utils'
 
 interface Props {
   showSettings: boolean
@@ -23,10 +25,8 @@ export function Header({ showSettings, containerX, containerY }: Props) {
     <MotionBox
       toCenterY
       toBetween
-      borderBottom
-      borderBottomGray100
-      borderBottomGray800--dark
       px4
+      pt3
       cursor={draggable ? 'move' : false}
       h={HEADER_HEIGHT}
       onPan={(e, info) => {
@@ -37,9 +37,9 @@ export function Header({ showSettings, containerX, containerY }: Props) {
       }}
     >
       <Box toCenterY toBetween columnGap-8>
-        <Box bgBrand500 square7 rounded2XL toCenter>
+        <Box bgBrand500 square6 roundedXL toCenter>
           <IconLogoLight
-            size={24}
+            size={18}
             black
             onClick={(e) => {
               e.stopPropagation()
@@ -52,7 +52,7 @@ export function Header({ showSettings, containerX, containerY }: Props) {
         {/* <BotSelect /> */}
       </Box>
       <Box toCenterY columnGap-8>
-        {/* {chat.slug === BotSlugs.TextTranslator && <TranslatorLangSelector />} */}
+        {chat.slug === BotSlugs.TextTranslator && <TranslatorLangSelector containerHeight={400} />}
         {chat.slug === BotSlugs.CodeTranslator && <CodeFromTo />}
         {showSettings && <SettingsButton />}
       </Box>

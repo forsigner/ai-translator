@@ -36,17 +36,6 @@ export function SettingsHeader({ title }: Props) {
           )}
         </Box>
       </Box>
-      {isExtension && (
-        <Button
-          size={28}
-          roundedFull
-          onClick={() => {
-            setVisible(false)
-          }}
-        >
-          {t('back')}
-        </Button>
-      )}
     </Box>
   )
 }

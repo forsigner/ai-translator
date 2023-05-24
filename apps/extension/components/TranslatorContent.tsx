@@ -149,11 +149,15 @@ export const TranslatorContent = ({ streaming, content, isWordMode, text }: Prop
               )
             }
 
-            return <Box key={index}>{item.value}</Box>
+            return (
+              <Box key={index} textSM>
+                {item.value}
+              </Box>
+            )
           })}
         </Box>
       )
     }
   }
-  return <>{content}</>
+  return <Box textSM>{content}</Box>
 }
