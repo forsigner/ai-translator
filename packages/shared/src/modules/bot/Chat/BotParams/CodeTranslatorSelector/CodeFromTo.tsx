@@ -7,7 +7,7 @@ interface Props {
   onChange(value: [string, string]): void
 }
 
-export function CodeFromTo({ value = ['en', 'zh-Hans'], onChange }: Props) {
+export function CodeFromTo({ value = ['en', 'zh-cn'], onChange }: Props) {
   const [from, to] = value
 
   return (

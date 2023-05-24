@@ -31,7 +31,7 @@ export const botList: BotType[] = [
     layout: LayoutType.Chat,
     params: {
       from: 'en',
-      to: 'zh-Hans',
+      to: 'zh-cn',
     },
   },
   {

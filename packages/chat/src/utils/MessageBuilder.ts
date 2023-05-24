@@ -3,7 +3,7 @@ import type { Chat, Params } from '../domains/chat.domain'
 import { BotSlugs } from '../constants'
 import { langMap } from '../supportLanguages'
 
-const chineseLangs = ['zh-Hans', 'zh-Hant', 'wyw', 'yue']
+const chineseLangs = ['zh-cn', 'zh-tw', 'wyw', 'yue']
 
 export class MessageBuilder {
   text: string

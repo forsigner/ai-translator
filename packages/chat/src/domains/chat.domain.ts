@@ -243,7 +243,7 @@ export class Chat {
       return
     }
 
-    if (this.isWord && this.params.to === 'zh-Hans') {
+    if (this.isWord && ['zh-cn', 'zh-tw'].includes(this.params.to!)) {
       try {
         await this.queryDict()
 

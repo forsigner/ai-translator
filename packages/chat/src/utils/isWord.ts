@@ -1,4 +1,4 @@
-const chineseLangs = ['zh-Hans', 'zh-Hant', 'wyw', 'yue']
+const chineseLangs = ['zh-cn', 'zh-tw', 'wyw', 'yue']
 
 export function isChinesLang(text: string) {
   return chineseLangs.includes(text)

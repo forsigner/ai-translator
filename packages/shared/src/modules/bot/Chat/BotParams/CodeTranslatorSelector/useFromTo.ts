@@ -10,7 +10,7 @@ const key = 'FROM_TO'
 export function useFromTo() {
   const [state, setFromTo] = useStore(key, {
     from: 'en',
-    to: 'zh-Hans',
+    to: 'zh-cn',
   } as State)
 
   function setTo(to: string) {
