@@ -15,6 +15,13 @@ export function useSettingsForm() {
 
   const nodes: Node[] = [
     {
+      label: 'Use AI mode',
+      component: 'Switch',
+      name: 'useAIMode',
+      value: false,
+    },
+
+    {
       label: (
         <Box toCenterY spaceX2>
           <Box>{t('openai-api-key')}</Box>
@@ -39,16 +46,16 @@ export function useSettingsForm() {
         placeholder: 'sk-*******',
       },
     },
-    {
-      label: t('token-provider'),
-      component: 'RadioGroup',
-      name: 'tokenProvider',
-      options: [
-        { label: t('free'), value: 'Free' },
-        { label: t('api-key'), value: 'ApiKey' },
-      ],
-      value: settings.tokenProvider || '',
-    },
+    // {
+    //   label: t('token-provider'),
+    //   component: 'RadioGroup',
+    //   name: 'tokenProvider',
+    //   options: [
+    //     { label: t('free'), value: 'Free' },
+    //     { label: t('api-key'), value: 'ApiKey' },
+    //   ],
+    //   value: settings.tokenProvider || '',
+    // },
   ]
 
   if (isExtension) {
