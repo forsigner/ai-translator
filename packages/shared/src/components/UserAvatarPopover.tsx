@@ -6,7 +6,6 @@ import { EasyModal } from '@ai-translator/easy-modal'
 import { useUser } from '../stores'
 import { useLogout } from '../hooks/useLogout'
 import { useMounted } from '../hooks/useMounted'
-import { DrawerProfile } from './DrawerProfile'
 import { useSessionContext } from '../hooks'
 import { useRouter } from 'next/router'
 

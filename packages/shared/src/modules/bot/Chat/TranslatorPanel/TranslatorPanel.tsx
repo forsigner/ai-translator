@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { IconChatLoading } from '@ai-translator/widgets'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from '@fower/react'
@@ -7,7 +8,6 @@ import { BotParams } from '../BotParams/BotParams'
 import { Button } from 'bone-ui'
 import { PaperAirplaneSolid } from '@bone-ui/icons'
 import MessageContent from '../../../../components/MessageList/MessageContent'
-import { IconChatLoading } from '../../../../components/IconChatLoading'
 
 export const TranslatorPanel = () => {
   const [text, setText] = useState('')

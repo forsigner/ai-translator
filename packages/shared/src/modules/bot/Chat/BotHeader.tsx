@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
-import { CHAT_WIDTH, NAV_HEIGHT, TOW_COLUMN_WIDTH } from '../../../common'
+import { CHAT_WIDTH, NAV_HEIGHT } from '@ai-translator/chat'
 import { LayoutType, useChat } from '@ai-translator/chat'
 import { SettingsPopover } from './SettingsPopover'
 import { LayoutSelect } from './LayoutSelect'

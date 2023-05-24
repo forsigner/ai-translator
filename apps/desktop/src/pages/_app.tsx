@@ -4,10 +4,11 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { ToastContainer } from 'bone-ui'
 import { EasyModalProvider } from '@ai-translator/easy-modal'
-import { init } from '@ai-translator/shared'
+import { init, initFomir } from '@ai-translator/widgets'
 import '../styles/globals.css'
 
 init()
+initFomir()
 
 interface Props extends AppProps {
   Component: AppProps['Component'] & { Layout: any }

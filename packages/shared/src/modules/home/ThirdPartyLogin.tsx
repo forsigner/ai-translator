@@ -2,7 +2,7 @@ import { Button } from 'bone-ui'
 import { Box } from '@fower/react'
 import { useTranslation } from 'react-i18next'
 import { IconGoogle } from '@ai-translator/widgets'
-import { githubAuthUrl, googleAuthUrl, isProd } from '../../common'
+import { githubAuthUrl, googleAuthUrl, isProd } from '@ai-translator/chat'
 
 export function ThirdPartyLogin() {
   const { t } = useTranslation('common')

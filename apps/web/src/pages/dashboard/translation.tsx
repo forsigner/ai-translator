@@ -1,12 +1,10 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { BasicLayout, DashboardLayout, LOGIN_SUCCESS_REDIRECT_URL, Plan } from '@ai-translator/shared'
+import { BasicLayout, Plan } from '@ai-translator/shared'
 
 export default function PageTranslation() {
   return <Plan />
 }
-
-PageTranslation.Layout = DashboardLayout
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {
   const { payload } = req.session

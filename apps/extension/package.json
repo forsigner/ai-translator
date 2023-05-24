@@ -5,7 +5,8 @@
   "description": "Translator by AI",
   "author": "forsigner",
   "scripts": {
-    "dev": "plasmo dev --verbose",
+    "dev": "plasmo dev",
+    "dev:verbose": "plasmo dev --verbose",
     "build": "plasmo build",
     "package": "plasmo package"
   },

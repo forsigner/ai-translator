@@ -4,10 +4,10 @@ import { Nav } from './Nav'
 import { Footer } from './Footer'
 import { Logo } from '../../components'
 import { LoginStatus } from './LoginStatus'
-import { useDeviceId } from '../../hooks/useDeviceId'
 import { BadgeCheckOutline, BadgeCheckSolid, Button } from 'bone-ui'
 import { EasyModal } from '@ai-translator/easy-modal'
 import { ModalUpgrade } from './ModalUpgrade'
+import { useDeviceId } from '@ai-translator/chat'
 
 interface Props {
   showNav?: boolean

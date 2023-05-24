@@ -5,6 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "strictPropertyInitialization": false,
     "strict": true,
     "noEmit": true

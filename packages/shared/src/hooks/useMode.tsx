@@ -1,8 +1,7 @@
 import { setCookie, getCookie } from 'cookies-next'
-import { SettingsStorage } from '@ai-translator/chat'
+import { SettingsStorage, isExtension } from '@ai-translator/chat'
 import { store } from '@fower/core'
 import { useState, useEffect } from 'react'
-import { isExtension } from '../common'
 
 interface Result {
   mode: string

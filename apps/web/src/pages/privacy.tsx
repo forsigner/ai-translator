@@ -1,6 +1,7 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { BasicLayout, LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/shared'
+import { BasicLayout } from '@ai-translator/shared'
+import { LOGIN_SUCCESS_REDIRECT_URL } from '@ai-translator/chat'
 import { Box } from '@fower/react'
 import { FC, PropsWithChildren } from 'react'
 

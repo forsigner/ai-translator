@@ -6,11 +6,13 @@ declare module '@fower/atomic-props' {
     /**
      * dashboard card
      */
-    dashboardCard?: true
+    // dashboardCard?: true
   }
 }
 
 export function initFower() {
+  console.log('isExtension:', isExtension)
+
   setConfig({
     prefix: isExtension ? 'at-' : '',
     inline: false,
@@ -48,27 +50,27 @@ export function initFower() {
 
   setTheme({
     colors: {
-      // brand50: '#eef2ff',
-      // brand100: '#e0e7ff',
-      // brand200: '#c7d2fe',
-      // brand300: '#a5b4fc',
-      // brand400: '#818cf8',
-      // brand500: '#6366f1',
-      // brand600: '#4f46e5',
-      // brand700: '#4338ca',
-      // brand800: '#5b21b6',
-      // brand900: '#4c1d95',
+      brand50: '#eef2ff',
+      brand100: '#e0e7ff',
+      brand200: '#c7d2fe',
+      brand300: '#a5b4fc',
+      brand400: '#818cf8',
+      brand500: '#6366f1',
+      brand600: '#4f46e5',
+      brand700: '#4338ca',
+      brand800: '#5b21b6',
+      brand900: '#4c1d95',
 
-      brand50: '#ecfdf5',
-      brand100: '#d1fae5',
-      brand200: '#a7f3d0',
-      brand300: '#6ee7b7',
-      brand400: '#34d399',
-      brand500: '#10b981',
-      brand600: '#059669',
-      brand700: '#047857',
-      brand800: '#065f46',
-      brand900: '#064e3b',
+      // brand50: '#ecfdf5',
+      // brand100: '#d1fae5',
+      // brand200: '#a7f3d0',
+      // brand300: '#6ee7b7',
+      // brand400: '#34d399',
+      // brand500: '#10b981',
+      // brand600: '#059669',
+      // brand700: '#047857',
+      // brand800: '#065f46',
+      // brand900: '#064e3b',
     },
     shadows: {
       // medium: '0 0 20px 0 rgba(0,0,0,.15)',

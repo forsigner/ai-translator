@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { useChat } from '@ai-translator/chat'
-import { CHAT_WIDTH } from '../../../common'
+import { CHAT_WIDTH } from '@ai-translator/chat'
 import { SendMessageBox } from './SendMessageBox'
 import { ClearMessageButton } from './ClearMessageButton'
 import { BotParams } from './BotParams/BotParams'

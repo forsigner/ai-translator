@@ -2,7 +2,7 @@ import { Select } from 'bone-ui'
 import { TranslateOutline } from '@bone-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
-import { useLang } from '../hooks/useLang'
+import { useLang } from '@ai-translator/widgets'
 
 export const LocaleSelect = () => {
   const { i18n } = useTranslation('common')

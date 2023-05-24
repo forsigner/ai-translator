@@ -1,6 +1,6 @@
 import { Box } from '@fower/react'
 import { BotSlugs, LayoutType, useChat, useMessages } from '@ai-translator/chat'
-import { CHAT_WIDTH } from '../../../common'
+import { CHAT_WIDTH } from '@ai-translator/chat'
 import { Anchor } from './Anchor'
 import { ChatWelcome } from './ChatWelcome'
 import { MessageList } from '../../../components/MessageList/MessageList'

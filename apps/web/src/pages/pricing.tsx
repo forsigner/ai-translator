@@ -1,6 +1,6 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { BasicLayout, LOGIN_SUCCESS_REDIRECT_URL, Plan } from '@ai-translator/shared'
+import { BasicLayout, Plan } from '@ai-translator/shared'
 
 export default function PagePricing() {
   return <Plan />

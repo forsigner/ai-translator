@@ -10,7 +10,7 @@ import {
   InputElement,
   Input,
 } from 'bone-ui'
-import { CARD_HEIGHT, HEADER_HEIGHT } from '../common/constants'
+import { CARD_HEIGHT, HEADER_HEIGHT } from '@ai-translator/chat'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

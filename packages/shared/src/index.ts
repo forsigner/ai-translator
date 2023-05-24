@@ -1,4 +1,3 @@
-export * from './common'
 export * from './stores'
 export * from './modules'
 export * from './layouts'

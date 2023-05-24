@@ -5,7 +5,6 @@ import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import reactFastCompare from 'react-fast-compare'
 import { Box } from '@fower/react'
 import { memo } from 'react'
-import { Markdown } from '../Markdown'
 
 interface Props {
   content: any
@@ -44,7 +43,7 @@ const MessageContent = ({ content }: Props) => {
     )
   }
 
-  return <Markdown content={content} />
+  return <>{content}</>
 }
 
 export default memo(MessageContent, (prev, next) => {

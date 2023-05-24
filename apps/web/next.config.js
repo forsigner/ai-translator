@@ -6,8 +6,7 @@ module.exports = {
   output: "standalone",
   experimental: {
     outputFileTracingRoot: path.join(__dirname, "../../"),
-    esmExternals: 'loose'
-
+    // esmExternals: 'loose'
   },
 
   webpack(config) {
