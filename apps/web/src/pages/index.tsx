@@ -1,9 +1,9 @@
 import { withIronSessionSsr } from 'iron-session/next'
 import { sessionOptions } from '@common/session'
-import { ModuleBot } from '@ai-translator/shared'
+import { Chat } from '@ai-translator/shared'
 
 export default function PageHome() {
-  return <ModuleBot />
+  return <Chat />
 }
 
 export const getServerSideProps = withIronSessionSsr(async function ({ req, res, locale = '' }) {

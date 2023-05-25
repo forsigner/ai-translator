@@ -26,7 +26,7 @@ export const Anchor = () => {
         scroll(dom!)
       }, 0)
     })
-  }, [])
+  }, [chat])
 
   return <Box as="div" ref={anchorRef} h4 bgTransparent />
 }

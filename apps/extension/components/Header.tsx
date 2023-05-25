@@ -11,14 +11,13 @@ import { TranslatorLangSelector } from './TranslatorLangSelector'
 import { navToOptions } from '~common/utils'
 
 interface Props {
-  showSettings: boolean
   containerX?: MotionValue<number>
   containerY?: MotionValue<number>
 }
 
 const MotionBox = styled(motion(Box))
 
-export function Header({ showSettings, containerX, containerY }: Props) {
+export function Header({ containerX, containerY }: Props) {
   const { chat } = useChat()
   const draggable = containerX && containerY
   return (
@@ -54,7 +53,6 @@ export function Header({ showSettings, containerX, containerY }: Props) {
       <Box toCenterY columnGap-8>
         {chat.slug === BotSlugs.TextTranslator && <TranslatorLangSelector containerHeight={400} />}
         {chat.slug === BotSlugs.CodeTranslator && <CodeFromTo />}
-        {showSettings && <SettingsButton />}
       </Box>
     </MotionBox>
   )

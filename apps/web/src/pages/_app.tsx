@@ -4,7 +4,7 @@ import { Fragment, useEffect } from 'react'
 import { EasyModalProvider } from '@ai-translator/easy-modal'
 import { injectGlobalStyle } from '@fower/core'
 import { SessionProvider } from '@ai-translator/shared'
-import { LANGUAGE_KEY } from '@ai-translator/chat'
+import { ChatProvider, LANGUAGE_KEY } from '@ai-translator/chat'
 import { init, initFomir } from '@ai-translator/widgets'
 import { useTranslation, withTranslation } from 'react-i18next'
 import { getCookie } from 'cookies-next'
@@ -42,12 +42,14 @@ function MyApp({ Component, pageProps }: Props<{ payload: LoginSuccessPayload }>
 
   return (
     <SessionProvider session={pageProps?.payload}>
-      <EasyModalProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </EasyModalProvider>
-      <ToastContainer></ToastContainer>
+      <ChatProvider>
+        <EasyModalProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </EasyModalProvider>
+        <ToastContainer></ToastContainer>
+      </ChatProvider>
     </SessionProvider>
   )
 }

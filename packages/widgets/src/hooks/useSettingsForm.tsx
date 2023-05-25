@@ -2,14 +2,13 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
 import { useModal } from '@ai-translator/easy-modal'
-import { Settings, isExtension } from '@ai-translator/chat'
+import { Settings, isExtension, useSettings } from '@ai-translator/chat'
 import { Button } from 'bone-ui'
 import { Node, useForm } from 'fomir'
 import { useEffect } from 'react'
-import { useSettings } from '../stores/settings.store'
 
 export function useSettingsForm() {
-  const { settings, setSettings } = useSettings()
+  const { settings, updateSettings } = useSettings()
   const { hide } = useModal()
   const { t } = useTranslation('common')
 
@@ -17,8 +16,8 @@ export function useSettingsForm() {
     {
       label: 'Use AI mode',
       component: 'Switch',
-      name: 'useAIMode',
-      value: false,
+      name: 'aiMode',
+      value: settings.aiMode || false,
     },
 
     {
@@ -88,15 +87,16 @@ export function useSettingsForm() {
 
   const form = useForm<Settings>({
     async onSubmit(values) {
-      setSettings({ ...settings, ...values })
+      updateSettings({ ...settings, ...values })
       hide()
     },
     children: nodes,
   })
 
   useEffect(() => {
+    if (Object.keys(settings).length === 0) return
     form.setValues(settings)
-  }, [])
+  }, [settings, form])
 
   return form
 }

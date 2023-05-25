@@ -30,7 +30,7 @@ export const ChatProvider: FC<PropsWithChildren<ChatProviderProps>> = ({
       mutate('AI_TRANSLATOR_CHAT', chatRef.current)
       forceUpdate(true)
     })
-  }, [])
+  }, [clearMessagesWhenInitialized])
 
   if (!chatRef.current || !inited) return null
 

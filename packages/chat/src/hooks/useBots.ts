@@ -11,7 +11,7 @@ export function useBots() {
     chat.emitter.on('ADD_MESSAGE', () => {
       //
     })
-  }, [])
+  }, [chat])
 
   return {
     bots,

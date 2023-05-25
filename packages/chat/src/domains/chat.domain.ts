@@ -5,7 +5,7 @@ import { emitter } from '../emitter'
 import { getOrGenerateDeviceId } from '../hooks/useDeviceId'
 import { CreateMessageInput, Message } from './message.domain'
 import { RegionChecker } from '../services/RegionChecker'
-import { SettingsStorage } from '../services/SettingsStorage'
+import { Settings, SettingsStorage } from '../services/SettingsStorage'
 import { TokenStorage } from '../services/TokenStorage'
 import { isWord } from '../utils/isWord'
 import { MessageBuilder } from '../utils/MessageBuilder'
@@ -41,6 +41,12 @@ export class Chat {
 
   messages: Message[] = []
 
+  _settings: Settings = {} as Settings
+
+  get settings() {
+    return this._settings || {}
+  }
+
   get params() {
     return this._params || {}
   }
@@ -62,25 +68,29 @@ export class Chat {
   }
 
   static async create(clearMessagesWhenInitialized: boolean) {
-    const bot = new Chat()
-    const bots = await BotStorage.get()
+    const chat = new Chat()
+    const [settings, bots] = await Promise.all([SettingsStorage.get(), BotStorage.get()])
+
+    if (settings) {
+      chat._settings = settings
+    }
 
     if (!bots?.length) {
       await BotStorage.set(botList)
-      bot.bots = botList
+      chat.bots = botList
     } else {
-      bot.bots = bots
+      chat.bots = bots
     }
 
     const activeBot = bots.find((bot) => bot.selected)
 
-    await bot.init(activeBot || bot.bots[0])
+    await chat.init(activeBot || chat.bots[0])
 
     if (clearMessagesWhenInitialized) {
-      await MessageStorage.clear(bot.slug)
+      await MessageStorage.clear(chat.slug)
     }
 
-    return bot
+    return chat
   }
 
   private async init(bot: BotType) {
@@ -119,6 +129,12 @@ export class Chat {
         this.sendMessage()
       }
     }
+  }
+
+  updateSettings = async (settings: Settings) => {
+    this._settings = settings
+    await SettingsStorage.set(settings)
+    emitter.emit('UPDATE_SETTINGS', settings)
   }
 
   async setLayout(layout: LayoutType) {
@@ -212,47 +228,9 @@ export class Chat {
     this.lru.set(this.text, message.content)
   }
 
-  sendMessage = async (text = '') => {
-    if (text) this.text = text
-
-    if (!this.text) return
-
-    await this.addMessage({
-      userId: 1, // TODO:
-      botSlug: this.slug,
-      content: this.text,
-      layout: this.layout,
-      role: ChatCompletionResponseMessageRoleEnum.User,
-    })
-
-    await this.addMessage({
-      userId: 2, // TODO:
-      botSlug: this.slug,
-      content: '',
-      layout: this.layout,
-      role: ChatCompletionResponseMessageRoleEnum.Assistant,
-      streaming: true,
-    })
-
-    this.emitter.emit('SCROLL_ANCHOR')
-
-    const cacheContent = this.lru.get(this.text)
-
-    if (cacheContent) {
-      this.updateStreamingMessage(cacheContent)
-      return
-    }
-
-    if (this.isWord && ['zh-cn', 'zh-tw'].includes(this.params.to!)) {
-      try {
-        await this.queryDict()
-
-        return
-      } catch (error) {}
-    }
-
-    const [settings, regionChecker, token, deviceId] = await Promise.all([
-      SettingsStorage.get(),
+  sendCompletionMessage = async () => {
+    const { settings } = this
+    const [regionChecker, token, deviceId] = await Promise.all([
       RegionChecker.fromStorage(),
       TokenStorage.get(),
       getOrGenerateDeviceId(),
@@ -306,5 +284,49 @@ export class Chat {
         return
       }
     }
+  }
+
+  sendMessage = async (text = '') => {
+    if (text) this.text = text
+
+    if (!this.text) return
+
+    await this.addMessage({
+      userId: 1, // TODO:
+      botSlug: this.slug,
+      content: this.text,
+      layout: this.layout,
+      role: ChatCompletionResponseMessageRoleEnum.User,
+    })
+
+    await this.addMessage({
+      userId: 2, // TODO:
+      botSlug: this.slug,
+      content: '',
+      layout: this.layout,
+      role: ChatCompletionResponseMessageRoleEnum.Assistant,
+      streaming: true,
+    })
+
+    this.emitter.emit('SCROLL_ANCHOR')
+
+    const cacheContent = this.lru.get(this.text)
+
+    if (cacheContent) {
+      this.updateStreamingMessage(cacheContent)
+      return
+    }
+
+    // query dict
+    if (this.isWord && ['zh-cn', 'zh-tw'].includes(this.params.to!)) {
+      try {
+        await this.queryDict()
+
+        return
+      } catch (error) {}
+    }
+
+    // send completion message (chatgpt)
+    await this.sendCompletionMessage()
   }
 }

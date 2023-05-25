@@ -33,7 +33,7 @@ export function useMessages() {
     chat.emitter.on('CLEAR_MESSAGES', () => {
       setMessages([])
     })
-  }, [])
+  }, [chat])
 
   const chatMessages = messages
     .map<IChatMessage>((item) => {

@@ -7,6 +7,7 @@ export function initSettingsStorage() {
     if (!settings) {
       await SettingsStorage.set({
         apiKey: '',
+        aiMode: false,
         tokenProvider: 'Free',
         lang: 'en',
         theme: 'light',

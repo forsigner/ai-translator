@@ -1,6 +1,5 @@
-import { ModuleBot } from '@ai-translator/shared'
+import { Chat } from '@ai-translator/shared'
 
 export default function PageHome() {
-
-  return <ModuleBot />
+  return <Chat />
 }

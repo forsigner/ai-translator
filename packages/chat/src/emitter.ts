@@ -1,6 +1,7 @@
 import mitt from 'mitt'
 import { BotType } from './constants'
 import { Message } from './domains/message.domain'
+import { Settings } from './services'
 
 export type BotEvents = {
   SELECT_BOT: BotType
@@ -12,6 +13,8 @@ export type BotEvents = {
   CLEAR_MESSAGES: undefined
 
   REMOVE_MESSAGE_PAIR: undefined
+
+  UPDATE_SETTINGS: Settings
 
   STREAMING_MESSAGE: string
 

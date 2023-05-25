@@ -4,7 +4,6 @@ import { IconLogo } from '../../icons/IconLogo'
 import { Button } from 'bone-ui'
 import { useTranslation } from 'react-i18next'
 import { HEADER_HEIGHT, isExtension } from '@ai-translator/chat'
-import { useSettingsVisible } from '../../stores/settings.store'
 
 interface Props {
   title?: string
@@ -12,7 +11,6 @@ interface Props {
 
 export function SettingsHeader({ title }: Props) {
   const { t } = useTranslation('common')
-  const { setVisible } = useSettingsVisible()
   return (
     <Box
       toCenterY
