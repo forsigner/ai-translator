@@ -19,7 +19,7 @@ export interface BotType {
   intro: string
   layout: LayoutType
   hide?: boolean
-  params?: Record<string, string>
+  params?: Record<string, any>
   selected?: boolean
 }
 

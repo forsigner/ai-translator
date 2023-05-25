@@ -16,8 +16,8 @@ import { BotStorage } from '../services/BotStorage'
 import { LRUCache } from 'lru-cache'
 
 export interface Params {
-  from?: string
-  to?: string
+  from: string
+  to: string
   [key: string]: any
 }
 
@@ -26,7 +26,7 @@ export class Chat {
 
   private _bot: BotType
 
-  private _params: Params = {}
+  private _params: Params = {} as Params
 
   emitter = emitter
 
@@ -85,7 +85,7 @@ export class Chat {
 
   private async init(bot: BotType) {
     this._bot = bot
-    this._params = this._bot.params || {}
+    this._params = this._bot.params as any
 
     if (this.isChatLayout) {
       const messages = await MessageStorage.queryBotMessages(bot.slug)

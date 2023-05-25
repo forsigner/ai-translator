@@ -1,14 +1,6 @@
-import { getState } from 'stook'
-import { useParams } from '@ai-translator/chat'
+import { useParams } from './useParams'
 
-interface State {
-  to: string
-  from: string
-}
-
-const key = 'LANG_FROM_TO'
-
-export function useLangFromTo() {
+export function useFromTo() {
   const { params, updateParams } = useParams()
 
   function setTo(to: string) {
@@ -41,8 +33,4 @@ export function useLangFromTo() {
     reverse,
     setFromTo: updateParams,
   }
-}
-
-export function getLangFromToState(): State {
-  return getState(key)
 }
