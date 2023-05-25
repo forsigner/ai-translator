@@ -35,6 +35,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
       rounded2XL
       borderTransparent--dark
       bgGray800--dark
+      bgWhite
     >
       <Box flex-1 minH={[50]} toCenterY>
         <TextareaAutosize

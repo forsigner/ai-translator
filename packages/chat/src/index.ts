@@ -11,6 +11,7 @@ export * from './services/MessageStorage'
 export * from './services/TokenStorage'
 export * from './services/BotStorage'
 export * from './services/speaker'
+export * from './services/Language'
 
 export * from './hooks'
 export * from './emitter'

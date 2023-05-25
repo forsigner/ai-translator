@@ -20,7 +20,6 @@ export const BotHeader = () => {
       // borderBottom
       // borderBottomGray100
       // borderBottomGray800--dark
-      py4
       toCenterY
       columnGap-4
       toBetween
@@ -28,7 +27,7 @@ export const BotHeader = () => {
       px={[12, 12, 0]}
       w={['100%', '100%', chat.layout === LayoutType.Chat ? CHAT_WIDTH : '100%']}
     >
-      <Box toCenterY columnGap-4 mb4>
+      <Box toCenterY columnGap-4>
         <Box bgBrand500 square6 roundedFull toCenter>
           <IconLogoLight
             size={20}
@@ -42,8 +41,6 @@ export const BotHeader = () => {
         <Box
           textXL
           fontBold
-          columnGap-4
-          toCenterY
           leadingNone
           style={{
             fontFamily: 'aclonica',
@@ -58,7 +55,7 @@ export const BotHeader = () => {
         <Button
           variant="light"
           roundedFull
-          p1
+          colorScheme="gray600"
           size="sm"
           icon={<CogSolid />}
           onClick={() => {

@@ -15,7 +15,7 @@ export const LayoutSelect = () => {
   const { chat } = useChat()
 
   return (
-    <Box toCenterY bgGray100 rounded-6 p-3 h-40>
+    <Box toCenterY bgGray200--T40 rounded-6 p-3 h-40>
       <Box
         rounded
         px3
@@ -24,7 +24,7 @@ export const LayoutSelect = () => {
         h-100p
         cursorPointer
         bgWhite={!chat.isChatLayout}
-        shadow={!chat.isChatLayout}
+        shadowSM={!chat.isChatLayout}
         bgTransparent={chat.isChatLayout}
         onClick={() => {
           chat.setLayout(LayoutType.TwoColumn)

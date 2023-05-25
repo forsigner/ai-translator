@@ -7,9 +7,10 @@ import { PanelFooter } from './PanelFooter'
 
 export const Chat = () => {
   const { chat } = useChat()
+  const w = 1120
   return (
-    <Box flex-1>
-      <Box mx-auto column h-100vh w={chat.isChatLayout ? '100%' : ['100%', '100%', 800, 800]}>
+    <Box flex-1 bgGray100--T20 overflowHidden>
+      <Box mx-auto column h-100vh w={chat.isChatLayout ? '100%' : ['100%', '100%', w, w]}>
         <BotHeader />
         <ChatBody />
 
