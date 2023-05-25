@@ -28,7 +28,7 @@ export const botList: BotType[] = [
     name: 'Language translator',
     slug: BotSlugs.TextTranslator,
     intro: 'Translate text from one language to another',
-    layout: LayoutType.Chat,
+    layout: LayoutType.TwoColumn,
     params: {
       from: 'en',
       to: 'zh-cn',
