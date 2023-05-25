@@ -1,7 +1,6 @@
 import { Box } from '@fower/react'
 import { motion, MotionValue } from 'framer-motion'
 import { styled } from '@fower/styled'
-import { SettingsButton } from './SettingsButton'
 import { CodeFromTo } from './code-translator/CodeFromTo'
 // import { TranslatorLangSelector } from './TranslatorLangSelector'
 import { useChat, BotSlugs } from '@ai-translator/chat'

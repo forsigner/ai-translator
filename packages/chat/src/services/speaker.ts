@@ -2,7 +2,7 @@ import { Buffer } from 'buffer'
 import mitt from 'mitt'
 import { toast } from 'bone-ui'
 
-const API_BASE_URL = 'https://ai-translator.langpt.ai'
+const API_BASE_URL = 'https://translator.langpt.ai'
 
 type Events = {
   PLAYING_STATUS_CHANGE: boolean

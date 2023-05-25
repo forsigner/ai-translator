@@ -30,7 +30,7 @@ export const isExtension = PLATFORM === 'EXTENSION'
 export const HOST =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'
-    : 'https://ai-translator.langpt.ai'
+    : 'https://translator.langpt.ai'
 
 const githubRedirectUri = `${HOST}/api/auth/callback/github`
 const googleRedirectUri = `${HOST}/api/auth/callback/google`

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Box } from '@fower/react'
 import { useModal } from '@ai-translator/easy-modal'
 import { Settings, isExtension, useSettings } from '@ai-translator/chat'
-import { Button } from 'bone-ui'
+import { Button, toast } from 'bone-ui'
 import { Node, useForm } from 'fomir'
 import { useEffect } from 'react'
 
@@ -88,7 +88,7 @@ export function useSettingsForm() {
   const form = useForm<Settings>({
     async onSubmit(values) {
       updateSettings({ ...settings, ...values })
-      hide()
+      toast.success('Settings saved')
     },
     children: nodes,
   })

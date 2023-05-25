@@ -1,7 +1,7 @@
 import { Box } from '@fower/react'
 import { MotionValue } from 'framer-motion'
 import { FowerHTMLProps } from '@fower/core'
-import { useChat, useChatContext, useMessages, useDeviceId } from '@ai-translator/chat'
+import { useChat, useMessages, useDeviceId } from '@ai-translator/chat'
 import { Header } from './Header'
 import { SendMessageBox } from './SendMessageBox'
 import { CARD_HEIGHT, CARD_WIDTH } from '../constants'
@@ -11,15 +11,16 @@ import { TranslatorContent } from './TranslatorContent'
 interface Props extends FowerHTMLProps<'div'> {
   containerX?: MotionValue<number>
   containerY?: MotionValue<number>
-  showSettings?: boolean
 }
 
 export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
-  { showSettings = false, containerX, containerY, ...rest },
+  { containerX, containerY, ...rest },
   ref,
 ) {
   const { chat } = useChat()
   const { messages } = useMessages()
+
+  console.log('messages:', messages)
 
   const deviceId = useDeviceId()
 
@@ -27,7 +28,7 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
 
   return (
     <Box ref={ref} w={CARD_WIDTH} roundedXL column bgWhite {...rest}>
-      <Header showSettings={showSettings} containerX={containerX} containerY={containerY} />
+      <Header containerX={containerX} containerY={containerY} />
 
       <Box p3>
         <SendMessageBox

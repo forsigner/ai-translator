@@ -64,6 +64,7 @@ export class Message {
     message.role = input.role
     message.createdAt = new Date()
     message.botSlug = input.botSlug
+    message.layout = input.layout
 
     if (typeof input.streaming !== 'undefined') {
       message.streaming = input.streaming

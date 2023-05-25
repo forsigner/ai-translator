@@ -1,6 +1,5 @@
 import { Box } from '@fower/react'
 import { FowerHTMLProps } from '@fower/core'
-import { Header } from './Header'
 import { CARD_HEIGHT, CARD_WIDTH } from '@ai-translator/chat'
 import { forwardRef } from 'react'
 import { Spinner } from 'bone-ui'

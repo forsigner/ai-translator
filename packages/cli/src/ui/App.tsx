@@ -11,7 +11,7 @@ type Props = {
   input: string[]
 }
 
-const API_BASE_URL = 'https://ai-translator.langpt.ai'
+const API_BASE_URL = 'https://translator.langpt.ai'
 
 async function getTargetLang(): Promise<string> {
   const config = await readConfig()

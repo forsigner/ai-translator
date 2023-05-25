@@ -5,7 +5,6 @@ import { Avatar, Button, Tooltip, TooltipContent, TooltipTrigger } from 'bone-ui
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { memo, useState } from 'react'
 import { useUser } from '../../stores'
-import { Markdown } from '../Markdown'
 import { IconChatLoading, IconChatgpt, IconCopy } from '@ai-translator/widgets'
 import { useCopyToClipboard } from '../../hooks'
 import RemoveMessage from './RemoveMessage'

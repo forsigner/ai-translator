@@ -123,6 +123,11 @@ export class Chat {
   updateParams = (params: Params, isResendMessage = false) => {
     this._params = params
 
+    const index = this.bots.findIndex((bot) => bot.slug === this.slug)
+
+    this.bots[index].params = params
+    BotStorage.set(this.bots)
+
     if (params?.to) {
       emitter.emit('CHANGE_LANG_TO', '')
       if (this.text && isResendMessage) {
@@ -196,7 +201,7 @@ export class Chat {
     this.emitter.emit('STREAMING_MESSAGE', text)
   }
 
-  async queryDict() {
+  private async queryDict() {
     const url = `${API_BASE_URL}/api/dict`
     const res = await fetch(url, {
       method: 'POST',
@@ -228,8 +233,9 @@ export class Chat {
     this.lru.set(this.text, message.content)
   }
 
-  sendCompletionMessage = async () => {
+  private sendCompletionMessage = async () => {
     const { settings } = this
+
     const [regionChecker, token, deviceId] = await Promise.all([
       RegionChecker.fromStorage(),
       TokenStorage.get(),
@@ -255,7 +261,7 @@ export class Chat {
 
     try {
       await api.sendMessage({
-        baseURL: API_BASE_URL || 'https://ai-translator.langpt.ai',
+        baseURL: API_BASE_URL || 'https://translator.langpt.ai',
         deviceId,
         token,
         requestMode,
@@ -286,10 +292,43 @@ export class Chat {
     }
   }
 
+  private translate = async () => {
+    const url = `${API_BASE_URL}/api/translate`
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: this.params.to,
+        from: this.params.from || 'auto',
+        text: this.text,
+      }),
+    })
+
+    const json = await res.json()
+
+    if (json?.text) {
+      this.updateStreamingMessage(json.text)
+
+      setTimeout(() => {
+        this.emitter.emit('SCROLL_ANCHOR')
+      }, 10)
+
+      const message = this.messages[this.messages.length - 1]
+      if (this.isChatLayout) {
+        await MessageStorage.update(message)
+      }
+
+      this.lru.set(this.text, message.content)
+    }
+  }
+
   sendMessage = async (text = '') => {
     if (text) this.text = text
 
     if (!this.text) return
+    console.log('this.layout:', this.layout)
 
     await this.addMessage({
       userId: 1, // TODO:
@@ -324,6 +363,12 @@ export class Chat {
 
         return
       } catch (error) {}
+    }
+
+    // translate from google
+    if (!this.settings.aiMode) {
+      await this.translate()
+      return
     }
 
     // send completion message (chatgpt)
