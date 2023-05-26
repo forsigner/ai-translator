@@ -1,13 +1,10 @@
 import { Box } from '@fower/react'
 import { Button, toast } from 'bone-ui'
 import { IconChrome, IconIOS, IconWindows } from '@ai-translator/widgets'
-import { useChat } from '@ai-translator/chat'
 
 export const PanelFooter = () => {
-  const { chat } = useChat()
-
   return (
-    <Box pb4 px4 toCenterX columnGap-12>
+    <Box pb4 px4 toCenterX columnGap-12 display={['none', 'flex']}>
       <Box>
         <Button
           as="a"

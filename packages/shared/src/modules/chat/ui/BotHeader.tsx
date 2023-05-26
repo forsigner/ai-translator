@@ -45,6 +45,7 @@ export const BotHeader = () => {
           style={{
             fontFamily: 'aclonica',
           }}
+          display={['none', 'flex']}
         >
           AI Translator
         </Box>

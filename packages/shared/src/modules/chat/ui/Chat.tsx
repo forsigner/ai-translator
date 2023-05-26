@@ -10,7 +10,13 @@ export const Chat = () => {
   const w = 1120
   return (
     <Box flex-1 bgGray100--T20 overflowHidden>
-      <Box mx-auto column h-100vh w={chat.isChatLayout ? '100%' : ['100%', '100%', w, w]}>
+      <Box
+        mx-auto
+        column
+        h-100vh
+        px={[20, 30, 30, 50, 0]}
+        w={chat.isChatLayout ? '100%' : ['100%', '100%', '100%', '100%', w]}
+      >
         <BotHeader />
         <ChatBody />
 

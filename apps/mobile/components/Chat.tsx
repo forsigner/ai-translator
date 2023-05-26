@@ -7,10 +7,13 @@ export function Chat() {
   const chat = useChatContext()
   const { chatMessages } = useMessages()
 
-  const onSend = useCallback(async (messages: IChatMessage[] = []) => {
-    await chat.sendMessage(messages[0].text)
-    chat.updateText('')
-  }, [])
+  const onSend = useCallback(
+    async (messages: IChatMessage[] = []) => {
+      await chat.sendMessage(messages[0].text)
+      chat.updateText('')
+    },
+    [chat],
+  )
 
   const renderMessage = (props: MessageProps<IChatMessage>) => {
     return <BotMessage {...props} />

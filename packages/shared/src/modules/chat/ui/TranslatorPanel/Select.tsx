@@ -92,7 +92,7 @@ export function Select({ value, placement, onChange, options }: SelectProps) {
               </InputGroup>
             </Box>
 
-            <Box grid gridTemplateColumns-5 p4>
+            <Box grid gridTemplateColumns={[3, 3, 3, 5]} p4>
               {filteredOptions.map((item) => (
                 <LangItem
                   key={item.label}
