@@ -4,9 +4,10 @@ import { FowerHTMLProps } from '@fower/core'
 import { useChat, useMessages, useDeviceId } from '@ai-translator/chat'
 import { Header } from './Header'
 import { SendMessageBox } from './SendMessageBox'
-import { CARD_HEIGHT, CARD_WIDTH } from '../constants'
-import { forwardRef, useEffect, useState } from 'react'
+import { CARD_WIDTH } from '../constants'
+import { forwardRef } from 'react'
 import { TranslatorContent } from './TranslatorContent'
+import { CopyContent } from './CopyContent'
 
 interface Props extends FowerHTMLProps<'div'> {
   containerX?: MotionValue<number>
@@ -36,14 +37,21 @@ export const Translator = forwardRef<HTMLDivElement, Props>(function Translator(
             await chat.sendMessage()
           }}
         />
-        <Box pt4 mb2 px2 textBase leadingNormal>
+        <Box pt4 px2 textBase leadingNormal mb2={chat.isWord}>
           {messages[messages.length - 1] && (
-            <TranslatorContent
-              streaming={messages[messages.length - 1].streaming}
-              content={messages[messages.length - 1].content}
-              isWordMode={chat.isWord}
-              text={chat.text}
-            />
+            <Box>
+              <TranslatorContent
+                streaming={messages[messages.length - 1].streaming}
+                content={messages[messages.length - 1].content}
+                isWordMode={chat.isWord}
+                text={chat.text}
+              />
+              {!chat.isWord && (
+                <Box toRight>
+                  <CopyContent />
+                </Box>
+              )}
+            </Box>
           )}
         </Box>
         {/* <Footer /> */}
