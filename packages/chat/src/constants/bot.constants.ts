@@ -30,7 +30,7 @@ export const botList: BotType[] = [
     intro: 'Translate text from one language to another',
     layout: LayoutType.TwoColumn,
     params: {
-      from: 'en',
+      from: 'auto',
       to: 'zh-cn',
     },
   },

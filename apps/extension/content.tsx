@@ -5,7 +5,12 @@ import { SettingsStorage } from '@ai-translator/chat'
 import { Popover } from './components/Popover'
 import { Settings, init, initFomir } from '@ai-translator/widgets'
 import { Thumbnail } from './components/Thumbnail'
-import { useThumbnail, hideThumbnail, showThumbnail } from './stores/thumbnail.store'
+import {
+  useThumbnail,
+  hideThumbnail,
+  showThumbnail,
+  getThumbnailState,
+} from './stores/thumbnail.store'
 import { TranslatorContainer } from './components/TranslatorContainer'
 import { updateText, useText } from './stores/text.store'
 
@@ -46,7 +51,10 @@ document.addEventListener('click', (event) => {
   if (targetElement && targetElement.contains(currentElement as any)) {
     return
   }
-  hideThumbnail()
+  const store = getThumbnailState()
+  if (store?.visible) {
+    hideThumbnail()
+  }
 })
 
 function IndexContent() {

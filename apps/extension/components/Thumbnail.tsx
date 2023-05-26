@@ -40,6 +40,7 @@ export const Thumbnail: FC<ThumbnailProps> = forwardRef(function PopoverTrigger(
         position: 'absolute',
         left: x + 20,
         top: y,
+        zIndex: 100000,
         borderRadius: 8,
         border: '1px solid #e8e8e8',
         cursor: 'pointer',

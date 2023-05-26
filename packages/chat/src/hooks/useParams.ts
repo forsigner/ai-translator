@@ -12,9 +12,9 @@ export function useParams() {
     })
   }, [chat])
 
-  async function updateParams(params: any) {
+  async function updateParams(params: Params, isResendMessage = false) {
     setParams(params)
-    chat.updateParams(params)
+    chat.updateParams(params, isResendMessage)
   }
 
   return { params, updateParams }

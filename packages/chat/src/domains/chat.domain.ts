@@ -67,6 +67,10 @@ export class Chat {
     return this.layout === LayoutType.Chat
   }
 
+  get isAI() {
+    return !!this.settings.aiMode
+  }
+
   static async create(clearMessagesWhenInitialized: boolean) {
     const chat = new Chat()
     const [settings, bots] = await Promise.all([SettingsStorage.get(), BotStorage.get()])
@@ -87,6 +91,7 @@ export class Chat {
     await chat.init(activeBot || chat.bots[0])
 
     if (clearMessagesWhenInitialized) {
+      chat._bot.layout = LayoutType.TwoColumn
       await MessageStorage.clear(chat.slug)
     }
 
@@ -126,11 +131,16 @@ export class Chat {
     const index = this.bots.findIndex((bot) => bot.slug === this.slug)
 
     this.bots[index].params = params
+
     BotStorage.set(this.bots)
+
+    console.log('params....: ', params)
 
     if (params?.to) {
       emitter.emit('CHANGE_LANG_TO', '')
       if (this.text && isResendMessage) {
+        console.log('rendersend.............')
+
         this.sendMessage()
       }
     }
@@ -321,6 +331,8 @@ export class Chat {
       }
 
       this.lru.set(this.text, message.content)
+    } else {
+      this.updateStreamingMessage(`Translate to ${this.params.to} failed, please use AI mode.`)
     }
   }
 
@@ -328,7 +340,6 @@ export class Chat {
     if (text) this.text = text
 
     if (!this.text) return
-    console.log('this.layout:', this.layout)
 
     await this.addMessage({
       userId: 1, // TODO:
@@ -349,11 +360,13 @@ export class Chat {
 
     this.emitter.emit('SCROLL_ANCHOR')
 
-    const cacheContent = this.lru.get(this.text)
+    if (this.isAI) {
+      const cacheContent = this.lru.get(this.text)
 
-    if (cacheContent) {
-      this.updateStreamingMessage(cacheContent)
-      return
+      if (cacheContent) {
+        this.updateStreamingMessage(cacheContent)
+        return
+      }
     }
 
     // query dict
@@ -366,8 +379,12 @@ export class Chat {
     }
 
     // translate from google
-    if (!this.settings.aiMode) {
-      await this.translate()
+    if (!this.isAI) {
+      try {
+        await this.translate()
+      } catch (error) {
+        this.updateStreamingMessage(`Translate to ${this.params.to} failed, please use AI mode.`)
+      }
       return
     }
 
