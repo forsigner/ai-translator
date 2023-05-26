@@ -1,4 +1,5 @@
 import { ChatgptAPI, RequestMode } from '@ai-translator/chatgpt-api'
+import { flatten, unflatten } from 'flat'
 import { ChatCompletionResponseMessageRoleEnum } from 'openai'
 import { API_BASE_URL, BotSlugs, BotType, LayoutType, botList } from '../constants'
 import { emitter } from '../emitter'
@@ -14,6 +15,7 @@ import { isReactNative } from '../utils'
 import { MessageStorage } from '../services/MessageStorage'
 import { BotStorage } from '../services/BotStorage'
 import { LRUCache } from 'lru-cache'
+import { TranslateRepo } from '../repos/translate.repo'
 
 export interface Params {
   from: string
@@ -38,6 +40,13 @@ export class Chat {
   text = ''
 
   isWord = false
+
+  // is the input text is json
+  isJSON = false
+
+  json: Record<string, string> = {}
+
+  translateRepo = new TranslateRepo()
 
   messages: Message[] = []
 
@@ -69,6 +78,14 @@ export class Chat {
 
   get isAI() {
     return !!this.settings.aiMode
+  }
+
+  get translateInput() {
+    return {
+      to: this.params.to,
+      from: this.params.from || 'auto',
+      text: this.text,
+    }
   }
 
   static async create(clearMessagesWhenInitialized: boolean) {
@@ -113,6 +130,13 @@ export class Chat {
   updateText = (value: string) => {
     this.text = value.trim().replace(/[\r\n]+$/, '')
 
+    try {
+      this.json = JSON.parse(value)
+      this.isJSON = true
+    } catch (error) {
+      this.isJSON = false
+    }
+
     if (this.slug === BotSlugs.TextTranslator) {
       this.isWord = isWord(this.params.from!, value)
     }
@@ -134,13 +158,9 @@ export class Chat {
 
     BotStorage.set(this.bots)
 
-    console.log('params....: ', params)
-
     if (params?.to) {
       emitter.emit('CHANGE_LANG_TO', '')
       if (this.text && isResendMessage) {
-        console.log('rendersend.............')
-
         this.sendMessage()
       }
     }
@@ -204,11 +224,11 @@ export class Chat {
     }
   }
 
-  updateStreamingMessage = (text: string) => {
+  updateStreamingMessage = (content: any) => {
     const len = this.messages.length
-    this.messages[len - 1].content = text
+    this.messages[len - 1].content = content
     this.messages[len - 1].streaming = false
-    this.emitter.emit('STREAMING_MESSAGE', text)
+    this.emitter.emit('STREAMING_MESSAGE', content)
   }
 
   private async queryDict() {
@@ -303,20 +323,7 @@ export class Chat {
   }
 
   private translate = async () => {
-    const url = `${API_BASE_URL}/api/translate`
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: this.params.to,
-        from: this.params.from || 'auto',
-        text: this.text,
-      }),
-    })
-
-    const json = await res.json()
+    const json = await this.translateRepo.translate(this.translateInput)
 
     if (json?.text) {
       this.updateStreamingMessage(json.text)
@@ -334,6 +341,31 @@ export class Chat {
     } else {
       this.updateStreamingMessage(`Translate to ${this.params.to} failed, please use AI mode.`)
     }
+  }
+
+  private async translateJsonWithGoogle() {
+    const flattenJSON = flatten(this.json) as Record<string, string>
+
+    for (const key of Object.keys(flattenJSON)) {
+      const res = await this.translateRepo.translate({
+        ...this.translateInput,
+        text: flattenJSON[key],
+      })
+
+      const currentContent = this.messages[this.messages.length - 1].content
+
+      if (typeof currentContent === 'object') {
+        this.updateStreamingMessage({
+          ...currentContent,
+          [key]: res.text,
+        })
+      } else {
+        this.updateStreamingMessage({ [key]: res.text })
+      }
+    }
+
+    const currentContent = this.messages[this.messages.length - 1].content
+    this.updateStreamingMessage(unflatten(currentContent))
   }
 
   sendMessage = async (text = '') => {
@@ -359,6 +391,11 @@ export class Chat {
     })
 
     this.emitter.emit('SCROLL_ANCHOR')
+
+    if (this.isJSON) {
+      await this.translateJsonWithGoogle()
+      return
+    }
 
     if (this.isAI) {
       const cacheContent = this.lru.get(this.text)

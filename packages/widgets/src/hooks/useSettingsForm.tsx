@@ -89,6 +89,7 @@ export function useSettingsForm() {
     async onSubmit(values) {
       updateSettings({ ...settings, ...values })
       toast.success('Settings saved')
+      hide()
     },
     children: nodes,
   })

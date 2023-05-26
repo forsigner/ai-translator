@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@types/flat": "^5.0.2",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "@types/react-test-renderer": "^18.0.0",
@@ -37,6 +38,7 @@
     "bone-ui": "^0.34.1",
     "buffer": "^6.0.3",
     "endent": "^2.1.0",
+    "flat": "^5.0.2",
     "idb-keyval": "^6.2.0",
     "lru-cache": "^9.1.1",
     "mitt": "^3.0.0",

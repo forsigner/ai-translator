@@ -3,13 +3,13 @@ import { IconChatLoading } from '@ai-translator/widgets'
 import { css } from '@fower/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Box } from '@fower/react'
-import { useChatContext, useMessages } from '@ai-translator/chat'
+import { useChat, useMessages } from '@ai-translator/chat'
 import MessageContent from '../../../../components/MessageList/MessageContent'
 import { CopyContent } from './CopyContent'
 
 export const PanelEditor = () => {
   const [text, setText] = useState('')
-  const chat = useChatContext()
+  const { chat } = useChat()
   const { message } = useMessages()
   const disabled = message?.streaming
 
@@ -55,7 +55,7 @@ export const PanelEditor = () => {
             {message?.streaming && <IconChatLoading />}
             {!message?.streaming && <MessageContent content={text ? message?.content : ''} />}
           </Box>
-          {message && (
+          {message && !chat.isWord && (
             <Box toRight>
               <CopyContent />
             </Box>

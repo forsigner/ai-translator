@@ -1,4 +1,4 @@
-import { BotSlugs, Message, MessageJson, useChat } from '@ai-translator/chat'
+import { BotSlugs, isDictContent, isJsonContent, useChat } from '@ai-translator/chat'
 import { YoudaoDictWord } from '@ai-translator/widgets'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'
@@ -15,11 +15,16 @@ const MessageContent = ({ content }: Props) => {
 
   const lang = 'javascript'
 
-  if (typeof content === 'object') {
+  if (isDictContent(content)) {
     return <YoudaoDictWord data={content.data} />
   }
 
-  if (chat.slug === BotSlugs.CodeTranslator) {
+  // if (isJsonContent(content)) {
+  //   return <Box as="pre">{JSON.stringify(content, null, 2)}</Box>
+
+  // }
+
+  if (chat.slug === BotSlugs.CodeTranslator || isJsonContent(content)) {
     return (
       <Box
         rounded2XL
@@ -37,7 +42,7 @@ const MessageContent = ({ content }: Props) => {
         }}
       >
         <SyntaxHighlighter language={lang.toLowerCase()} style={oneLight}>
-          {content}
+          {isJsonContent(content) ? JSON.stringify(content, null, 2) : content}
         </SyntaxHighlighter>
       </Box>
     )

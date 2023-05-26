@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from 'bone-ui'
-import { useMessages } from '@ai-translator/chat'
+import { isJsonContent, useMessages } from '@ai-translator/chat'
 import { IconCopy, useCopyToClipboard } from '@ai-translator/widgets'
 
 export const CopyContent = () => {
@@ -18,7 +18,11 @@ export const CopyContent = () => {
           colorScheme="gray600"
           icon={<IconCopy gray600 strokeWidth={1} />}
           onClick={() => {
-            copy(message.content)
+            if (isJsonContent(message.content)) {
+              copy(JSON.stringify(message.content, null, 2))
+            } else {
+              copy(message.content)
+            }
             setCopyTips('Copied')
           }}
         />
