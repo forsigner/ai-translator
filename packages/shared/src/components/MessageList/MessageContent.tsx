@@ -43,7 +43,19 @@ const MessageContent = ({ content }: Props) => {
     )
   }
 
-  return <>{content}</>
+  return (
+    <Box
+      as="pre"
+      style={{
+        margin: 0,
+        fontSize: chat.text.length > 200 ? 14 : 24,
+        fontFamily:
+          "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+      }}
+    >
+      {content}
+    </Box>
+  )
 }
 
 export default memo(MessageContent, (prev, next) => {

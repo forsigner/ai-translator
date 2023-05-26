@@ -28,7 +28,7 @@ export const SendMessageBox = ({ onSendMessage }: Props) => {
     <Box relative border borderGray100 rounded2XL borderTransparent--dark bgGray800--dark>
       <TextareaAutosize
         minRows={1}
-        placeholder={`Enter to translate, Shift+Enter to new a line`}
+        placeholder={`Typing to translate, Shift+Enter to new a line`}
         className={css(
           'm0 borderNone borderNone--focus--i w-100p outlineNone px3 py3 flex placeholderGray400 bgWhite textBase gray300--dark bgTransparent bgTransparent--dark shadowNone--focus',
         )}

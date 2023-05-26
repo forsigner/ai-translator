@@ -2,7 +2,7 @@ import { Box } from '@fower/react'
 import { ChatBody } from './ChatBody'
 import { ChatFooter } from './ChatFooter'
 import { BotHeader } from './BotHeader'
-import { useChat } from '@ai-translator/chat'
+import { isWeb, useChat } from '@ai-translator/chat'
 import { PanelFooter } from './PanelFooter'
 
 export const Chat = () => {
@@ -21,7 +21,7 @@ export const Chat = () => {
         <ChatBody />
 
         {chat.isChatLayout && <ChatFooter />}
-        {!chat.isChatLayout && <PanelFooter />}
+        {!chat.isChatLayout && isWeb && <PanelFooter />}
       </Box>
     </Box>
   )

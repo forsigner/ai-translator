@@ -26,11 +26,10 @@ export const isServer = typeof window === 'undefined'
 export const PLATFORM = process.env.NEXT_PUBLIC_PLATFORM || process.env.PLASMO_PUBLIC_PLATFORM
 
 export const isExtension = PLATFORM === 'EXTENSION'
+export const isWeb = PLATFORM === 'WEB'
 
 export const HOST =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8000'
-    : 'https://translator.langpt.ai'
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://translator.langpt.ai'
 
 const githubRedirectUri = `${HOST}/api/auth/callback/github`
 const googleRedirectUri = `${HOST}/api/auth/callback/google`
