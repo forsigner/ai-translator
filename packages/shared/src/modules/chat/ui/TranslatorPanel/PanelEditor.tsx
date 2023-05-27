@@ -26,7 +26,7 @@ export const PanelEditor = () => {
           style={{
             resize: 'none',
             cursor: disabled ? 'not-allowed' : 'text',
-            fontSize: text.length > 200 ? 14 : 24,
+            fontSize: text.length > 100 ? 14 : 24,
             fontFamily:
               "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
           }}
