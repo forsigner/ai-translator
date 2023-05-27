@@ -21,19 +21,20 @@ export class MessageBuilder {
     this.isWord = isWord(opt.text)
   }
 
-  buildMessages = () => {
+  buildMessages = (text: string) => {
     this.messages = [
       {
         role: ChatCompletionResponseMessageRoleEnum.User,
-        content: this.isWord ? this.createWordPrompt() : this.createLangPrompt(),
+        content: this.isWord ? this.createWordPrompt() : this.createLangPrompt(text),
       },
     ]
 
     return this.messages
   }
 
-  createLangPrompt() {
-    const { text } = this.opt
+  createLangPrompt(inputText: string) {
+    let text = this.opt.text
+    if (inputText) text = inputText
     const toName = this.to
     return `
     You are a translation engine that can only translate text and cannot interpret it.

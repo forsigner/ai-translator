@@ -3,17 +3,11 @@ import { Button, Tooltip, TooltipContent, TooltipTrigger } from 'bone-ui'
 import { FowerHTMLProps } from '@fower/core'
 import { go } from '@codemirror/legacy-modes/mode/go'
 import { Box } from '@fower/react'
-import { githubLight, githubDark } from '@uiw/codemirror-theme-github'
-import CodeMirror from '@uiw/react-codemirror'
-import { tokyoNight } from '@uiw/codemirror-theme-tokyo-night'
-import { dracula } from '@uiw/codemirror-theme-dracula'
-import { materialLight } from '@uiw/codemirror-theme-material'
 import { duotoneLight } from '@uiw/codemirror-theme-duotone'
 import { useCodeMirror } from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import { FC, useEffect, useRef, useState } from 'react'
-import { IconCopy } from '@ai-translator/widgets'
-import { useCopyToClipboard } from '../../../../hooks'
+import { IconCopy, useCopyToClipboard } from '@ai-translator/widgets'
 
 interface Props extends Omit<FowerHTMLProps<'div'>, 'children' | 'onChange'> {
   code: string

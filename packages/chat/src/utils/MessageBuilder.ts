@@ -17,7 +17,7 @@ export class MessageBuilder {
     this.params = bot.params
   }
 
-  buildMessages = () => {
+  buildMessages = (text?: string) => {
     const { to = '' } = this.params
     const { bot } = this
     const toChinese = chineseLangs.includes(to)
@@ -31,7 +31,7 @@ export class MessageBuilder {
       this.messages = [
         {
           role: ChatCompletionResponseMessageRoleEnum.User,
-          content: bot.isWord && toChinese ? this.createWordPrompt() : this.createLangPrompt(),
+          content: bot.isWord && toChinese ? this.createWordPrompt() : this.createLangPrompt(text),
         },
       ]
     }
@@ -39,8 +39,10 @@ export class MessageBuilder {
     return this.messages
   }
 
-  createLangPrompt() {
-    const { text } = this.bot
+  createLangPrompt(inputText?: string) {
+    let text = this.bot.text
+    if (inputText) text = inputText
+
     const { to = '' } = this.params
     const toName = langMap.get(to) || to
     return `

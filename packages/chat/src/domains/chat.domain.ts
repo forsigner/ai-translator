@@ -196,9 +196,9 @@ export class Chat {
     emitter.emit('SELECT_BOT', currentBot)
   }
 
-  buildMessages = () => {
+  buildMessages = (text?: string) => {
     const messageBuilder = new MessageBuilder(this)
-    return messageBuilder.buildMessages()
+    return messageBuilder.buildMessages(text)
   }
 
   clearMessages = async () => {
@@ -263,7 +263,7 @@ export class Chat {
     this.lru.set(this.text, message.content)
   }
 
-  private sendCompletionMessage = async () => {
+  private async getCompletionParams() {
     const { settings } = this
 
     const [regionChecker, token, deviceId] = await Promise.all([
@@ -271,13 +271,6 @@ export class Chat {
       TokenStorage.get(),
       getOrGenerateDeviceId(),
     ])
-
-    const api = new ChatgptAPI({
-      isNative: isReactNative(),
-      apiKey: settings?.apiKey,
-    })
-
-    const messages = this.buildMessages()
 
     let requestMode = RequestMode.Official
 
@@ -288,13 +281,26 @@ export class Chat {
     if (settings.tokenProvider === 'Free') {
       requestMode = RequestMode.Unofficial
     }
+    return {
+      baseURL: API_BASE_URL || 'https://translator.langpt.ai',
+      deviceId,
+      token,
+      requestMode,
+    }
+  }
+
+  private sendCompletionMessage = async () => {
+    const { settings } = this
+    const api = new ChatgptAPI({
+      isNative: isReactNative(),
+      apiKey: settings?.apiKey,
+    })
+    const messages = this.buildMessages()
+    const params = await this.getCompletionParams()
 
     try {
       await api.sendMessage({
-        baseURL: API_BASE_URL || 'https://translator.langpt.ai',
-        deviceId,
-        token,
-        requestMode,
+        ...params,
         messages,
         onMessage: (text) => {
           this.updateStreamingMessage(text)
@@ -368,6 +374,64 @@ export class Chat {
     this.updateStreamingMessage(unflatten(currentContent))
   }
 
+  private async translateJsonWithAI() {
+    const flattenJSON = flatten(this.json) as Record<string, string>
+
+    for (const key of Object.keys(flattenJSON)) {
+      const { settings } = this
+      const api = new ChatgptAPI({
+        isNative: isReactNative(),
+        apiKey: settings?.apiKey,
+      })
+
+      const messages = this.buildMessages(flattenJSON[key])
+      const params = await this.getCompletionParams()
+
+      try {
+        await api.sendMessage({
+          ...params,
+          messages,
+          onMessage: (text) => {
+            const currentContent = this.messages[this.messages.length - 1].content
+
+            if (typeof currentContent === 'object') {
+              this.updateStreamingMessage({
+                ...currentContent,
+                [key]: text,
+              })
+            } else {
+              this.updateStreamingMessage({ [key]: text })
+            }
+
+            // this.updateStreamingMessage(text)
+            this.emitter.emit('SCROLL_ANCHOR')
+          },
+        })
+
+        const message = this.messages[this.messages.length - 1]
+        if (this.isChatLayout) {
+          await MessageStorage.update(message)
+        }
+
+        this.lru.set(this.text, message.content)
+      } catch (error) {
+        if (typeof error === 'string') {
+          this.updateStreamingMessage(error)
+          return
+        }
+
+        if (isDailyUsageLimit(error)) {
+          // updateMessage(<DailyUsageLimit />)
+          // TODO:
+          return
+        }
+      }
+    }
+
+    const currentContent = this.messages[this.messages.length - 1].content
+    this.updateStreamingMessage(unflatten(currentContent))
+  }
+
   sendMessage = async (text = '') => {
     if (text) this.text = text
 
@@ -393,6 +457,11 @@ export class Chat {
     this.emitter.emit('SCROLL_ANCHOR')
 
     if (this.isJSON) {
+      if (this.isAI) {
+        console.log('gogo.........')
+        await this.translateJsonWithAI()
+        return
+      }
       await this.translateJsonWithGoogle()
       return
     }
